@@ -1,15 +1,20 @@
 package com.example.wenda.tarucnfc;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
+
+    private NavigationView mNavigationView;
+    private DrawerLayout mDrawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,15 +22,70 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        //123
+        // Set fragmentHome as main page
+        HomeFragment fragmentHome = new HomeFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.frame, fragmentHome).commit();
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
+        mNavigationView.setCheckedItem(R.id.nav_menu_home);
+        mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
+                android.support.v4.app.FragmentTransaction fragmentTransaction =
+                        getSupportFragmentManager().beginTransaction();
+
+                //Closing drawer on item click
+                mDrawerLayout.closeDrawers();
+
+                //Check to see which item was being clicked and perform appropriate action
+                switch (menuItem.getItemId()) {
+
+                    case R.id.nav_menu_home:
+                        //Log.d("track", "first");
+                        HomeFragment fragmentHome = new HomeFragment();
+                        fragmentTransaction.replace(R.id.frame, fragmentHome);
+                        fragmentTransaction.commit();
+                        return true;
+
+                    case R.id.nav_second_fragment:
+                        //Log.d("track", "second");
+                        //SecondFragment secondFragment = new SecondFragment();
+                        //fragmentTransaction.replace(R.id.frame, secondFragment);
+                        //fragmentTransaction.commit();
+                        //return true;
+                    default:
+                        Toast.makeText(getApplicationContext(), "Somethings Wrong", Toast.LENGTH_SHORT).show();
+                        return true;
+                }
+
             }
+
         });
+
+        // Initializing Drawer Layout and ActionBarToggle
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer);
+        ActionBarDrawerToggle mActionBarDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, R.string.open_drawer, R.string.close_drawer) {
+
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                // Code here will be triggered once the drawer closes as we dont want anything to happen so we leave this blank
+                super.onDrawerClosed(drawerView);
+            }
+
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                // Code here will be triggered once the drawer open as we dont want anything to happen so we leave this blank
+
+                super.onDrawerOpened(drawerView);
+            }
+        };
+
+        //Setting the actionbarToggle to drawer layout
+        mDrawerLayout.setDrawerListener(mActionBarDrawerToggle);
+
+        //calling sync state is necessay or else your hamburger icon wont show up
+        mActionBarDrawerToggle.syncState();
     }
 
     @Override
