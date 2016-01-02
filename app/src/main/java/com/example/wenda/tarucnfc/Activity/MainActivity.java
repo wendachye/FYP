@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.frame, fragmentHome).commit();
 
         mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
-        mNavigationView.setCheckedItem(R.id.nav_menu_home);
+        mNavigationView.setCheckedItem(R.id.nav_menu_dashboard);
         mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
@@ -43,18 +43,14 @@ public class MainActivity extends AppCompatActivity {
                 //Check to see which item was being clicked and perform appropriate action
                 switch (menuItem.getItemId()) {
 
-                    case R.id.nav_menu_home:
+                    case R.id.nav_menu_dashboard:
                         HomeFragment fragmentHome = new HomeFragment();
                         fragmentTransaction.replace(R.id.frame, fragmentHome);
                         fragmentTransaction.commit();
                         return true;
 
                     case R.id.nav_second_fragment:
-                        //Log.d("track", "second");
-                        //SecondFragment secondFragment = new SecondFragment();
-                        //fragmentTransaction.replace(R.id.frame, secondFragment);
-                        //fragmentTransaction.commit();
-                        //return true;
+
                     default:
                         Toast.makeText(getApplicationContext(), "Somethings Wrong", Toast.LENGTH_SHORT).show();
                         return true;

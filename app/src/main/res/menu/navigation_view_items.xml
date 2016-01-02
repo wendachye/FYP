@@ -4,8 +4,8 @@
         android:id="@+id/group_first"
         android:checkableBehavior="all">
         <item
-            android:id="@+id/nav_menu_home"
-            android:title="Home" />
+            android:id="@+id/nav_menu_dashboard"
+            android:title="Dashboard" />
 
         <item
             android:id="@+id/nav_second_fragment"

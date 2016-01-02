@@ -11,6 +11,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
+    <de.hdodenhof.circleimageview.CircleImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/image_profile"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="60dp"
+        android:layout_marginLeft="16dp"
+        android:src="@drawable/ic_account"
+        app:civ_border_color="@color/white"
+        app:civ_border_width="2dp" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -20,17 +32,17 @@
         <TextView
         android:id="@+id/text_name"
         style="@style/TextAppearance.AppCompat.Subhead"
-            android:layout_gravity="center"
+        android:layout_gravity="center"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginLeft="15dp"
+        android:layout_weight="1"
+        android:layout_marginLeft="20dp"
         android:text="Sign In"
         android:textColor="@android:color/white"  />
 
 
     <ImageButton
-        android:id="@+id/image_button"
+        android:id="@+id/edit_account"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="3"
