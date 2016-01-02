@@ -3,6 +3,8 @@ package com.example.wenda.tarucnfc.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -11,7 +13,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.example.wenda.tarucnfc.Fragment.AccountFragment;
 import com.example.wenda.tarucnfc.Fragment.HomeFragment;
 import com.example.wenda.tarucnfc.R;
 
@@ -20,6 +25,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private NavigationView mNavigationView;
     private DrawerLayout mDrawerLayout;
     private ImageButton imageButton;
+    private ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +40,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         imageButton = (ImageButton) findViewById(R.id.edit_account);
         imageButton.setOnClickListener(this);
+
+        imageView = (ImageView) findViewById(R.id.image_profile);
+        imageView.setOnClickListener(this);
+
         mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
         mNavigationView.setCheckedItem(R.id.nav_menu_dashboard);
         mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -119,6 +129,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Intent intent = new Intent(this, EditAccountActivity.class);
                 //intent.putExtra(KEY_ACCOUNT_ID, getLoginDetail().getAccountId());
                 startActivity(intent);
+                break;
+            case R.id.image_profile:
+                AccountFragment fragmentAccount = new AccountFragment();
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                transaction.replace(R.id.frame, fragmentAccount).commit();
+                mDrawerLayout.closeDrawers();
+                break;
+            default:
+                break;
         }
     }
 }
