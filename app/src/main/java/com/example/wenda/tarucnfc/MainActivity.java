@@ -11,6 +11,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.wenda.tarucnfc.Fragment.HomeFragment;
+
 public class MainActivity extends AppCompatActivity {
 
     private NavigationView mNavigationView;
