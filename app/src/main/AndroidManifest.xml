@@ -18,7 +18,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.EditAccountActivity"></activity>
+        <activity
+            android:name=".Activity.EditAccountActivity"
+            android:label="EditAccount">
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".Activity.MainActivity"/>
+        </activity>
     </application>
 
 </manifest>
