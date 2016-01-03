@@ -21,8 +21,11 @@
         <activity
             android:name=".Activity.EditAccountActivity"
             android:label="EditAccount">
-            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".Activity.MainActivity"/>
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Activity.MainActivity" />
         </activity>
+        <activity android:name=".Activity.LoginActivity"></activity>
     </application>
 
 </manifest>
