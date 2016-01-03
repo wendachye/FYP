@@ -56,7 +56,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/activity_vertical_margin"
                         android:inputType="textEmailAddress"
-                        android:hint="@string/hint_studentID"
+                        android:hint="@string/hint_username"
                          />
                 </LinearLayout>
 
@@ -80,6 +80,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/activity_vertical_margin"
                         android:inputType="textPassword"
+                        android:hint="@string/hint_password"
                          />
                 </LinearLayout>
 
