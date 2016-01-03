@@ -19,7 +19,7 @@
         android:layout_gravity="bottom"
         android:layout_marginBottom="60dp"
         android:layout_marginLeft="16dp"
-        android:src="@drawable/ic_account"
+        android:src="@drawable/ic_account1"
         app:civ_border_color="@color/white"
         app:civ_border_width="2dp" />
 
