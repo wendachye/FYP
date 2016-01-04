@@ -8,5 +8,7 @@
         android:id="@+id/save"
         android:orderInCategory="100"
         android:title="@string/save"
-        app:showAsAction="always" />
+        android:icon="@drawable/ic_check"
+        app:showAsAction="always"
+        />
 </menu>

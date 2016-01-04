@@ -44,11 +44,11 @@
                     android:orientation="horizontal">
 
                     <EditText
-                        android:id="@+id/edit_text_email_address"
+                        android:id="@+id/edit_text_username"
                         android:layout_width="260dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/activity_vertical_margin"
-                        android:inputType="textEmailAddress"
+                        android:inputType="text"
                         android:hint="@string/hint_username"
                          />
 
