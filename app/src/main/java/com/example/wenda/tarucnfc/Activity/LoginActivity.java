@@ -16,4 +16,6 @@ public class LoginActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.login_title);
     }
+
+    //@OnClick(R.id)
 }

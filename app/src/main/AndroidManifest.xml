@@ -25,7 +25,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Activity.MainActivity" />
         </activity>
-        <activity android:name=".Activity.LoginActivity"></activity>
+        <activity android:name=".Activity.LoginActivity" />
+        <activity android:name=".Activity.ChangePasswordActivity"></activity>
     </application>
 
 </manifest>

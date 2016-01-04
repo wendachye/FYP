@@ -35,8 +35,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setSupportActionBar(toolbar);
 
         // Set fragmentHome as main page
-        HomeFragment fragmentHome = new HomeFragment();
-        getSupportFragmentManager().beginTransaction().replace(R.id.frame, fragmentHome).commit();
+        AccountFragment fragmentAccount = new AccountFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.frame, fragmentAccount).commit();
 
         imageButton = (ImageButton) findViewById(R.id.edit_account);
         imageButton.setOnClickListener(this);

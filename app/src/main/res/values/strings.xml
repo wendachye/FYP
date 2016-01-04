@@ -15,4 +15,6 @@
     <string name="forgot_password">Forgot Password</string>
     <string name="sign_up_for_taruc_assist">Login</string>
     <string name="login">Login</string>
+    <string name="change_password">Change Password</string>
+
 </resources>
