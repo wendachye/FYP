@@ -31,4 +31,9 @@
     <string name="hint_programme">Programme</string>
     <string name="hint_campus">Campus</string>
 
+    <string-array name="gender_arrays">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+
 </resources>

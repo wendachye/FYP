@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.example.wenda.tarucnfc.Fragment.AccountFragment;
 import com.example.wenda.tarucnfc.Fragment.HomeFragment;
+import com.example.wenda.tarucnfc.Fragment.WalletFragment;
 import com.example.wenda.tarucnfc.R;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -64,7 +65,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         fragmentTransaction.commit();
                         return true;
 
-                    case R.id.nav_second_fragment:
+                    case R.id.nav_menu_wallet:
+                        WalletFragment fragmentWallet = new WalletFragment();
+                        fragmentTransaction.replace(R.id.frame, fragmentWallet);
+                        fragmentTransaction.commit();
+                        return true;
+
+                    case R.id.nav_third_fragment:
 
                     default:
                         Toast.makeText(getApplicationContext(), "Somethings Wrong", Toast.LENGTH_SHORT).show();

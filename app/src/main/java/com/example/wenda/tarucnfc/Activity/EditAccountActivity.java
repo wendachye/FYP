@@ -6,15 +6,20 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Spinner;
 
 import com.example.wenda.tarucnfc.R;
 
 public class EditAccountActivity extends AppCompatActivity {
 
+    private Spinner mspinner;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_account);
+
+        mspinner = (Spinner) findViewById(R.id.spinner_gender);
 
         //set title to center
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);

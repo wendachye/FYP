@@ -8,8 +8,8 @@
             android:title="Dashboard" />
 
         <item
-            android:id="@+id/nav_second_fragment"
-            android:title="Second Fragment" />
+            android:id="@+id/nav_menu_wallet"
+            android:title="Wallet Fragment" />
 
         <item
             android:id="@+id/nav_third_fragment"
