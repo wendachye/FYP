@@ -19,5 +19,16 @@
     <string name="sign_up_for_taruc_assist">Login</string>
     <string name="login">Login</string>
     <string name="change_password">Change Password</string>
+    <string name="hint_studentid">Student ID</string>
+    <string name="hint_fullname">Full Name</string>
+    <string name="hint_nric">NRIC No</string>
+    <string name="hint_contact">Contact Number</string>
+    <string name="hint_email">Email Address</string>
+    <string name="hint_gender">Gender</string>
+    <string name="hint_homeAddress">Home Address</string>
+    <string name="hint_campusAddress">Campus Address</string>
+    <string name="hint_faculty">Faculty</string>
+    <string name="hint_programme">Programme</string>
+    <string name="hint_campus">Campus</string>
 
 </resources>
