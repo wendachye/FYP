@@ -38,6 +38,7 @@
     <string name="profile">Profile</string>
     <string name="studentinfo">Student Information</string>
     <string name="privateinfo">Private Information</string>
+    <string name="text_retrieve_password">Enter your Login Username and NRIC No to retrieve your password.</string>
 
     <string-array name="gender_arrays">
         <item>Male</item>

@@ -22,7 +22,9 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void forgotPassword(View view) {
-
+        Intent intent = new Intent(this, ForgotPasswordActivity.class);
+        //intent.putExtra(KEY_ACCOUNT_ID, getLoginDetail().getAccountId());
+        startActivity(intent);
     }
 
     public void loginButton(View view) {
