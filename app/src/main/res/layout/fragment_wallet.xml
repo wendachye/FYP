@@ -46,7 +46,8 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_gravity="center"
-                android:scaleType="centerCrop"/>
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_credit_card_scan"/>
 
             <Button
                 android:layout_width="250dp"
@@ -68,7 +69,8 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_gravity="center"
-                android:scaleType="centerCrop"/>
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_cellphone_iphone"/>
 
             <Button
                 android:layout_width="250dp"
@@ -90,7 +92,8 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_gravity="center"
-                android:scaleType="centerCrop"/>
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_transfer"/>
 
             <Button
                 android:layout_width="250dp"
