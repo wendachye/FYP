@@ -17,7 +17,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.wenda.tarucnfc.Fragment.AccountFragment;
-import com.example.wenda.tarucnfc.Fragment.HomeFragment;
+import com.example.wenda.tarucnfc.Fragment.DashboardFragment;
 import com.example.wenda.tarucnfc.Fragment.WalletFragment;
 import com.example.wenda.tarucnfc.R;
 
@@ -60,12 +60,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 switch (menuItem.getItemId()) {
 
                     case R.id.nav_menu_dashboard:
-                        HomeFragment fragmentHome = new HomeFragment();
+                        getSupportActionBar().setTitle(R.string.dashboard);
+                        DashboardFragment fragmentHome = new DashboardFragment();
                         fragmentTransaction.replace(R.id.frame, fragmentHome);
                         fragmentTransaction.commit();
                         return true;
 
                     case R.id.nav_menu_wallet:
+                        getSupportActionBar().setTitle(R.string.wallet);
                         WalletFragment fragmentWallet = new WalletFragment();
                         fragmentTransaction.replace(R.id.frame, fragmentWallet);
                         fragmentTransaction.commit();
@@ -140,13 +142,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intent);
                 break;
             case R.id.image_profile:
-
                 AccountFragment fragmentAccount = new AccountFragment();
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 FragmentTransaction transaction = fragmentManager.beginTransaction();
                 transaction.replace(R.id.frame, fragmentAccount).commit();
                 mDrawerLayout.closeDrawers();
                 break;
+
             default:
                 break;
         }

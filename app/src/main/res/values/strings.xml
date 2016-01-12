@@ -30,6 +30,14 @@
     <string name="hint_faculty">Faculty</string>
     <string name="hint_programme">Programme</string>
     <string name="hint_campus">Campus</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="wallet">Wallet</string>
+    <string name="topup">Top Up</string>
+    <string name="transfer">Transfer</string>
+    <string name="payment">Payment</string>
+    <string name="profile">Profile</string>
+    <string name="studentinfo">Student Information</string>
+    <string name="privateinfo">Private Information</string>
 
     <string-array name="gender_arrays">
         <item>Male</item>
