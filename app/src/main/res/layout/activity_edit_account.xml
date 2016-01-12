@@ -6,8 +6,6 @@
     android:orientation="vertical"
     tools:context="com.example.wenda.tarucnfc.Activity.EditAccountActivity">
 
-
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -60,10 +58,10 @@
                     <de.hdodenhof.circleimageview.CircleImageView
                         xmlns:app="http://schemas.android.com/apk/res-auto"
                         android:id="@+id/image_profile"
-                        android:layout_width="120dp"
-                        android:layout_height="120dp"
+                        android:layout_width="130dp"
+                        android:layout_height="130dp"
                         android:layout_gravity="center"
-                        android:src="@drawable/ic_account1"
+                        android:src="@drawable/cara_delevingne2"
                         app:civ_border_color="@color/white" />
 
                 </LinearLayout>

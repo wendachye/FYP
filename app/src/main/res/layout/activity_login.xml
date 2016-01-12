@@ -102,11 +102,11 @@
                     android:layout_marginLeft="50dp"
                     android:layout_marginRight="10dp"
                     android:background="@color/colorPrimary"
-                    android:clickable="true"
                     android:gravity="center"
                     android:text="@string/login"
                     android:textColor="@color/white"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    android:onClick="loginButton"/>
 
                 <ImageView
                     android:layout_width="24dp"
@@ -124,8 +124,11 @@
                 android:layout_marginBottom="16dp"
                 android:gravity="center"
                 android:text="@string/forgot_password"
-                android:textColor="@color/red" />
+                android:textColor="@color/red"
+                android:onClick="forgotPassword" />
+
         </LinearLayout>
+
     </ScrollView>
 
 </LinearLayout>
