@@ -39,10 +39,25 @@
     <string name="studentinfo">Student Information</string>
     <string name="privateinfo">Private Information</string>
     <string name="text_retrieve_password">Enter your Login Username and NRIC No to retrieve your password.</string>
+    <string name="hint_school_email">School Email</string>
+    <string name="hint_sessionJoined">Session Joined</string>
 
     <string-array name="gender_arrays">
         <item>Male</item>
         <item>Female</item>
+    </string-array>
+
+    <string-array name="sessionJoined_arrays">
+        <item>2012</item>
+        <item>2013</item>
+        <item>2014</item>
+        <item>2015</item>
+        <item>2016</item>
+    </string-array>
+
+    <string-array name="sessionJoined2_arrays">
+        <item>04</item>
+        <item>09</item>
     </string-array>
 
 </resources>
