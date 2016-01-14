@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -24,9 +23,7 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 
-import static com.example.wenda.tarucnfc.Activitys.BaseActivity.shortToast;
-
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends BaseActivity {
 
     /*
     Response from server:
@@ -50,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
     private static final String KEY_E_AUTHORIZATION = "E_Authorization";
     private static final String KEY_B_AUTHORIZATION = "B_Authorization";
 
-    private static final String KEY_RESPONSE = "Response";
+    private static final String KEY_RESPONSE = "LoginResponse";
 
     private Login login = new Login();
     private Account account = new Account();
@@ -81,6 +78,7 @@ public class LoginActivity extends AppCompatActivity {
     public void loginButton(View view) {
         try {
             Log.d("track", editTextUsername.getText().toString());
+            Log.d("track", editTextPassword.getText().toString());
             login.verifyPassword(editTextPassword.getText().toString());
             account.verifyAccountID(editTextUsername.getText().toString());
 
@@ -112,10 +110,10 @@ public class LoginActivity extends AppCompatActivity {
         protected void onPostExecute(String json) {
             super.onPostExecute(json);
             UIUtils.getProgressDialog(LoginActivity.this, "OFF");
-            //shortToast(LoginActivity.this, json);
-            extractJsonData(json);
+            shortToast(LoginActivity.this, json);
+           extractJsonData(json);
 
-            switch (offlineLogin.getLoginResponse()){
+           switch (offlineLogin.getLoginResponse()){
                 case RESPONSE_404:
                     // account not found
                     shortToast(LoginActivity.this,"Account not found");
@@ -123,7 +121,7 @@ public class LoginActivity extends AppCompatActivity {
                 case RESPONSE_SUCCESS:
                     // login success, save login state and direct to main screen
                     shortToast(LoginActivity.this,"success");
-                    //saveLoginDetail(offlineLogin);
+                    saveLoginDetail(offlineLogin,LoginActivity.this);
 
                     // direct to main screen and finish current activity
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
@@ -147,13 +145,16 @@ public class LoginActivity extends AppCompatActivity {
             HashMap<String, String> data = new HashMap<>();
             data.put(KEY_LOGINID, loginID);
             data.put(KEY_PASSWORD, password);
+            Log.d("track", "Inside " + loginID);
+            Log.d("track", "Inside "  + password);
             return rh.sendPostRequest(LOGIN_URL, data);
         }
     }
 
     private void extractJsonData(String json) {
-
+        Log.d("track", "outside " );
         try {
+            Log.d("track", "inside " );
             JSONArray jsonArray = new JSONObject(json).getJSONArray(BaseActivity.JSON_ARRAY);
             JSONObject jsonObject = jsonArray.getJSONObject(0);
 
@@ -180,6 +181,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
             offlineLogin.setLoginResponse(jsonObject.getInt(KEY_RESPONSE));
+            Log.d("track", "Response " + jsonObject.getInt(KEY_RESPONSE));
 
         } catch (JSONException e) {
             e.printStackTrace();

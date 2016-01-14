@@ -144,9 +144,9 @@ public class BaseActivity extends AppCompatActivity {
         Toast.makeText(this, message == null ? "Something went wrong." : message, Toast.LENGTH_SHORT).show();
     }
 
-    public OfflineLogin getLoginDetail() {
+    public OfflineLogin getLoginDetail(Context context) {
         OfflineLogin offlineLogin = null;
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         Gson gson = new Gson();
         if(prefs.getString(OBJECT_OFFLINE_LOGIN, "") != null) {
             String json = prefs.getString(OBJECT_OFFLINE_LOGIN, "");
@@ -155,8 +155,8 @@ public class BaseActivity extends AppCompatActivity {
         return offlineLogin;
     }
 
-    public void saveLoginDetail(OfflineLogin offlineLogin) {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+    public void saveLoginDetail(OfflineLogin offlineLogin,Context context) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor prefsEditor = prefs.edit();
         Gson gson = new Gson();
         String json = gson.toJson(offlineLogin);
