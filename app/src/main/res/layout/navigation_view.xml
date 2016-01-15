@@ -30,7 +30,7 @@
         android:layout_gravity="bottom">
 
         <TextView
-        android:id="@+id/text_name"
+        android:id="@+id/text_studentID"
         style="@style/TextAppearance.AppCompat.Subhead"
         android:layout_gravity="center"
         android:layout_width="fill_parent"

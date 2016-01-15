@@ -117,7 +117,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
-                        android:layout_marginLeft="48dp"
+                        android:layout_marginLeft="40dp"
                         android:layout_marginRight="32dp"
                         android:layout_marginTop="5dp"
                         android:orientation="horizontal">
@@ -130,7 +130,7 @@
                             android:src="@drawable/ic_tag_text_outline" />
 
                         <TextView
-                            android:id="@+id/edit_text_studentid"
+                            android:id="@+id/text_studentid"
                             android:layout_width="260dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -144,7 +144,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
-                        android:layout_marginLeft="48dp"
+                        android:layout_marginLeft="40dp"
                         android:layout_marginRight="32dp"
                         android:layout_marginTop="5dp"
                         android:orientation="horizontal">
@@ -157,7 +157,7 @@
                             android:src="@drawable/ic_book_open_variant" />
 
                         <TextView
-                            android:id="@+id/edit_text_programme"
+                            android:id="@+id/text_programme"
                             android:layout_width="260dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -171,7 +171,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
-                        android:layout_marginLeft="48dp"
+                        android:layout_marginLeft="40dp"
                         android:layout_marginRight="32dp"
                         android:layout_marginTop="5dp"
                         android:orientation="horizontal">
@@ -184,7 +184,7 @@
                             android:src="@drawable/ic_school" />
 
                         <TextView
-                            android:id="@+id/edit_text_faculty"
+                            android:id="@+id/text_faculty"
                             android:layout_width="260dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -198,7 +198,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
-                        android:layout_marginLeft="48dp"
+                        android:layout_marginLeft="40dp"
                         android:layout_marginRight="32dp"
                         android:layout_marginTop="5dp"
                         android:orientation="horizontal">
@@ -211,7 +211,7 @@
                             android:src="@drawable/ic_hospital_building" />
 
                         <TextView
-                            android:id="@+id/edit_text_campus"
+                            android:id="@+id/text_campus"
                             android:layout_width="260dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -225,7 +225,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
-                        android:layout_marginLeft="48dp"
+                        android:layout_marginLeft="40dp"
                         android:layout_marginRight="32dp"
                         android:layout_marginTop="5dp"
                         android:orientation="horizontal">
@@ -238,7 +238,7 @@
                             android:src="@drawable/ic_email" />
 
                         <TextView
-                            android:id="@+id/edit_text_school_email"
+                            android:id="@+id/text_school_email"
                             android:layout_width="260dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -252,7 +252,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
-                        android:layout_marginLeft="48dp"
+                        android:layout_marginLeft="40dp"
                         android:layout_marginRight="32dp"
                         android:layout_marginTop="5dp"
                         android:orientation="horizontal">
@@ -265,7 +265,7 @@
                             android:src="@drawable/ic_timetable" />
 
                         <TextView
-                            android:id="@+id/edit_text_sessionJoined"
+                            android:id="@+id/text_sessionJoined"
                             android:layout_width="260dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -325,7 +325,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
-                        android:layout_marginLeft="48dp"
+                        android:layout_marginLeft="40dp"
                         android:layout_marginRight="32dp"
                         android:layout_marginTop="5dp"
                         android:orientation="horizontal">
@@ -338,7 +338,7 @@
                             android:src="@drawable/ic_account_box" />
 
                         <TextView
-                            android:id="@+id/edit_text_fullname"
+                            android:id="@+id/text_fullname"
                             android:layout_width="260dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -353,7 +353,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
-                        android:layout_marginLeft="48dp"
+                        android:layout_marginLeft="40dp"
                         android:layout_marginRight="32dp"
                         android:layout_marginTop="5dp"
                         android:orientation="horizontal">
@@ -366,7 +366,7 @@
                             android:src="@drawable/ic_credit_card" />
 
                         <TextView
-                            android:id="@+id/edit_text_nric"
+                            android:id="@+id/text_nricno"
                             android:layout_width="260dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -381,7 +381,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
-                        android:layout_marginLeft="48dp"
+                        android:layout_marginLeft="40dp"
                         android:layout_marginRight="32dp"
                         android:layout_marginTop="5dp"
                         android:orientation="horizontal">
@@ -394,7 +394,7 @@
                             android:src="@drawable/ic_cellphone_android" />
 
                         <TextView
-                            android:id="@+id/edit_text_contact"
+                            android:id="@+id/text_contactNo"
                             android:layout_width="260dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -408,7 +408,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
-                        android:layout_marginLeft="48dp"
+                        android:layout_marginLeft="40dp"
                         android:layout_marginRight="32dp"
                         android:layout_marginTop="5dp"
                         android:orientation="horizontal">
@@ -421,7 +421,7 @@
                             android:src="@drawable/ic_email" />
 
                         <TextView
-                            android:id="@+id/edit_text_email"
+                            android:id="@+id/text_email"
                             android:layout_width="260dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -435,7 +435,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
-                        android:layout_marginLeft="48dp"
+                        android:layout_marginLeft="40dp"
                         android:layout_marginRight="32dp"
                         android:layout_marginTop="5dp"
                         android:orientation="horizontal">
@@ -448,7 +448,7 @@
                             android:src="@drawable/ic_gender_male_female" />
 
                         <TextView
-                            android:id="@+id/edit_text_gender"
+                            android:id="@+id/text_gender"
                             android:layout_width="260dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -462,7 +462,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
-                        android:layout_marginLeft="48dp"
+                        android:layout_marginLeft="40dp"
                         android:layout_marginRight="32dp"
                         android:layout_marginTop="5dp"
                         android:orientation="horizontal">
@@ -475,7 +475,7 @@
                             android:src="@drawable/ic_home" />
 
                         <TextView
-                            android:id="@+id/edit_text_homeAddress"
+                            android:id="@+id/text_homeAddress"
                             android:layout_width="260dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -489,7 +489,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
-                        android:layout_marginLeft="48dp"
+                        android:layout_marginLeft="40dp"
                         android:layout_marginRight="32dp"
                         android:layout_marginTop="5dp"
                         android:orientation="horizontal">
@@ -502,7 +502,7 @@
                             android:src="@drawable/ic_map_marker" />
 
                         <TextView
-                            android:id="@+id/edit_text_campusAddress"
+                            android:id="@+id/text_campusAddress"
                             android:layout_width="260dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
