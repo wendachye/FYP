@@ -7,7 +7,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,12 +15,13 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.wenda.tarucnfc.Domains.OfflineLogin;
 import com.example.wenda.tarucnfc.Fragments.AccountFragment;
 import com.example.wenda.tarucnfc.Fragments.DashboardFragment;
 import com.example.wenda.tarucnfc.Fragments.WalletFragment;
 import com.example.wenda.tarucnfc.R;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     private NavigationView mNavigationView;
     private DrawerLayout mDrawerLayout;
@@ -73,7 +73,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         fragmentTransaction.commit();
                         return true;
 
-                    case R.id.nav_third_fragment:
+                    case R.id.nav_menu_sign_out:
+                        removeLoginDetail();
+                        Toast.makeText(getApplicationContext(), "Signed out", Toast.LENGTH_SHORT).show();
+                        return true;
 
                     default:
                         Toast.makeText(getApplicationContext(), "Somethings Wrong", Toast.LENGTH_SHORT).show();
@@ -107,6 +110,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         //calling sync state is necessay or else your hamburger icon wont show up
         mActionBarDrawerToggle.syncState();
+    }
+
+    public void initProfileDetail() {
+        // if account haven't login
+        OfflineLogin offlineLogin = getLoginDetail(this);
+
+        if (offlineLogin != null) {
+            //mTextName.setText(offlineLogin.getName());
+            //mTextEmail.setText(offlineLogin.getEmail());
+            //ImageLoader.getInstance().displayImage(offlineLogin.getProfileImagePath(), mImageProfile, options);
+            //ImageLoader.getInstance().displayImage(offlineLogin.getCoverImagePath(), mImageCover, options);
+            //mNavigationView.getMenu().getItem(9).setVisible(true);
+        } else {
+            //mImageProfile.setImageResource(R.drawable.ic_github_circle);
+           // mTextName.setText(R.string.sign_in);
+            //mTextEmail.setText("");
+            //mNavigationView.setCheckedItem(R.id.nav_menu_home);
+            //mImageCover.setVisibility(View.GONE);
+            //mNavigationView.getMenu().getItem(9).setVisible(false);
+        }
     }
 
     @Override

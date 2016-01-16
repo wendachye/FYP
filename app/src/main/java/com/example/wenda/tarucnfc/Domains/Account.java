@@ -1,5 +1,7 @@
 package com.example.wenda.tarucnfc.Domains;
 
+import android.graphics.Bitmap;
+
 import com.example.wenda.tarucnfc.InvalidInputException;
 
 public class Account {
@@ -21,6 +23,7 @@ public class Account {
     private String accountBalance;
     private String PINcode;
     private String status;
+    private Bitmap profilePictureBitmap;
 
     public String getAccountID() {
         return accountID;
@@ -165,5 +168,13 @@ public class Account {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Bitmap getProfilePictureBitmap() {
+        return profilePictureBitmap;
+    }
+
+    public void setProfilePictureBitmap(Bitmap profilePictureBitmap) {
+        this.profilePictureBitmap = profilePictureBitmap;
     }
 }

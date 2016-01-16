@@ -71,14 +71,11 @@ public class LoginActivity extends BaseActivity {
 
     public void forgotPassword(View view) {
         Intent intent = new Intent(this, ForgotPasswordActivity.class);
-        //intent.putExtra(KEY_ACCOUNT_ID, getLoginDetail().getAccountId());
         startActivity(intent);
     }
 
     public void loginButton(View view) {
         try {
-            Log.d("track", editTextUsername.getText().toString());
-            Log.d("track", editTextPassword.getText().toString());
             login.verifyPassword(editTextPassword.getText().toString());
             account.verifyAccountID(editTextUsername.getText().toString());
 
@@ -111,28 +108,29 @@ public class LoginActivity extends BaseActivity {
             super.onPostExecute(json);
             UIUtils.getProgressDialog(LoginActivity.this, "OFF");
             shortToast(LoginActivity.this, json);
-           extractJsonData(json);
+            extractJsonData(json);
 
            switch (offlineLogin.getLoginResponse()){
                 case RESPONSE_404:
                     // account not found
                     shortToast(LoginActivity.this,"Account not found");
                     break;
+
                 case RESPONSE_SUCCESS:
                     // login success, save login state and direct to main screen
                     shortToast(LoginActivity.this,"success");
                     saveLoginDetail(offlineLogin,LoginActivity.this);
-
-                    // direct to main screen and finish current activity
+                    // go to main screen
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
                     finish();
-
                     break;
+
                 case RESPONSE_PASSWORD_INCORRECT:
                     // password incorrect
                     shortToast(LoginActivity.this,"password incorrect");
                     break;
+
                 case RESPONSE_STATUS_NOT_ACTIVE:
                     // inactive account
                     shortToast(LoginActivity.this,"account inactive");
@@ -152,9 +150,7 @@ public class LoginActivity extends BaseActivity {
     }
 
     private void extractJsonData(String json) {
-        Log.d("track", "outside " );
         try {
-            Log.d("track", "inside " );
             JSONArray jsonArray = new JSONObject(json).getJSONArray(BaseActivity.JSON_ARRAY);
             JSONObject jsonObject = jsonArray.getJSONObject(0);
 
@@ -177,9 +173,6 @@ public class LoginActivity extends BaseActivity {
             offlineLogin.setAccountBalance(jsonObject.getString(AccountContract.AccountRecord.KEY_ACCOUNT_BALANCE));
             offlineLogin.setPINcode(jsonObject.getString(AccountContract.AccountRecord.KEY_PIN_CODE));
             offlineLogin.setStatus(jsonObject.getString(AccountContract.AccountRecord.KEY_STATUS));
-
-
-
             offlineLogin.setLoginResponse(jsonObject.getInt(KEY_RESPONSE));
             Log.d("track", "Response " + jsonObject.getInt(KEY_RESPONSE));
 

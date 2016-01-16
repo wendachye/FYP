@@ -39,6 +39,12 @@ public class AccountFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_account, container, false);
 
+        initialValues(view);
+
+        return view;
+    }
+
+    public void initialValues(View view) {
         mTextStudentId = (TextView) view.findViewById(R.id.text_studentid);
         mTextProgramme = (TextView) view.findViewById(R.id.text_programme);
         mTextFaculty = (TextView) view.findViewById(R.id.text_faculty);
@@ -68,8 +74,6 @@ public class AccountFragment extends Fragment {
         mTextContactNo.setText(offlineLogin.getContactNo());
         mTextHomeAddress.setText(offlineLogin.getHomeAddress());
         mTextCampusAddress.setText(offlineLogin.getCampusAddress());
-
-        return view;
     }
 
 }
