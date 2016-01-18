@@ -1,6 +1,7 @@
 package com.example.wenda.tarucnfc.Activitys;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -43,7 +44,7 @@ public class PinEntryActivity extends BaseActivity {
 	TextView mTextView8;
 	TextView mTextView9;
 
-	Button buttonExit;
+	Button buttonCancel;
 	Button buttonDelete;
 
 	public static final String KEY_PAYMENT = "selected";
@@ -52,7 +53,7 @@ public class PinEntryActivity extends BaseActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+
 		appContext = this;
 		userEntered = "";
 		
@@ -62,22 +63,13 @@ public class PinEntryActivity extends BaseActivity {
 		
 		setContentView(R.layout.activity_pin_entry);
 		
-		//buttonExit = (Button) findViewById(R.id.buttonExit);
-		//buttonExit.setOnClickListener(new View.OnClickListener() {
-		//    public void onClick(View v) {
-		    
-		    	//Exit app
-		//    	Intent i = new Intent();
-		//    	i.setAction(Intent.ACTION_MAIN);
-		//    	i.addCategory(Intent.CATEGORY_HOME);
-		//    	appContext.startActivity(i);
-		//    	finish();
-		        
-		//    }
-		    
-		//    }
-		//);
-		//buttonExit.setTypeface(xpressive);
+		buttonCancel = (Button) findViewById(R.id.cancelButton);
+		buttonCancel.setOnClickListener(new View.OnClickListener() {
+		    public void onClick(View v) {
+		    	finish();
+		    }
+		    }
+		);
 		
 		
 		buttonDelete = (Button) findViewById(R.id.deleteButton);
@@ -139,9 +131,11 @@ public class PinEntryActivity extends BaseActivity {
 							if (selectType.equals("payment")) {
 
 							} else if (selectType.equals("topUp")) {
-
+								Intent intent = new Intent(appContext, TopUpActivity.class);
+								startActivity(intent);
 							} else if (selectType.equals("transfer")) {
-
+								Intent intent = new Intent(appContext, TransferBalanceActivity.class);
+								startActivity(intent);
 							}
 
 		    			} else {

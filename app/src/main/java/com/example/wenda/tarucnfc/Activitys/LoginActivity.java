@@ -37,7 +37,7 @@ public class LoginActivity extends BaseActivity {
     private static final int RESPONSE_PASSWORD_INCORRECT = RESPONSE_SUCCESS + 1;
     private static final int RESPONSE_STATUS_NOT_ACTIVE = RESPONSE_PASSWORD_INCORRECT + 1;
 
-    private static final String LOGIN_URL = "http://tarucnfc.site88.net/Login/get_account_data.php";
+    private static final String LOGIN_URL = "http://tarucandroid.comxa.com/Login/get_account_data.php";
     private static final String KEY_LOGINID = "loginID";
     private static final String KEY_PASSWORD = "password";
 
