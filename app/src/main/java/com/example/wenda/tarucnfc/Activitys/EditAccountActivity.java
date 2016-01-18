@@ -50,7 +50,6 @@ public class EditAccountActivity extends BaseActivity {
     EditText mTextCampusAddress;
     ImageView mProfilePicture = null;
 
-    private int mLoadImageNo;
     protected BottomSheetLayout bottomSheetLayout;
     private Uri cameraImageUri = null;
     private Bitmap mBitmapProfilePicture;
@@ -72,7 +71,7 @@ public class EditAccountActivity extends BaseActivity {
         mProfilePicture = (ImageView) findViewById(R.id.profile_picture);
         bottomSheetLayout = (BottomSheetLayout) findViewById(R.id.bottomSheetLayout);
 
-        initialValues();
+        //initialValues();
     }
 
     public void initialValues() {
@@ -229,14 +228,12 @@ public class EditAccountActivity extends BaseActivity {
             int nh = (int) (bitmap.getHeight() * (512.0 / bitmap.getWidth()));
             Bitmap scaled = Bitmap.createScaledBitmap(bitmap, 512, nh, true);
 
-            if (mLoadImageNo == 1) {
-                mProfilePicture.setImageDrawable(null);
-                mProfilePicture.setScaleType(ImageView.ScaleType.FIT_XY);
-                mProfilePicture.setImageBitmap(scaled);
-                mBitmapProfilePicture = scaled;
-                account.setProfilePictureBitmap(mBitmapProfilePicture);
-            } else
-                errorMessage(null);
+            mProfilePicture.setImageDrawable(null);
+            mProfilePicture.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            mProfilePicture.setImageBitmap(scaled);
+            mBitmapProfilePicture = scaled;
+            //account.setProfilePictureBitmap(mBitmapProfilePicture);
+
         } catch (IOException e) {
             e.printStackTrace();
         }

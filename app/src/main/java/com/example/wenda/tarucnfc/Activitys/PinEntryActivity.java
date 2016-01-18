@@ -45,7 +45,10 @@ public class PinEntryActivity extends BaseActivity {
 
 	Button buttonExit;
 	Button buttonDelete;
-	
+
+	public static final String KEY_PAYMENT = "selected";
+	private String selectType;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -129,12 +132,21 @@ public class PinEntryActivity extends BaseActivity {
 		    			//Check if entered PIN is correct
 		    			if (userEntered.equals(userPin)) {
 		    				statusView.setTextColor(Color.GREEN);
-		    				statusView.setText("Correct");
+		    				statusView.setText("Correct PIN Code");
 		    				Log.v("PinView", "Correct PIN");
-		    				finish();
+
+							selectType = getIntent().getStringExtra(KEY_PAYMENT);
+							if (selectType.equals("payment")) {
+
+							} else if (selectType.equals("topUp")) {
+
+							} else if (selectType.equals("transfer")) {
+
+							}
+
 		    			} else {
 		    				statusView.setTextColor(Color.RED);
-		    				statusView.setText("Wrong PIN Code.");
+		    				statusView.setText("Wrong PIN Code!");
 		    				keyPadLockedFlag = true;
 		    				Log.v("PinView", "Wrong PIN");
 		    				

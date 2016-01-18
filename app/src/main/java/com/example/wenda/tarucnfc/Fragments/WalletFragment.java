@@ -19,6 +19,8 @@ public class WalletFragment extends Fragment implements View.OnClickListener {
 
     Button mButtonPayment, mButtonTopUp, mButtonTransfer;
 
+    public static final String KEY_SELECTED = "selected";
+
     public WalletFragment() {
         // Required empty public constructor
     }
@@ -51,15 +53,20 @@ public class WalletFragment extends Fragment implements View.OnClickListener {
         switch (view.getId()) {
             case R.id.payment:
                 Intent intent = new Intent(getActivity(), PinEntryActivity.class);
+                intent.putExtra(KEY_SELECTED, "payment");
                 startActivity(intent);
                 break;
 
             case R.id.topup:
-
+                Intent intent2 = new Intent(getActivity(), PinEntryActivity.class);
+                intent2.putExtra(KEY_SELECTED, "topUp");
+                startActivity(intent2);
                 break;
 
             case R.id.transfer:
-
+                Intent intent3 = new Intent(getActivity(), PinEntryActivity.class);
+                intent3.putExtra(KEY_SELECTED, "transfer");
+                startActivity(intent3);
                 break;
 
             default:

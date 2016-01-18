@@ -54,7 +54,6 @@
         </activity>
 
         <activity android:name=".Activitys.PinEntryActivity" />
-        <activity android:name=".PinProtectedActivity" />
     </application>
 
 </manifest>
