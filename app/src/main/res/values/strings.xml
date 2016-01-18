@@ -41,6 +41,10 @@
     <string name="text_retrieve_password">Enter your Login Username and NRIC No to retrieve your password.</string>
     <string name="hint_school_email">School Email</string>
     <string name="hint_sessionJoined">Session Joined</string>
+    <string name="change_pincode">Change PIN Code</string>
+    <string name="hint_current_pincode">Current PIN Code</string>
+    <string name="hint_new_pincode">New PIN Code</string>
+    <string name="hint_new_pincode2">New PIN Code again</string>
 
     <string-array name="gender_arrays">
         <item>Male</item>

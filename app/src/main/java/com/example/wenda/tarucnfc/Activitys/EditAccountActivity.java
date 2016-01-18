@@ -35,7 +35,6 @@ import java.util.Locale;
 
 public class EditAccountActivity extends BaseActivity {
 
-    Spinner mspinner;
     TextView mTextStudentID;
     TextView mTextProgramme;
     TextView mTextFaculty;
@@ -44,7 +43,7 @@ public class EditAccountActivity extends BaseActivity {
     TextView mTextSessionJoined;
     EditText mTextFullName;
     EditText mTextNRICNO;
-    Spinner mTextGender;
+    Spinner mSpinnerGender;
     EditText mTextEmail;
     EditText mTextContactNo;
     EditText mTextHomeAddress;
@@ -62,8 +61,6 @@ public class EditAccountActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_account);
 
-        mspinner = (Spinner) findViewById(R.id.spinner_gender);
-
         // set title to center
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.edit_account_title);
@@ -73,6 +70,7 @@ public class EditAccountActivity extends BaseActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mProfilePicture = (ImageView) findViewById(R.id.profile_picture);
+        bottomSheetLayout = (BottomSheetLayout) findViewById(R.id.bottomSheetLayout);
 
         initialValues();
     }
@@ -87,7 +85,7 @@ public class EditAccountActivity extends BaseActivity {
         mTextSessionJoined = (TextView) findViewById(R.id.text_sessionJoined);
         mTextFullName = (EditText) findViewById(R.id.edit_text_fullname);
         mTextNRICNO = (EditText) findViewById(R.id.edit_text_nric);
-        mTextGender = (Spinner) findViewById(R.id.spinner_gender);
+        mSpinnerGender = (Spinner) findViewById(R.id.spinner_gender);
         mTextEmail = (EditText) findViewById(R.id.edit_text_email);
         mTextContactNo = (EditText) findViewById(R.id.edit_text_contact);
         mTextHomeAddress = (EditText) findViewById(R.id.edit_text_homeAddress);
@@ -103,7 +101,7 @@ public class EditAccountActivity extends BaseActivity {
         mTextSessionJoined.setText(offlineLogin.getSessionJoined());
         mTextFullName.setText(offlineLogin.getName());
         mTextNRICNO.setText(offlineLogin.getNRICNo());
-        //mTextGender.set(offlineLogin.getGender());
+        mSpinnerGender.setPrompt(offlineLogin.getGender());
         mTextEmail.setText(offlineLogin.getEmailAddress());
         mTextContactNo.setText(offlineLogin.getContactNo());
         mTextHomeAddress.setText(offlineLogin.getHomeAddress());
@@ -128,6 +126,9 @@ public class EditAccountActivity extends BaseActivity {
 
         if (id == android.R.id.home) {
             NavUtils.navigateUpFromSameTask(this);
+        }
+        else if (id == R.id.saveButton) {
+
         }
 
         return super.onOptionsItemSelected(item);

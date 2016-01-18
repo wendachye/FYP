@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.wenda.tarucnfc.Domains.OfflineLogin;
@@ -25,8 +26,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     private NavigationView mNavigationView;
     private DrawerLayout mDrawerLayout;
-    private ImageButton imageButton;
-    private ImageView imageView;
+    private ImageButton mimageButton;
+    private ImageView mimageView;
+    private TextView mTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,11 +41,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         AccountFragment fragmentAccount = new AccountFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.frame, fragmentAccount).commit();
 
-        imageButton = (ImageButton) findViewById(R.id.edit_account);
-        imageButton.setOnClickListener(this);
+        mimageButton = (ImageButton) findViewById(R.id.edit_account);
+        mimageButton.setOnClickListener(this);
 
-        imageView = (ImageView) findViewById(R.id.image_profile);
-        imageView.setOnClickListener(this);
+        mimageView = (ImageView) findViewById(R.id.image_profile);
+        mimageView.setOnClickListener(this);
+
+        mTextView = (TextView) findViewById(R.id.navigation_view_studentID);
 
         mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
         mNavigationView.setCheckedItem(R.id.nav_menu_dashboard);
@@ -76,6 +80,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                     case R.id.nav_menu_sign_out:
                         removeLoginDetail();
                         Toast.makeText(getApplicationContext(), "Signed out", Toast.LENGTH_SHORT).show();
+                        finish();
                         return true;
 
                     default:
@@ -110,6 +115,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
         //calling sync state is necessay or else your hamburger icon wont show up
         mActionBarDrawerToggle.syncState();
+
+        initProfileDetail();
     }
 
     public void initProfileDetail() {
@@ -117,6 +124,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         OfflineLogin offlineLogin = getLoginDetail(this);
 
         if (offlineLogin != null) {
+            mTextView.setText(offlineLogin.getAccountID());
             //mTextName.setText(offlineLogin.getName());
             //mTextEmail.setText(offlineLogin.getEmail());
             //ImageLoader.getInstance().displayImage(offlineLogin.getProfileImagePath(), mImageProfile, options);
@@ -147,8 +155,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_change_password) {
             Intent intent = new Intent(this, ChangePasswordActivity.class);
+            startActivity(intent);
+            return true;
+        }
+        else if (id == R.id.action_change_pincode) {
+            Intent intent = new Intent(this, ChangePinCodeActivity.class);
             startActivity(intent);
             return true;
         }

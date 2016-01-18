@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="170dp"
-    android:background="@color/colorPrimary"
+    android:layout_height="200dp"
     android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/cover_photo">
 
     <ImageView
         android:id="@+id/image_cover"
@@ -17,38 +21,41 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_gravity="bottom"
-        android:layout_marginBottom="60dp"
+        android:layout_marginBottom="40dp"
         android:layout_marginLeft="16dp"
-        android:src="@drawable/ic_account1"
+        android:src="@drawable/cara_delevingne2"
         app:civ_border_color="@color/white"
         app:civ_border_width="2dp" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="horizontal"
-        android:layout_gravity="bottom">
+        android:layout_gravity="bottom"
+        android:background="@color/colorWhite">
 
         <TextView
-        android:id="@+id/text_studentID"
+        android:id="@+id/navigation_view_studentID"
         style="@style/TextAppearance.AppCompat.Subhead"
         android:layout_gravity="center"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+            android:textStyle="bold"
         android:layout_marginLeft="20dp"
-        android:text="Sign In"
-        android:textColor="@android:color/white"  />
+        android:text="Sign In" />
 
 
     <ImageButton
         android:id="@+id/edit_account"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="3"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:layout_gravity="center"
+        android:layout_marginRight="15dp"
         android:src="@drawable/ic_settings"
-        android:background="@color/colorPrimary"/>
+        android:background="@color/colorWhite"/>
 
     </LinearLayout>
 
