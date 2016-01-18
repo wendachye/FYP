@@ -1,6 +1,7 @@
 package com.example.wenda.tarucnfc.Fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.wenda.tarucnfc.Activitys.PinEntryActivity;
 import com.example.wenda.tarucnfc.R;
 
 /**
@@ -45,7 +47,23 @@ public class WalletFragment extends Fragment implements View.OnClickListener {
     }
 
     @Override
-    public void onClick(View v) {
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.payment:
+                Intent intent = new Intent(getActivity(), PinEntryActivity.class);
+                startActivity(intent);
+                break;
 
+            case R.id.topup:
+
+                break;
+
+            case R.id.transfer:
+
+                break;
+
+            default:
+                break;
+        }
     }
 }

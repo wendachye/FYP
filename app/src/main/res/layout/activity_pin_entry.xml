@@ -145,23 +145,35 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp">
 
-                    <ImageView
+                    <TextView
+                        android:id="@+id/num1"
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
-                        android:onClick="number0"
-                        android:src="@drawable/ic_numeric_1_box_outline"/>
+                        android:onClick="number1"
+                        android:text="1"
+                        android:textSize="0dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/ic_numeric_1_box_outline"/>
 
-                    <ImageView
+                    <TextView
+                        android:id="@+id/num2"
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
-                        android:onClick="number0"
-                        android:src="@drawable/ic_numeric_2_box_outline"/>
+                        android:onClick="number2"
+                        android:text="2"
+                        android:textSize="0dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/ic_numeric_2_box_outline"/>
 
-                    <ImageView
+                    <TextView
+                        android:id="@+id/num3"
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
-                        android:onClick="number0"
-                        android:src="@drawable/ic_numeric_3_box_outline"/>
+                        android:layout_gravity="center"
+                        android:onClick="number3"
+                        android:text="3"
+                        android:textSize="0dp"
+                        android:background="@drawable/ic_numeric_3_box_outline"/>
                 </TableRow>
 
                 <TableRow
@@ -171,23 +183,35 @@
                     android:layout_marginBottom="5dp"
                     android:layout_marginTop="5dp">
 
-                    <ImageView
+                    <TextView
+                        android:id="@+id/num4"
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
-                        android:onClick="number0"
-                        android:src="@drawable/ic_numeric_4_box_outline"/>
+                        android:layout_gravity="center"
+                        android:onClick="number4"
+                        android:text="4"
+                        android:textSize="0dp"
+                        android:background="@drawable/ic_numeric_4_box_outline"/>
 
-                    <ImageView
+                    <TextView
+                        android:id="@+id/num5"
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
-                        android:onClick="number0"
-                        android:src="@drawable/ic_numeric_5_box_outline"/>
+                        android:layout_gravity="center"
+                        android:onClick="number5"
+                        android:text="5"
+                        android:textSize="0dp"
+                        android:background="@drawable/ic_numeric_5_box_outline"/>
 
-                    <ImageView
+                    <TextView
+                        android:id="@+id/num6"
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
-                        android:onClick="number0"
-                        android:src="@drawable/ic_numeric_6_box_outline"/>
+                        android:layout_gravity="center"
+                        android:onClick="number6"
+                        android:text="6"
+                        android:textSize="0dp"
+                        android:background="@drawable/ic_numeric_6_box_outline"/>
                 </TableRow>
 
                 <TableRow
@@ -197,23 +221,35 @@
                     android:layout_marginBottom="5dp"
                     android:layout_marginTop="5dp">
 
-                    <ImageView
+                    <TextView
+                        android:id="@+id/num7"
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
-                        android:onClick="number0"
-                        android:src="@drawable/ic_numeric_7_box_outline"/>
+                        android:layout_gravity="center"
+                        android:onClick="number7"
+                        android:text="7"
+                        android:textSize="0dp"
+                        android:background="@drawable/ic_numeric_7_box_outline"/>
 
-                    <ImageView
+                    <TextView
+                        android:id="@+id/num8"
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
-                        android:onClick="number0"
-                        android:src="@drawable/ic_numeric_8_box_outline"/>
+                        android:layout_gravity="center"
+                        android:onClick="number8"
+                        android:text="8"
+                        android:textSize="0dp"
+                        android:background="@drawable/ic_numeric_8_box_outline"/>
 
-                    <ImageView
+                    <TextView
+                        android:id="@+id/num9"
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
-                        android:onClick="number0"
-                        android:src="@drawable/ic_numeric_9_box_outline"/>
+                        android:layout_gravity="center"
+                        android:onClick="number9"
+                        android:text="9"
+                        android:textSize="0dp"
+                        android:background="@drawable/ic_numeric_9_box_outline"/>
 
                 </TableRow>
 
@@ -234,11 +270,15 @@
                         android:textColor="@color/colorPrimaryDark"
                         />
 
-                    <ImageView
+                    <TextView
+                        android:id="@+id/num0"
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
+                        android:layout_gravity="center"
                         android:onClick="number0"
-                        android:src="@drawable/ic_numeric_0_box_outline"/>
+                        android:text="0"
+                        android:textSize="0dp"
+                        android:background="@drawable/ic_numeric_0_box_outline"/>
 
                     <Button
                         android:id="@+id/deleteButton"

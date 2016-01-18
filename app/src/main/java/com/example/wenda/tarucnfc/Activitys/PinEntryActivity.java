@@ -1,14 +1,5 @@
 package com.example.wenda.tarucnfc.Activitys;
 
-/*Client ID: 	381130279932.apps.googleusercontent.com
-Redirect URIs: 	urn:ietf:wg:oauth:2.0:oob http://localhost
-Application type: 	Android
-Package name: 	com.ultimasquare.pinview
-Certificate fingerprint (SHA1): 	86:F2:4D:FD:34:98:BF:0C:47:94:34:D4:8C:68:A3:84:B7:D7:B2:0F
-Deep Linking: 	Disabled*/
-
-
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.AsyncTask;
@@ -16,14 +7,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.wenda.tarucnfc.R;
 
-public class PinEntryActivity extends Activity {
+public class PinEntryActivity extends BaseActivity {
 
 	String userEntered;
 	String userPin="8888";
@@ -42,17 +31,18 @@ public class PinEntryActivity extends Activity {
 	TextView [] pinBoxArray;
 	
 	TextView statusView;
-	
-	Button button0;
-	Button button1;
-	Button button2;
-	Button button3;
-	Button button4;
-	Button button5;
-	Button button6;
-	Button button7;
-	Button button8;
-	Button button9;
+
+	TextView mTextView0;
+	TextView mTextView1;
+	TextView mTextView2;
+	TextView mTextView3;
+	TextView mTextView4;
+	TextView mTextView5;
+	TextView mTextView6;
+	TextView mTextView7;
+	TextView mTextView8;
+	TextView mTextView9;
+
 	Button buttonExit;
 	Button buttonDelete;
 	
@@ -63,14 +53,11 @@ public class PinEntryActivity extends Activity {
 		appContext = this;
 		userEntered = "";
 		
-		
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-        WindowManager.LayoutParams.FLAG_FULLSCREEN);
+		//requestWindowFeature(Window.FEATURE_NO_TITLE);
+        //getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+        //WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		
 		setContentView(R.layout.activity_pin_entry);
-		
-		//Typeface xpressive=Typeface.createFromAsset(getAssets(), "fonts/XpressiveBold.ttf");
 		
 		//buttonExit = (Button) findViewById(R.id.buttonExit);
 		//buttonExit.setOnClickListener(new View.OnClickListener() {
@@ -90,26 +77,19 @@ public class PinEntryActivity extends Activity {
 		//buttonExit.setTypeface(xpressive);
 		
 		
-		//buttonDelete = (Button) findViewById(R.id.buttonDeleteBack);
-		//buttonDelete.setOnClickListener(new View.OnClickListener() {
-		//    public void onClick(View v) {
-
-		//    	if (keyPadLockedFlag == true)
-		//    	{
-		//    		return;
-		//    	}
-
-		//    	if (userEntered.length()>0)
-		//    	{
-		//    		userEntered = userEntered.substring(0,userEntered.length()-1);
-		//    		pinBoxArray[userEntered.length()].setText("");
-		//    	}
-
-
-		//    }
-
-		//    }
-		//);
+		buttonDelete = (Button) findViewById(R.id.deleteButton);
+		buttonDelete.setOnClickListener(new View.OnClickListener() {
+		    public void onClick(View v) {
+		    	if (keyPadLockedFlag == true) {
+		    		return;
+		    	}
+		    	if (userEntered.length()>0) {
+		    		userEntered = userEntered.substring(0,userEntered.length()-1);
+		    		pinBoxArray[userEntered.length()].setText("");
+		    	}
+		    }
+		    }
+		);
 		
 		titleView = (TextView)findViewById(R.id.titleBox);
 		//titleView.setTypeface(xpressive);
@@ -132,35 +112,27 @@ public class PinEntryActivity extends Activity {
 	
 		View.OnClickListener pinButtonHandler = new View.OnClickListener() {
 		    public void onClick(View v) {
-		    	
-		    	if (keyPadLockedFlag == true)
-		    	{
+		    	if (keyPadLockedFlag == true) {
 		    		return;
 		    	}
-		    	
-		    	Button pressedButton = (Button)v;
-	    		
-		    	
-		    	if (userEntered.length()<PIN_LENGTH)
-		    	{
-		    		userEntered = userEntered + pressedButton.getText();
+
+		    	TextView getNumber = (TextView)v;
+
+		    	if (userEntered.length()<PIN_LENGTH) {
+		    		userEntered = userEntered + getNumber.getText();
 		    		Log.v("PinView", "User entered="+userEntered);
 		    		
 		    		//Update pin boxes
 		    		pinBoxArray[userEntered.length()-1].setText("8");
 		    		
-		    		if (userEntered.length()==PIN_LENGTH)
-		    		{
+		    		if (userEntered.length()==PIN_LENGTH) {
 		    			//Check if entered PIN is correct
-		    			if (userEntered.equals(userPin))
-		    			{
+		    			if (userEntered.equals(userPin)) {
 		    				statusView.setTextColor(Color.GREEN);
 		    				statusView.setText("Correct");
 		    				Log.v("PinView", "Correct PIN");
 		    				finish();
-		    			}
-		    			else
-		    			{
+		    			} else {
 		    				statusView.setTextColor(Color.RED);
 		    				statusView.setText("Wrong PIN Code.");
 		    				keyPadLockedFlag = true;
@@ -169,9 +141,7 @@ public class PinEntryActivity extends Activity {
 		    				new LockKeyPadOperation().execute("");
 		    			}
 		    		}	
-		    	}
-		    	else
-		    	{
+		    	} else {
 		    		//Roll over
 		    		pinBoxArray[0].setText("");
 		    		pinBoxArray[1].setText("");
@@ -182,68 +152,48 @@ public class PinEntryActivity extends Activity {
 		    		
 		    		statusView.setText("");
 		    		
-		    		userEntered = userEntered + pressedButton.getText();
+		    		userEntered = userEntered + getNumber.getText();
 		    		Log.v("PinView", "User entered="+userEntered);
 		    		
 		    		//Update pin boxes
 		    		pinBoxArray[userEntered.length()-1].setText("8");
 		    		
 		    	}
-		    	
-		    	
 		    }
 		  };
 		
 		
-		//button0 = (Button)findViewById(R.id.button0);
-		//button0.setTypeface(xpressive);
-		//button0.setOnClickListener(pinButtonHandler);
-		
-		//button1 = (Button)findViewById(R.id.button1);
-		//button1.setTypeface(xpressive);
-		//button1.setOnClickListener(pinButtonHandler);
-		
-		//button2 = (Button)findViewById(R.id.button2);
-		//button2.setTypeface(xpressive);
-		//button2.setOnClickListener(pinButtonHandler);
-		
-		
-		//button3 = (Button)findViewById(R.id.button3);
-		//button3.setTypeface(xpressive);
-		//button3.setOnClickListener(pinButtonHandler);
-		
-		//button4 = (Button)findViewById(R.id.button4);
-		//button4.setTypeface(xpressive);
-		//button4.setOnClickListener(pinButtonHandler);
-		
-		//button5 = (Button)findViewById(R.id.button5);
-		//button5.setTypeface(xpressive);
-		//button5.setOnClickListener(pinButtonHandler);
-		
-		//button6 = (Button)findViewById(R.id.button6);
-		//button6.setTypeface(xpressive);
-		//button6.setOnClickListener(pinButtonHandler);
-		
-		//button7 = (Button)findViewById(R.id.button7);
-		//button7.setTypeface(xpressive);
-		//button7.setOnClickListener(pinButtonHandler);
-		
-		//button8 = (Button)findViewById(R.id.button8);
-		//button8.setTypeface(xpressive);
-		//button8.setOnClickListener(pinButtonHandler);
-		
-		//button9 = (Button)findViewById(R.id.button9);
-		//button9.setTypeface(xpressive);
-		//button9.setOnClickListener(pinButtonHandler);
-		
-		
-		
-		
-		
-		//buttonDelete = (Button)findViewById(R.id.buttonDeleteBack);
-		//buttonDelete.setTypeface(xpressive);
-		
-		
+		mTextView0 = (TextView) findViewById(R.id.num0);
+		mTextView0.setOnClickListener(pinButtonHandler);
+
+		mTextView1 = (TextView) findViewById(R.id.num1);
+		mTextView1.setOnClickListener(pinButtonHandler);
+
+		mTextView2 = (TextView) findViewById(R.id.num2);
+		mTextView2.setOnClickListener(pinButtonHandler);
+
+		mTextView3 = (TextView) findViewById(R.id.num3);
+		mTextView3.setOnClickListener(pinButtonHandler);
+
+		mTextView4 = (TextView) findViewById(R.id.num4);
+		mTextView4.setOnClickListener(pinButtonHandler);
+
+		mTextView5 = (TextView) findViewById(R.id.num5);
+		mTextView5.setOnClickListener(pinButtonHandler);
+
+		mTextView6 = (TextView) findViewById(R.id.num6);
+		mTextView6.setOnClickListener(pinButtonHandler);
+
+		mTextView7 = (TextView) findViewById(R.id.num7);
+		mTextView7.setOnClickListener(pinButtonHandler);
+
+		mTextView8 = (TextView) findViewById(R.id.num8);
+		mTextView8.setOnClickListener(pinButtonHandler);
+
+		mTextView9 = (TextView) findViewById(R.id.num9);
+		mTextView9.setOnClickListener(pinButtonHandler);
+
+		buttonDelete = (Button) findViewById(R.id.deleteButton);
 		
 	}
 
