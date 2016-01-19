@@ -41,6 +41,9 @@ public class ChangePasswordActivity extends AppCompatActivity {
         if (id == android.R.id.home) {
             NavUtils.navigateUpFromSameTask(this);
         }
+        else if (id == R.id.saveButton) {
+            finish();
+        }
 
         return super.onOptionsItemSelected(item);
     }

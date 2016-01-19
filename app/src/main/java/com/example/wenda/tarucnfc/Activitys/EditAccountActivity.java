@@ -127,7 +127,7 @@ public class EditAccountActivity extends BaseActivity {
             NavUtils.navigateUpFromSameTask(this);
         }
         else if (id == R.id.saveButton) {
-
+            finish();
         }
 
         return super.onOptionsItemSelected(item);

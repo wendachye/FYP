@@ -44,7 +44,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Activitys.MainActivity" />
         </activity>
-        <activity android:name=".Activitys.PinCodeActivity" />
         <activity
             android:name=".Activitys.ChangePinCodeActivity"
             android:label="ChangePINCode">

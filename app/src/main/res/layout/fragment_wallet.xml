@@ -17,21 +17,23 @@
             android:orientation="vertical"
             android:gravity="center"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
+            android:layout_height="fill_parent"
+            android:background="@color/colorPrimary">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
-                android:textSize="45dp"
+                android:textSize="50dp"
                 android:text="RM 0.00"
-                android:textColor="@color/colorPrimaryDark"/>
+                android:textColor="@color/colorWhite"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18dp"
-                android:text="Wallet Balance"/>
+                android:text="Wallet Balance"
+                android:textColor="@color/colorWhite"/>
 
         </LinearLayout>
 
@@ -71,9 +73,10 @@
                     android:layout_height="45dp"
                     android:layout_gravity="center"
                     android:layout_margin="18dp"
-                    android:background="@color/colorBlue"
+                    android:background="@color/colorPrimary"
                     android:text="@string/payment"
-                    android:textSize="18dp"/>
+                    android:textSize="18dp"
+                    android:textColor="@color/colorWhite"/>
 
             </LinearLayout>
 
@@ -97,9 +100,10 @@
                     android:layout_height="45dp"
                     android:layout_gravity="center"
                     android:layout_margin="18dp"
-                    android:background="@color/colorBlue"
+                    android:background="@color/colorPrimary"
                     android:text="@string/topup"
-                    android:textSize="18dp"/>
+                    android:textSize="18dp"
+                    android:textColor="@color/colorWhite"/>
 
             </LinearLayout>
 
@@ -123,9 +127,10 @@
                     android:layout_height="45dp"
                     android:layout_gravity="center"
                     android:layout_margin="18dp"
-                    android:background="@color/colorBlue"
+                    android:background="@color/colorPrimary"
                     android:text="@string/transfer"
-                    android:textSize="18dp"/>
+                    android:textSize="18dp"
+                    android:textColor="@color/colorWhite"/>
 
             </LinearLayout>
 

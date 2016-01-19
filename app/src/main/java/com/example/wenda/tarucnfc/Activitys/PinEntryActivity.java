@@ -23,16 +23,12 @@ public class PinEntryActivity extends BaseActivity {
 	Context appContext;
 	
 	TextView titleView;
-	
 	TextView pinBox0;
 	TextView pinBox1;
 	TextView pinBox2;
 	TextView pinBox3;
-	
 	TextView [] pinBoxArray;
-	
 	TextView statusView;
-
 	TextView mTextView0;
 	TextView mTextView1;
 	TextView mTextView2;
@@ -43,7 +39,6 @@ public class PinEntryActivity extends BaseActivity {
 	TextView mTextView7;
 	TextView mTextView8;
 	TextView mTextView9;
-
 	Button buttonCancel;
 	Button buttonDelete;
 
@@ -53,15 +48,25 @@ public class PinEntryActivity extends BaseActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_pin_entry);
 
 		appContext = this;
 		userEntered = "";
-		
-		//requestWindowFeature(Window.FEATURE_NO_TITLE);
-        //getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-        //WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		
-		setContentView(R.layout.activity_pin_entry);
+
+		titleView = (TextView)findViewById(R.id.titleBox);
+
+		statusView = (TextView) findViewById(R.id.statusMessage);
+
+		pinBox0 = (TextView)findViewById(R.id.pinBox0);
+		pinBox1 = (TextView)findViewById(R.id.pinBox1);
+		pinBox2 = (TextView)findViewById(R.id.pinBox2);
+		pinBox3 = (TextView)findViewById(R.id.pinBox3);
+
+		pinBoxArray = new TextView[PIN_LENGTH];
+		pinBoxArray[0] = pinBox0;
+		pinBoxArray[1] = pinBox1;
+		pinBoxArray[2] = pinBox2;
+		pinBoxArray[3] = pinBox3;
 		
 		buttonCancel = (Button) findViewById(R.id.cancelButton);
 		buttonCancel.setOnClickListener(new View.OnClickListener() {
@@ -70,8 +75,7 @@ public class PinEntryActivity extends BaseActivity {
 		    }
 		    }
 		);
-		
-		
+
 		buttonDelete = (Button) findViewById(R.id.deleteButton);
 		buttonDelete.setOnClickListener(new View.OnClickListener() {
 		    public void onClick(View v) {
@@ -85,26 +89,8 @@ public class PinEntryActivity extends BaseActivity {
 		    }
 		    }
 		);
-		
-		titleView = (TextView)findViewById(R.id.titleBox);
-		//titleView.setTypeface(xpressive);
-		
-		pinBox0 = (TextView)findViewById(R.id.pinBox0);
-		pinBox1 = (TextView)findViewById(R.id.pinBox1);
-		pinBox2 = (TextView)findViewById(R.id.pinBox2);
-		pinBox3 = (TextView)findViewById(R.id.pinBox3);
-		
-		pinBoxArray = new TextView[PIN_LENGTH];
-		pinBoxArray[0] = pinBox0;
-		pinBoxArray[1] = pinBox1;
-		pinBoxArray[2] = pinBox2;
-		pinBoxArray[3] = pinBox3;
-		
-		
-		
-		statusView = (TextView) findViewById(R.id.statusMessage);
-		//statusView.setTypeface(xpressive);
-	
+
+
 		View.OnClickListener pinButtonHandler = new View.OnClickListener() {
 		    public void onClick(View v) {
 		    	if (keyPadLockedFlag == true) {
@@ -168,7 +154,6 @@ public class PinEntryActivity extends BaseActivity {
 		    }
 		  };
 		
-		
 		mTextView0 = (TextView) findViewById(R.id.num0);
 		mTextView0.setOnClickListener(pinButtonHandler);
 
@@ -198,9 +183,6 @@ public class PinEntryActivity extends BaseActivity {
 
 		mTextView9 = (TextView) findViewById(R.id.num9);
 		mTextView9.setOnClickListener(pinButtonHandler);
-
-		buttonDelete = (Button) findViewById(R.id.deleteButton);
-		
 	}
 
 	@Override
