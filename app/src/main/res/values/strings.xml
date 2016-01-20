@@ -49,6 +49,11 @@
     <string name="busSchedule">Bus Schedules</string>
     <string name="timetable">Class Timetable</string>
     <string name="test">Test</string>
+    <string name="wangsamaju">Wangsa Maju Bus Schedule</string>
+    <string name="departure">Departure From: </string>
+    <string name="hint_wangsamaju">Wangsa maju</string>
+    <string name="destination">Destination: </string>
+    <string name="hint_busStop1">Bus Stop 1</string>
 
     <string-array name="gender_arrays">
         <item>Male</item>
