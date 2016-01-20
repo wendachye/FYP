@@ -12,9 +12,7 @@ import android.widget.Button;
 import com.example.wenda.tarucnfc.Activitys.PinEntryActivity;
 import com.example.wenda.tarucnfc.R;
 
-/**
- * A simple {@link Fragment} subclass.
- */
+
 public class WalletFragment extends Fragment implements View.OnClickListener {
 
     Button mButtonPayment, mButtonTopUp, mButtonTransfer;

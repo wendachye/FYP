@@ -12,6 +12,14 @@
             android:title="Wallet" />
 
         <item
+            android:id="@+id/nav_menu_busSchedule"
+            android:title="Bus Schedules" />
+
+        <item
+            android:id="@+id/nav_menu_timetable"
+            android:title="Class Timetable" />
+
+        <item
             android:id="@+id/nav_menu_sign_out"
             android:title="Sign Out" />
     </group>

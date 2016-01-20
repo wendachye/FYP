@@ -18,7 +18,9 @@ import android.widget.Toast;
 
 import com.example.wenda.tarucnfc.Domains.OfflineLogin;
 import com.example.wenda.tarucnfc.Fragments.AccountFragment;
+import com.example.wenda.tarucnfc.Fragments.BusScheduleFragment;
 import com.example.wenda.tarucnfc.Fragments.DashboardFragment;
+import com.example.wenda.tarucnfc.Fragments.TimeTableFragment;
 import com.example.wenda.tarucnfc.Fragments.WalletFragment;
 import com.example.wenda.tarucnfc.R;
 
@@ -41,15 +43,19 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         AccountFragment fragmentAccount = new AccountFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.frame, fragmentAccount).commit();
 
-        mimageButton = (ImageButton) findViewById(R.id.edit_account);
-        mimageButton.setOnClickListener(this);
 
-        mimageView = (ImageView) findViewById(R.id.image_profile);
-        mimageView.setOnClickListener(this);
-
-        mTextView = (TextView) findViewById(R.id.navigation_view_studentID);
 
         mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
+
+        mimageButton = (ImageButton) mNavigationView.findViewById(R.id.account_setting);
+        //mimageButton.setOnClickListener(this);
+
+        mimageView = (ImageView)  mNavigationView.findViewById(R.id.profile_picture);
+        //mimageView.setOnClickListener(this);
+
+        mTextView = (TextView)  mNavigationView.findViewById(R.id.navigation_view_studentID);
+
+
         mNavigationView.setCheckedItem(R.id.nav_menu_dashboard);
         mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -74,6 +80,20 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                         getSupportActionBar().setTitle(R.string.wallet);
                         WalletFragment fragmentWallet = new WalletFragment();
                         fragmentTransaction.replace(R.id.frame, fragmentWallet);
+                        fragmentTransaction.commit();
+                        return true;
+
+                    case R.id.nav_menu_busSchedule:
+                        getSupportActionBar().setTitle(R.string.busSchedule);
+                        BusScheduleFragment fragmentBusSchedule = new BusScheduleFragment();
+                        fragmentTransaction.replace(R.id.frame, fragmentBusSchedule);
+                        fragmentTransaction.commit();
+                        return true;
+
+                    case R.id.nav_menu_timetable:
+                        getSupportActionBar().setTitle(R.string.timetable);
+                        TimeTableFragment fragmentTimetable = new TimeTableFragment();
+                        fragmentTransaction.replace(R.id.frame, fragmentTimetable);
                         fragmentTransaction.commit();
                         return true;
 
@@ -132,7 +152,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             //mNavigationView.getMenu().getItem(9).setVisible(true);
         } else {
             //mImageProfile.setImageResource(R.drawable.ic_github_circle);
-           // mTextName.setText(R.string.sign_in);
+            // mTextName.setText(R.string.sign_in);
             //mTextEmail.setText("");
             //mNavigationView.setCheckedItem(R.id.nav_menu_home);
             //mImageCover.setVisibility(View.GONE);
@@ -172,12 +192,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.edit_account:
+            case R.id.account_setting:
                 Intent intent = new Intent(this, EditAccountActivity.class);
                 //intent.putExtra(KEY_ACCOUNT_ID, getLoginDetail().getAccountId());
                 startActivity(intent);
                 break;
-            case R.id.image_profile:
+            case R.id.profile_picture:
                 AccountFragment fragmentAccount = new AccountFragment();
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 FragmentTransaction transaction = fragmentManager.beginTransaction();

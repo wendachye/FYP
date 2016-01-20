@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activitys.PinEntryActivity">
+
+    <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="300dp"
+        android:layout_height="350dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="40dp"
+        android:background="#ffffff">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/titleBox"
+                    android:layout_width="210dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center|right"
+                    android:paddingRight="20dp"
+                    android:paddingLeft="10dp"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp"
+                    android:text="PIN Code"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="30dp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_width="33dp"
+                    android:layout_height="33dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_lock2"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/pinBox0"
+                        android:layout_width="40dip"
+                        android:layout_height="40dip"
+                        android:layout_marginBottom="5dip"
+                        android:layout_marginLeft="20dip"
+                        android:layout_marginRight="15dip"
+                        android:layout_marginTop="5dip"
+                        android:background="@drawable/back"
+                        android:editable="false"
+                        android:gravity="center"
+                        android:inputType="numberPassword"
+                        android:password="true"
+                        android:text=""
+                        android:textColor="#000000"
+                        android:textSize="40sp" />
+
+                    <TextView
+                        android:id="@+id/pinBox1"
+                        android:layout_width="40dip"
+                        android:layout_height="40dip"
+                        android:layout_marginBottom="5dip"
+                        android:layout_marginLeft="15dip"
+                        android:layout_marginRight="15dip"
+                        android:layout_marginTop="5dip"
+                        android:background="@drawable/back"
+                        android:editable="false"
+                        android:gravity="center"
+                        android:inputType="numberPassword"
+                        android:password="true"
+                        android:text=""
+                        android:textColor="#000000"
+                        android:textSize="40sp" />
+
+                    <TextView
+                        android:id="@+id/pinBox2"
+                        android:layout_width="40dip"
+                        android:layout_height="40dip"
+                        android:layout_marginBottom="5dip"
+                        android:layout_marginLeft="15dip"
+                        android:layout_marginRight="15dip"
+                        android:layout_marginTop="5dip"
+                        android:background="@drawable/back"
+                        android:editable="false"
+                        android:gravity="center"
+                        android:inputType="numberPassword"
+                        android:password="true"
+                        android:text=""
+                        android:textColor="#000000"
+                        android:textSize="40sp" />
+
+                    <TextView
+                        android:id="@+id/pinBox3"
+                        android:layout_width="40dip"
+                        android:layout_height="40dip"
+                        android:layout_marginBottom="5dip"
+                        android:layout_marginLeft="15dip"
+                        android:layout_marginRight="20dip"
+                        android:layout_marginTop="5dip"
+                        android:background="@drawable/back"
+                        android:editable="false"
+                        android:gravity="center"
+                        android:inputType="numberPassword"
+                        android:password="true"
+                        android:text=""
+                        android:textColor="#000000"
+                        android:textSize="40sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/statusMessage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="5dip"
+                    android:text=""
+                    android:textColor="#ff0000"
+                    android:textSize="20sp" />
+
+                <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/numericPad"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="5dip"
+                    android:layout_marginTop="5dip"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp"
+                    android:shrinkColumns="*"
+                    android:stretchColumns="*">
+
+                    <TableRow
+                        android:id="@+id/tableRow1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp">
+
+                        <TextView
+                            android:id="@+id/num1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:background="@drawable/ic_numeric_1_box_outline"
+                            android:onClick="number1"
+                            android:text="1"
+                            android:textSize="0dp" />
+
+                        <TextView
+                            android:id="@+id/num2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:background="@drawable/ic_numeric_2_box_outline"
+                            android:onClick="number2"
+                            android:text="2"
+                            android:textSize="0dp" />
+
+                        <TextView
+                            android:id="@+id/num3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:background="@drawable/ic_numeric_3_box_outline"
+                            android:onClick="number3"
+                            android:text="3"
+                            android:textSize="0dp" />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/tableRow2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp">
+
+                        <TextView
+                            android:id="@+id/num4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:background="@drawable/ic_numeric_4_box_outline"
+                            android:onClick="number4"
+                            android:text="4"
+                            android:textSize="0dp" />
+
+                        <TextView
+                            android:id="@+id/num5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:background="@drawable/ic_numeric_5_box_outline"
+                            android:onClick="number5"
+                            android:text="5"
+                            android:textSize="0dp" />
+
+                        <TextView
+                            android:id="@+id/num6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:background="@drawable/ic_numeric_6_box_outline"
+                            android:onClick="number6"
+                            android:text="6"
+                            android:textSize="0dp" />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/tableRow3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp">
+
+                        <TextView
+                            android:id="@+id/num7"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:background="@drawable/ic_numeric_7_box_outline"
+                            android:onClick="number7"
+                            android:text="7"
+                            android:textSize="0dp" />
+
+                        <TextView
+                            android:id="@+id/num8"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:background="@drawable/ic_numeric_8_box_outline"
+                            android:onClick="number8"
+                            android:text="8"
+                            android:textSize="0dp" />
+
+                        <TextView
+                            android:id="@+id/num9"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:background="@drawable/ic_numeric_9_box_outline"
+                            android:onClick="number9"
+                            android:text="9"
+                            android:textSize="0dp" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/tableRow4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:layout_marginTop="5dp">
+
+                        <Button
+                            android:id="@+id/cancelButton"
+                            android:layout_width="53dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Cancel"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:id="@+id/num0"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:background="@drawable/ic_numeric_0_box_outline"
+                            android:onClick="number0"
+                            android:text="0"
+                            android:textSize="0dp" />
+
+                        <Button
+                            android:id="@+id/deleteButton"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Delete"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="20sp" />
+
+                    </TableRow>
+
+                </TableLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+</FrameLayout>

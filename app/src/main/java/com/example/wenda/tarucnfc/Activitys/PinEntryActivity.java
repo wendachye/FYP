@@ -115,7 +115,8 @@ public class PinEntryActivity extends BaseActivity {
 
 							selectType = getIntent().getStringExtra(KEY_PAYMENT);
 							if (selectType.equals("payment")) {
-
+								//Intent intent = new Intent(appContext, .class);
+								//startActivity(intent);
 							} else if (selectType.equals("topUp")) {
 								Intent intent = new Intent(appContext, TopUpActivity.class);
 								startActivity(intent);

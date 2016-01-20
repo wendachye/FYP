@@ -45,6 +45,10 @@
     <string name="hint_current_pincode">Current PIN Code</string>
     <string name="hint_new_pincode">New PIN Code</string>
     <string name="hint_new_pincode2">New PIN Code again</string>
+    <string name="walletBalance">Wallet Balance</string>
+    <string name="busSchedule">Bus Schedules</string>
+    <string name="timetable">Class Timetable</string>
+    <string name="test">Test</string>
 
     <string-array name="gender_arrays">
         <item>Male</item>
