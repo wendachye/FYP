@@ -6,11 +6,10 @@
 
     <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="wrap_content"
-        android:layout_height="400dp"
-        android:layout_marginBottom="20dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginTop="40dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="23dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="55dp"
         android:background="#ffffff">
 
         <LinearLayout
@@ -125,34 +124,34 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:padding="5dip"
+                    android:padding="3dp"
                     android:text=""
                     android:textColor="#ff0000"
                     android:textSize="20sp" />
 
-                <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                     android:id="@+id/numericPad"
+                    android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="5dip"
-                    android:layout_marginRight="5dip"
-                    android:layout_marginTop="5dip"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
                     android:paddingBottom="10dp"
-                    android:paddingTop="10dp"
+                    android:paddingTop="5dp"
                     android:shrinkColumns="*"
                     android:stretchColumns="*">
 
-                    <TableRow
+                    <LinearLayout
                         android:id="@+id/tableRow1"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp">
+                        android:layout_height="wrap_content">
 
                         <TextView
                             android:id="@+id/num1"
                             android:layout_width="wrap_content"
                             android:layout_height="40dp"
                             android:layout_gravity="center"
+                            android:layout_marginLeft="40dp"
                             android:background="@drawable/ic_numeric_1_box_outline"
                             android:onClick="number1"
                             android:text="1"
@@ -163,6 +162,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="40dp"
                             android:layout_gravity="center"
+                            android:layout_marginLeft="40dp"
                             android:background="@drawable/ic_numeric_2_box_outline"
                             android:onClick="number2"
                             android:text="2"
@@ -173,23 +173,27 @@
                             android:layout_width="wrap_content"
                             android:layout_height="40dp"
                             android:layout_gravity="center"
+                            android:layout_marginLeft="40dp"
+                            android:layout_marginRight="40dp"
                             android:background="@drawable/ic_numeric_3_box_outline"
                             android:onClick="number3"
                             android:text="3"
                             android:textSize="0dp" />
-                    </TableRow>
 
-                    <TableRow
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:id="@+id/tableRow2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp">
+                        android:layout_marginTop="3dp">
 
                         <TextView
                             android:id="@+id/num4"
                             android:layout_width="wrap_content"
                             android:layout_height="40dp"
                             android:layout_gravity="center"
+                            android:layout_marginLeft="40dp"
                             android:background="@drawable/ic_numeric_4_box_outline"
                             android:onClick="number4"
                             android:text="4"
@@ -200,6 +204,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="40dp"
                             android:layout_gravity="center"
+                            android:layout_marginLeft="40dp"
                             android:background="@drawable/ic_numeric_5_box_outline"
                             android:onClick="number5"
                             android:text="5"
@@ -210,23 +215,26 @@
                             android:layout_width="wrap_content"
                             android:layout_height="40dp"
                             android:layout_gravity="center"
+                            android:layout_marginLeft="40dp"
+                            android:layout_marginRight="40dp"
                             android:background="@drawable/ic_numeric_6_box_outline"
                             android:onClick="number6"
                             android:text="6"
                             android:textSize="0dp" />
-                    </TableRow>
+                    </LinearLayout>
 
-                    <TableRow
+                    <LinearLayout
                         android:id="@+id/tableRow3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp">
+                        android:layout_marginTop="3dp">
 
                         <TextView
                             android:id="@+id/num7"
                             android:layout_width="wrap_content"
                             android:layout_height="40dp"
                             android:layout_gravity="center"
+                            android:layout_marginLeft="40dp"
                             android:background="@drawable/ic_numeric_7_box_outline"
                             android:onClick="number7"
                             android:text="7"
@@ -237,6 +245,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="40dp"
                             android:layout_gravity="center"
+                            android:layout_marginLeft="40dp"
                             android:background="@drawable/ic_numeric_8_box_outline"
                             android:onClick="number8"
                             android:text="8"
@@ -247,14 +256,16 @@
                             android:layout_width="wrap_content"
                             android:layout_height="40dp"
                             android:layout_gravity="center"
+                            android:layout_marginLeft="40dp"
+                            android:layout_marginRight="40dp"
                             android:background="@drawable/ic_numeric_9_box_outline"
                             android:onClick="number9"
                             android:text="9"
                             android:textSize="0dp" />
 
-                    </TableRow>
+                    </LinearLayout>
 
-                    <TableRow
+                    <LinearLayout
                         android:id="@+id/tableRow4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -262,9 +273,10 @@
 
                         <Button
                             android:id="@+id/cancelButton"
-                            android:layout_width="0dp"
+                            android:layout_width="100dp"
                             android:layout_height="wrap_content"
                             android:gravity="center"
+                            android:layout_marginLeft="15dp"
                             android:text="Cancel"
                             android:textColor="@color/colorPrimaryDark"
                             android:textSize="20sp" />
@@ -274,6 +286,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="40dp"
                             android:layout_gravity="center"
+                            android:layout_marginLeft="13dp"
                             android:background="@drawable/ic_numeric_0_box_outline"
                             android:onClick="number0"
                             android:text="0"
@@ -281,16 +294,17 @@
 
                         <Button
                             android:id="@+id/deleteButton"
-                            android:layout_width="0dp"
+                            android:layout_width="95dp"
                             android:layout_height="wrap_content"
                             android:gravity="center"
+                            android:layout_marginLeft="17dp"
                             android:text="Delete"
                             android:textColor="@color/colorPrimaryDark"
                             android:textSize="20sp" />
 
-                    </TableRow>
+                    </LinearLayout>
 
-                </TableLayout>
+                </LinearLayout>
 
             </LinearLayout>
 

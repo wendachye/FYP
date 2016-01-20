@@ -50,10 +50,14 @@
     <string name="timetable">Class Timetable</string>
     <string name="test">Test</string>
     <string name="wangsamaju">Wangsa Maju Bus Schedule</string>
-    <string name="departure">Departure From: </string>
+    <string name="departure">Departure : </string>
     <string name="hint_wangsamaju">Wangsa maju</string>
-    <string name="destination">Destination: </string>
+    <string name="destination">Destination : </string>
     <string name="hint_busStop1">Bus Stop 1</string>
+    <string name="date">Date : </string>
+    <string name="hint_montothur">Monday to Thursday</string>
+    <string name="time">Time :</string>
+    <string name="hint_time">7.25 7.30 7.45 8.00 8.15 8.30 8.45 9.00 9.15 9.30 9.45 10.00</string>
 
     <string-array name="gender_arrays">
         <item>Male</item>

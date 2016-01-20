@@ -3,8 +3,6 @@ package com.example.wenda.tarucnfc.Activitys;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
@@ -28,9 +26,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     private NavigationView mNavigationView;
     private DrawerLayout mDrawerLayout;
-    private ImageButton mimageButton;
-    private ImageView mimageView;
-    private TextView mTextView;
+    ImageButton mImageButton;
+    ImageView mImageView;
+    TextView mTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,19 +41,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         AccountFragment fragmentAccount = new AccountFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.frame, fragmentAccount).commit();
 
-
-
         mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
-
-        mimageButton = (ImageButton) mNavigationView.findViewById(R.id.account_setting);
-        //mimageButton.setOnClickListener(this);
-
-        mimageView = (ImageView)  mNavigationView.findViewById(R.id.profile_picture);
-        //mimageView.setOnClickListener(this);
-
-        mTextView = (TextView)  mNavigationView.findViewById(R.id.navigation_view_studentID);
-
-
         mNavigationView.setCheckedItem(R.id.nav_menu_dashboard);
         mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -136,6 +122,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         //calling sync state is necessay or else your hamburger icon wont show up
         mActionBarDrawerToggle.syncState();
 
+        mTextView = (TextView) findViewById(R.id.navigation_view_studentID);
+
+        mImageButton = (ImageButton) findViewById(R.id.navigation_view_account_setting);
+        //mImageButton.setOnClickListener(this);
+
+        mImageView = (ImageView) findViewById(R.id.navigation_view_profile_picture);
+        //mImageView.setOnClickListener(this);
+
         initProfileDetail();
     }
 
@@ -179,8 +173,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             Intent intent = new Intent(this, ChangePasswordActivity.class);
             startActivity(intent);
             return true;
-        }
-        else if (id == R.id.action_change_pincode) {
+        } else if (id == R.id.action_change_pincode) {
             Intent intent = new Intent(this, ChangePinCodeActivity.class);
             startActivity(intent);
             return true;
@@ -190,23 +183,46 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
     @Override
+    public void onClick(View v) {
+
+    }
+
+/*    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.account_setting:
+                longToast("Hello");
+                break;
+        }
+    }
+
+    public void setting(View v) {
+        shortToast(this, "click");
+        Intent intent = new Intent(this, EditAccountActivity.class);
+        //intent.putExtra(KEY_ACCOUNT_ID, getLoginDetail().getAccountId());
+        startActivity(intent);
+    }*/
+
+/*    public void profilePicture(View v) {
+        AccountFragment fragmentAccount = new AccountFragment();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.frame, fragmentAccount).commit();
+        mDrawerLayout.closeDrawers();
+
+    }*/
+
+            /*
+    @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.account_setting:
-                Intent intent = new Intent(this, EditAccountActivity.class);
-                //intent.putExtra(KEY_ACCOUNT_ID, getLoginDetail().getAccountId());
-                startActivity(intent);
                 break;
             case R.id.profile_picture:
-                AccountFragment fragmentAccount = new AccountFragment();
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                FragmentTransaction transaction = fragmentManager.beginTransaction();
-                transaction.replace(R.id.frame, fragmentAccount).commit();
-                mDrawerLayout.closeDrawers();
                 break;
-
             default:
                 break;
         }
     }
+*/
 }

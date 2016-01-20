@@ -16,7 +16,7 @@
             android:scaleType="centerCrop" />
 
         <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/profile_picture"
+            android:id="@+id/navigation_view_profile_picture"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_gravity="bottom"
@@ -24,6 +24,7 @@
             android:layout_marginLeft="16dp"
             android:src="@drawable/cara_delevingne2"
             app:civ_border_color="@color/white"
+            android:onClick="profilePicture"
             app:civ_border_width="2dp" />
 
     </LinearLayout>
@@ -48,12 +49,13 @@
 
 
         <ImageButton
-            android:id="@+id/account_setting"
+            android:id="@+id/navigation_view_account_setting"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_gravity="center"
             android:layout_marginRight="15dp"
             android:background="@color/colorWhite"
+            android:onClick="setting"
             android:src="@drawable/ic_settings" />
 
     </LinearLayout>
