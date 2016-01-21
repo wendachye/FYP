@@ -45,11 +45,11 @@ public class BusScheduleFragment extends Fragment {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(this.getFragmentManager());
-        adapter.addFragment(new WangsaMajuFragment(), "Wangsa Maju");
-        adapter.addFragment(new TwoFragment(), "Genting Klang");
-        adapter.addFragment(new ThreeFragment(), "PV10/15/16");
-        adapter.addFragment(new FourFragment(), "Melati Utama");
-        adapter.addFragment(new FiveFragment(), "Sri Rampai");
+        adapter.addFragment(new BusRouteFragment("Wangsa Maju"), "Wangsa Maju");
+        adapter.addFragment(new BusRouteFragment("Genting Klang"), "Genting Klang");
+        adapter.addFragment(new BusRouteFragment("PV10/12/13/15/16"), "PV10/12/13/15/16");
+        adapter.addFragment(new BusRouteFragment("Melati Utama"), "Melati Utama");
+        adapter.addFragment(new BusRouteFragment("Sri Rampai"), "Sri Rampai");
         viewPager.setAdapter(adapter);
     }
 

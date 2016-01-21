@@ -36,7 +36,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.customview_button:
-                boolean wrapInScrollView = true;
+                boolean wrapInScrollView = false;
                 new MaterialDialog.Builder(getContext())
                         .customView(R.layout.custom_view_pincode, wrapInScrollView)
                         .show();

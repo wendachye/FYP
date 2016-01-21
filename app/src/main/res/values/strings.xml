@@ -58,10 +58,19 @@
     <string name="hint_montothur">Monday to Thursday</string>
     <string name="time">Time :</string>
     <string name="hint_time">7.25 7.30 7.45 8.00 8.15 8.30 8.45 9.00 9.15 9.30 9.45 10.00</string>
+    <string name="hint_library">Library</string>
+    <string name="hint_time2">7:15 7:30 8:15 9:10</string>
 
     <string-array name="gender_arrays">
         <item>Male</item>
         <item>Female</item>
+    </string-array>
+
+    <string-array name="busSchedule_arrays">
+        <item>Select Date</item>
+        <item>Monday to Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
     </string-array>
 
     <string-array name="sessionJoined_arrays">
