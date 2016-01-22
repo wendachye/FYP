@@ -132,13 +132,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
         mTextView = (TextView) findViewById(R.id.navigation_view_studentID);
 
-        mImageButton = (ImageButton) findViewById(R.id.navigation_view_account_setting);
-        //mImageButton.setOnClickListener(this);
+        mImageButton = (ImageButton) mNavigationView.findViewById(R.id.navigation_view_account_setting);
+        mImageButton.setOnClickListener(this);
 
         mImageView = (ImageView) findViewById(R.id.navigation_view_profile_picture);
         //mImageView.setOnClickListener(this);
 
         initProfileDetail();
+
     }
 
     public void initProfileDetail() {

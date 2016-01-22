@@ -38,7 +38,7 @@
                             android:layout_marginTop="5dp"
                             android:text="@string/profile"
                             android:textAlignment="center"
-                            android:textSize="20dp"
+                            android:textSize="20sp"
                             android:textStyle="bold" />
 
                         <View
@@ -101,7 +101,7 @@
                             android:layout_height="wrap_content"
                             android:text="@string/studentinfo"
                             android:textAlignment="center"
-                            android:textSize="20dp"
+                            android:textSize="20sp"
                             android:textStyle="bold" />
 
                         <View
@@ -132,12 +132,12 @@
 
                         <TextView
                             android:id="@+id/text_studentid"
-                            android:layout_width="260dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginLeft="@dimen/activity_vertical_margin"
                             android:hint="@string/hint_studentid"
-                            android:textSize="17dp" />
+                            android:textSize="17sp" />
 
                     </LinearLayout>
 
@@ -159,12 +159,12 @@
 
                         <TextView
                             android:id="@+id/text_programme"
-                            android:layout_width="260dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginLeft="@dimen/activity_vertical_margin"
                             android:hint="@string/hint_programme"
-                            android:textSize="17dp" />
+                            android:textSize="17sp" />
 
                     </LinearLayout>
 
@@ -186,12 +186,12 @@
 
                         <TextView
                             android:id="@+id/text_faculty"
-                            android:layout_width="260dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginLeft="@dimen/activity_vertical_margin"
                             android:hint="@string/hint_faculty"
-                            android:textSize="17dp" />
+                            android:textSize="17sp" />
 
                     </LinearLayout>
 
@@ -213,12 +213,12 @@
 
                         <TextView
                             android:id="@+id/text_campus"
-                            android:layout_width="260dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginLeft="@dimen/activity_vertical_margin"
                             android:hint="@string/hint_campus"
-                            android:textSize="17dp" />
+                            android:textSize="17sp" />
 
                     </LinearLayout>
 
@@ -240,12 +240,12 @@
 
                         <TextView
                             android:id="@+id/text_school_email"
-                            android:layout_width="260dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginLeft="@dimen/activity_vertical_margin"
                             android:hint="@string/hint_school_email"
-                            android:textSize="17dp" />
+                            android:textSize="17sp" />
 
                     </LinearLayout>
 
@@ -267,12 +267,12 @@
 
                         <TextView
                             android:id="@+id/text_sessionJoined"
-                            android:layout_width="260dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginLeft="@dimen/activity_vertical_margin"
                             android:hint="@string/hint_sessionJoined"
-                            android:textSize="17dp" />
+                            android:textSize="17sp" />
 
                     </LinearLayout>
 
@@ -309,7 +309,7 @@
                             android:layout_height="wrap_content"
                             android:text="@string/privateinfo"
                             android:textAlignment="center"
-                            android:textSize="20dp"
+                            android:textSize="20sp"
                             android:textStyle="bold" />
 
                         <View
@@ -340,13 +340,13 @@
 
                         <TextView
                             android:id="@+id/text_fullname"
-                            android:layout_width="260dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginLeft="@dimen/activity_vertical_margin"
                             android:layout_marginRight="16dp"
                             android:hint="@string/hint_fullname"
-                            android:textSize="17dp" />
+                            android:textSize="17sp" />
 
                     </LinearLayout>
 
@@ -368,13 +368,13 @@
 
                         <TextView
                             android:id="@+id/text_nricno"
-                            android:layout_width="260dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginLeft="@dimen/activity_vertical_margin"
                             android:layout_marginRight="16dp"
                             android:hint="@string/hint_nric"
-                            android:textSize="17dp" />
+                            android:textSize="17sp" />
 
                     </LinearLayout>
 
@@ -396,12 +396,12 @@
 
                         <TextView
                             android:id="@+id/text_contactNo"
-                            android:layout_width="260dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginLeft="@dimen/activity_vertical_margin"
                             android:hint="@string/hint_contact"
-                            android:textSize="17dp" />
+                            android:textSize="17sp" />
 
                     </LinearLayout>
 
@@ -423,12 +423,12 @@
 
                         <TextView
                             android:id="@+id/text_email"
-                            android:layout_width="260dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginLeft="@dimen/activity_vertical_margin"
                             android:hint="@string/hint_email"
-                            android:textSize="17dp" />
+                            android:textSize="17sp" />
 
                     </LinearLayout>
 
@@ -450,12 +450,12 @@
 
                         <TextView
                             android:id="@+id/text_gender"
-                            android:layout_width="260dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginLeft="@dimen/activity_vertical_margin"
                             android:hint="@string/hint_gender"
-                            android:textSize="17dp" />
+                            android:textSize="17sp" />
 
                     </LinearLayout>
 
@@ -477,12 +477,12 @@
 
                         <TextView
                             android:id="@+id/text_homeAddress"
-                            android:layout_width="260dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginLeft="@dimen/activity_vertical_margin"
                             android:hint="@string/hint_homeAddress"
-                            android:textSize="17dp" />
+                            android:textSize="17sp" />
 
                     </LinearLayout>
 
@@ -504,12 +504,12 @@
 
                         <TextView
                             android:id="@+id/text_campusAddress"
-                            android:layout_width="260dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginLeft="@dimen/activity_vertical_margin"
                             android:hint="@string/hint_campusAddress"
-                            android:textSize="17dp" />
+                            android:textSize="17sp" />
 
                     </LinearLayout>
 
