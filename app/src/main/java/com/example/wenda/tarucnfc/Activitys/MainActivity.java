@@ -203,7 +203,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 //intent.putExtra(KEY_ACCOUNT_ID, getLoginDetail().getAccountId());
                 startActivity(intent);
                 break;
-            case R.id.profile_picture:
+            case R.id.navigation_view_profile_picture:
                 AccountFragment fragmentAccount = new AccountFragment();
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 FragmentTransaction transaction = fragmentManager.beginTransaction();
