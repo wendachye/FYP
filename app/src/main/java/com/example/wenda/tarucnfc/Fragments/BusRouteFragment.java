@@ -45,7 +45,7 @@ public class BusRouteFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_wangsamaju, container, false);
+        View view = inflater.inflate(R.layout.fragment_bus_route, container, false);
 
         // set spinner text size and color
         mSpinnerDate = (Spinner) view.findViewById(R.id.spinner_date);

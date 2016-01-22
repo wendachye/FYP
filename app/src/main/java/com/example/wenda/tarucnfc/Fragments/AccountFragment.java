@@ -39,7 +39,7 @@ public class AccountFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_account, container, false);
 
-        //initialValues(view);
+        initialValues(view);
 
         return view;
     }
@@ -59,7 +59,7 @@ public class AccountFragment extends Fragment {
         mTextHomeAddress = (TextView) view.findViewById(R.id.text_homeAddress);
         mTextCampusAddress = (TextView) view.findViewById(R.id.text_campusAddress);
 
-        // set database data to data field
+        // set database data into data field
         OfflineLogin offlineLogin = new BaseActivity().getLoginDetail(getActivity());
         mTextStudentId.setText(offlineLogin.getAccountID());
         mTextProgramme.setText(offlineLogin.getProgramme());

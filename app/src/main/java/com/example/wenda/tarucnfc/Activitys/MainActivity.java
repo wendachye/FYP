@@ -17,8 +17,9 @@ import android.widget.Toast;
 import com.example.wenda.tarucnfc.Domains.OfflineLogin;
 import com.example.wenda.tarucnfc.Fragments.AccountFragment;
 import com.example.wenda.tarucnfc.Fragments.BusScheduleFragment;
+import com.example.wenda.tarucnfc.Fragments.ClassScheduleFragment;
 import com.example.wenda.tarucnfc.Fragments.DashboardFragment;
-import com.example.wenda.tarucnfc.Fragments.TimeTableFragment;
+import com.example.wenda.tarucnfc.Fragments.FoodOrderFragment;
 import com.example.wenda.tarucnfc.Fragments.WalletFragment;
 import com.example.wenda.tarucnfc.R;
 
@@ -62,10 +63,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                         fragmentTransaction.commit();
                         return true;
 
-                    case R.id.nav_menu_wallet:
-                        getSupportActionBar().setTitle(R.string.wallet);
-                        WalletFragment fragmentWallet = new WalletFragment();
-                        fragmentTransaction.replace(R.id.frame, fragmentWallet);
+                    case R.id.nav_menu_classSchedule:
+                        getSupportActionBar().setTitle(R.string.timetable);
+                        ClassScheduleFragment fragmentTimetable = new ClassScheduleFragment();
+                        fragmentTransaction.replace(R.id.frame, fragmentTimetable);
                         fragmentTransaction.commit();
                         return true;
 
@@ -76,10 +77,17 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                         fragmentTransaction.commit();
                         return true;
 
-                    case R.id.nav_menu_timetable:
-                        getSupportActionBar().setTitle(R.string.timetable);
-                        TimeTableFragment fragmentTimetable = new TimeTableFragment();
-                        fragmentTransaction.replace(R.id.frame, fragmentTimetable);
+                    case R.id.nav_menu_wallet:
+                        getSupportActionBar().setTitle(R.string.wallet);
+                        WalletFragment fragmentWallet = new WalletFragment();
+                        fragmentTransaction.replace(R.id.frame, fragmentWallet);
+                        fragmentTransaction.commit();
+                        return true;
+
+                    case R.id.nav_menu_foodOrder:
+                        getSupportActionBar().setTitle(R.string.foodOrder);
+                        FoodOrderFragment fragmentFoodOrder = new FoodOrderFragment();
+                        fragmentTransaction.replace(R.id.frame, fragmentFoodOrder);
                         fragmentTransaction.commit();
                         return true;
 
@@ -138,7 +146,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         OfflineLogin offlineLogin = getLoginDetail(this);
 
         if (offlineLogin != null) {
-            mTextView.setText(offlineLogin.getAccountID());
+            //mTextView.setText(offlineLogin.getAccountID());
             //mTextName.setText(offlineLogin.getName());
             //mTextEmail.setText(offlineLogin.getEmail());
             //ImageLoader.getInstance().displayImage(offlineLogin.getProfileImagePath(), mImageProfile, options);

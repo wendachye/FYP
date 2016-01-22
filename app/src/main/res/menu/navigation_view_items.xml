@@ -8,16 +8,20 @@
             android:title="Dashboard" />
 
         <item
-            android:id="@+id/nav_menu_wallet"
-            android:title="Wallet" />
+            android:id="@+id/nav_menu_classSchedule"
+            android:title="Class Schedule" />
 
         <item
             android:id="@+id/nav_menu_busSchedule"
             android:title="Bus Schedule" />
 
         <item
-            android:id="@+id/nav_menu_timetable"
-            android:title="Class Schedule" />
+            android:id="@+id/nav_menu_wallet"
+            android:title="Wallet" />
+
+        <item
+            android:id="@+id/nav_menu_foodOrder"
+            android:title="Food Order" />
 
         <item
             android:id="@+id/nav_menu_sign_out"
