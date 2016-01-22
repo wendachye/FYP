@@ -3,6 +3,8 @@ package com.example.wenda.tarucnfc.Activitys;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
@@ -130,13 +132,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         //calling sync state is necessay or else your hamburger icon wont show up
         mActionBarDrawerToggle.syncState();
 
-        mTextView = (TextView) findViewById(R.id.navigation_view_studentID);
+        View headerView = mNavigationView.inflateHeaderView(R.layout.navigation_view_header);
 
-        mImageButton = (ImageButton) mNavigationView.findViewById(R.id.navigation_view_account_setting);
+        mTextView = (TextView) headerView.findViewById(R.id.navigation_view_studentID);
+
+        mImageButton = (ImageButton) headerView.findViewById(R.id.navigation_view_account_setting);
         mImageButton.setOnClickListener(this);
 
-        mImageView = (ImageView) findViewById(R.id.navigation_view_profile_picture);
-        //mImageView.setOnClickListener(this);
+        mImageView = (ImageView) headerView.findViewById(R.id.navigation_view_profile_picture);
+        mImageView.setOnClickListener(this);
 
         initProfileDetail();
 
@@ -192,46 +196,23 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
     @Override
-    public void onClick(View v) {
-
-    }
-
-/*    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.account_setting:
-                longToast("Hello");
-                break;
-        }
-    }
-
-    public void setting(View v) {
-        shortToast(this, "click");
-        Intent intent = new Intent(this, EditAccountActivity.class);
-        //intent.putExtra(KEY_ACCOUNT_ID, getLoginDetail().getAccountId());
-        startActivity(intent);
-    }*/
-
-/*    public void profilePicture(View v) {
-        AccountFragment fragmentAccount = new AccountFragment();
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.frame, fragmentAccount).commit();
-        mDrawerLayout.closeDrawers();
-
-    }*/
-
-            /*
-    @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.account_setting:
+            case R.id.navigation_view_account_setting:
+                Intent intent = new Intent(this, EditAccountActivity.class);
+                //intent.putExtra(KEY_ACCOUNT_ID, getLoginDetail().getAccountId());
+                startActivity(intent);
                 break;
             case R.id.profile_picture:
+                AccountFragment fragmentAccount = new AccountFragment();
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                transaction.replace(R.id.frame, fragmentAccount).commit();
+                mDrawerLayout.closeDrawers();
                 break;
             default:
                 break;
         }
     }
-*/
+
 }

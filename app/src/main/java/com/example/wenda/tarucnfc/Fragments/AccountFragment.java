@@ -58,7 +58,7 @@ public class AccountFragment extends Fragment {
         mTextContactNo = (TextView) view.findViewById(R.id.text_contactNo);
         mTextHomeAddress = (TextView) view.findViewById(R.id.text_homeAddress);
         mTextCampusAddress = (TextView) view.findViewById(R.id.text_campusAddress);
-
+/*
         // set database data into data field
         OfflineLogin offlineLogin = new BaseActivity().getLoginDetail(getActivity());
         mTextStudentId.setText(offlineLogin.getAccountID());
@@ -73,7 +73,7 @@ public class AccountFragment extends Fragment {
         mTextEmail.setText(offlineLogin.getEmailAddress());
         mTextContactNo.setText(offlineLogin.getContactNo());
         mTextHomeAddress.setText(offlineLogin.getHomeAddress());
-        mTextCampusAddress.setText(offlineLogin.getCampusAddress());
+        mTextCampusAddress.setText(offlineLogin.getCampusAddress());*/
     }
 
 }
