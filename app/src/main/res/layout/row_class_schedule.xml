@@ -50,16 +50,22 @@
             android:text="location" />
 
         <TextView
-            android:id="@+id/date"
+            android:id="@+id/day"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="date" />
+            android:text="day" />
 
         <TextView
-            android:id="@+id/time"
+            android:id="@+id/startTime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="time" />
+            android:text="startTime" />
+
+        <TextView
+            android:id="@+id/endTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="endTime" />
 
     </LinearLayout>
 

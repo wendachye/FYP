@@ -79,12 +79,13 @@ public class ClassTimetableFragment extends Fragment {
         classSchedule.setSubject("4");
         classSchedule.setTutorlecturer("5");
         classSchedule.setLocation("6");
-        classSchedule.setDate("7");
-        classSchedule.setTime("8");
+        classSchedule.setDay("7");
+        classSchedule.setStartTime("8");
+        classSchedule.setEndTime("9");
 
         mListClassSchedule.add(classSchedule);
 
-        initRecyclerView();
+        //initRecyclerView();
 
         return view;
     }

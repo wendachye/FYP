@@ -3,6 +3,7 @@
     <group
         android:id="@+id/group_first"
         android:checkableBehavior="all">
+
         <item
             android:id="@+id/nav_menu_dashboard"
             android:title="Dashboard" />

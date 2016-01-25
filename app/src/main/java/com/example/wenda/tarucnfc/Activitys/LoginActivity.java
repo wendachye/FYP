@@ -37,7 +37,7 @@ public class LoginActivity extends BaseActivity {
     private static final int RESPONSE_PASSWORD_INCORRECT = RESPONSE_SUCCESS + 1;
     private static final int RESPONSE_STATUS_NOT_ACTIVE = RESPONSE_PASSWORD_INCORRECT + 1;
 
-    private static final String LOGIN_URL = "http://tarucandroid.comxa.com/Login/get_account_data.php";
+    private static final String LOGIN_URL = "http://tarucandroid.comxa.com/Login/get_account_data1.php";
     private static final String KEY_LOGINID = "loginID";
     private static final String KEY_PASSWORD = "password";
 
@@ -46,6 +46,8 @@ public class LoginActivity extends BaseActivity {
 
     private static final String KEY_E_AUTHORIZATION = "E_Authorization";
     private static final String KEY_B_AUTHORIZATION = "B_Authorization";
+
+    private static final String KEY_PROFILE_PICTURE = "ProfilePicturePath";
 
     private static final String KEY_RESPONSE = "LoginResponse";
 
@@ -114,6 +116,8 @@ public class LoginActivity extends BaseActivity {
                 case RESPONSE_404:
                     // account not found
                     shortToast(LoginActivity.this,"Account not found");
+                    //editTextUsername.setText("");
+                    //editTextPassword.setText("");
                     break;
 
                 case RESPONSE_SUCCESS:
@@ -129,11 +133,13 @@ public class LoginActivity extends BaseActivity {
                 case RESPONSE_PASSWORD_INCORRECT:
                     // password incorrect
                     shortToast(LoginActivity.this,"password incorrect");
+                    //editTextPassword.setText("");
                     break;
 
                 case RESPONSE_STATUS_NOT_ACTIVE:
                     // inactive account
                     shortToast(LoginActivity.this,"account inactive");
+                    //editTextPassword.setText("");
                     break;
             }
         }
@@ -173,8 +179,20 @@ public class LoginActivity extends BaseActivity {
             offlineLogin.setAccountBalance(jsonObject.getString(AccountContract.AccountRecord.KEY_ACCOUNT_BALANCE));
             offlineLogin.setPINcode(jsonObject.getString(AccountContract.AccountRecord.KEY_PIN_CODE));
             offlineLogin.setStatus(jsonObject.getString(AccountContract.AccountRecord.KEY_STATUS));
+            offlineLogin.setProfilePicturePath(jsonObject.getString(AccountContract.AccountRecord.KEY_PROFILE_PICTURE_PATH));
             offlineLogin.setLoginResponse(jsonObject.getInt(KEY_RESPONSE));
+
+            String eAuthorization = null, bAuthorization = null;
+            eAuthorization = jsonObject.getString(KEY_E_AUTHORIZATION);
+            bAuthorization = jsonObject.getString(KEY_B_AUTHORIZATION);
+
+            offlineLogin.setE_authorization(eAuthorization);
+            offlineLogin.setB_authorization(bAuthorization);
+
+
             Log.d("track", "Response " + jsonObject.getInt(KEY_RESPONSE));
+            Log.d("track", "backend " + jsonObject.getString(KEY_B_AUTHORIZATION));
+            Log.d("track", "enduser " + jsonObject.getString(KEY_E_AUTHORIZATION));
 
         } catch (JSONException e) {
             e.printStackTrace();

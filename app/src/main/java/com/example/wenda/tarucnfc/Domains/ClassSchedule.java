@@ -13,8 +13,9 @@ public class ClassSchedule {
     private String subject;
     private String tutorlecturer;
     private String location;
-    private String date;
-    private String time;
+    private String day;
+    private String startTime;
+    private String endTime;
 
     public int getClassScheduleID() {
         return classScheduleID;
@@ -48,12 +49,16 @@ public class ClassSchedule {
         return location;
     }
 
-    public String getDate() {
-        return date;
+    public String getDay() {
+        return day;
     }
 
-    public String getTime() {
-        return time;
+    public String getStartTime() {
+        return startTime;
+    }
+
+    public String getEndTime() {
+        return endTime;
     }
 
     public void setClassScheduleID(int classScheduleID) {
@@ -88,11 +93,15 @@ public class ClassSchedule {
         this.location = location;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setDay(String day) {
+        this.day = day;
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
     }
 }

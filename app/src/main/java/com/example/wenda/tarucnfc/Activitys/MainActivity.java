@@ -24,14 +24,16 @@ import com.example.wenda.tarucnfc.Fragments.DashboardFragment;
 import com.example.wenda.tarucnfc.Fragments.FoodOrderFragment;
 import com.example.wenda.tarucnfc.Fragments.WalletFragment;
 import com.example.wenda.tarucnfc.R;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     private NavigationView mNavigationView;
     private DrawerLayout mDrawerLayout;
-    ImageButton mImageButton;
-    ImageView mImageView;
-    TextView mTextView;
+    ImageButton mImageButtonEditProfile;
+    ImageView mImageViewProfilePicture;
+    TextView mTextViewUserID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +46,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         AccountFragment fragmentAccount = new AccountFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.frame, fragmentAccount).commit();
 
+        // setup UIL
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this).build();
+        ImageLoader.getInstance().init(config);
+
         mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
-        mNavigationView.setCheckedItem(R.id.nav_menu_dashboard);
+        //mNavigationView.setCheckedItem(R.id.nav_menu_dashboard);
         mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
@@ -134,28 +140,25 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
         View headerView = mNavigationView.inflateHeaderView(R.layout.navigation_view_header);
 
-        mTextView = (TextView) headerView.findViewById(R.id.navigation_view_studentID);
+        mTextViewUserID = (TextView) headerView.findViewById(R.id.navigation_view_userID);
 
-        mImageButton = (ImageButton) headerView.findViewById(R.id.navigation_view_account_setting);
-        mImageButton.setOnClickListener(this);
+        mImageButtonEditProfile = (ImageButton) headerView.findViewById(R.id.navigation_view_account_setting);
+        mImageButtonEditProfile.setOnClickListener(this);
 
-        mImageView = (ImageView) headerView.findViewById(R.id.navigation_view_profile_picture);
-        mImageView.setOnClickListener(this);
+        mImageViewProfilePicture = (ImageView) headerView.findViewById(R.id.navigation_view_profile_picture);
+        mImageViewProfilePicture.setOnClickListener(this);
 
         initProfileDetail();
 
     }
 
     public void initProfileDetail() {
-        // if account haven't login
+
         OfflineLogin offlineLogin = getLoginDetail(this);
 
         if (offlineLogin != null) {
-            //mTextView.setText(offlineLogin.getAccountID());
-            //mTextName.setText(offlineLogin.getName());
-            //mTextEmail.setText(offlineLogin.getEmail());
-            //ImageLoader.getInstance().displayImage(offlineLogin.getProfileImagePath(), mImageProfile, options);
-            //ImageLoader.getInstance().displayImage(offlineLogin.getCoverImagePath(), mImageCover, options);
+            mTextViewUserID.setText(offlineLogin.getAccountID());
+            ImageLoader.getInstance().displayImage(offlineLogin.getProfilePicturePath(), mImageViewProfilePicture, options);
             //mNavigationView.getMenu().getItem(9).setVisible(true);
         } else {
             //mImageProfile.setImageResource(R.drawable.ic_github_circle);
@@ -195,7 +198,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.navigation_view_account_setting:

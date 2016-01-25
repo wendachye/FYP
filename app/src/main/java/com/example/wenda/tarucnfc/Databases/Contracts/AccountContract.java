@@ -24,6 +24,6 @@ public class AccountContract {
         public final static String KEY_ACCOUNT_BALANCE = "AccountBalance";
         public final static String KEY_PIN_CODE = "PINCode";
         public final static String KEY_STATUS = "Status";
-
+        public final static String KEY_PROFILE_PICTURE_PATH = "ProfilePicturePath";
     }
 }

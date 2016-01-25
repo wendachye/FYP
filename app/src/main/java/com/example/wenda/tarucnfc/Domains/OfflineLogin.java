@@ -23,6 +23,7 @@ public class OfflineLogin {
     private String status;
     private String e_authorization;
     private String b_authorization;
+    private String profilePicturePath;
     private int loginResponse;
 
     public void setLoginId(int loginId) {
@@ -95,6 +96,10 @@ public class OfflineLogin {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public void setProfilePicturePath(String profilePicturePath) {
+        this.profilePicturePath = profilePicturePath;
     }
 
     public void setE_authorization(String e_authorization) {
@@ -179,6 +184,10 @@ public class OfflineLogin {
 
     public String getStatus() {
         return status;
+    }
+
+    public String getProfilePicturePath() {
+        return profilePicturePath;
     }
 
     public String getE_authorization() {

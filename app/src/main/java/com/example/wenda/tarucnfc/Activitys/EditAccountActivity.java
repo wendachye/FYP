@@ -17,7 +17,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -26,21 +25,17 @@ import com.example.wenda.tarucnfc.Domains.OfflineLogin;
 import com.example.wenda.tarucnfc.R;
 import com.flipboard.bottomsheet.BottomSheetLayout;
 import com.flipboard.bottomsheet.commons.ImagePickerSheetView;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-public class EditAccountActivity extends BaseActivity {
+public class EditAccountActivity extends BaseActivity implements View.OnClickListener {
 
-    TextView mTextStudentID;
-    TextView mTextProgramme;
-    TextView mTextFaculty;
-    TextView mTextCampus;
-    TextView mTextSchoolEmail;
-    TextView mTextSessionJoined;
     EditText mTextFullName;
     EditText mTextNRICNO;
     Spinner mSpinnerGender;
@@ -68,20 +63,16 @@ public class EditAccountActivity extends BaseActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        mProfilePicture = (ImageView) findViewById(R.id.profile_picture);
+
         bottomSheetLayout = (BottomSheetLayout) findViewById(R.id.bottomSheetLayout);
 
-        //initialValues();
+        initialValues();
+        mProfilePicture.setOnClickListener(this);
     }
 
     public void initialValues() {
 
-        mTextStudentID = (TextView) findViewById(R.id.text_studentID);
-        mTextProgramme = (TextView) findViewById(R.id.text_programme);
-        mTextFaculty = (TextView) findViewById(R.id.text_faculty);
-        mTextCampus = (TextView) findViewById(R.id.text_campus);
-        mTextSchoolEmail = (TextView) findViewById(R.id.text_school_email);
-        mTextSessionJoined = (TextView) findViewById(R.id.text_sessionJoined);
+        mProfilePicture = (ImageView) findViewById(R.id.profile_picture);
         mTextFullName = (EditText) findViewById(R.id.edit_text_fullname);
         mTextNRICNO = (EditText) findViewById(R.id.edit_text_nric);
         mSpinnerGender = (Spinner) findViewById(R.id.spinner_gender);
@@ -92,12 +83,7 @@ public class EditAccountActivity extends BaseActivity {
 
         // set database data to data field
         OfflineLogin offlineLogin = new BaseActivity().getLoginDetail(this);
-        mTextStudentID.setText(offlineLogin.getAccountID());
-        mTextProgramme.setText(offlineLogin.getProgramme());
-        mTextFaculty.setText(offlineLogin.getFaculty());
-        mTextCampus.setText(offlineLogin.getCampus());
-        mTextSchoolEmail.setText(offlineLogin.getSchoolEmail());
-        mTextSessionJoined.setText(offlineLogin.getSessionJoined());
+        ImageLoader.getInstance().displayImage(offlineLogin.getProfilePicturePath(), mProfilePicture, options);
         mTextFullName.setText(offlineLogin.getName());
         mTextNRICNO.setText(offlineLogin.getNRICNo());
         mSpinnerGender.setPrompt(offlineLogin.getGender());
@@ -105,6 +91,9 @@ public class EditAccountActivity extends BaseActivity {
         mTextContactNo.setText(offlineLogin.getContactNo());
         mTextHomeAddress.setText(offlineLogin.getHomeAddress());
         mTextCampusAddress.setText(offlineLogin.getCampusAddress());
+
+        // get today date
+        calendar = Calendar.getInstance();
 
     }
 
@@ -133,8 +122,16 @@ public class EditAccountActivity extends BaseActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void imageClick(View view) {
-        showSheetView();
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.profile_picture:
+                showSheetView();
+                break;
+
+            default:
+                break;
+        }
     }
 
     // pop up dialog allow user select picture from gallery or capture photo
@@ -265,4 +262,5 @@ public class EditAccountActivity extends BaseActivity {
             }
         }
     }
+
 }

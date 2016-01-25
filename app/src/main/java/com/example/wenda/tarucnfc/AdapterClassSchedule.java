@@ -39,8 +39,9 @@ public class AdapterClassSchedule extends RecyclerView.Adapter<AdapterClassSched
         holder.subject.setText(items.get(position).getSubject());
         holder.tutorlecturer.setText(items.get(position).getTutorlecturer());
         holder.location.setText(items.get(position).getLocation());
-        holder.date.setText(items.get(position).getDate());
-        holder.time.setText(items.get(position).getTime());
+        holder.day.setText(items.get(position).getDay());
+        holder.startTime.setText(items.get(position).getStartTime());
+        holder.endTime.setText(items.get(position).getEndTime());
     }
 
     @Override
@@ -50,7 +51,7 @@ public class AdapterClassSchedule extends RecyclerView.Adapter<AdapterClassSched
 
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        TextView faculty, programme, group, subject, tutorlecturer, location, date, time;
+        TextView faculty, programme, group, subject, tutorlecturer, location, day, startTime, endTime;
 
         public ViewHolder(final View itemView) {
             super(itemView);
@@ -60,8 +61,9 @@ public class AdapterClassSchedule extends RecyclerView.Adapter<AdapterClassSched
             subject = (TextView) itemView.findViewById(R.id.subject);
             tutorlecturer = (TextView) itemView.findViewById(R.id.tutorlecturer);
             location = (TextView) itemView.findViewById(R.id.location);
-            date = (TextView) itemView.findViewById(R.id.date);
-            time = (TextView) itemView.findViewById(R.id.time);
+            day = (TextView) itemView.findViewById(R.id.day);
+            startTime = (TextView) itemView.findViewById(R.id.startTime);
+            endTime = (TextView) itemView.findViewById(R.id.endTime);
         }
 
         @Override
