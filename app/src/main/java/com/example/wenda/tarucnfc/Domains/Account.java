@@ -23,6 +23,7 @@ public class Account {
     private String accountBalance;
     private String PINcode;
     private String status;
+    private String profilePicturePath;
     private Bitmap profilePictureBitmap;
 
     public String getAccountID() {
@@ -176,5 +177,13 @@ public class Account {
 
     public void setProfilePictureBitmap(Bitmap profilePictureBitmap) {
         this.profilePictureBitmap = profilePictureBitmap;
+    }
+
+    public String getProfilePicturePath() {
+        return profilePicturePath;
+    }
+
+    public void setProfilePicturePath(String profilePicturePath) {
+        this.profilePicturePath = profilePicturePath;
     }
 }

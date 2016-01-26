@@ -202,7 +202,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         switch (view.getId()) {
             case R.id.navigation_view_account_setting:
                 Intent intent = new Intent(this, EditAccountActivity.class);
-                //intent.putExtra(KEY_ACCOUNT_ID, getLoginDetail().getAccountId());
+                intent.putExtra(KEY_ACCOUNT_ID, getLoginDetail(this).getAccountID());
                 startActivity(intent);
                 break;
             case R.id.navigation_view_profile_picture:

@@ -37,7 +37,7 @@ public class LoginActivity extends BaseActivity {
     private static final int RESPONSE_PASSWORD_INCORRECT = RESPONSE_SUCCESS + 1;
     private static final int RESPONSE_STATUS_NOT_ACTIVE = RESPONSE_PASSWORD_INCORRECT + 1;
 
-    private static final String LOGIN_URL = "http://tarucandroid.comxa.com/Login/get_account_data1.php";
+    private static final String LOGIN_URL = "http://tarucandroid.comxa.com/Login/get_account_data.php";
     private static final String KEY_LOGINID = "loginID";
     private static final String KEY_PASSWORD = "password";
 
@@ -81,13 +81,14 @@ public class LoginActivity extends BaseActivity {
             login.verifyPassword(editTextPassword.getText().toString());
             account.verifyAccountID(editTextUsername.getText().toString());
 
+
             new LoginAccount(editTextUsername.getText().toString(), editTextPassword.getText().toString()).execute();
         } catch (InvalidInputException ex) {
             shortToast(this, ex.getInfo());
         }
     }
 
-    //get json
+    // this is get json
     public class LoginAccount extends AsyncTask<String, Void, String> {
 
         String loginID, password;
@@ -156,46 +157,45 @@ public class LoginActivity extends BaseActivity {
     }
 
     private void extractJsonData(String json) {
-        try {
-            JSONArray jsonArray = new JSONObject(json).getJSONArray(BaseActivity.JSON_ARRAY);
-            JSONObject jsonObject = jsonArray.getJSONObject(0);
 
-            offlineLogin = new OfflineLogin();
+            try {
+                JSONArray jsonArray = new JSONObject(json).getJSONArray(BaseActivity.JSON_ARRAY);
+                JSONObject jsonObject = jsonArray.getJSONObject(0);
+                Log.d("track", "Response " + jsonObject.getInt(KEY_RESPONSE));
+                offlineLogin = new OfflineLogin();
 
-            offlineLogin.setAccountID(jsonObject.getString(AccountContract.AccountRecord.KEY_ACCOUNT_ID));
-            offlineLogin.setProgramme(jsonObject.getString(AccountContract.AccountRecord.KEY_PROGRAMME));
-            offlineLogin.setFaculty(jsonObject.getString(AccountContract.AccountRecord.KEY_FACULTY));
-            offlineLogin.setCampus(jsonObject.getString(AccountContract.AccountRecord.KEY_CAMPUS));
-            offlineLogin.setSchoolEmail(jsonObject.getString(AccountContract.AccountRecord.KEY_SCHOOL_EMAIL));
-            offlineLogin.setSessionJoined(jsonObject.getString(AccountContract.AccountRecord.KEY_SESSION_JOINED));
-            offlineLogin.setName(jsonObject.getString(AccountContract.AccountRecord.KEY_NAME));
-            offlineLogin.setNRICNo(jsonObject.getString(AccountContract.AccountRecord.KEY_NRIC_NO));
-            offlineLogin.setContactNo(jsonObject.getString(AccountContract.AccountRecord.KEY_CONTACT_NO));
-            offlineLogin.setEmailAddress(jsonObject.getString(AccountContract.AccountRecord.KEY_EMAIL_ADDRESS));
-            offlineLogin.setGender(jsonObject.getString(AccountContract.AccountRecord.KEY_GENDER));
-            offlineLogin.setHomeAddress(jsonObject.getString(AccountContract.AccountRecord.KEY_HOME_ADDRESS));
-            offlineLogin.setCampusAddress(jsonObject.getString(AccountContract.AccountRecord.KEY_CAMPUS_ADDRESS));
-            offlineLogin.setAccountType(jsonObject.getString(AccountContract.AccountRecord.KEY_ACCOUNT_TYPE));
-            offlineLogin.setAccountBalance(jsonObject.getString(AccountContract.AccountRecord.KEY_ACCOUNT_BALANCE));
-            offlineLogin.setPINcode(jsonObject.getString(AccountContract.AccountRecord.KEY_PIN_CODE));
-            offlineLogin.setStatus(jsonObject.getString(AccountContract.AccountRecord.KEY_STATUS));
-            offlineLogin.setProfilePicturePath(jsonObject.getString(AccountContract.AccountRecord.KEY_PROFILE_PICTURE_PATH));
-            offlineLogin.setLoginResponse(jsonObject.getInt(KEY_RESPONSE));
+                offlineLogin.setAccountID(jsonObject.getString(AccountContract.AccountRecord.KEY_ACCOUNT_ID));
+                offlineLogin.setProgramme(jsonObject.getString(AccountContract.AccountRecord.KEY_PROGRAMME));
+                offlineLogin.setFaculty(jsonObject.getString(AccountContract.AccountRecord.KEY_FACULTY));
+                offlineLogin.setCampus(jsonObject.getString(AccountContract.AccountRecord.KEY_CAMPUS));
+                offlineLogin.setSchoolEmail(jsonObject.getString(AccountContract.AccountRecord.KEY_SCHOOL_EMAIL));
+                offlineLogin.setSessionJoined(jsonObject.getString(AccountContract.AccountRecord.KEY_SESSION_JOINED));
+                offlineLogin.setName(jsonObject.getString(AccountContract.AccountRecord.KEY_NAME));
+                offlineLogin.setNRICNo(jsonObject.getString(AccountContract.AccountRecord.KEY_NRIC_NO));
+                offlineLogin.setContactNo(jsonObject.getString(AccountContract.AccountRecord.KEY_CONTACT_NO));
+                offlineLogin.setEmailAddress(jsonObject.getString(AccountContract.AccountRecord.KEY_EMAIL_ADDRESS));
+                offlineLogin.setGender(jsonObject.getString(AccountContract.AccountRecord.KEY_GENDER));
+                offlineLogin.setHomeAddress(jsonObject.getString(AccountContract.AccountRecord.KEY_HOME_ADDRESS));
+                offlineLogin.setCampusAddress(jsonObject.getString(AccountContract.AccountRecord.KEY_CAMPUS_ADDRESS));
+                offlineLogin.setAccountType(jsonObject.getString(AccountContract.AccountRecord.KEY_ACCOUNT_TYPE));
+                offlineLogin.setAccountBalance(jsonObject.getString(AccountContract.AccountRecord.KEY_ACCOUNT_BALANCE));
+                offlineLogin.setPINcode(jsonObject.getString(AccountContract.AccountRecord.KEY_PIN_CODE));
+                offlineLogin.setStatus(jsonObject.getString(AccountContract.AccountRecord.KEY_STATUS));
+                offlineLogin.setProfilePicturePath(jsonObject.getString(AccountContract.AccountRecord.KEY_PROFILE_PICTURE_PATH));
+                offlineLogin.setLoginResponse(jsonObject.getInt(KEY_RESPONSE));
 
-            String eAuthorization = null, bAuthorization = null;
-            eAuthorization = jsonObject.getString(KEY_E_AUTHORIZATION);
-            bAuthorization = jsonObject.getString(KEY_B_AUTHORIZATION);
+                String eAuthorization = null, bAuthorization = null;
+                eAuthorization = jsonObject.getString(KEY_E_AUTHORIZATION);
+                bAuthorization = jsonObject.getString(KEY_B_AUTHORIZATION);
 
-            offlineLogin.setE_authorization(eAuthorization);
-            offlineLogin.setB_authorization(bAuthorization);
+                offlineLogin.setE_authorization(eAuthorization);
+                offlineLogin.setB_authorization(bAuthorization);
 
 
-            Log.d("track", "Response " + jsonObject.getInt(KEY_RESPONSE));
-            Log.d("track", "backend " + jsonObject.getString(KEY_B_AUTHORIZATION));
-            Log.d("track", "enduser " + jsonObject.getString(KEY_E_AUTHORIZATION));
+                Log.d("track", "Response " + jsonObject.getInt(KEY_RESPONSE));
 
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
     }
 }
