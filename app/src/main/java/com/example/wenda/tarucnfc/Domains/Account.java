@@ -163,6 +163,17 @@ public class Account {
         this.PINcode = PINcode;
     }
 
+    public void verifyPincode(String PINcode) throws InvalidInputException {
+        if (PINcode.equals(""))
+            throw new InvalidInputException("PIN Code can't be blank.");
+        else if (PINcode.length() < 4)
+            throw new InvalidInputException("PIN Code must contain at least 4 number.");
+            //else if (isAlphaNumeric(password) == false)
+            //throw new InvalidInputException("Password must including upper/lowercase alphabets and numbers.");
+        else
+            this.PINcode = PINcode;
+    }
+
     public String getStatus() {
         return status;
     }

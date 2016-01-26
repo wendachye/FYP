@@ -69,10 +69,11 @@ public class BaseActivity extends AppCompatActivity {
     public static final String KEY_REQUEST_DESCRIPTION = "Update";
     public static final String KEY_REQUEST_STATUS = "Update";
     public static final String KEY_LOST_AND_FOUND = "Lost and Found";
-    public static final String KEY_ACCOUNT_ID = "accountId";
+    public static final String KEY_ACCOUNT_ID = "accountID";
     public static final String KEY_CURRENT_PASSWORD = "currentPassword";
-    public static final String KEY_CONFIRM_PASSWORD = "confirmPassword";
+    public static final String KEY_NEW_PASSWORD = "newPassword";
     public static final String KEY_RESPONSE = "Response";
+    public static final String KEY_PINCODE = "PINCode";
 
     public static final String KEY_END_USER = "End User";
     public static final String KEY_SOCIETY = "Society";
