@@ -73,7 +73,8 @@ public class BaseActivity extends AppCompatActivity {
     public static final String KEY_CURRENT_PASSWORD = "currentPassword";
     public static final String KEY_NEW_PASSWORD = "newPassword";
     public static final String KEY_RESPONSE = "Response";
-    public static final String KEY_PINCODE = "PINCode";
+    public static final String KEY_CURRENT_PINCODE = "currentPINCode";
+    public static final String KEY_NEW_PINCODE = "newPINCode";
 
     public static final String KEY_END_USER = "End User";
     public static final String KEY_SOCIETY = "Society";

@@ -43,8 +43,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         setSupportActionBar(toolbar);
 
         // Set fragmentHome as main page
-        AccountFragment fragmentAccount = new AccountFragment();
-        getSupportFragmentManager().beginTransaction().replace(R.id.frame, fragmentAccount).commit();
+        DashboardFragment fragmentDashboard = new DashboardFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.frame, fragmentDashboard).commit();
 
         // setup UIL
         ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this).build();

@@ -33,23 +33,21 @@ public class BusScheduleFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_bus_schedule, container, false);
 
         viewPager = (ViewPager) view.findViewById(R.id.bus_viewpager);
+
         setupViewPager(viewPager);
 
         tabLayout = (TabLayout) view.findViewById(R.id.bus_tabs);
         tabLayout.setupWithViewPager(viewPager);
-        TabLayout.Tab tab = tabLayout.getTabAt(2);
-        tab.select();
+       /* TabLayout.Tab tab = tabLayout.getTabAt(2);
+        tab.select();*/
 
         return view;
     }
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(this.getFragmentManager());
-        adapter.addFragment(new BusRouteFragment("Wangsa Maju"), "Wangsa Maju");
-        adapter.addFragment(new BusRouteFragment("Genting Klang"), "Genting Klang");
-        adapter.addFragment(new BusRouteFragment("PV10/12/13/15/16"), "PV10/12/13/15/16");
-        adapter.addFragment(new BusRouteFragment("Melati Utama"), "Melati Utama");
-        adapter.addFragment(new BusRouteFragment("Sri Rampai"), "Sri Rampai");
+        adapter.addFragment(new BusRoute1Fragment(), "Wangsa Maju");
+        adapter.addFragment(new BusRoute2Fragment(), "Genting Klang");
         viewPager.setAdapter(adapter);
     }
 
@@ -63,7 +61,8 @@ public class BusScheduleFragment extends Fragment {
 
         @Override
         public Fragment getItem(int position) {
-            return mFragmentList.get(position);
+            Fragment fragment = mFragmentList.get(position);
+            return fragment;
         }
 
         @Override

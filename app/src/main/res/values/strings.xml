@@ -67,13 +67,6 @@
         <item>Female</item>
     </string-array>
 
-    <string-array name="busSchedule_arrays">
-        <item>Select Date</item>
-        <item>Monday to Thursday</item>
-        <item>Friday</item>
-        <item>Saturday</item>
-    </string-array>
-
     <string-array name="sessionJoined_arrays">
         <item>2012</item>
         <item>2013</item>

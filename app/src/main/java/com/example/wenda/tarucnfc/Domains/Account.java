@@ -91,6 +91,13 @@ public class Account {
         this.name = name;
     }
 
+    public void verifyName(String name) throws InvalidInputException {
+        if(name.equals(""))
+            throw new InvalidInputException("Please enter name.");
+        else
+            this.name = name;
+    }
+
     public String getNRICNo() {
         return NRICNo;
     }
@@ -167,7 +174,9 @@ public class Account {
         if (PINcode.equals(""))
             throw new InvalidInputException("PIN Code can't be blank.");
         else if (PINcode.length() < 4)
-            throw new InvalidInputException("PIN Code must contain at least 4 number.");
+            throw new InvalidInputException("PIN Code must contain 4 number only.");
+        else if (PINcode.length() > 4)
+            throw new InvalidInputException("PIN Code must contain 4 number only.");
             //else if (isAlphaNumeric(password) == false)
             //throw new InvalidInputException("Password must including upper/lowercase alphabets and numbers.");
         else

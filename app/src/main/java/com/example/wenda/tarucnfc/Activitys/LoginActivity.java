@@ -117,8 +117,8 @@ public class LoginActivity extends BaseActivity {
                 case RESPONSE_404:
                     // account not found
                     shortToast(LoginActivity.this,"Account not found");
-                    //editTextUsername.setText("");
-                    //editTextPassword.setText("");
+                    editTextUsername.setText("");
+                    editTextPassword.setText("");
                     break;
 
                 case RESPONSE_SUCCESS:
@@ -134,13 +134,14 @@ public class LoginActivity extends BaseActivity {
                 case RESPONSE_PASSWORD_INCORRECT:
                     // password incorrect
                     shortToast(LoginActivity.this,"password incorrect");
-                    //editTextPassword.setText("");
+                    editTextPassword.setText("");
                     break;
 
                 case RESPONSE_STATUS_NOT_ACTIVE:
                     // inactive account
                     shortToast(LoginActivity.this,"account inactive");
-                    //editTextPassword.setText("");
+                    editTextUsername.setText("");
+                    editTextPassword.setText("");
                     break;
             }
         }
@@ -161,7 +162,7 @@ public class LoginActivity extends BaseActivity {
             try {
                 JSONArray jsonArray = new JSONObject(json).getJSONArray(BaseActivity.JSON_ARRAY);
                 JSONObject jsonObject = jsonArray.getJSONObject(0);
-                Log.d("track", "Response " + jsonObject.getInt(KEY_RESPONSE));
+
                 offlineLogin = new OfflineLogin();
 
                 offlineLogin.setAccountID(jsonObject.getString(AccountContract.AccountRecord.KEY_ACCOUNT_ID));

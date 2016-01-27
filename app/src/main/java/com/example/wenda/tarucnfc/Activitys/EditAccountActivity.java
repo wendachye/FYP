@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -20,18 +21,24 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.wenda.tarucnfc.Databases.Contracts.AccountContract;
 import com.example.wenda.tarucnfc.Domains.Account;
-import com.example.wenda.tarucnfc.Domains.OfflineLogin;
 import com.example.wenda.tarucnfc.R;
+import com.example.wenda.tarucnfc.RequestHandler;
+import com.example.wenda.tarucnfc.UIUtils;
 import com.flipboard.bottomsheet.BottomSheetLayout;
 import com.flipboard.bottomsheet.commons.ImagePickerSheetView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
 
 public class EditAccountActivity extends BaseActivity implements View.OnClickListener {
@@ -45,10 +52,12 @@ public class EditAccountActivity extends BaseActivity implements View.OnClickLis
     EditText mTextCampusAddress;
     ImageView mProfilePicture = null;
 
+    private final static String GET_JSON_URL = "http://tarucandroid.comxa.com/Login/edit_account_view.php";
+    private String mAccountID;
     protected BottomSheetLayout bottomSheetLayout;
     private Uri cameraImageUri = null;
+    private Account account = new Account();
     private Bitmap mBitmapProfilePicture;
-    private Account account;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,16 +72,17 @@ public class EditAccountActivity extends BaseActivity implements View.OnClickLis
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        mAccountID = new BaseActivity().getLoginDetail(this).getAccountID();
 
-        bottomSheetLayout = (BottomSheetLayout) findViewById(R.id.bottomSheetLayout);
+        setFindviewbyid();
 
-        initialValues();
-        mProfilePicture.setOnClickListener(this);
+        new GetJson(String.valueOf(mAccountID)).execute();
     }
 
-    public void initialValues() {
-
+    public void setFindviewbyid() {
+        bottomSheetLayout = (BottomSheetLayout) findViewById(R.id.bottomSheetLayout);
         mProfilePicture = (ImageView) findViewById(R.id.profile_picture);
+        mProfilePicture.setOnClickListener(this);
         mTextFullName = (EditText) findViewById(R.id.edit_text_fullname);
         mTextNRICNO = (EditText) findViewById(R.id.edit_text_nric);
         mSpinnerGender = (Spinner) findViewById(R.id.spinner_gender);
@@ -80,21 +90,6 @@ public class EditAccountActivity extends BaseActivity implements View.OnClickLis
         mTextContactNo = (EditText) findViewById(R.id.edit_text_contact);
         mTextHomeAddress = (EditText) findViewById(R.id.edit_text_homeAddress);
         mTextCampusAddress = (EditText) findViewById(R.id.edit_text_campusAddress);
-
-        // set database data to data field
-        OfflineLogin offlineLogin = new BaseActivity().getLoginDetail(this);
-        ImageLoader.getInstance().displayImage(offlineLogin.getProfilePicturePath(), mProfilePicture, options);
-        mTextFullName.setText(offlineLogin.getName());
-        mTextNRICNO.setText(offlineLogin.getNRICNo());
-        mSpinnerGender.setPrompt(offlineLogin.getGender());
-        mTextEmail.setText(offlineLogin.getEmailAddress());
-        mTextContactNo.setText(offlineLogin.getContactNo());
-        mTextHomeAddress.setText(offlineLogin.getHomeAddress());
-        mTextCampusAddress.setText(offlineLogin.getCampusAddress());
-
-        // get today date
-        calendar = Calendar.getInstance();
-
     }
 
     @Override
@@ -116,10 +111,89 @@ public class EditAccountActivity extends BaseActivity implements View.OnClickLis
             NavUtils.navigateUpFromSameTask(this);
         }
         else if (id == R.id.saveButton) {
+            //updateAccount(mAccountID);
             finish();
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    // this one is get json
+    public class GetJson extends AsyncTask<String, Void, String> {
+        String accountID;
+        RequestHandler rh = new RequestHandler();
+
+        public GetJson(String accountID) {
+            this.accountID = accountID;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            UIUtils.getProgressDialog(EditAccountActivity.this, "ON");
+        }
+
+
+        @Override
+        protected void onPostExecute(String json) {
+            super.onPostExecute(json);
+            UIUtils.getProgressDialog(EditAccountActivity.this, "OFF");
+            extractJsonData(json);
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+            HashMap<String, String> data = new HashMap<>();
+            data.put("accountID", String.valueOf(mAccountID));
+            return rh.sendPostRequest(GET_JSON_URL, data);
+        }
+    }
+
+    private void extractJsonData(String json) {
+
+        try {
+            JSONArray jsonArray = new JSONObject(json).getJSONArray(BaseActivity.JSON_ARRAY);
+            JSONObject jsonObject = jsonArray.getJSONObject(0);
+
+            account.setAccountID(jsonObject.getString(AccountContract.AccountRecord.KEY_ACCOUNT_ID));
+            Log.d("track", "get id *" + jsonObject.getString(AccountContract.AccountRecord.KEY_ACCOUNT_ID));
+            account.setName(jsonObject.getString(AccountContract.AccountRecord.KEY_NAME));
+            account.setNRICNo(jsonObject.getString(AccountContract.AccountRecord.KEY_NRIC_NO));
+            account.setContactNo(jsonObject.getString(AccountContract.AccountRecord.KEY_CONTACT_NO));
+            account.setEmailAddress(jsonObject.getString(AccountContract.AccountRecord.KEY_EMAIL_ADDRESS));
+            account.setGender(jsonObject.getString(AccountContract.AccountRecord.KEY_GENDER));
+            account.setHomeAddress(jsonObject.getString(AccountContract.AccountRecord.KEY_HOME_ADDRESS));
+            account.setCampusAddress(jsonObject.getString(AccountContract.AccountRecord.KEY_CAMPUS_ADDRESS));
+            account.setAccountType(jsonObject.getString(AccountContract.AccountRecord.KEY_ACCOUNT_TYPE));
+            account.setAccountBalance(jsonObject.getString(AccountContract.AccountRecord.KEY_ACCOUNT_BALANCE));
+            account.setPINcode(jsonObject.getString(AccountContract.AccountRecord.KEY_PIN_CODE));
+            account.setStatus(jsonObject.getString(AccountContract.AccountRecord.KEY_STATUS));
+            account.setProfilePicturePath(jsonObject.getString(AccountContract.AccountRecord.KEY_PROFILE_PICTURE_PATH));
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+            Log.d("track", "error");
+        }
+
+        initialValues();
+    }
+
+    public void initialValues() {
+        //mTextStudentId.setText(account.getAccountID());
+        Log.d("track", "get id 3" + account.getAccountID());
+        mTextFullName.setText(account.getName());
+        mTextNRICNO.setText(account.getNRICNo());
+        if (account.getGender().equals("Male")) {
+            mSpinnerGender.setSelection(0);
+        } else {
+            mSpinnerGender.setSelection(1);
+        }
+        mTextEmail.setText(account.getEmailAddress());
+        mTextContactNo.setText(account.getContactNo());
+        mTextHomeAddress.setText(account.getHomeAddress());
+        mTextCampusAddress.setText(account.getCampusAddress());
+        ImageLoader.getInstance().displayImage(account.getProfilePicturePath(), mProfilePicture, options);
+        Log.d("track", "pix" + account.getProfilePicturePath());
     }
 
     @Override
@@ -262,5 +336,95 @@ public class EditAccountActivity extends BaseActivity implements View.OnClickLis
             }
         }
     }
+
+
+    /*private void updateAccount(String accountID) {
+
+        // set all the related values into end user domain
+
+        try {
+            account.verifyName(mTextFullName.getText().toString());
+            account.setNRICNo(mTextNRICNO.getText().toString());
+            account.setProfilePictureBitmap(mBitmapProfilePicture);
+            account.setGender(mSpinnerGender.getSelectedItem().toString());
+            account.setContactNo(mTextContactNo.getText().toString());
+            account.setEmailAddress(mTextEmail.getText().toString());
+            account.setHomeAddress(mTextHomeAddress.getText().toString());
+            account.setCampusAddress(mTextCampusAddress.getText().toString());
+
+            longToast("Name: " + account.getName() + "\n" +
+                    "Email: " + account.getEmail() + "\n" +
+                    "Register Date: " + account.getRegisterDate() + "\n" +
+                    "Account Type: " + account.getAccountType() + "\n" +
+                    "Study Level: " + account.getStudyLevel() + "\n" +
+                    "Faculty: " + account.getFaculty() + "\n" +
+                    "Gender: " + account.getGender() + "\n" +
+                    "Status: " + account.getStatus() + "\n");
+            if(isNetworkAvailable(this)==true) {
+                new UpdateAccount(account).execute();
+            } else {
+                longToast("Network not available");
+            }
+        } catch (InvalidInputException ex) {
+            shortToast(this, ex.getInfo());
+        }
+    }*/
+
+   /* public class UpdateAccount extends AsyncTask<Void, Void, String> {
+
+        ProgressDialog loading;
+        RequestHandler requestHandler = new RequestHandler();
+        Account account;
+
+        public UpdateAccount(Account account) {
+            this.account = account;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            //loading = ProgressDialog.show(EditAccountActivity.this, "Uploading...", null, true, true);
+            UIUtils.getProgressDialog(EditAccountActivity.this, "ON");
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            //loading.dismiss();
+            UIUtils.getProgressDialog(EditAccountActivity.this, "OFF");
+            Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();
+            finish();
+        }
+
+        @Override
+        protected String doInBackground(Void... params) {
+
+            HashMap<String, String> data = new HashMap<>();
+            data.put("accountID", this.account.getAccountID() + "");
+            data.put("email", this.account.getEmail());
+            data.put("name", this.account.getName());
+            if (account.getProfileImageBitmap() == null) {
+                data.put("profileImage", "");
+                data.put("profileImagePath", this.account.getProfileImagePath());
+            } else {
+                data.put("profileImage", getStringImage(this.account.getProfileImageBitmap()));
+                data.put("profileImagePath", "");
+            }
+
+            if (account.getCoverImageBitmap() == null) {
+                data.put("coverImage", "");
+                data.put("coverImagePath", this.account.getCoverImagePath());
+            } else {
+                data.put("coverImage", getStringImage(this.account.getCoverImageBitmap()));
+                data.put("coverImagePath", "");
+            }
+
+            data.put("gender", this.endUser.getGender());
+            data.put("studyLevel", this.endUser.getStudyLevel());
+            data.put("faculty", this.endUser.getFaculty());
+
+            return requestHandler.sendPostRequest(UPDATE_NORMAL_ACCOUNT_URL, data);
+        }
+    }*/
 
 }

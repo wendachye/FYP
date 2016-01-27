@@ -73,31 +73,40 @@ public class ChangePasswordActivity extends BaseActivity {
             NavUtils.navigateUpFromSameTask(this);
         }
         else if (id == R.id.saveButton) {
-            Log.d("track", "pass1 ");
-            verifyCurrentPassword();
+            checkConfirmPassword();
         }
 
         return super.onOptionsItemSelected(item);
     }
 
+    public void checkConfirmPassword() {
+        if (mEditTextNewAgain.getText().toString().equals(mEditTextNew.getText().toString())) {
+            verifyCurrentPassword();
+        } else {
+            shortToast(ChangePasswordActivity.this, "New Password doesn't match.");
+            mEditTextNew.setText("");
+            mEditTextNewAgain.setText("");
+        }
+    }
+
     public void verifyCurrentPassword() {
         try {
-            Log.d("track", "pass2 ");
             login.verifyPassword(mEditTextCurrent.getText().toString());
+            login.verifyPassword(mEditTextNew.getText().toString());
+            login.verifyPassword(mEditTextNewAgain.getText().toString());
             Log.d("track", "accountID " + getLoginDetail(this).getAccountID());
-            new VerifyCurrentPassword(getLoginDetail(this).getAccountID(), mEditTextCurrent.getText().toString(), mEditTextNew.getText().toString()).execute();
+            new UpdateCurrentPassword(getLoginDetail(this).getAccountID(), mEditTextCurrent.getText().toString(), mEditTextNew.getText().toString()).execute();
         } catch (InvalidInputException ex) {
             shortToast(this, ex.getInfo());
         }
     }
 
     // this one is get json
-    public class VerifyCurrentPassword extends AsyncTask<String, Void, String> {
+    public class UpdateCurrentPassword extends AsyncTask<String, Void, String> {
         String accountID, currentPassword, newPassword;
         RequestHandler rh = new RequestHandler();
 
-        public VerifyCurrentPassword(String accountID, String currentPassword, String newPassword) {
-            Log.d("track", "pass4 ");
+        public UpdateCurrentPassword(String accountID, String currentPassword, String newPassword) {
             this.accountID = accountID;
             this.currentPassword = currentPassword;
             this.newPassword = newPassword;
@@ -105,7 +114,6 @@ public class ChangePasswordActivity extends BaseActivity {
 
         @Override
         protected void onPreExecute() {
-            Log.d("track", "pass5 ");
             super.onPreExecute();
             UIUtils.getProgressDialog(ChangePasswordActivity.this, "ON");
         }
@@ -113,7 +121,6 @@ public class ChangePasswordActivity extends BaseActivity {
 
         @Override
         protected void onPostExecute(String json) {
-            Log.d("track", "pass6 ");
             super.onPostExecute(json);
             UIUtils.getProgressDialog(ChangePasswordActivity.this, "OFF");
             shortToast(ChangePasswordActivity.this, json);
@@ -125,12 +132,14 @@ public class ChangePasswordActivity extends BaseActivity {
                     //Intent intent = new Intent(getApplicationContext(), EditPasswordConfirmationActivity.class);
                     //intent.putExtra(KEY_ACCOUNT, account);
                     //startActivity(intent);
-                    //finish();
-                    shortToast(ChangePasswordActivity.this,"password correct");
+
+                    shortToast(ChangePasswordActivity.this,"Password was changed.");
+                    finish();
                     break;
                 case RESPONSE_PASSWORD_INCORRECT:
                     // password incorrect
-                    shortToast(ChangePasswordActivity.this,"password incorrect");
+                    shortToast(ChangePasswordActivity.this,"Current Password Incorrect");
+                    mEditTextCurrent.setText("");
                     break;
             }
         }
@@ -148,11 +157,7 @@ public class ChangePasswordActivity extends BaseActivity {
     }
 
     private void extractJsonData(String json) {
-
-        Log.d("track", "pass7 ");
-
         try {
-            Log.d("track", "pass8 ");
             JSONArray jsonArray = new JSONObject(json).getJSONArray(BaseActivity.JSON_ARRAY);
             JSONObject jsonObject = jsonArray.getJSONObject(0);
 

@@ -4,9 +4,9 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.EditText;
 
 import com.example.wenda.tarucnfc.Domains.Account;
@@ -24,9 +24,9 @@ import java.util.HashMap;
 
 public class ChangePinCodeActivity extends BaseActivity {
 
-    private static final String UPDATE_PINCODE_URL = "http://tarucandroid.comxa.com/Login/verify_password.php";
+    private static final String UPDATE_PINCODE_URL = "http://tarucandroid.comxa.com/Login/update_pincode.php";
     private OfflineLogin offlineLogin = new OfflineLogin();
-    private Account account;
+    private Account account = new Account();
 
     EditText mEditTextCurrent;
     EditText mEditTextNew;
@@ -71,29 +71,43 @@ public class ChangePinCodeActivity extends BaseActivity {
             NavUtils.navigateUpFromSameTask(this);
         }
         else if (id == R.id.saveButton) {
-            finish();
+            checkConfirmPincode();
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    public void verifyCurrentPincode(View view) {
+    public void checkConfirmPincode() {
+        if (mEditTextNewAgain.getText().toString().equals(mEditTextNewAgain.getText().toString())) {
+            verifyCurrentPincode();
+        } else {
+            shortToast(ChangePinCodeActivity.this, "New PIN Code doesn't match.");
+            mEditTextNew.setText("");
+            mEditTextNewAgain.setText("");
+        }
+    }
+
+    public void verifyCurrentPincode() {
         try {
+            Log.d("track", "pincode " + mEditTextCurrent.getText().toString());
             account.verifyPincode(mEditTextCurrent.getText().toString());
-            new VerifyCurrentPincode(offlineLogin.getAccountID(), mEditTextCurrent.getText().toString()).execute();
+            account.verifyPincode(mEditTextNew.getText().toString());
+            account.verifyPincode(mEditTextNewAgain.getText().toString());
+            new UpdateCurrentPincode(getLoginDetail(this).getAccountID(), mEditTextCurrent.getText().toString(), mEditTextNew.getText().toString()).execute();
         } catch (InvalidInputException ex) {
             shortToast(this, ex.getInfo());
         }
     }
 
     // this one is get json
-    public class VerifyCurrentPincode extends AsyncTask<String, Void, String> {
-        String accountID, currentPincode;
+    public class UpdateCurrentPincode extends AsyncTask<String, Void, String> {
+        String accountID, currentPincode, newPincode;
         RequestHandler rh = new RequestHandler();
 
-        public VerifyCurrentPincode(String accountID, String currentPincode) {
+        public UpdateCurrentPincode(String accountID, String currentPincode, String newPincode) {
             this.accountID = accountID;
             this.currentPincode = currentPincode;
+            this.newPincode = newPincode;
         }
 
         @Override
@@ -102,12 +116,11 @@ public class ChangePinCodeActivity extends BaseActivity {
             UIUtils.getProgressDialog(ChangePinCodeActivity.this, "ON");
         }
 
-
         @Override
         protected void onPostExecute(String json) {
             super.onPostExecute(json);
             UIUtils.getProgressDialog(ChangePinCodeActivity.this, "OFF");
-            //shortToast(EditPasswordActivity.this, json);
+            shortToast(ChangePinCodeActivity.this, json);
             extractJsonData(json);
 
             switch (offlineLogin.getLoginResponse()){
@@ -116,11 +129,13 @@ public class ChangePinCodeActivity extends BaseActivity {
                     //Intent intent = new Intent(getApplicationContext(), EditPasswordConfirmationActivity.class);
                     //intent.putExtra(KEY_ACCOUNT, account);
                     //startActivity(intent);
-                    //finish();
+                    shortToast(ChangePinCodeActivity.this,"PIN Code was changed.");
+                    finish();
                     break;
                 case RESPONSE_PASSWORD_INCORRECT:
                     // password incorrect
-                    shortToast(ChangePinCodeActivity.this,"pincode incorrect");
+                    shortToast(ChangePinCodeActivity.this,"Current PIN Code Incorrect.");
+                    mEditTextCurrent.setText("");
                     break;
             }
         }
@@ -130,7 +145,8 @@ public class ChangePinCodeActivity extends BaseActivity {
             HashMap<String, String> data = new HashMap<>();
 
             data.put(KEY_ACCOUNT_ID, accountID);
-            data.put(KEY_PINCODE, currentPincode);
+            data.put(KEY_CURRENT_PINCODE, currentPincode);
+            data.put(KEY_NEW_PINCODE, newPincode);
 
             return rh.sendPostRequest(UPDATE_PINCODE_URL, data);
         }

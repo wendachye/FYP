@@ -32,7 +32,6 @@ public class AccountFragment extends Fragment {
 
     private Account account = new Account();
     private String mAccountID;
-    private JSONArray mJsonArray;
 
     TextView mTextStudentId;
     TextView mTextProgramme;
@@ -60,17 +59,13 @@ public class AccountFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_account, container, false);
 
         mAccountID = new BaseActivity().getLoginDetail(getActivity()).getAccountID();
-        Log.d("track", "get id 1" + mAccountID);
 
-
-        loadDataOnStart();
+        // set findviewbyid
         setfindviewbyid(view);
 
-        return view;
-    }
-
-    public void loadDataOnStart() {
         new GetJson(String.valueOf(mAccountID)).execute();
+
+        return view;
     }
 
     public void setfindviewbyid(View view) {
@@ -110,7 +105,6 @@ public class AccountFragment extends Fragment {
         protected void onPostExecute(String json) {
             super.onPostExecute(json);
             UIUtils.getProgressDialog(getActivity(), "OFF");
-            Log.d("here", "here");
             extractJsonData(json);
         }
 
@@ -118,7 +112,6 @@ public class AccountFragment extends Fragment {
         protected String doInBackground(String... strings) {
             HashMap<String, String> data = new HashMap<>();
             data.put("accountID", String.valueOf(mAccountID));
-            Log.d("track", "get id 2" + mAccountID);
             return rh.sendPostRequest(GET_JSON_URL, data);
         }
     }

@@ -2,20 +2,20 @@ package com.example.wenda.tarucnfc.Domains;
 
 public class BusSchedule {
 
-    private int busScheduleId;
-    private int backEndId;
+    private int busScheduleID;
+    private int backEndID;
     private String departure;
     private String destination;
     private String routeTime;
     private String routeDay;
     private String status;
 
-    public int getBusScheduleId() {
-        return busScheduleId;
+    public int getBusScheduleID() {
+        return busScheduleID;
     }
 
-    public int getBackEndId() {
-        return backEndId;
+    public int getBackEndID() {
+        return backEndID;
     }
 
     public String getDeparture() {
@@ -38,12 +38,12 @@ public class BusSchedule {
         return status;
     }
 
-    public void setBusScheduleId(int busScheduleId) {
-        this.busScheduleId = busScheduleId;
+    public void setBusScheduleID(int busScheduleId) {
+        this.busScheduleID = busScheduleId;
     }
 
-    public void setBackEndId(int backEndId) {
-        this.backEndId = backEndId;
+    public void setBackEndID(int backEndID) {
+        this.backEndID = backEndID;
     }
 
     public void setDeparture(String departure) {

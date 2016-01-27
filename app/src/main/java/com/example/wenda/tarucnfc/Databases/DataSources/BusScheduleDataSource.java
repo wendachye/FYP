@@ -43,7 +43,7 @@ public class BusScheduleDataSource {
     public void insertBusSchedules(BusSchedule busSchedule) {
         ContentValues values = new ContentValues();
 
-        values.put(BusScheduleRecord.COLUMN_BUS_SCHEDULE_ID, busSchedule.getBusScheduleId());
+        values.put(BusScheduleRecord.COLUMN_BUS_SCHEDULE_ID, busSchedule.getBusScheduleID());
         values.put(BusScheduleRecord.COLUMN_DEPARTURE, busSchedule.getDeparture());
         values.put(BusScheduleRecord.COLUMN_DESTINATION, busSchedule.getDestination());
         values.put(BusScheduleRecord.COLUMN_ROUTE_TIME, busSchedule.getRouteTime());
@@ -69,7 +69,7 @@ public class BusScheduleDataSource {
 
         while (!cursor.isAfterLast()) {
             BusSchedule busSchedule = new BusSchedule();
-            busSchedule.setBusScheduleId(cursor.getInt(0));
+            busSchedule.setBusScheduleID(cursor.getInt(0));
             busSchedule.setDeparture(cursor.getString(1));
             busSchedule.setDestination(cursor.getString(2));
             busSchedule.setRouteTime(cursor.getString(3));
@@ -131,7 +131,7 @@ public class BusScheduleDataSource {
 
         while (!cursor.isAfterLast()) {
 
-            busSchedule.setBusScheduleId(cursor.getInt(0));
+            busSchedule.setBusScheduleID(cursor.getInt(0));
             busSchedule.setDeparture(cursor.getString(1));
             busSchedule.setDestination(cursor.getString(2));
             busSchedule.setRouteTime(cursor.getString(3));
