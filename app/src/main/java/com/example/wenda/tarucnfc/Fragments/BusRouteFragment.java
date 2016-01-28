@@ -25,11 +25,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
-public class BusRoute1Fragment extends Fragment implements View.OnClickListener {
+import static com.example.wenda.tarucnfc.Activitys.BaseActivity.shortToast;
 
+public class BusRouteFragment extends Fragment implements View.OnClickListener {
+
+    private String condition;
     Button mButtonBusRoute;
     TextView mTextViewDate, mTextViewDate2, mTextViewDate3;
     TextView mTextViewDeparture, mTextViewDeparture2, mTextViewDeparture3;
@@ -38,31 +40,49 @@ public class BusRoute1Fragment extends Fragment implements View.OnClickListener 
     CardView mCardView1, mCardView2, mCardView3;
 
     private BusSchedule busSchedule = new BusSchedule();
-    private String mDestination = "Wangsa Maju";
-    private static final String GET_BUS_SCHEDULES_URL = "http://tarucandroid.comxa.com/BusSchedule/get_bus_schedule_data.php";
-    public static final String KEY_BUS_SCHEDULE_ID = "busScheduleID";
-    public static final String KEY_BACKEND_ID = "backendID";
-    public static final String KEY_DEPARTURE = "departure";
-    public static final String KEY_DESTINATION = "destination";
-    public static final String KEY_ROUTE_TIME = "routeTime";
-    public static final String KEY_ROUTE_DAY = "routeDay";
-    public static final String KEY_STATUS = "status";
+    private static final String GET_BUS_SCHEDULES_URL = "http://tarucandroid.comxa.com/BusSchedule/get_bus_schedule_view.php";
     private JSONArray mJsonArray;
-    private ArrayList<BusSchedule> mListBusSchedules = new ArrayList<>();
 
-    public BusRoute1Fragment() {
+    public BusRouteFragment() {
         // Required empty public constructor
+    }
+
+    public BusRouteFragment(String condition) {
+        this.condition = condition;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_bus_route1, container, false);
+        View view = inflater.inflate(R.layout.fragment_bus_route, container, false);
 
         // set findviewbyid
         setFindviewbyid(view);
 
-        new GetJson(String.valueOf(mDestination)).execute();
+        switch (condition) {
+            case "Wangsa Maju":
+                new GetJson(String.valueOf(condition)).execute();
+                break;
+
+            case "Genting Klang":
+                new GetJson(String.valueOf(condition)).execute();
+                break;
+
+            case "PV10/12/13/15/16":
+                new GetJson(String.valueOf(condition)).execute();
+                break;
+
+            case "Melati Utama":
+                new GetJson(String.valueOf(condition)).execute();
+                break;
+
+            case "Sri Rampai":
+                new GetJson(String.valueOf(condition)).execute();
+                break;
+
+            default:
+                break;
+        }
 
         return view;
     }
@@ -130,15 +150,18 @@ public class BusRoute1Fragment extends Fragment implements View.OnClickListener 
         @Override
         protected void onPostExecute(String json) {
             super.onPostExecute(json);
+            Log.d("track", "pass1");
             UIUtils.getProgressDialog(getActivity(), "OFF");
+            Log.d("track", "pass2" + UIUtils.getProgressDialog(getActivity(), "OFF"));
             convertJson(json);
             extractJsonData(json);
+            Log.d("track", "pass3");
         }
 
         @Override
         protected String doInBackground(String... strings) {
             HashMap<String, String> data = new HashMap<>();
-            data.put("destination", String.valueOf(mDestination));
+            data.put("destination", String.valueOf(condition));
             return rh.sendPostRequest(GET_BUS_SCHEDULES_URL, data);
         }
     }
@@ -155,27 +178,65 @@ public class BusRoute1Fragment extends Fragment implements View.OnClickListener 
 
     private void extractJsonData(String json) {
 
-        for (int i = 0; i < mJsonArray.length(); i++)
-        try {
-            JSONObject jsonObject = mJsonArray.getJSONObject(i);
+        for (int i = 0; i < mJsonArray.length(); i++) {
+            try {
+                JSONObject jsonObject = mJsonArray.getJSONObject(i);
 
-            busSchedule.setDeparture(jsonObject.getString(BusScheduleRecord.COLUMN_DEPARTURE));
-            busSchedule.setDestination(jsonObject.getString(BusScheduleRecord.COLUMN_DESTINATION));
-            busSchedule.setRouteTime(jsonObject.getString(BusScheduleRecord.COLUMN_ROUTE_TIME));
-            busSchedule.setRouteDay(jsonObject.getString(BusScheduleRecord.COLUMN_ROUTE_DAY));
-            busSchedule.setStatus(jsonObject.getString(BusScheduleRecord.COLUMN_STATUS));
+                busSchedule.setDeparture(jsonObject.getString(BusScheduleRecord.COLUMN_DEPARTURE));
+                busSchedule.setDestination(jsonObject.getString(BusScheduleRecord.COLUMN_DESTINATION));
+                busSchedule.setRouteTime(jsonObject.getString(BusScheduleRecord.COLUMN_ROUTE_TIME));
+                busSchedule.setRouteDay(jsonObject.getString(BusScheduleRecord.COLUMN_ROUTE_DAY));
+                busSchedule.setStatus(jsonObject.getString(BusScheduleRecord.COLUMN_STATUS));
 
+                Log.d("track", "bus " + jsonObject.getString(BusScheduleRecord.COLUMN_DEPARTURE));
+                Log.d("track", "bus " + jsonObject.getString(BusScheduleRecord.COLUMN_DESTINATION));
+                Log.d("track", "bus " + jsonObject.getString(BusScheduleRecord.COLUMN_ROUTE_TIME));
+                Log.d("track", "bus " + jsonObject.getString(BusScheduleRecord.COLUMN_ROUTE_DAY));
+                Log.d("track", "bus " + jsonObject.getString(BusScheduleRecord.COLUMN_STATUS));
 
-        } catch (JSONException e) {
-            e.printStackTrace();
-            Log.d("track", "error");
+                if (busSchedule.getStatus().equals("Active")) {
+                    switch (busSchedule.getRouteDay()) {
+                        case "Monday to Thursday":
+                            initialValuesMondaytoThursday();
+                            break;
+                        case "Friday":
+                            initialValuesFriday();
+                            break;
+                        case "Saturday":
+                            initialValuesSaturday();
+                        default:
+                            break;
+                    }
+                } else{
+                    shortToast(getActivity(),"This bus route is not available now.");
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+                Log.d("track", "error");
+            }
         }
-
-        initialValues();
     }
 
-    public void initialValues() {
+    public void initialValuesMondaytoThursday() {
+        mTextViewDate.setText(busSchedule.getRouteDay());
+        mTextViewDeparture.setText(busSchedule.getDeparture());
+        mTextViewDestination.setText(busSchedule.getDestination());
+        mTextViewTime.setText(busSchedule.getRouteTime());
+    }
 
+    public void initialValuesFriday() {
+        mTextViewDate2.setText(busSchedule.getRouteDay());
+        mTextViewDeparture2.setText(busSchedule.getDeparture());
+        mTextViewDestination2.setText(busSchedule.getDestination());
+        mTextViewTime2.setText(busSchedule.getRouteTime());
+    }
+
+    public void initialValuesSaturday() {
+        mTextViewDate3.setText(busSchedule.getRouteDay());
+        mTextViewDeparture3.setText(busSchedule.getDeparture());
+        mTextViewDestination3.setText(busSchedule.getDestination());
+        mTextViewTime3.setText(busSchedule.getRouteTime());
     }
 
 }

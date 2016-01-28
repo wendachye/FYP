@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,12 +46,15 @@ public class BusScheduleFragment extends Fragment {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(this.getFragmentManager());
-        adapter.addFragment(new BusRoute1Fragment(), "Wangsa Maju");
-        adapter.addFragment(new BusRoute2Fragment(), "Genting Klang");
+        adapter.addFragment(new BusRouteFragment("Wangsa Maju"), "Wangsa Maju");
+        adapter.addFragment(new BusRouteFragment("Genting Klang"), "Genting Klang");
+        adapter.addFragment(new BusRouteFragment("PV10/12/13/15/16"), "PV10/12/13/15/16");
+        adapter.addFragment(new BusRouteFragment("Melati Utama"), "Wangsa Maju");
+        adapter.addFragment(new BusRouteFragment("Sri Rampai"), "Sri Rampai");
         viewPager.setAdapter(adapter);
     }
 
-    class ViewPagerAdapter extends FragmentPagerAdapter {
+    class ViewPagerAdapter extends FragmentStatePagerAdapter {
         private final List<Fragment> mFragmentList = new ArrayList<>();
         private final List<String> mFragmentTitleList = new ArrayList<>();
 

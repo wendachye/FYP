@@ -10,11 +10,11 @@ public class BusScheduleContract {
 
     public static abstract class BusScheduleRecord implements BaseColumns {
         public static final String BUS_SCHEDULE_TABLE = "BusSchedules";
-        public static final String COLUMN_BUS_SCHEDULE_ID = "busScheduleID";
-        public static final String COLUMN_DEPARTURE = "departure";
-        public static final String COLUMN_DESTINATION = "destination";
-        public static final String COLUMN_ROUTE_TIME = "routeTime";
-        public static final String COLUMN_ROUTE_DAY = "routeDay";
-        public static final String COLUMN_STATUS = "status";
+        public static final String COLUMN_BUS_SCHEDULE_ID = "BusScheduleID";
+        public static final String COLUMN_DEPARTURE = "Departure";
+        public static final String COLUMN_DESTINATION = "Destination";
+        public static final String COLUMN_ROUTE_TIME = "RouteTime";
+        public static final String COLUMN_ROUTE_DAY = "RouteDay";
+        public static final String COLUMN_STATUS = "Status";
     }
 }
