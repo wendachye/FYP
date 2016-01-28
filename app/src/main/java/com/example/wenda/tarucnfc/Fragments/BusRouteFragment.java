@@ -150,12 +150,9 @@ public class BusRouteFragment extends Fragment implements View.OnClickListener {
         @Override
         protected void onPostExecute(String json) {
             super.onPostExecute(json);
-            Log.d("track", "pass1");
             UIUtils.getProgressDialog(getActivity(), "OFF");
-            Log.d("track", "pass2" + UIUtils.getProgressDialog(getActivity(), "OFF"));
             convertJson(json);
             extractJsonData(json);
-            Log.d("track", "pass3");
         }
 
         @Override
@@ -187,12 +184,6 @@ public class BusRouteFragment extends Fragment implements View.OnClickListener {
                 busSchedule.setRouteTime(jsonObject.getString(BusScheduleRecord.COLUMN_ROUTE_TIME));
                 busSchedule.setRouteDay(jsonObject.getString(BusScheduleRecord.COLUMN_ROUTE_DAY));
                 busSchedule.setStatus(jsonObject.getString(BusScheduleRecord.COLUMN_STATUS));
-
-                Log.d("track", "bus " + jsonObject.getString(BusScheduleRecord.COLUMN_DEPARTURE));
-                Log.d("track", "bus " + jsonObject.getString(BusScheduleRecord.COLUMN_DESTINATION));
-                Log.d("track", "bus " + jsonObject.getString(BusScheduleRecord.COLUMN_ROUTE_TIME));
-                Log.d("track", "bus " + jsonObject.getString(BusScheduleRecord.COLUMN_ROUTE_DAY));
-                Log.d("track", "bus " + jsonObject.getString(BusScheduleRecord.COLUMN_STATUS));
 
                 if (busSchedule.getStatus().equals("Active")) {
                     switch (busSchedule.getRouteDay()) {
