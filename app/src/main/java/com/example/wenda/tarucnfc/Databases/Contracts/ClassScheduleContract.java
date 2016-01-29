@@ -13,7 +13,7 @@ public class ClassScheduleContract {
         public static final String COLUMN_CLASS_SCHEDULE_ID = "ClassScheduleID";
         public static final String COLUMN_FACULTY = "Faculty";
         public static final String COLUMN_PROGRAMME = "Programme";
-        public static final String COLUMN_GROUP = "Group";
+        public static final String COLUMN_GROUP_No = "GroupNo";
         public static final String COLUMN_SUBJECT = "Subject";
         public static final String COLUMN_TUTORLECTURER = "Tutorlecturer";
         public static final String COLUMN_LOCATION = "Location";

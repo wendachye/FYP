@@ -11,14 +11,25 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.wenda.tarucnfc.Databases.Contracts.AccountContract.AccountRecord;
+import com.example.wenda.tarucnfc.Domains.Account;
 import com.example.wenda.tarucnfc.R;
+import com.example.wenda.tarucnfc.RequestHandler;
+import com.example.wenda.tarucnfc.UIUtils;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
 
 public class PinEntryActivity extends BaseActivity {
 
+    private final static String GET_JSON_URL = "http://tarucandroid.comxa.com/Wallet/get_pin_code.php";
     public static final String KEY_PAYMENT = "selected";
     final int PIN_LENGTH = 4;
     String userEntered;
-    String userPin = "8888";
+    String userPin = null;
     boolean keyPadLockedFlag = false;
     Context appContext;
     TextView titleView;
@@ -40,7 +51,9 @@ public class PinEntryActivity extends BaseActivity {
     TextView mTextView9;
     Button buttonCancel;
     Button buttonDelete;
+    private String mAccountID;
     private String selectType;
+    private Account account = new Account();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +77,9 @@ public class PinEntryActivity extends BaseActivity {
         pinBoxArray[1] = pinBox1;
         pinBoxArray[2] = pinBox2;
         pinBoxArray[3] = pinBox3;
+
+        mAccountID = new BaseActivity().getLoginDetail(this).getAccountID();
+        new GetJson(String.valueOf(mAccountID)).execute();
 
         buttonCancel = (Button) findViewById(R.id.cancelButton);
         buttonCancel.setOnClickListener(new View.OnClickListener() {
@@ -239,5 +255,52 @@ public class PinEntryActivity extends BaseActivity {
         }
     }
 
+    // this one is get json
+    public class GetJson extends AsyncTask<String, Void, String> {
+        String accountID;
+        RequestHandler rh = new RequestHandler();
 
+        public GetJson(String accountID) {
+            this.accountID = accountID;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            UIUtils.getProgressDialog(PinEntryActivity.this, "ON");
+        }
+
+
+        @Override
+        protected void onPostExecute(String json) {
+            super.onPostExecute(json);
+            UIUtils.getProgressDialog(PinEntryActivity.this, "OFF");
+            extractJsonData(json);
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+            HashMap<String, String> data = new HashMap<>();
+
+            data.put(KEY_ACCOUNT_ID, accountID);
+
+            return rh.sendPostRequest(GET_JSON_URL, data);
+        }
+    }
+
+    private void extractJsonData(String json) {
+
+        try {
+            JSONArray jsonArray = new JSONObject(json).getJSONArray(BaseActivity.JSON_ARRAY);
+            JSONObject jsonObject = jsonArray.getJSONObject(0);
+
+            account.setPINcode(jsonObject.getString(AccountRecord.KEY_PIN_CODE));
+            Log.d("track", "get id *" + jsonObject.getString(AccountRecord.KEY_PIN_CODE));
+            userPin = account.getPINcode();
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+            Log.d("track", "error");
+        }
+    }
 }

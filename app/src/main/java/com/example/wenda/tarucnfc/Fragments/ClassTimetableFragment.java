@@ -29,9 +29,12 @@ import java.util.HashMap;
 public class ClassTimetableFragment extends Fragment {
 
     private String condition;
+    private String mFaculty;
+    private String mProgramme;
+    private String mGroupNo;
     RecyclerView mRecyclerView;
 
-    final static String GET_CLASS_SCHEDULE_URL = "";
+    final static String GET_CLASS_SCHEDULE_URL = "http://tarucandroid.comxa.com/ClassSchedule/get_class_schedule_view.php";
     private ClassSchedule classSchedule = new ClassSchedule();
     private JSONArray mJsonArray;
     private ArrayList<ClassSchedule> mListClassSchedule = new ArrayList<>();
@@ -53,29 +56,38 @@ public class ClassTimetableFragment extends Fragment {
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
+        mFaculty = new BaseActivity().getLoginDetail(getActivity()).getFaculty();
+        mProgramme = "RSD3";
+        mGroupNo = "F2";
+
         switch (condition) {
             case "Monday":
-                new GetJson(String.valueOf(condition)).execute();
+                Log.d("track", "c" + mFaculty);
+                Log.d("track", "c" + mProgramme);
+                Log.d("track", "c" + mGroupNo);
+                Log.d("track", "c" + condition);
+                new GetJson(mFaculty, mProgramme, mGroupNo, condition).execute();
+                Log.d("track", "class77");
                 break;
 
             case "Tuesday":
-
+                new GetJson(mFaculty, mProgramme, mGroupNo, condition).execute();
                 break;
 
             case "Wednesday":
-
+                new GetJson(mFaculty, mProgramme, mGroupNo, condition).execute();
                 break;
 
             case "Thursday":
-
+                new GetJson(mFaculty, mProgramme, mGroupNo, condition).execute();
                 break;
 
             case "Friday":
-
+                new GetJson(mFaculty, mProgramme, mGroupNo, condition).execute();
                 break;
 
             case "Saturday":
-
+                new GetJson(mFaculty, mProgramme, mGroupNo, condition).execute();
                 break;
 
             default:
@@ -88,10 +100,13 @@ public class ClassTimetableFragment extends Fragment {
 
     // this one is get json
     public class GetJson extends AsyncTask<String, Void, String> {
-        String day;
+        String faculty, programme, groupNo, day;
         RequestHandler rh = new RequestHandler();
 
-        public GetJson(String day) {
+        public GetJson(String faculty, String programme, String groupNo, String day) {
+            this.faculty = faculty;
+            this.programme = programme;
+            this.groupNo = groupNo;
             this.day = day;
         }
 
@@ -113,7 +128,10 @@ public class ClassTimetableFragment extends Fragment {
         @Override
         protected String doInBackground(String... strings) {
             HashMap<String, String> data = new HashMap<>();
-            data.put("day", String.valueOf(condition));
+            data.put("faculty", mFaculty);
+            data.put("programme", mProgramme);
+            data.put("groupNo", mGroupNo);
+            data.put("day", condition);
             return rh.sendPostRequest(GET_CLASS_SCHEDULE_URL, data);
         }
     }
@@ -130,19 +148,23 @@ public class ClassTimetableFragment extends Fragment {
 
     private void extractJsonData(String json) {
 
+        Log.d("track", "class2");
+
         for (int i = 0; i < mJsonArray.length(); i++) {
             try {
                 JSONObject jsonObject = mJsonArray.getJSONObject(i);
 
                 classSchedule.setFaculty(jsonObject.getString(ClassScheduleRecord.COLUMN_FACULTY));
                 classSchedule.setProgramme(jsonObject.getString(ClassScheduleRecord.COLUMN_PROGRAMME));
-                classSchedule.setGroup(jsonObject.getString(ClassScheduleRecord.COLUMN_GROUP));
+                classSchedule.setGroupNo(jsonObject.getString(ClassScheduleRecord.COLUMN_GROUP_No));
                 classSchedule.setSubject(jsonObject.getString(ClassScheduleRecord.COLUMN_SUBJECT));
                 classSchedule.setTutorlecturer(jsonObject.getString(ClassScheduleRecord.COLUMN_TUTORLECTURER));
                 classSchedule.setLocation(jsonObject.getString(ClassScheduleRecord.COLUMN_LOCATION));
                 classSchedule.setDay(jsonObject.getString(ClassScheduleRecord.COLUMN_DAY));
                 classSchedule.setStartTime(jsonObject.getString(ClassScheduleRecord.COLUMN_START_TIME));
                 classSchedule.setEndTime(jsonObject.getString(ClassScheduleRecord.COLUMN_END_TIME));
+
+                Log.d("track", "class" + jsonObject.getString(ClassScheduleRecord.COLUMN_END_TIME));
 
                 mListClassSchedule.add(classSchedule);
                 Log.d("track", mListClassSchedule.size()+ "");
@@ -156,9 +178,11 @@ public class ClassTimetableFragment extends Fragment {
     }
 
     public void initRecyclerView() {
+        Log.d("track", "pass1");
         AdapterClassSchedule adapterClassSchedule;
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapterClassSchedule = new AdapterClassSchedule(getActivity(), mListClassSchedule, R.layout.row_class_schedule);
         mRecyclerView.setAdapter(adapterClassSchedule);
+        Log.d("track", "pass2");
     }
 }

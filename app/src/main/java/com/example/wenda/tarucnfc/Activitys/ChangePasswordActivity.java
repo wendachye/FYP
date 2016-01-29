@@ -123,7 +123,6 @@ public class ChangePasswordActivity extends BaseActivity {
         protected void onPostExecute(String json) {
             super.onPostExecute(json);
             UIUtils.getProgressDialog(ChangePasswordActivity.this, "OFF");
-            shortToast(ChangePasswordActivity.this, json);
             extractJsonData(json);
 
             switch (offlineLogin.getLoginResponse()){

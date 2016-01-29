@@ -29,7 +29,7 @@ public class DatabaseSQLHelper extends SQLiteOpenHelper {
                     + ClassScheduleRecord.COLUMN_CLASS_SCHEDULE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                     + ClassScheduleRecord.COLUMN_FACULTY + " TEXT,"
                     + ClassScheduleRecord.COLUMN_PROGRAMME + " TEXT,"
-                    + ClassScheduleRecord.COLUMN_GROUP + " TEXT,"
+                    + ClassScheduleRecord.COLUMN_GROUP_No + " TEXT,"
                     + ClassScheduleRecord.COLUMN_SUBJECT + " TEXT,"
                     + ClassScheduleRecord.COLUMN_TUTORLECTURER + " TEXT,"
                     + ClassScheduleRecord.COLUMN_LOCATION + " TEXT,"

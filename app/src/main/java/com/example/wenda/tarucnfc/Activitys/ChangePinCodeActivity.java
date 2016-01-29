@@ -120,15 +120,10 @@ public class ChangePinCodeActivity extends BaseActivity {
         protected void onPostExecute(String json) {
             super.onPostExecute(json);
             UIUtils.getProgressDialog(ChangePinCodeActivity.this, "OFF");
-            shortToast(ChangePinCodeActivity.this, json);
             extractJsonData(json);
 
             switch (offlineLogin.getLoginResponse()){
                 case RESPONSE_SUCCESS:
-                    // login success, save login state and direct to main screen
-                    //Intent intent = new Intent(getApplicationContext(), EditPasswordConfirmationActivity.class);
-                    //intent.putExtra(KEY_ACCOUNT, account);
-                    //startActivity(intent);
                     shortToast(ChangePinCodeActivity.this,"PIN Code was changed.");
                     finish();
                     break;

@@ -35,7 +35,7 @@ public class AdapterClassSchedule extends RecyclerView.Adapter<AdapterClassSched
 
         holder.faculty.setText(items.get(position).getFaculty());
         holder.programme.setText(items.get(position).getProgramme());
-        holder.group.setText(items.get(position).getGroup());
+        holder.groupNo.setText(items.get(position).getGroupNo());
         holder.subject.setText(items.get(position).getSubject());
         holder.tutorlecturer.setText(items.get(position).getTutorlecturer());
         holder.location.setText(items.get(position).getLocation());
@@ -51,13 +51,13 @@ public class AdapterClassSchedule extends RecyclerView.Adapter<AdapterClassSched
 
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        TextView faculty, programme, group, subject, tutorlecturer, location, day, startTime, endTime;
+        TextView faculty, programme, groupNo, subject, tutorlecturer, location, day, startTime, endTime;
 
         public ViewHolder(final View itemView) {
             super(itemView);
             faculty = (TextView) itemView.findViewById(R.id.faculty);
             programme = (TextView) itemView.findViewById(R.id.programme);
-            group = (TextView) itemView.findViewById(R.id.group);
+            groupNo = (TextView) itemView.findViewById(R.id.groupNo);
             subject = (TextView) itemView.findViewById(R.id.subject);
             tutorlecturer = (TextView) itemView.findViewById(R.id.tutorlecturer);
             location = (TextView) itemView.findViewById(R.id.location);

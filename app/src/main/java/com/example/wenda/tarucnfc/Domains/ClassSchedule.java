@@ -9,7 +9,7 @@ public class ClassSchedule {
     private int backendID;
     private String faculty;
     private String programme;
-    private String group;
+    private String groupNo;
     private String subject;
     private String tutorlecturer;
     private String location;
@@ -33,8 +33,8 @@ public class ClassSchedule {
         return programme;
     }
 
-    public String getGroup() {
-        return group;
+    public String getGroupNo() {
+        return groupNo;
     }
 
     public String getSubject() {
@@ -77,8 +77,8 @@ public class ClassSchedule {
         this.programme = programme;
     }
 
-    public void setGroup(String group) {
-        this.group = group;
+    public void setGroupNo(String groupNo) {
+        this.groupNo = groupNo;
     }
 
     public void setSubject(String subject) {
