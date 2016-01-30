@@ -62,10 +62,10 @@ public class ClassTimetableFragment extends Fragment {
 
         switch (condition) {
             case "Monday":
-                Log.d("track", "c" + mFaculty);
-                Log.d("track", "c" + mProgramme);
-                Log.d("track", "c" + mGroupNo);
-                Log.d("track", "c" + condition);
+                Log.d("track", "c " + mFaculty);
+                Log.d("track", "c " + mProgramme);
+                Log.d("track", "c " + mGroupNo);
+                Log.d("track", "c " + condition);
                 new GetJson(mFaculty, mProgramme, mGroupNo, condition).execute();
                 Log.d("track", "class77");
                 break;
@@ -122,7 +122,7 @@ public class ClassTimetableFragment extends Fragment {
             super.onPostExecute(json);
             UIUtils.getProgressDialog(getActivity(), "OFF");
             convertJson(json);
-            extractJsonData(json);
+            extractJsonData();
         }
 
         @Override
@@ -146,9 +146,7 @@ public class ClassTimetableFragment extends Fragment {
         }
     }
 
-    private void extractJsonData(String json) {
-
-        Log.d("track", "class2");
+    private void extractJsonData() {
 
         for (int i = 0; i < mJsonArray.length(); i++) {
             try {
@@ -164,10 +162,12 @@ public class ClassTimetableFragment extends Fragment {
                 classSchedule.setStartTime(jsonObject.getString(ClassScheduleRecord.COLUMN_START_TIME));
                 classSchedule.setEndTime(jsonObject.getString(ClassScheduleRecord.COLUMN_END_TIME));
 
+                Log.d("track", "class" + jsonObject.getString(ClassScheduleRecord.COLUMN_GROUP_No));
                 Log.d("track", "class" + jsonObject.getString(ClassScheduleRecord.COLUMN_END_TIME));
 
                 mListClassSchedule.add(classSchedule);
                 Log.d("track", mListClassSchedule.size()+ "");
+
             } catch (JSONException e) {
                 e.printStackTrace();
                 Log.d("track", "error");

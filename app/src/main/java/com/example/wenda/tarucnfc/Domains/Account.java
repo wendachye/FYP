@@ -43,6 +43,19 @@ public class Account {
             this.accountID = accountID;
     }
 
+    public void verifyRecipientAccountID(String accountID) throws InvalidInputException {
+        if(accountID.equals(""))
+            throw new InvalidInputException("Please enter recipient account.");
+        else if (accountID.length() > 10)
+            throw new InvalidInputException("Recipient account must be 10 character.");
+        else if (accountID.length() < 10)
+            throw new InvalidInputException("Recipient account must be 10 character.");
+            //else if (isValidEmail(accountID) == false)
+            //throw new InvalidInputException("Invalid username.");
+        else
+            this.accountID = accountID;
+    }
+
     public String getFaculty() {
         return faculty;
     }

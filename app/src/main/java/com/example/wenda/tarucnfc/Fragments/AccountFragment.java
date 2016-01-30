@@ -123,7 +123,6 @@ public class AccountFragment extends Fragment {
                 JSONObject jsonObject = jsonArray.getJSONObject(0);
 
                 account.setAccountID(jsonObject.getString(AccountRecord.KEY_ACCOUNT_ID));
-                Log.d("track", "get id *" + jsonObject.getString(AccountRecord.KEY_ACCOUNT_ID));
                 account.setFaculty(jsonObject.getString(AccountRecord.KEY_FACULTY));
                 account.setProgramme(jsonObject.getString(AccountRecord.KEY_PROGRAMME));
                 account.setCampus(jsonObject.getString(AccountRecord.KEY_CAMPUS));
@@ -152,7 +151,6 @@ public class AccountFragment extends Fragment {
 
     public void initialValues() {
         mTextStudentId.setText(account.getAccountID());
-        Log.d("track", "get id 3" + account.getAccountID());
         mTextProgramme.setText(account.getProgramme());
         mTextFaculty.setText(account.getFaculty());
         mTextCampus.setText(account.getCampus());
@@ -166,7 +164,6 @@ public class AccountFragment extends Fragment {
         mTextHomeAddress.setText(account.getHomeAddress());
         mTextCampusAddress.setText(account.getCampusAddress());
         ImageLoader.getInstance().displayImage(account.getProfilePicturePath(), mImage_profile, new BaseActivity().options);
-        Log.d("track", "pix" + account.getProfilePicturePath());
     }
 
 }

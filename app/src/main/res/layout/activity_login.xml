@@ -12,6 +12,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
             android:scaleType="fitCenter"
             android:src="@drawable/taruclogo" />
 
@@ -22,13 +23,11 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="12dp"
         android:layout_marginRight="12dp"
-        android:layout_marginTop="12dp"
-        android:background="#DDFFF4">
+        android:layout_marginTop="30dp">
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="15dp"
             android:orientation="vertical">
 
 
@@ -53,11 +52,11 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/activity_vertical_margin"
                         android:hint="@string/hint_username"
-                        android:inputType="text" />
+                        android:inputType="number" />
 
                     <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
                         android:layout_gravity="center"
                         android:scaleType="centerCrop"
                         android:src="@drawable/ic_account" />
@@ -80,8 +79,8 @@
                         android:inputType="textPassword" />
 
                     <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
                         android:layout_gravity="center"
                         android:scaleType="centerCrop"
                         android:src="@drawable/ic_lock" />
@@ -96,22 +95,22 @@
 
                 <Button
                     android:id="@+id/button_login"
-                    android:layout_width="230dp"
+                    android:layout_width="223dp"
                     android:layout_height="45dp"
                     android:layout_marginBottom="16dp"
                     android:layout_marginLeft="45dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginRight="8dp"
                     android:layout_marginTop="16dp"
                     android:background="@color/colorPrimary"
                     android:gravity="center"
                     android:onClick="loginButton"
                     android:text="@string/login"
                     android:textColor="@color/white"
-                    android:textSize="16sp" />
+                    android:textSize="18sp" />
 
                 <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:layout_gravity="center"
                     android:scaleType="centerCrop"
                     android:src="@drawable/ic_login" />

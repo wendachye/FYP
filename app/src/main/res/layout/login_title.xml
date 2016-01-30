@@ -12,6 +12,6 @@
         android:textColor="@color/white"
         android:textStyle="bold"
         android:id="@+id/login_title"
-        android:textSize="18sp" />
+        android:textSize="23sp" />
 
 </LinearLayout>

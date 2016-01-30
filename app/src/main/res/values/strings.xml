@@ -60,6 +60,13 @@
     <string name="hint_library">Library</string>
     <string name="hint_time2">7:15 7:30 8:15 9:10</string>
     <string name="foodOrder">Food Order</string>
+    <string name="hint_accountID">Account ID</string>
+    <string name="hint_remark">Remark</string>
+    <string name="confirm">Confirm</string>
+    <string name="hint_amount">Amount</string>
+    <string name="transaction">Transaction</string>
+    <string name="hint_recipient_account">Recipient Account</string>
+    <string name="shareButton">Share Message</string>
 
     <string-array name="gender_arrays">
         <item>Male</item>

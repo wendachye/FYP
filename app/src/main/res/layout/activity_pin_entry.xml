@@ -278,7 +278,6 @@
                             android:gravity="center"
                             android:layout_marginLeft="15dp"
                             android:text="Cancel"
-                            android:textColor="@color/colorPrimaryDark"
                             android:textSize="20sp" />
 
                         <TextView
@@ -299,7 +298,6 @@
                             android:gravity="center"
                             android:layout_marginLeft="17dp"
                             android:text="Delete"
-                            android:textColor="@color/colorPrimaryDark"
                             android:textSize="20sp" />
 
                     </LinearLayout>

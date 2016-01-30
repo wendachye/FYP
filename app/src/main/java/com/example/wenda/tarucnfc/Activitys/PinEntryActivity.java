@@ -15,7 +15,6 @@ import com.example.wenda.tarucnfc.Databases.Contracts.AccountContract.AccountRec
 import com.example.wenda.tarucnfc.Domains.Account;
 import com.example.wenda.tarucnfc.R;
 import com.example.wenda.tarucnfc.RequestHandler;
-import com.example.wenda.tarucnfc.UIUtils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -127,7 +126,7 @@ public class PinEntryActivity extends BaseActivity {
                             Log.v("PinView", "Correct PIN");
 
                             selectType = getIntent().getStringExtra(KEY_PAYMENT);
-                            if (selectType.equals("payment")) {
+                            if (selectType.equals("transaction")) {
                                 //Intent intent = new Intent(appContext, .class);
                                 //startActivity(intent);
                             } else if (selectType.equals("topUp")) {
@@ -267,14 +266,14 @@ public class PinEntryActivity extends BaseActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            UIUtils.getProgressDialog(PinEntryActivity.this, "ON");
+            //UIUtils.getProgressDialog(PinEntryActivity.this, "ON");
         }
 
 
         @Override
         protected void onPostExecute(String json) {
             super.onPostExecute(json);
-            UIUtils.getProgressDialog(PinEntryActivity.this, "OFF");
+            //UIUtils.getProgressDialog(PinEntryActivity.this, "OFF");
             extractJsonData(json);
         }
 

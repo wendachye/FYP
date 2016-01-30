@@ -1,6 +1,7 @@
 package com.example.wenda.tarucnfc.Activitys;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -53,6 +54,7 @@ public class EditAccountActivity extends BaseActivity implements View.OnClickLis
     ImageView mProfilePicture = null;
 
     private final static String GET_JSON_URL = "http://tarucandroid.comxa.com/Login/edit_account_view.php";
+    private final static String UPDATE_ACCOUNT_URL = "http://tarucandroid.comxa.com/Login/update_account.php";
     private String mAccountID;
     protected BottomSheetLayout bottomSheetLayout;
     private Uri cameraImageUri = null;
@@ -111,7 +113,7 @@ public class EditAccountActivity extends BaseActivity implements View.OnClickLis
             NavUtils.navigateUpFromSameTask(this);
         }
         else if (id == R.id.saveButton) {
-            //updateAccount(mAccountID);
+            updateAccount();
             finish();
         }
 
@@ -338,39 +340,26 @@ public class EditAccountActivity extends BaseActivity implements View.OnClickLis
     }
 
 
-    /*private void updateAccount(String accountID) {
+    private void updateAccount() {
 
         // set all the related values into end user domain
+        account.setProfilePictureBitmap(mBitmapProfilePicture);
+        account.setName(mTextFullName.getText().toString());
+        account.setNRICNo(mTextNRICNO.getText().toString());
+        account.setContactNo(mTextContactNo.getText().toString());
+        account.setEmailAddress(mTextEmail.getText().toString());
+        account.setGender(mSpinnerGender.getSelectedItem().toString());
+        account.setHomeAddress(mTextHomeAddress.getText().toString());
+        account.setCampusAddress(mTextCampusAddress.getText().toString());
 
-        try {
-            account.verifyName(mTextFullName.getText().toString());
-            account.setNRICNo(mTextNRICNO.getText().toString());
-            account.setProfilePictureBitmap(mBitmapProfilePicture);
-            account.setGender(mSpinnerGender.getSelectedItem().toString());
-            account.setContactNo(mTextContactNo.getText().toString());
-            account.setEmailAddress(mTextEmail.getText().toString());
-            account.setHomeAddress(mTextHomeAddress.getText().toString());
-            account.setCampusAddress(mTextCampusAddress.getText().toString());
-
-            longToast("Name: " + account.getName() + "\n" +
-                    "Email: " + account.getEmail() + "\n" +
-                    "Register Date: " + account.getRegisterDate() + "\n" +
-                    "Account Type: " + account.getAccountType() + "\n" +
-                    "Study Level: " + account.getStudyLevel() + "\n" +
-                    "Faculty: " + account.getFaculty() + "\n" +
-                    "Gender: " + account.getGender() + "\n" +
-                    "Status: " + account.getStatus() + "\n");
-            if(isNetworkAvailable(this)==true) {
-                new UpdateAccount(account).execute();
-            } else {
-                longToast("Network not available");
-            }
-        } catch (InvalidInputException ex) {
-            shortToast(this, ex.getInfo());
+        if(isNetworkAvailable(this) == true) {
+            new UpdateAccount(account).execute();
+        } else {
+            longToast("Network not available");
         }
-    }*/
+    }
 
-   /* public class UpdateAccount extends AsyncTask<Void, Void, String> {
+    public class UpdateAccount extends AsyncTask<Void, Void, String> {
 
         ProgressDialog loading;
         RequestHandler requestHandler = new RequestHandler();
@@ -383,14 +372,12 @@ public class EditAccountActivity extends BaseActivity implements View.OnClickLis
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            //loading = ProgressDialog.show(EditAccountActivity.this, "Uploading...", null, true, true);
             UIUtils.getProgressDialog(EditAccountActivity.this, "ON");
         }
 
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            //loading.dismiss();
             UIUtils.getProgressDialog(EditAccountActivity.this, "OFF");
             Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();
             finish();
@@ -400,31 +387,27 @@ public class EditAccountActivity extends BaseActivity implements View.OnClickLis
         protected String doInBackground(Void... params) {
 
             HashMap<String, String> data = new HashMap<>();
-            data.put("accountID", this.account.getAccountID() + "");
-            data.put("email", this.account.getEmail());
+
+            if (account.getProfilePictureBitmap() == null) {
+                data.put("profilePicture", "");
+                data.put("profilePicturePath", this.account.getProfilePicturePath());
+                Log.d("track", "path " + this.account.getProfilePicturePath());
+            } else {
+                data.put("profilePicture", getStringImage(this.account.getProfilePictureBitmap()));
+                data.put("profilePicturePath", "");
+            }
+            data.put("accountID", mAccountID);
+            Log.d("track", "accountID " + mAccountID);
             data.put("name", this.account.getName());
-            if (account.getProfileImageBitmap() == null) {
-                data.put("profileImage", "");
-                data.put("profileImagePath", this.account.getProfileImagePath());
-            } else {
-                data.put("profileImage", getStringImage(this.account.getProfileImageBitmap()));
-                data.put("profileImagePath", "");
-            }
+            data.put("NRICNo", this.account.getNRICNo());
+            data.put("contactNo", this.account.getContactNo());
+            data.put("emailAddress", this.account.getEmailAddress());
+            data.put("gender", this.account.getGender());
+            data.put("homeAddress", this.account.getHomeAddress());
+            data.put("campusAddress", this.account.getCampusAddress());
 
-            if (account.getCoverImageBitmap() == null) {
-                data.put("coverImage", "");
-                data.put("coverImagePath", this.account.getCoverImagePath());
-            } else {
-                data.put("coverImage", getStringImage(this.account.getCoverImageBitmap()));
-                data.put("coverImagePath", "");
-            }
-
-            data.put("gender", this.endUser.getGender());
-            data.put("studyLevel", this.endUser.getStudyLevel());
-            data.put("faculty", this.endUser.getFaculty());
-
-            return requestHandler.sendPostRequest(UPDATE_NORMAL_ACCOUNT_URL, data);
+            return requestHandler.sendPostRequest(UPDATE_ACCOUNT_URL, data);
         }
-    }*/
+    }
 
 }

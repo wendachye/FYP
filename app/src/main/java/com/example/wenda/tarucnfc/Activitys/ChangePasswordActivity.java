@@ -127,11 +127,6 @@ public class ChangePasswordActivity extends BaseActivity {
 
             switch (offlineLogin.getLoginResponse()){
                 case RESPONSE_SUCCESS:
-                    // login success, save login state and direct to main screen
-                    //Intent intent = new Intent(getApplicationContext(), EditPasswordConfirmationActivity.class);
-                    //intent.putExtra(KEY_ACCOUNT, account);
-                    //startActivity(intent);
-
                     shortToast(ChangePasswordActivity.this,"Password was changed.");
                     finish();
                     break;

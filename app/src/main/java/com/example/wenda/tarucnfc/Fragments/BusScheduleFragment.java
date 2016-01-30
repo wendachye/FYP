@@ -49,7 +49,7 @@ public class BusScheduleFragment extends Fragment {
         adapter.addFragment(new BusRouteFragment("Wangsa Maju"), "Wangsa Maju");
         adapter.addFragment(new BusRouteFragment("Genting Klang"), "Genting Klang");
         adapter.addFragment(new BusRouteFragment("PV10/12/13/15/16"), "PV10/12/13/15/16");
-        adapter.addFragment(new BusRouteFragment("Melati Utama"), "Wangsa Maju");
+        adapter.addFragment(new BusRouteFragment("Melati Utama"), "Melati Utama");
         adapter.addFragment(new BusRouteFragment("Sri Rampai"), "Sri Rampai");
         viewPager.setAdapter(adapter);
     }
