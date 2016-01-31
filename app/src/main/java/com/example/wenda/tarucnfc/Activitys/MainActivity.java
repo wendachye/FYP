@@ -1,6 +1,7 @@
 package com.example.wenda.tarucnfc.Activitys;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
@@ -8,6 +9,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,6 +18,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.wenda.tarucnfc.Databases.Contracts.AccountContract;
+import com.example.wenda.tarucnfc.Domains.Account;
 import com.example.wenda.tarucnfc.Domains.OfflineLogin;
 import com.example.wenda.tarucnfc.Fragments.AccountFragment;
 import com.example.wenda.tarucnfc.Fragments.BusScheduleFragment;
@@ -24,8 +28,15 @@ import com.example.wenda.tarucnfc.Fragments.DashboardFragment;
 import com.example.wenda.tarucnfc.Fragments.FoodOrderFragment;
 import com.example.wenda.tarucnfc.Fragments.WalletFragment;
 import com.example.wenda.tarucnfc.R;
+import com.example.wenda.tarucnfc.RequestHandler;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 
@@ -34,6 +45,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     ImageButton mImageButtonEditProfile;
     ImageView mImageViewProfilePicture;
     TextView mTextViewUserID;
+    private final static String GET_JSON_URL = "http://tarucandroid.comxa.com/Login/get_profilePicturePath.php";
+    private Account account = new Account();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -158,15 +171,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
         if (offlineLogin != null) {
             mTextViewUserID.setText(offlineLogin.getAccountID());
-            ImageLoader.getInstance().displayImage(offlineLogin.getProfilePicturePath(), mImageViewProfilePicture, options);
-            //mNavigationView.getMenu().getItem(9).setVisible(true);
-        } else {
-            //mImageProfile.setImageResource(R.drawable.ic_github_circle);
-            // mTextName.setText(R.string.sign_in);
-            //mTextEmail.setText("");
-            //mNavigationView.setCheckedItem(R.id.nav_menu_home);
-            //mImageCover.setVisibility(View.GONE);
-            //mNavigationView.getMenu().getItem(9).setVisible(false);
+            Log.d("track", "aaa " + offlineLogin.getAccountID());
+            new GetJson(offlineLogin.getAccountID()).execute();
+            Log.d("track", "pix" + account.getProfilePicturePath());
+
         }
     }
 
@@ -201,10 +209,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.navigation_view_account_setting:
+                mDrawerLayout.closeDrawers();
                 Intent intent = new Intent(this, EditAccountActivity.class);
                 intent.putExtra(KEY_ACCOUNT_ID, getLoginDetail(this).getAccountID());
                 startActivity(intent);
                 break;
+
             case R.id.navigation_view_profile_picture:
                 AccountFragment fragmentAccount = new AccountFragment();
                 FragmentManager fragmentManager = getSupportFragmentManager();
@@ -215,6 +225,56 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             default:
                 break;
         }
+    }
+
+    // this one is get json
+    public class GetJson extends AsyncTask<String, Void, String> {
+        String accountID;
+        RequestHandler rh = new RequestHandler();
+
+        public GetJson(String accountID) {
+            this.accountID = accountID;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            //UIUtils.getProgressDialog(PinEntryActivity.this, "ON");
+        }
+
+
+        @Override
+        protected void onPostExecute(String json) {
+            super.onPostExecute(json);
+            //UIUtils.getProgressDialog(PinEntryActivity.this, "OFF");
+            extractJsonData(json);
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+            HashMap<String, String> data = new HashMap<>();
+
+            data.put(KEY_ACCOUNT_ID, accountID);
+            Log.d("track", "id " + accountID);
+            return rh.sendPostRequest(GET_JSON_URL, data);
+        }
+    }
+
+    private void extractJsonData(String json) {
+
+        try {
+            JSONArray jsonArray = new JSONObject(json).getJSONArray(BaseActivity.JSON_ARRAY);
+            JSONObject jsonObject = jsonArray.getJSONObject(0);
+
+            account.setProfilePicturePath(jsonObject.getString(AccountContract.AccountRecord.KEY_PROFILE_PICTURE_PATH));
+            Log.d("track", "pix1 " + account.getProfilePicturePath());
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+            Log.d("track", "error");
+        }
+
+        ImageLoader.getInstance().displayImage(account.getProfilePicturePath(), mImageViewProfilePicture, options);
     }
 
 }

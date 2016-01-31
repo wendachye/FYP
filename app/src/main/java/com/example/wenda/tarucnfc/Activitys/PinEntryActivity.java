@@ -52,8 +52,8 @@ public class PinEntryActivity extends BaseActivity {
     Button buttonDelete;
     private String mAccountID;
     private String selectType;
-    private Account account = new Account();
 
+    private Account account = new Account();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

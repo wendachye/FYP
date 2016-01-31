@@ -181,8 +181,6 @@ public class EditAccountActivity extends BaseActivity implements View.OnClickLis
     }
 
     public void initialValues() {
-        //mTextStudentId.setText(account.getAccountID());
-        Log.d("track", "get id 3" + account.getAccountID());
         mTextFullName.setText(account.getName());
         mTextNRICNO.setText(account.getNRICNo());
         if (account.getGender().equals("Male")) {
@@ -195,7 +193,6 @@ public class EditAccountActivity extends BaseActivity implements View.OnClickLis
         mTextHomeAddress.setText(account.getHomeAddress());
         mTextCampusAddress.setText(account.getCampusAddress());
         ImageLoader.getInstance().displayImage(account.getProfilePicturePath(), mProfilePicture, options);
-        Log.d("track", "pix" + account.getProfilePicturePath());
     }
 
     @Override
