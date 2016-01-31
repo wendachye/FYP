@@ -7,6 +7,7 @@ import com.example.wenda.tarucnfc.InvalidInputException;
  */
 public class Login {
     private int loginId;
+    private String loginID;
     private String accountId;
     private String password;
     private String previousPassword;
@@ -18,6 +19,17 @@ public class Login {
 
     public void setLoginId(int loginId) {
         this.loginId = loginId;
+    }
+
+    public void verifyLoginID(String loginID) throws InvalidInputException {
+        if (loginID.equals(""))
+            throw new InvalidInputException("Login ID can't be blank.");
+        else if (loginID.length() < 7)
+            throw new InvalidInputException("Login ID must be 7 numeric.");
+        else if (loginID.length() > 7)
+            throw new InvalidInputException("Login ID must be 7 numeric.");
+        else
+            this.loginID = loginID;
     }
 
     public String getAccountId() {

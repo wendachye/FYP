@@ -37,6 +37,7 @@ public class BaseActivity extends AppCompatActivity {
     public static final int RESPONSE_PASSWORD_INCORRECT = RESPONSE_SUCCESS + 1;
 
     public static final String JSON_ARRAY = "result";
+    public static final String emailPassword = "0177021624";
 
     public static final String KEY_SELECTED_TYPE = "KEY_SELECTED_TYPE";
     public static final String KEY_STUDENT_SCHEDULE = "Student Schedule";
@@ -63,12 +64,9 @@ public class BaseActivity extends AppCompatActivity {
     public static final String KEY_PERSONAL_EVENT = "Personal Event";
     public static final String KEY_LESSON = "Lesson";
     public static final String KEY_EXAMINATION = "Examination";
-    //public static final String KEY_SPECIAL = "Special";
-    //public static final String KEY_REPEAT = "Repeat";
     public static final String KEY_UPDATE_PENDING = "Update Pending";
     public static final String KEY_REQUEST_DESCRIPTION = "Update";
     public static final String KEY_REQUEST_STATUS = "Update";
-    public static final String KEY_LOST_AND_FOUND = "Lost and Found";
     public static final String KEY_ACCOUNT_ID = "accountID";
     public static final String KEY_CURRENT_PASSWORD = "currentPassword";
     public static final String KEY_NEW_PASSWORD = "newPassword";

@@ -36,22 +36,22 @@ public class Account {
 
     public void verifyAccountID(String accountID) throws InvalidInputException {
         if(accountID.equals(""))
-            throw new InvalidInputException("Please enter username.");
-        //else if (isValidEmail(accountID) == false)
-            //throw new InvalidInputException("Invalid username.");
+            throw new InvalidInputException("Please Enter Account ID.");
+        else if (accountID.length() > 10)
+            throw new InvalidInputException("Account ID must be 10 character.");
+        else if (accountID.length() < 10)
+            throw new InvalidInputException("Account ID must be 10 character.");
         else
             this.accountID = accountID;
     }
 
     public void verifyRecipientAccountID(String accountID) throws InvalidInputException {
         if(accountID.equals(""))
-            throw new InvalidInputException("Please enter recipient account.");
+            throw new InvalidInputException("Please Enter Recipient Account ID.");
         else if (accountID.length() > 10)
-            throw new InvalidInputException("Recipient account must be 10 character.");
+            throw new InvalidInputException("Recipient Account ID must be 10 character.");
         else if (accountID.length() < 10)
-            throw new InvalidInputException("Recipient account must be 10 character.");
-            //else if (isValidEmail(accountID) == false)
-            //throw new InvalidInputException("Invalid username.");
+            throw new InvalidInputException("Recipient Account ID must be 10 character.");
         else
             this.accountID = accountID;
     }
@@ -117,6 +117,17 @@ public class Account {
 
     public void setNRICNo(String NRICNo) {
         this.NRICNo = NRICNo;
+    }
+
+    public void verifyNRICNo(String NRICNo) throws InvalidInputException {
+        if(NRICNo.equals(""))
+            throw new InvalidInputException("Please Enter NRIC.NO.");
+        else if (NRICNo.length() > 12)
+            throw new InvalidInputException("NRIC.NO must be 10 number.");
+        else if (NRICNo.length() < 12)
+            throw new InvalidInputException("NRIC.NO must be 10 number.");
+        else
+            this.NRICNo = NRICNo;
     }
 
     public String getContactNo() {

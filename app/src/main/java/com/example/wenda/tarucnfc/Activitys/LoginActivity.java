@@ -78,9 +78,8 @@ public class LoginActivity extends BaseActivity {
 
     public void loginButton(View view) {
         try {
+            login.verifyLoginID(editTextUsername.getText().toString());
             login.verifyPassword(editTextPassword.getText().toString());
-            account.verifyAccountID(editTextUsername.getText().toString());
-
 
             new LoginAccount(editTextUsername.getText().toString(), editTextPassword.getText().toString()).execute();
         } catch (InvalidInputException ex) {
