@@ -33,6 +33,7 @@ public class ClassTimetableFragment extends Fragment {
     private String mProgramme;
     private String mGroupNo;
     RecyclerView mRecyclerView;
+    AdapterClassSchedule adapterClassSchedule;
 
     final static String GET_CLASS_SCHEDULE_URL = "http://tarucandroid.comxa.com/ClassSchedule/get_class_schedule_view.php";
     private ClassSchedule classSchedule = new ClassSchedule();
@@ -62,12 +63,7 @@ public class ClassTimetableFragment extends Fragment {
 
         switch (condition) {
             case "Monday":
-                Log.d("track", "c " + mFaculty);
-                Log.d("track", "c " + mProgramme);
-                Log.d("track", "c " + mGroupNo);
-                Log.d("track", "c " + condition);
                 new GetJson(mFaculty, mProgramme, mGroupNo, condition).execute();
-                Log.d("track", "class77");
                 break;
 
             case "Tuesday":
@@ -94,8 +90,17 @@ public class ClassTimetableFragment extends Fragment {
                 break;
         }
 
+        adapterClassSchedule = new AdapterClassSchedule(getActivity(), mListClassSchedule, R.layout.row_class_schedule);
+        mRecyclerView.setAdapter(adapterClassSchedule);
 
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        UIUtils.getProgressDialog(getActivity(), "OFF");
     }
 
     // this one is get json
@@ -162,27 +167,12 @@ public class ClassTimetableFragment extends Fragment {
                 classSchedule.setStartTime(jsonObject.getString(ClassScheduleRecord.COLUMN_START_TIME));
                 classSchedule.setEndTime(jsonObject.getString(ClassScheduleRecord.COLUMN_END_TIME));
 
-                Log.d("track", "class" + jsonObject.getString(ClassScheduleRecord.COLUMN_GROUP_No));
-                Log.d("track", "class" + jsonObject.getString(ClassScheduleRecord.COLUMN_END_TIME));
-
                 mListClassSchedule.add(classSchedule);
-                Log.d("track", mListClassSchedule.size()+ "");
 
             } catch (JSONException e) {
                 e.printStackTrace();
                 Log.d("track", "error");
             }
         }
-
-        initRecyclerView();
-    }
-
-    public void initRecyclerView() {
-        Log.d("track", "pass1");
-        AdapterClassSchedule adapterClassSchedule;
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        adapterClassSchedule = new AdapterClassSchedule(getActivity(), mListClassSchedule, R.layout.row_class_schedule);
-        mRecyclerView.setAdapter(adapterClassSchedule);
-        Log.d("track", "pass2");
     }
 }

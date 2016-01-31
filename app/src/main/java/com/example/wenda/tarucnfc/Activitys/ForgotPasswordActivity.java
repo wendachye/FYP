@@ -170,14 +170,14 @@ public class ForgotPasswordActivity extends BaseActivity {
                     if(mail.send()) {
                         ForgotPasswordActivity.this.runOnUiThread(new Runnable() {
                             public void run() {
-                                longToast("Email was sent successfully");
+                                longToast("Password was sent to your email successfully");
                             }
                         });
                         finish();
                     } else {
                         ForgotPasswordActivity.this.runOnUiThread(new Runnable() {
                             public void run() {
-                                longToast("Email was not sent.");
+                                longToast("Password was not sent to your email.");
                             }
                         });
                     }

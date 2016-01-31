@@ -3,7 +3,6 @@ package com.example.wenda.tarucnfc.Activitys;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
 import android.util.Log;
 import android.view.MenuItem;
@@ -22,7 +21,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
 
@@ -37,15 +35,13 @@ public class TransferBalanceActivity extends BaseActivity {
 
     private OfflineLogin offlineLogin = new OfflineLogin();
     private Account account = new Account();
-    private String KEY_TRANSFER_ACCOUNT = "transferID";
+    private String KEY_TRANSFER_ACCOUNT = "senderID";
     private String KEY_RECIPIENT_ACCOUNT = "recipientID";
     private String KEY_AMOUNT = "amount";
     private String KEY_REMARK = "remark";
     private String KEY_DATETIME = "dateTime";
     private static final String TRANSFER_BALANCE_URL = "http://tarucandroid.comxa.com/Wallet/transfer_balance.php";
-    Calendar calendar;
 
-    SimpleDateFormat dateTimeFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,7 +78,9 @@ public class TransferBalanceActivity extends BaseActivity {
         //noinspection SimplifiableIfStatement
 
         if (id == android.R.id.home) {
-            NavUtils.navigateUpFromSameTask(this);
+            Intent intent = new Intent(TransferBalanceActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
         }
 
         return super.onOptionsItemSelected(item);
@@ -142,6 +140,7 @@ public class TransferBalanceActivity extends BaseActivity {
                     shortToast(TransferBalanceActivity.this, "Transfer successfully.");
                     Intent intent = new Intent(TransferBalanceActivity.this, MainActivity.class);
                     startActivity(intent);
+                    finish();
                     break;
 
                 // 2 = account balance insufficient
@@ -164,9 +163,10 @@ public class TransferBalanceActivity extends BaseActivity {
 
             data.put(KEY_TRANSFER_ACCOUNT, transferAccountID);
             data.put(KEY_RECIPIENT_ACCOUNT, recipientAccount);
+            data.put("transactionType", "Transfer");
             data.put(KEY_AMOUNT, amount);
-            data.put(KEY_REMARK, remark);
             data.put(KEY_DATETIME, dateTimeFormat.format(calendar.getTime()));
+            data.put(KEY_REMARK, remark);
 
             return rh.sendPostRequest(TRANSFER_BALANCE_URL, data);
         }

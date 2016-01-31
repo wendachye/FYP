@@ -2,9 +2,7 @@ package com.example.wenda.tarucnfc.Domains;
 
 import com.example.wenda.tarucnfc.InvalidInputException;
 
-/**
- * Created by Wenda on 1/10/2016.
- */
+
 public class Login {
     private int loginId;
     private String loginID;

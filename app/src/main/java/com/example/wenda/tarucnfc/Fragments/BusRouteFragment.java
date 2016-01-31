@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -38,6 +39,7 @@ public class BusRouteFragment extends Fragment implements View.OnClickListener {
     TextView mTextViewDestination, mTextViewDestination2, mTextViewDestination3;
     TextView mTextViewTime, mTextViewTime2, mTextViewTime3;
     CardView mCardView1, mCardView2, mCardView3;
+    SwipeRefreshLayout mSwipeContainer;
 
     private BusSchedule busSchedule = new BusSchedule();
     private static final String GET_BUS_SCHEDULES_URL = "http://tarucandroid.comxa.com/BusSchedule/get_bus_schedule_view.php";
@@ -56,35 +58,28 @@ public class BusRouteFragment extends Fragment implements View.OnClickListener {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_bus_route, container, false);
 
+        mSwipeContainer = (SwipeRefreshLayout) view.findViewById(R.id.swipeContainer);
+        mSwipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new GetJson(String.valueOf(condition)).execute();
+            }
+        });
+
         // set findviewbyid
         setFindviewbyid(view);
 
-        switch (condition) {
-            case "Wangsa Maju":
-                new GetJson(String.valueOf(condition)).execute();
-                break;
+        new GetJson(String.valueOf(condition)).execute();
 
-            case "Genting Klang":
-                new GetJson(String.valueOf(condition)).execute();
-                break;
-
-            case "PV10/12/13/15/16":
-                new GetJson(String.valueOf(condition)).execute();
-                break;
-
-            case "Melati Utama":
-                new GetJson(String.valueOf(condition)).execute();
-                break;
-
-            case "Sri Rampai":
-                new GetJson(String.valueOf(condition)).execute();
-                break;
-
-            default:
-                break;
-        }
 
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        UIUtils.getProgressDialog(getActivity(), "OFF");
     }
 
     public void setFindviewbyid(View view) {
@@ -151,6 +146,7 @@ public class BusRouteFragment extends Fragment implements View.OnClickListener {
         protected void onPostExecute(String json) {
             super.onPostExecute(json);
             UIUtils.getProgressDialog(getActivity(), "OFF");
+            mSwipeContainer.setRefreshing(false);
             convertJson(json);
             extractJsonData(json);
         }

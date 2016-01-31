@@ -25,18 +25,6 @@ import java.util.HashMap;
 
 public class LoginActivity extends BaseActivity {
 
-    /*
-    Response from server:
-    0 = no account found
-    1 = login success
-    2 = password incorrect
-    3 = account status not active
-     */
-    private static final int RESPONSE_404 = 0;
-    private static final int RESPONSE_SUCCESS = RESPONSE_404 + 1;
-    private static final int RESPONSE_PASSWORD_INCORRECT = RESPONSE_SUCCESS + 1;
-    private static final int RESPONSE_STATUS_NOT_ACTIVE = RESPONSE_PASSWORD_INCORRECT + 1;
-
     private static final String LOGIN_URL = "http://tarucandroid.comxa.com/Login/get_account_data.php";
     private static final String KEY_LOGINID = "loginID";
     private static final String KEY_PASSWORD = "password";

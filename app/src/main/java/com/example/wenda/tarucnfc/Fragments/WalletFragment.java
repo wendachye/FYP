@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.wenda.tarucnfc.Activitys.BaseActivity;
+import com.example.wenda.tarucnfc.Activitys.MainActivity;
 import com.example.wenda.tarucnfc.Activitys.PinEntryActivity;
 import com.example.wenda.tarucnfc.Activitys.TransactionActivity;
 import com.example.wenda.tarucnfc.Databases.Contracts.AccountContract;
@@ -77,15 +78,18 @@ public class WalletFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.topup:
+                getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
                 Intent intent2 = new Intent(getActivity(), PinEntryActivity.class);
                 intent2.putExtra(KEY_SELECTED, "topUp");
                 startActivity(intent2);
+                MainActivity.main.finish();
                 break;
 
             case R.id.transfer:
                 Intent intent3 = new Intent(getActivity(), PinEntryActivity.class);
                 intent3.putExtra(KEY_SELECTED, "transfer");
                 startActivity(intent3);
+                MainActivity.main.finish();
                 break;
 
             case R.id.history:
@@ -149,7 +153,5 @@ public class WalletFragment extends Fragment implements View.OnClickListener {
 
     public void initialValues() {
         mTextViewAccountBalance.setText(account.getAccountBalance());
-
-        Log.d("track", "pix" + account.getProfilePicturePath());
     }
 }

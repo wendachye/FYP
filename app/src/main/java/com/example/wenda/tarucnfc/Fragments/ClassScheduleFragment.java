@@ -36,8 +36,8 @@ public class ClassScheduleFragment extends Fragment {
 
         tabLayout = (TabLayout) view.findViewById(R.id.class_tabs);
         tabLayout.setupWithViewPager(viewPager);
-        TabLayout.Tab tab = tabLayout.getTabAt(2);
-        tab.select();
+        //TabLayout.Tab tab = tabLayout.getTabAt(2);
+        //tab.select();
 
         return view;
 

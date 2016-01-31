@@ -35,6 +35,7 @@ public class BaseActivity extends AppCompatActivity {
     public static final int RESPONSE_404 = 0;
     public static final int RESPONSE_SUCCESS = RESPONSE_404 + 1;
     public static final int RESPONSE_PASSWORD_INCORRECT = RESPONSE_SUCCESS + 1;
+    public static final int RESPONSE_STATUS_NOT_ACTIVE = RESPONSE_PASSWORD_INCORRECT + 1;
 
     public static final String JSON_ARRAY = "result";
     public static final String emailPassword = "0177021624";

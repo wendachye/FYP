@@ -1,8 +1,5 @@
 package com.example.wenda.tarucnfc.Domains;
 
-/**
- * Created by Wenda on 1/22/2016.
- */
 public class ClassSchedule {
 
     private int classScheduleID;

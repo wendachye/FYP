@@ -34,6 +34,7 @@
         <activity
             android:name=".Activitys.MainActivity"
             android:theme="@style/AppTheme.NoActionBar"
+            android:launchMode="singleInstance"
             />
         <activity
             android:name=".Activitys.ChangePasswordActivity"

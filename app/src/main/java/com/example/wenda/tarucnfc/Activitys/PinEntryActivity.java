@@ -126,15 +126,14 @@ public class PinEntryActivity extends BaseActivity {
                             Log.v("PinView", "Correct PIN");
 
                             selectType = getIntent().getStringExtra(KEY_PAYMENT);
-                            if (selectType.equals("transaction")) {
-                                //Intent intent = new Intent(appContext, .class);
-                                //startActivity(intent);
-                            } else if (selectType.equals("topUp")) {
+                            if (selectType.equals("topUp")) {
                                 Intent intent = new Intent(appContext, TopUpActivity.class);
                                 startActivity(intent);
+                                finish();
                             } else if (selectType.equals("transfer")) {
                                 Intent intent = new Intent(appContext, TransferBalanceActivity.class);
                                 startActivity(intent);
+                                finish();
                             }
 
                         } else {

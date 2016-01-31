@@ -1,5 +1,6 @@
 package com.example.wenda.tarucnfc.Activitys;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -40,6 +41,7 @@ import java.util.HashMap;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 
+    public static Activity main;
     private NavigationView mNavigationView;
     private DrawerLayout mDrawerLayout;
     ImageButton mImageButtonEditProfile;
@@ -54,6 +56,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        main = this;
 
         // Set fragmentHome as main page
         DashboardFragment fragmentDashboard = new DashboardFragment();
