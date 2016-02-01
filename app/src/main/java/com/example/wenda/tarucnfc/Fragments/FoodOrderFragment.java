@@ -9,9 +9,7 @@ import android.view.ViewGroup;
 
 import com.example.wenda.tarucnfc.R;
 
-/**
- * A simple {@link Fragment} subclass.
- */
+
 public class FoodOrderFragment extends Fragment {
 
 

@@ -99,8 +99,7 @@ public class TopUpActivity extends BaseActivity {
     @Override
     public void onPause() {
         super.onPause();
-        //mNfcAdapter.disableForegroundNdefPush(this);
-        throw new RuntimeException("onPause not implemented to fix build");
+        mNfcAdapter.disableForegroundNdefPush(this);
     }
 
     @Override

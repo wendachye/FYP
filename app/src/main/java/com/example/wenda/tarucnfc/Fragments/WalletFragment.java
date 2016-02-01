@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,7 +34,7 @@ public class WalletFragment extends Fragment implements View.OnClickListener {
 
     Button mButtonHistory, mButtonTopUp, mButtonTransfer;
     TextView mTextViewAccountBalance;
-
+    SwipeRefreshLayout mSwipeContainer;
     private Account account = new Account();
     private String mAccountID;
     public static final String KEY_SELECTED = "selected";
@@ -55,21 +56,24 @@ public class WalletFragment extends Fragment implements View.OnClickListener {
         // setFinviewbyid
         setFinviewbyid(view);
 
-        new GetJson(String.valueOf(mAccountID)).execute();
+        mSwipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new GetJson(String.valueOf(mAccountID)).execute();
+            }
+        });
+
 
         return view;
     }
 
     private void setFinviewbyid(View view) {
-
+        mSwipeContainer = (SwipeRefreshLayout) view.findViewById(R.id.swipeContainer);
         mTextViewAccountBalance = (TextView) view.findViewById(R.id.account_balance);
-
         mButtonHistory = (Button) view.findViewById(R.id.history);
         mButtonHistory.setOnClickListener(this);
-
         mButtonTopUp = (Button) view.findViewById(R.id.topup);
         mButtonTopUp.setOnClickListener(this);
-
         mButtonTransfer = (Button) view.findViewById(R.id.transfer);
         mButtonTransfer.setOnClickListener(this);
     }
@@ -122,6 +126,7 @@ public class WalletFragment extends Fragment implements View.OnClickListener {
         protected void onPostExecute(String json) {
             super.onPostExecute(json);
             UIUtils.getProgressDialog(getActivity(), "OFF");
+            mSwipeContainer.setRefreshing(false);
             extractJsonData(json);
         }
 
