@@ -58,6 +58,11 @@ public class BusRouteFragment extends Fragment implements View.OnClickListener {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_bus_route, container, false);
 
+        // set findviewbyid
+        setFindviewbyid(view);
+
+        new GetJson(String.valueOf(condition)).execute();
+
         mSwipeContainer = (SwipeRefreshLayout) view.findViewById(R.id.swipeContainer);
         mSwipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -65,12 +70,6 @@ public class BusRouteFragment extends Fragment implements View.OnClickListener {
                 new GetJson(String.valueOf(condition)).execute();
             }
         });
-
-        // set findviewbyid
-        setFindviewbyid(view);
-
-        new GetJson(String.valueOf(condition)).execute();
-
 
         return view;
     }

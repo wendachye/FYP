@@ -63,6 +63,8 @@ public class AccountFragment extends Fragment {
         // set findviewbyid
         setfindviewbyid(view);
 
+        new GetJson(String.valueOf(mAccountID)).execute();
+
         mSwipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {

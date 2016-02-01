@@ -56,6 +56,8 @@ public class WalletFragment extends Fragment implements View.OnClickListener {
         // setFinviewbyid
         setFinviewbyid(view);
 
+        new GetJson(String.valueOf(mAccountID)).execute();
+
         mSwipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {

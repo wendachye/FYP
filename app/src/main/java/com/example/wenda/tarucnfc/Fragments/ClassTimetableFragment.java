@@ -54,6 +54,8 @@ public class ClassTimetableFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_class_timetable, container, false);
 
+        mListClassSchedule.clear();
+
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
@@ -94,13 +96,6 @@ public class ClassTimetableFragment extends Fragment {
         mRecyclerView.setAdapter(adapterClassSchedule);
 
         return view;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-
-        UIUtils.getProgressDialog(getActivity(), "OFF");
     }
 
     // this one is get json
