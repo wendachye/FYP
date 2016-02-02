@@ -10,6 +10,11 @@
             android:icon="@drawable/newspaper"/>
 
         <item
+            android:id="@+id/nav_menu_account"
+            android:title="Maintain Account"
+            android:icon="@drawable/account_check"/>
+
+        <item
             android:id="@+id/nav_menu_classSchedule1"
             android:title="Maintain Class Schedule"
             android:icon="@drawable/desktop_mac"/>

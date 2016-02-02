@@ -33,9 +33,7 @@ public class BusScheduleFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_bus_schedule, container, false);
 
         viewPager = (ViewPager) view.findViewById(R.id.bus_viewpager);
-
         setupViewPager(viewPager);
-
         tabLayout = (TabLayout) view.findViewById(R.id.bus_tabs);
         tabLayout.setupWithViewPager(viewPager);
        /* TabLayout.Tab tab = tabLayout.getTabAt(2);

@@ -27,6 +27,9 @@ import com.example.wenda.tarucnfc.Fragments.BusScheduleFragment;
 import com.example.wenda.tarucnfc.Fragments.ClassScheduleFragment;
 import com.example.wenda.tarucnfc.Fragments.DashboardFragment;
 import com.example.wenda.tarucnfc.Fragments.FoodOrderFragment;
+import com.example.wenda.tarucnfc.Fragments.MaintainAccountFragment;
+import com.example.wenda.tarucnfc.Fragments.MaintainBusScheduleFragment;
+import com.example.wenda.tarucnfc.Fragments.MaintainClassScheduleFragment;
 import com.example.wenda.tarucnfc.Fragments.WalletFragment;
 import com.example.wenda.tarucnfc.R;
 import com.example.wenda.tarucnfc.RequestHandler;
@@ -109,22 +112,29 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                         fragmentTransaction.commit();
                         return true;
 
+                    case R.id.nav_menu_account:
+                        getSupportActionBar().setTitle(R.string.maintain_account);
+                        MaintainAccountFragment fragementMaintainAccount = new MaintainAccountFragment();
+                        fragmentTransaction.replace(R.id.frame, fragementMaintainAccount);
+                        fragmentTransaction.commit();
+                        return true;
+
                     case R.id.nav_menu_classSchedule1:
-                        getSupportActionBar().setTitle(R.string.timetable);
-                        ClassScheduleFragment fragmentTimetable = new ClassScheduleFragment();
-                        fragmentTransaction.replace(R.id.frame, fragmentTimetable);
+                        getSupportActionBar().setTitle(R.string.maintain_classSchedule);
+                        MaintainClassScheduleFragment fragmentMaintainClassSchedule = new MaintainClassScheduleFragment();
+                        fragmentTransaction.replace(R.id.frame, fragmentMaintainClassSchedule);
                         fragmentTransaction.commit();
                         return true;
 
                     case R.id.nav_menu_busSchedule1:
-                        getSupportActionBar().setTitle(R.string.busSchedule);
-                        BusScheduleFragment fragmentBusSchedule = new BusScheduleFragment();
-                        fragmentTransaction.replace(R.id.frame, fragmentBusSchedule);
+                        getSupportActionBar().setTitle(R.string.maintain_busSchedule);
+                        MaintainBusScheduleFragment fragmentMaintainBusSchedule = new MaintainBusScheduleFragment();
+                        fragmentTransaction.replace(R.id.frame, fragmentMaintainBusSchedule);
                         fragmentTransaction.commit();
                         return true;
 
                     case R.id.nav_menu_foodOrder1:
-                        getSupportActionBar().setTitle(R.string.foodOrder);
+                        getSupportActionBar().setTitle(R.string.maintain_foodmenu);
                         FoodOrderFragment fragmentFoodOrder = new FoodOrderFragment();
                         fragmentTransaction.replace(R.id.frame, fragmentFoodOrder);
                         fragmentTransaction.commit();
@@ -206,7 +216,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                         return true;
 
                     case R.id.nav_menu_classSchedule:
-                        getSupportActionBar().setTitle(R.string.timetable);
+                        getSupportActionBar().setTitle(R.string.classSchedule);
                         ClassScheduleFragment fragmentTimetable = new ClassScheduleFragment();
                         fragmentTransaction.replace(R.id.frame, fragmentTimetable);
                         fragmentTransaction.commit();

@@ -47,7 +47,7 @@
     <string name="hint_new_pincode2">New PIN Code again</string>
     <string name="walletBalance">Wallet Balance</string>
     <string name="busSchedule">Bus Schedules</string>
-    <string name="timetable">Class Timetable</string>
+    <string name="classSchedule">Class Schedules</string>
     <string name="test">Test</string>
     <string name="departure">Departure : </string>
     <string name="hint_wangsamaju">Wangsa maju</string>
@@ -67,6 +67,10 @@
     <string name="transaction">Transaction</string>
     <string name="hint_recipient_account">Recipient Account</string>
     <string name="shareButton">Share Message</string>
+    <string name="maintain_account">Maintain Account</string>
+    <string name="maintain_classSchedule">Maintain Class Schedule</string>
+    <string name="maintain_busSchedule">Maintain Bus Schedule</string>
+    <string name="maintain_foodmenu">Maintain Food Menu</string>
 
     <string-array name="gender_arrays">
         <item>Male</item>
