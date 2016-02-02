@@ -58,7 +58,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         setSupportActionBar(toolbar);
         main = this;
 
-        // Set fragmentHome as main page
+        // set main page
         DashboardFragment fragmentDashboard = new DashboardFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.frame, fragmentDashboard).commit();
 
@@ -66,8 +66,126 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this).build();
         ImageLoader.getInstance().init(config);
 
+        if (getLoginDetail(this).getAccountType().equals("EndUser")) {
+            endUserNavigationView(toolbar);
+            initProfileDetail();
+        } else {
+            backendNavigationView(toolbar);
+            initProfileDetail();
+        }
+
+    }
+
+    public void backendNavigationView(Toolbar toolbar) {
         mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
-        //mNavigationView.setCheckedItem(R.id.nav_menu_dashboard);
+
+        View headerView = mNavigationView.inflateHeaderView(R.layout.navigation_view_header);
+
+        mNavigationView.inflateMenu(R.menu.navigation_view_items1);
+
+        mTextViewUserID = (TextView) headerView.findViewById(R.id.navigation_view_userID);
+
+        mImageButtonEditProfile = (ImageButton) headerView.findViewById(R.id.navigation_view_account_setting);
+        mImageButtonEditProfile.setOnClickListener(this);
+
+        mImageViewProfilePicture = (ImageView) headerView.findViewById(R.id.navigation_view_profile_picture);
+        mImageViewProfilePicture.setOnClickListener(this);
+        mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
+                android.support.v4.app.FragmentTransaction fragmentTransaction =
+                        getSupportFragmentManager().beginTransaction();
+
+                //Closing drawer on item click
+                mDrawerLayout.closeDrawers();
+
+                //Check to see which item was being clicked and perform appropriate action
+                switch (menuItem.getItemId()) {
+
+                    case R.id.nav_menu_dashboard1:
+                        getSupportActionBar().setTitle(R.string.dashboard);
+                        DashboardFragment fragmentHome = new DashboardFragment();
+                        fragmentTransaction.replace(R.id.frame, fragmentHome);
+                        fragmentTransaction.commit();
+                        return true;
+
+                    case R.id.nav_menu_classSchedule1:
+                        getSupportActionBar().setTitle(R.string.timetable);
+                        ClassScheduleFragment fragmentTimetable = new ClassScheduleFragment();
+                        fragmentTransaction.replace(R.id.frame, fragmentTimetable);
+                        fragmentTransaction.commit();
+                        return true;
+
+                    case R.id.nav_menu_busSchedule1:
+                        getSupportActionBar().setTitle(R.string.busSchedule);
+                        BusScheduleFragment fragmentBusSchedule = new BusScheduleFragment();
+                        fragmentTransaction.replace(R.id.frame, fragmentBusSchedule);
+                        fragmentTransaction.commit();
+                        return true;
+
+                    case R.id.nav_menu_foodOrder1:
+                        getSupportActionBar().setTitle(R.string.foodOrder);
+                        FoodOrderFragment fragmentFoodOrder = new FoodOrderFragment();
+                        fragmentTransaction.replace(R.id.frame, fragmentFoodOrder);
+                        fragmentTransaction.commit();
+                        return true;
+
+                    case R.id.nav_menu_sign_out1:
+                        removeLoginDetail();
+                        Toast.makeText(getApplicationContext(), "Signed out", Toast.LENGTH_SHORT).show();
+                        finish();
+                        return true;
+
+                    default:
+                        Toast.makeText(getApplicationContext(), "Somethings Wrong", Toast.LENGTH_SHORT).show();
+                        return true;
+                }
+
+            }
+
+        });
+
+        // Initializing Drawer Layout and ActionBarToggle
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer);
+        ActionBarDrawerToggle mActionBarDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, R.string.open_drawer, R.string.close_drawer) {
+
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                // Code here will be triggered once the drawer closes as we dont want anything to happen so we leave this blank
+                super.onDrawerClosed(drawerView);
+            }
+
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                // Code here will be triggered once the drawer open as we dont want anything to happen so we leave this blank
+
+                super.onDrawerOpened(drawerView);
+            }
+        };
+
+        //Setting the actionbarToggle to drawer layout
+        mDrawerLayout.setDrawerListener(mActionBarDrawerToggle);
+
+        //calling sync state is necessay or else your hamburger icon wont show up
+        mActionBarDrawerToggle.syncState();
+    }
+
+    public void endUserNavigationView(Toolbar toolbar) {
+
+        mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
+
+        View headerView = mNavigationView.inflateHeaderView(R.layout.navigation_view_header);
+
+        mNavigationView.inflateMenu(R.menu.navigation_view_items);
+
+        mTextViewUserID = (TextView) headerView.findViewById(R.id.navigation_view_userID);
+
+        mImageButtonEditProfile = (ImageButton) headerView.findViewById(R.id.navigation_view_account_setting);
+        mImageButtonEditProfile.setOnClickListener(this);
+
+        mImageViewProfilePicture = (ImageView) headerView.findViewById(R.id.navigation_view_profile_picture);
+        mImageViewProfilePicture.setOnClickListener(this);
+
         mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
@@ -153,19 +271,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
         //calling sync state is necessay or else your hamburger icon wont show up
         mActionBarDrawerToggle.syncState();
-
-        View headerView = mNavigationView.inflateHeaderView(R.layout.navigation_view_header);
-
-        mTextViewUserID = (TextView) headerView.findViewById(R.id.navigation_view_userID);
-
-        mImageButtonEditProfile = (ImageButton) headerView.findViewById(R.id.navigation_view_account_setting);
-        mImageButtonEditProfile.setOnClickListener(this);
-
-        mImageViewProfilePicture = (ImageView) headerView.findViewById(R.id.navigation_view_profile_picture);
-        mImageViewProfilePicture.setOnClickListener(this);
-
-        initProfileDetail();
-
     }
 
     public void initProfileDetail() {
@@ -174,10 +279,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
         if (offlineLogin != null) {
             mTextViewUserID.setText(offlineLogin.getAccountID());
-            Log.d("track", "aaa " + offlineLogin.getAccountID());
             new GetJson(offlineLogin.getAccountID()).execute();
-            Log.d("track", "pix" + account.getProfilePicturePath());
-
         }
     }
 
@@ -214,16 +316,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             case R.id.navigation_view_account_setting:
                 mDrawerLayout.closeDrawers();
                 Intent intent = new Intent(this, EditAccountActivity.class);
-                intent.putExtra(KEY_ACCOUNT_ID, getLoginDetail(this).getAccountID());
                 startActivity(intent);
                 break;
 
             case R.id.navigation_view_profile_picture:
+                mDrawerLayout.closeDrawers();
                 AccountFragment fragmentAccount = new AccountFragment();
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 FragmentTransaction transaction = fragmentManager.beginTransaction();
                 transaction.replace(R.id.frame, fragmentAccount).commit();
-                mDrawerLayout.closeDrawers();
                 break;
             default:
                 break;
@@ -270,7 +371,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             JSONObject jsonObject = jsonArray.getJSONObject(0);
 
             account.setProfilePicturePath(jsonObject.getString(AccountContract.AccountRecord.KEY_PROFILE_PICTURE_PATH));
-            Log.d("track", "pix1 " + account.getProfilePicturePath());
 
         } catch (JSONException e) {
             e.printStackTrace();

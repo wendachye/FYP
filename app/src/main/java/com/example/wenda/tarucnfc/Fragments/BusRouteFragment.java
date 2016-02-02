@@ -78,7 +78,7 @@ public class BusRouteFragment extends Fragment implements View.OnClickListener {
     public void onResume() {
         super.onResume();
 
-        UIUtils.getProgressDialog(getActivity(), "OFF");
+        //UIUtils.getProgressDialog(getActivity(), "OFF");
     }
 
     public void setFindviewbyid(View view) {
@@ -137,14 +137,14 @@ public class BusRouteFragment extends Fragment implements View.OnClickListener {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            UIUtils.getProgressDialog(getActivity(), "ON");
+            //UIUtils.getProgressDialog(getActivity(), "ON");
         }
 
 
         @Override
         protected void onPostExecute(String json) {
             super.onPostExecute(json);
-            UIUtils.getProgressDialog(getActivity(), "OFF");
+            //UIUtils.getProgressDialog(getActivity(), "OFF");
             mSwipeContainer.setRefreshing(false);
             convertJson(json);
             extractJsonData(json);

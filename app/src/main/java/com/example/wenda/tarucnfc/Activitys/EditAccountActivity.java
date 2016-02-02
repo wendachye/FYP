@@ -18,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -52,6 +53,7 @@ public class EditAccountActivity extends BaseActivity implements View.OnClickLis
     EditText mTextHomeAddress;
     EditText mTextCampusAddress;
     ImageView mProfilePicture = null;
+    LinearLayout mCampusAddress;
 
     private final static String GET_JSON_URL = "http://tarucandroid.comxa.com/Login/edit_account_view.php";
     private final static String UPDATE_ACCOUNT_URL = "http://tarucandroid.comxa.com/Login/update_account.php";
@@ -74,7 +76,7 @@ public class EditAccountActivity extends BaseActivity implements View.OnClickLis
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        mAccountID = new BaseActivity().getLoginDetail(this).getAccountID();
+        mAccountID = getLoginDetail(this).getAccountID();
 
         setFindviewbyid();
 
@@ -82,6 +84,7 @@ public class EditAccountActivity extends BaseActivity implements View.OnClickLis
     }
 
     public void setFindviewbyid() {
+        mCampusAddress = (LinearLayout) findViewById(R.id.linear_layout_campus);
         bottomSheetLayout = (BottomSheetLayout) findViewById(R.id.bottomSheetLayout);
         mProfilePicture = (ImageView) findViewById(R.id.profile_picture);
         mProfilePicture.setOnClickListener(this);
@@ -192,7 +195,12 @@ public class EditAccountActivity extends BaseActivity implements View.OnClickLis
         mTextEmail.setText(account.getEmailAddress());
         mTextContactNo.setText(account.getContactNo());
         mTextHomeAddress.setText(account.getHomeAddress());
-        mTextCampusAddress.setText(account.getCampusAddress());
+        if (account.getAccountType().equals("BackEnd")) {
+            mCampusAddress.setVisibility(View.GONE);
+        } else {
+            mCampusAddress.setVisibility(View.VISIBLE);
+            mTextCampusAddress.setText(account.getCampusAddress());
+        }
         ImageLoader.getInstance().displayImage(account.getProfilePicturePath(), mProfilePicture, options);
     }
 

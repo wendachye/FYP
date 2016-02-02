@@ -21,8 +21,7 @@ public class OfflineLogin {
     private String accountBalance;
     private String PINcode;
     private String status;
-    private String e_authorization;
-    private String b_authorization;
+    private String authorization;
     private String profilePicturePath;
     private int loginResponse;
 
@@ -102,12 +101,8 @@ public class OfflineLogin {
         this.profilePicturePath = profilePicturePath;
     }
 
-    public void setE_authorization(String e_authorization) {
-        this.e_authorization = e_authorization;
-    }
-
-    public void setB_authorization(String b_authorization) {
-        this.b_authorization = b_authorization;
+    public void set_Authorization(String authorization) {
+        this.authorization = authorization;
     }
 
     public void setLoginResponse(int loginResponse) {
@@ -190,12 +185,8 @@ public class OfflineLogin {
         return profilePicturePath;
     }
 
-    public String getE_authorization() {
-        return e_authorization;
-    }
-
-    public String getB_authorization() {
-        return b_authorization;
+    public String get_Authorization() {
+        return authorization;
     }
 
     public int getLoginResponse() {

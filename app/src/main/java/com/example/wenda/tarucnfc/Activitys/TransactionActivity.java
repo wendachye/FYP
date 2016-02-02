@@ -49,9 +49,8 @@ public class TransactionActivity extends BaseActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         new GetJson(getLoginDetail(this).getAccountID()).execute();
+        Log.d("track", "pass");
 
-        adapterTransaction = new AdapterTransaction(this, mListTransaction, R.layout.row_transaction_history);
-        mRecyclerView.setAdapter(adapterTransaction);
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -125,12 +124,17 @@ public class TransactionActivity extends BaseActivity {
                 transaction.setStatus(jsonObject.getString(TransactionRecord.COLUMN_STATUS));
                 transaction.setRemark(jsonObject.getString(TransactionRecord.COLUMN_REMARK));
 
+                Log.d("track", "t " +jsonObject.getString(TransactionRecord.COLUMN_REMARK));
+                Log.d("track", "list size " + mListTransaction.size());
                 mListTransaction.add(transaction);
 
             } catch (JSONException e) {
                 e.printStackTrace();
                 Log.d("track", "error");
             }
+
+            adapterTransaction = new AdapterTransaction(this, mListTransaction, R.layout.row_transaction_history);
+            mRecyclerView.setAdapter(adapterTransaction);
         }
     }
 }

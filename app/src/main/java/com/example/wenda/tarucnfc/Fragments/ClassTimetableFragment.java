@@ -92,10 +92,16 @@ public class ClassTimetableFragment extends Fragment {
                 break;
         }
 
-        adapterClassSchedule = new AdapterClassSchedule(getActivity(), mListClassSchedule, R.layout.row_class_schedule);
-        mRecyclerView.setAdapter(adapterClassSchedule);
+
 
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        UIUtils.getProgressDialog(getActivity(), "OFF");
     }
 
     // this one is get json
@@ -162,12 +168,17 @@ public class ClassTimetableFragment extends Fragment {
                 classSchedule.setStartTime(jsonObject.getString(ClassScheduleRecord.COLUMN_START_TIME));
                 classSchedule.setEndTime(jsonObject.getString(ClassScheduleRecord.COLUMN_END_TIME));
 
+                Log.d("track", "a " + jsonObject.getString(ClassScheduleRecord.COLUMN_END_TIME));
+                Log.d("track", "list size " + mListClassSchedule.size());
                 mListClassSchedule.add(classSchedule);
 
             } catch (JSONException e) {
                 e.printStackTrace();
                 Log.d("track", "error");
             }
+
+            adapterClassSchedule = new AdapterClassSchedule(getActivity(), mListClassSchedule, R.layout.row_class_schedule);
+            mRecyclerView.setAdapter(adapterClassSchedule);
         }
     }
 }

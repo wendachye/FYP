@@ -28,15 +28,9 @@ public class LoginActivity extends BaseActivity {
     private static final String LOGIN_URL = "http://tarucandroid.comxa.com/Login/get_account_data.php";
     private static final String KEY_LOGINID = "loginID";
     private static final String KEY_PASSWORD = "password";
-
     private static final String TYPE_ENDUSER = "EndUser";
     private static final String TYPE_BACKEND = "BackEnd";
-
-    private static final String KEY_E_AUTHORIZATION = "E_Authorization";
-    private static final String KEY_B_AUTHORIZATION = "B_Authorization";
-
-    private static final String KEY_PROFILE_PICTURE = "ProfilePicturePath";
-
+    private static final String KEY_AUTHORIZATION = "Authorization";
     private static final String KEY_RESPONSE = "LoginResponse";
 
     private Login login = new Login();
@@ -113,9 +107,9 @@ public class LoginActivity extends BaseActivity {
                     shortToast(LoginActivity.this,"success");
                     saveLoginDetail(offlineLogin,LoginActivity.this);
                     // go to main screen
+                    finish();
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
-                    finish();
                     break;
 
                 case RESPONSE_PASSWORD_INCORRECT:
@@ -171,15 +165,9 @@ public class LoginActivity extends BaseActivity {
                 offlineLogin.setStatus(jsonObject.getString(AccountContract.AccountRecord.KEY_STATUS));
                 offlineLogin.setProfilePicturePath(jsonObject.getString(AccountContract.AccountRecord.KEY_PROFILE_PICTURE_PATH));
                 offlineLogin.setLoginResponse(jsonObject.getInt(KEY_RESPONSE));
+                offlineLogin.set_Authorization(jsonObject.getString(KEY_AUTHORIZATION));
 
-                String eAuthorization = null, bAuthorization = null;
-                eAuthorization = jsonObject.getString(KEY_E_AUTHORIZATION);
-                bAuthorization = jsonObject.getString(KEY_B_AUTHORIZATION);
-
-                offlineLogin.setE_authorization(eAuthorization);
-                offlineLogin.setB_authorization(bAuthorization);
-
-
+                Log.d("track", "authorization " + jsonObject.getString(KEY_AUTHORIZATION));
                 Log.d("track", "Response " + jsonObject.getInt(KEY_RESPONSE));
 
             } catch (JSONException e) {

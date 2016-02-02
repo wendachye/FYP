@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group
+        android:id="@+id/group_first"
+        android:checkableBehavior="all">
+
+        <item
+            android:id="@+id/nav_menu_dashboard1"
+            android:title="Dashboard"
+            android:icon="@drawable/newspaper"/>
+
+        <item
+            android:id="@+id/nav_menu_classSchedule1"
+            android:title="Maintain Class Schedule"
+            android:icon="@drawable/desktop_mac"/>
+
+        <item
+            android:id="@+id/nav_menu_busSchedule1"
+            android:title="Maintain Bus Schedule"
+            android:icon="@drawable/bus"/>
+
+        <item
+            android:id="@+id/nav_menu_foodOrder1"
+            android:title="Maintain Food Menu"
+            android:icon="@drawable/food"/>
+
+        <item
+            android:id="@+id/nav_menu_sign_out1"
+            android:title="Sign Out"
+            android:icon="@drawable/login"/>
+    </group>
+</menu>

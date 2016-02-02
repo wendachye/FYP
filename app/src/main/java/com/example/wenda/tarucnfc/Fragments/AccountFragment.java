@@ -5,11 +5,13 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.wenda.tarucnfc.Activitys.BaseActivity;
@@ -44,6 +46,8 @@ public class AccountFragment extends Fragment {
     TextView mTextHomeAddress;
     TextView mTextCampusAddress;
     ImageView mImage_profile;
+    LinearLayout mCampusAddress;
+    CardView mStudentInfo;
     private Account account = new Account();
     private String mAccountID;
     SwipeRefreshLayout mSwipeContainer;
@@ -77,6 +81,8 @@ public class AccountFragment extends Fragment {
     }
 
     public void setfindviewbyid(View view) {
+        mCampusAddress = (LinearLayout) view.findViewById(R.id.campus_address);
+        mStudentInfo = (CardView) view.findViewById(R.id.student_info);
         mSwipeContainer = (SwipeRefreshLayout) view.findViewById(R.id.swipeContainer);
         mTextStudentId = (TextView) view.findViewById(R.id.text_studentid);
         mTextProgramme = (TextView) view.findViewById(R.id.text_programme);
@@ -92,6 +98,38 @@ public class AccountFragment extends Fragment {
         mTextHomeAddress = (TextView) view.findViewById(R.id.text_homeAddress);
         mTextCampusAddress = (TextView) view.findViewById(R.id.text_campusAddress);
         mImage_profile = (ImageView) view.findViewById(R.id.image_profile);
+    }
+
+    // this one is get json
+    public class GetJson extends AsyncTask<String, Void, String> {
+        String accountID;
+        RequestHandler rh = new RequestHandler();
+
+        public GetJson(String accountID) {
+            this.accountID = accountID;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            UIUtils.getProgressDialog(getActivity(), "ON");
+        }
+
+
+        @Override
+        protected void onPostExecute(String json) {
+            super.onPostExecute(json);
+            UIUtils.getProgressDialog(getActivity(), "OFF");
+            mSwipeContainer.setRefreshing(false);
+            extractJsonData(json);
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+            HashMap<String, String> data = new HashMap<>();
+            data.put("accountID", String.valueOf(mAccountID));
+            return rh.sendPostRequest(GET_JSON_URL, data);
+        }
     }
 
     private void extractJsonData(String json) {
@@ -128,6 +166,15 @@ public class AccountFragment extends Fragment {
     }
 
     public void initialValues() {
+
+        if (account.getAccountType().equals("BackEnd")) {
+            mStudentInfo.setVisibility(View.GONE);
+            mCampusAddress.setVisibility(View.GONE);
+        } else {
+            mCampusAddress.setVisibility(View.VISIBLE);
+            mTextCampusAddress.setText(account.getCampusAddress());
+        }
+
         mTextStudentId.setText(account.getAccountID());
         mTextProgramme.setText(account.getProgramme());
         mTextFaculty.setText(account.getFaculty());
@@ -140,40 +187,8 @@ public class AccountFragment extends Fragment {
         mTextEmail.setText(account.getEmailAddress());
         mTextContactNo.setText(account.getContactNo());
         mTextHomeAddress.setText(account.getHomeAddress());
-        mTextCampusAddress.setText(account.getCampusAddress());
+
         ImageLoader.getInstance().displayImage(account.getProfilePicturePath(), mImage_profile, new BaseActivity().options);
-    }
-
-    // this one is get json
-    public class GetJson extends AsyncTask<String, Void, String> {
-        String accountID;
-        RequestHandler rh = new RequestHandler();
-
-        public GetJson(String accountID) {
-            this.accountID = accountID;
-        }
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            UIUtils.getProgressDialog(getActivity(), "ON");
-        }
-
-
-        @Override
-        protected void onPostExecute(String json) {
-            super.onPostExecute(json);
-            UIUtils.getProgressDialog(getActivity(), "OFF");
-            mSwipeContainer.setRefreshing(false);
-            extractJsonData(json);
-        }
-
-        @Override
-        protected String doInBackground(String... strings) {
-            HashMap<String, String> data = new HashMap<>();
-            data.put("accountID", String.valueOf(mAccountID));
-            return rh.sendPostRequest(GET_JSON_URL, data);
-        }
     }
 
 }
