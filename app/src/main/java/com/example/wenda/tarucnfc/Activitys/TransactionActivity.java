@@ -115,7 +115,7 @@ public class TransactionActivity extends BaseActivity {
         for (int i = 0; i < mJsonArray.length(); i++) {
             try {
                 JSONObject jsonObject = mJsonArray.getJSONObject(i);
-
+                Transaction transaction = new Transaction();
                 transaction.setSenderID(jsonObject.getString(TransactionRecord.COLUMN_SENDER_ID));
                 transaction.setRecipientID(jsonObject.getString(TransactionRecord.COLUMN_RECIPIENT_ID));
                 transaction.setTransactionType(jsonObject.getString(TransactionRecord.COLUMN_TRANSACTION_TYPE));
@@ -124,7 +124,7 @@ public class TransactionActivity extends BaseActivity {
                 transaction.setStatus(jsonObject.getString(TransactionRecord.COLUMN_STATUS));
                 transaction.setRemark(jsonObject.getString(TransactionRecord.COLUMN_REMARK));
 
-                Log.d("track", "t " +jsonObject.getString(TransactionRecord.COLUMN_REMARK));
+                Log.d("track", "t " + jsonObject.getString(TransactionRecord.COLUMN_REMARK));
                 Log.d("track", "list size " + mListTransaction.size());
                 mListTransaction.add(transaction);
 
@@ -132,9 +132,8 @@ public class TransactionActivity extends BaseActivity {
                 e.printStackTrace();
                 Log.d("track", "error");
             }
-
-            adapterTransaction = new AdapterTransaction(this, mListTransaction, R.layout.row_transaction_history);
-            mRecyclerView.setAdapter(adapterTransaction);
         }
+        adapterTransaction = new AdapterTransaction(this, mListTransaction, R.layout.row_transaction_history);
+        mRecyclerView.setAdapter(adapterTransaction);
     }
 }

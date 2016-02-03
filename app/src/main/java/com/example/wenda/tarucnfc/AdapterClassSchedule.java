@@ -2,7 +2,6 @@ package com.example.wenda.tarucnfc;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,7 +41,6 @@ public class AdapterClassSchedule extends RecyclerView.Adapter<AdapterClassSched
         holder.day.setText(items.get(position).getDay());
         holder.startTime.setText(items.get(position).getStartTime());
         holder.endTime.setText(items.get(position).getEndTime());
-        Log.d("track", "adapter" + items.get(position).getEndTime());
     }
 
     @Override

@@ -350,7 +350,6 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginLeft="@dimen/activity_vertical_margin"
-                            android:layout_marginRight="16dp"
                             android:hint="@string/hint_fullname"
                             android:textSize="17sp" />
 
@@ -378,7 +377,6 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginLeft="@dimen/activity_vertical_margin"
-                            android:layout_marginRight="16dp"
                             android:hint="@string/hint_nric"
                             android:textSize="17sp" />
 

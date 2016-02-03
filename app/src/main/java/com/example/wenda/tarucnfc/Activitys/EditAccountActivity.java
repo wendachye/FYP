@@ -348,7 +348,7 @@ public class EditAccountActivity extends BaseActivity implements View.OnClickLis
 
     private void updateAccount() {
 
-        // set all the related values into end user domain
+        // set all the related values into account domain
         account.setProfilePictureBitmap(mBitmapProfilePicture);
         account.setName(mTextFullName.getText().toString());
         account.setNRICNo(mTextNRICNO.getText().toString());
@@ -358,10 +358,11 @@ public class EditAccountActivity extends BaseActivity implements View.OnClickLis
         account.setHomeAddress(mTextHomeAddress.getText().toString());
         account.setCampusAddress(mTextCampusAddress.getText().toString());
 
+        // check network
         if(isNetworkAvailable(this) == true) {
             new UpdateAccount(account).execute();
         } else {
-            longToast("Network not available");
+            shortToast(this, "Network not available");
         }
     }
 

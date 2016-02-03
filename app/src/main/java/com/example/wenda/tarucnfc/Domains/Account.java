@@ -25,6 +25,7 @@ public class Account {
     private String status;
     private String profilePicturePath;
     private Bitmap profilePictureBitmap;
+    private String authorization;
 
     public String getAccountID() {
         return accountID;
@@ -229,5 +230,13 @@ public class Account {
 
     public void setProfilePicturePath(String profilePicturePath) {
         this.profilePicturePath = profilePicturePath;
+    }
+
+    public String getAuthorization() {
+        return authorization;
+    }
+
+    public void setAuthorization(String authorization) {
+        this.authorization = authorization;
     }
 }

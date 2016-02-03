@@ -69,7 +69,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this).build();
         ImageLoader.getInstance().init(config);
 
-        if (getLoginDetail(this).getAccountType().equals("EndUser")) {
+        if (getLoginDetail(this).getAccountType().equals("End User")) {
             endUserNavigationView(toolbar);
             initProfileDetail();
         } else {

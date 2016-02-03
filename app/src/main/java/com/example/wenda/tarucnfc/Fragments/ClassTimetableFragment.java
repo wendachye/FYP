@@ -157,7 +157,7 @@ public class ClassTimetableFragment extends Fragment {
         for (int i = 0; i < mJsonArray.length(); i++) {
             try {
                 JSONObject jsonObject = mJsonArray.getJSONObject(i);
-
+                ClassSchedule classSchedule = new ClassSchedule();
                 classSchedule.setFaculty(jsonObject.getString(ClassScheduleRecord.COLUMN_FACULTY));
                 classSchedule.setProgramme(jsonObject.getString(ClassScheduleRecord.COLUMN_PROGRAMME));
                 classSchedule.setGroupNo(jsonObject.getString(ClassScheduleRecord.COLUMN_GROUP_No));
@@ -168,6 +168,9 @@ public class ClassTimetableFragment extends Fragment {
                 classSchedule.setStartTime(jsonObject.getString(ClassScheduleRecord.COLUMN_START_TIME));
                 classSchedule.setEndTime(jsonObject.getString(ClassScheduleRecord.COLUMN_END_TIME));
 
+
+
+
                 Log.d("track", "a " + jsonObject.getString(ClassScheduleRecord.COLUMN_END_TIME));
                 Log.d("track", "list size " + mListClassSchedule.size());
                 mListClassSchedule.add(classSchedule);
@@ -176,9 +179,8 @@ public class ClassTimetableFragment extends Fragment {
                 e.printStackTrace();
                 Log.d("track", "error");
             }
-
-            adapterClassSchedule = new AdapterClassSchedule(getActivity(), mListClassSchedule, R.layout.row_class_schedule);
-            mRecyclerView.setAdapter(adapterClassSchedule);
         }
+        adapterClassSchedule = new AdapterClassSchedule(getActivity(), mListClassSchedule, R.layout.row_class_schedule);
+        mRecyclerView.setAdapter(adapterClassSchedule);
     }
 }

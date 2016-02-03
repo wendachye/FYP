@@ -71,10 +71,36 @@
     <string name="maintain_classSchedule">Maintain Class Schedule</string>
     <string name="maintain_busSchedule">Maintain Bus Schedule</string>
     <string name="maintain_foodmenu">Maintain Food Menu</string>
+    <string name="hint_account_type">Account Type</string>
+    <string name="hint_account_authorization">Account Authorization</string>
+    <string name="hint_backendID">Backend ID</string>
+    <string name="logininfo">Login Details</string>
+    <string name="hint_loginID">Login ID</string>
 
     <string-array name="gender_arrays">
         <item>Male</item>
         <item>Female</item>
+    </string-array>
+
+    <string-array name="account_type_arrays">
+        <item>Select Account Type</item>
+        <item>End User</item>
+        <item>Back End</item>
+    </string-array>
+
+    <string-array name="enduser_authorization_arrays">
+        <item>Select Authorization</item>
+        <item>Student</item>
+        <item>Full-Time Lecturer / Tutor</item>
+        <item>Part-Time Lecturer / Tutor</item>
+    </string-array>
+
+    <string-array name="backend_authorization_arrays">
+        <item>Select Authorization</item>
+        <item>Admin</item>
+        <item>Student Affair Department</item>
+        <item>Examination Department</item>
+        <item>Management Staff</item>
     </string-array>
 
     <string-array name="sessionJoined_arrays">

@@ -4,19 +4,18 @@ import com.example.wenda.tarucnfc.InvalidInputException;
 
 
 public class Login {
-    private int loginId;
     private String loginID;
-    private String accountId;
+    private String accountID;
     private String password;
     private String previousPassword;
     private String confirmPassword;
 
-    public int getLoginId() {
-        return loginId;
+    public String getLoginId() {
+        return loginID;
     }
 
-    public void setLoginId(int loginId) {
-        this.loginId = loginId;
+    public void setLoginId(String loginID) {
+        this.loginID = loginID;
     }
 
     public void verifyLoginID(String loginID) throws InvalidInputException {
@@ -30,12 +29,12 @@ public class Login {
             this.loginID = loginID;
     }
 
-    public String getAccountId() {
-        return accountId;
+    public String getAccountID() {
+        return accountID;
     }
 
-    public void setAccountId(String accountId) {
-        this.accountId = accountId;
+    public void setAccountID(String accountID) {
+        this.accountID = accountID;
     }
 
     public String getPassword() {
