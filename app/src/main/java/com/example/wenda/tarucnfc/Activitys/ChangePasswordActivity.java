@@ -24,14 +24,14 @@ import java.util.HashMap;
 
 public class ChangePasswordActivity extends BaseActivity {
 
-    private static final String UPDATE_PASSWORD_URL = "http://tarucandroid.comxa.com/Login/update_password.php";
+    private static final String UPDATE_PASSWORD_URL = "http://fypproject.host56.com/Account/update_password.php";
 
     private Login login = new Login();
     private OfflineLogin offlineLogin = new OfflineLogin();
 
-    EditText mEditTextCurrent;
-    EditText mEditTextNew;
-    EditText mEditTextNewAgain;
+    private EditText mEditTextCurrent;
+    private EditText mEditTextNew;
+    private EditText mEditTextNewAgain;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

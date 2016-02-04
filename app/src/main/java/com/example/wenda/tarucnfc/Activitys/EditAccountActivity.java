@@ -45,18 +45,18 @@ import java.util.Locale;
 
 public class EditAccountActivity extends BaseActivity implements View.OnClickListener {
 
-    EditText mTextFullName;
-    EditText mTextNRICNO;
-    Spinner mSpinnerGender;
-    EditText mTextEmail;
-    EditText mTextContactNo;
-    EditText mTextHomeAddress;
-    EditText mTextCampusAddress;
-    ImageView mProfilePicture = null;
-    LinearLayout mCampusAddress;
+    private EditText mTextFullName;
+    private EditText mTextNRICNO;
+    private Spinner mSpinnerGender;
+    private EditText mTextEmail;
+    private EditText mTextContactNo;
+    private EditText mTextHomeAddress;
+    private EditText mTextCampusAddress;
+    private ImageView mProfilePicture = null;
+    private LinearLayout mCampusAddress;
 
-    private final static String GET_JSON_URL = "http://tarucandroid.comxa.com/Login/edit_account_view.php";
-    private final static String UPDATE_ACCOUNT_URL = "http://tarucandroid.comxa.com/Login/update_account.php";
+    private final static String GET_JSON_URL = "http://fypproject.host56.com/Account/edit_account_view.php";
+    private final static String UPDATE_ACCOUNT_URL = "http://fypproject.host56.com/Account/update_account.php";
     private String mAccountID;
     protected BottomSheetLayout bottomSheetLayout;
     private Uri cameraImageUri = null;
@@ -195,7 +195,7 @@ public class EditAccountActivity extends BaseActivity implements View.OnClickLis
         mTextEmail.setText(account.getEmailAddress());
         mTextContactNo.setText(account.getContactNo());
         mTextHomeAddress.setText(account.getHomeAddress());
-        if (account.getAccountType().equals("BackEnd")) {
+        if (account.getAccountType().equals("Back End")) {
             mCampusAddress.setVisibility(View.GONE);
         } else {
             mCampusAddress.setVisibility(View.VISIBLE);

@@ -12,6 +12,7 @@ import com.example.wenda.tarucnfc.R;
 public class DisplayNFCActivity extends BaseActivity {
 
     private TextView bTextView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

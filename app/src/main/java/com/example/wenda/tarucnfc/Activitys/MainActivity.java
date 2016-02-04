@@ -47,10 +47,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     public static Activity main;
     private NavigationView mNavigationView;
     private DrawerLayout mDrawerLayout;
-    ImageButton mImageButtonEditProfile;
-    ImageView mImageViewProfilePicture;
-    TextView mTextViewUserID;
-    private final static String GET_JSON_URL = "http://tarucandroid.comxa.com/Login/get_profilePicturePath.php";
+    private ImageButton mImageButtonEditProfile;
+    private ImageView mImageViewProfilePicture;
+    private TextView mTextViewUserID;
+    private final static String GET_PROFILE_PICTURE_URL = "http://fypproject.host56.com/Login/get_profilePicturePath.php";
     private Account account = new Account();
 
     @Override
@@ -179,6 +179,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         //calling sync state is necessay or else your hamburger icon wont show up
         mActionBarDrawerToggle.syncState();
     }
+
 
     public void endUserNavigationView(Toolbar toolbar) {
 
@@ -369,8 +370,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             HashMap<String, String> data = new HashMap<>();
 
             data.put(KEY_ACCOUNT_ID, accountID);
-            Log.d("track", "id " + accountID);
-            return rh.sendPostRequest(GET_JSON_URL, data);
+            return rh.sendPostRequest(GET_PROFILE_PICTURE_URL, data);
         }
     }
 
@@ -381,6 +381,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             JSONObject jsonObject = jsonArray.getJSONObject(0);
 
             account.setProfilePicturePath(jsonObject.getString(AccountContract.AccountRecord.KEY_PROFILE_PICTURE_PATH));
+            Log.d("track", "pix" + jsonObject.getString(AccountContract.AccountRecord.KEY_PROFILE_PICTURE_PATH));
 
         } catch (JSONException e) {
             e.printStackTrace();

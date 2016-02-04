@@ -2,7 +2,6 @@ package com.example.wenda.tarucnfc.Fragments;
 
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -25,48 +24,46 @@ import com.example.wenda.tarucnfc.Domains.Account;
 import com.example.wenda.tarucnfc.Domains.Login;
 import com.example.wenda.tarucnfc.R;
 import com.example.wenda.tarucnfc.RequestHandler;
-import com.example.wenda.tarucnfc.UIUtils;
 
 import java.util.HashMap;
 
 
 public class AddNewAccountFragment extends Fragment implements View.OnClickListener, TextWatcher{
 
-    CardView mCradView1;
-    CardView mCardView2;
+    private CardView mCradView1;
+    private CardView mCardView2;
+    private CardView mCardView3;
 
-    Spinner mSpinnerAccountType;
-    Spinner mSpinnerAccountEndUserAuthorization;
-    Spinner mSpinnerAccountBackEndAuthorization;
-    Spinner mSpinnerGender;
+    private Spinner mSpinnerAccountType;
+    private Spinner mSpinnerAccountEndUserAuthorization;
+    private Spinner mSpinnerAccountBackEndAuthorization;
+    private Spinner mSpinnerGender;
 
-    LinearLayout mLinearLayoutEndUser;
-    LinearLayout mLinearLayoutBackEnd;
-    LinearLayout mLinearLayoutCampus;
+    private LinearLayout mLinearLayoutEndUser;
+    private LinearLayout mLinearLayoutBackEnd;
+    private LinearLayout mLinearLayoutCampus;
 
-    EditText mEditTextFullName;
-    EditText mEditTextNRICNo;
-    EditText mEditTextContact;
-    EditText mEditTextEmail;
-    EditText mEditTextHomeAddress;
-    EditText mEditTextCampusAddress;
-    EditText mEditTextAccountID;
-    EditText mEditTextProgramme;
-    EditText mEditTextFaculty;
-    EditText mEditTextCampus;
-    EditText mEditTextSchoolEmail;
-    EditText mEditTextSessionJoined;
+    private EditText mEditTextFullName;
+    private EditText mEditTextNRICNo;
+    private EditText mEditTextContact;
+    private EditText mEditTextEmail;
+    private EditText mEditTextHomeAddress;
+    private EditText mEditTextCampusAddress;
+    private EditText mEditTextAccountID;
+    private EditText mEditTextProgramme;
+    private EditText mEditTextFaculty;
+    private EditText mEditTextCampus;
+    private EditText mEditTextSchoolEmail;
+    private EditText mEditTextSessionJoined;
 
-    TextView mTextViewLoginID;
-    TextView mTextViewPassword;
+    private TextView mTextViewLoginID;
+    private TextView mTextViewPassword;
 
-    Button mButtonConfirm;
-
-    private Context mContext;
+    private Button mButtonConfirm;
 
     private Account account = new Account();
     private Login login = new Login();
-    private final static String Add_NEW_ACCOUNT_URL = "";
+    private final static String Add_NEW_ACCOUNT_URL = "http://fypproject.host56.com/Account/add_account.php";
 
     public AddNewAccountFragment() {
         // Required empty public constructor
@@ -90,6 +87,7 @@ public class AddNewAccountFragment extends Fragment implements View.OnClickListe
                     case 0:
                         mCradView1.setVisibility(View.GONE);
                         mCardView2.setVisibility(View.GONE);
+                        mCardView3.setVisibility(View.GONE);
                         mLinearLayoutEndUser.setVisibility(View.GONE);
                         mLinearLayoutBackEnd.setVisibility(View.GONE);
                         mButtonConfirm.setVisibility(View.GONE);
@@ -98,6 +96,7 @@ public class AddNewAccountFragment extends Fragment implements View.OnClickListe
                     case 1:
                         mCradView1.setVisibility(View.GONE);
                         mCardView2.setVisibility(View.GONE);
+                        mCardView3.setVisibility(View.GONE);
                         mButtonConfirm.setVisibility(View.GONE);
                         mLinearLayoutEndUser.setVisibility(View.VISIBLE);
                         mLinearLayoutBackEnd.setVisibility(View.GONE);
@@ -107,6 +106,7 @@ public class AddNewAccountFragment extends Fragment implements View.OnClickListe
                     case 2:
                         mCradView1.setVisibility(View.GONE);
                         mCardView2.setVisibility(View.GONE);
+                        mCardView3.setVisibility(View.GONE);
                         mButtonConfirm.setVisibility(View.GONE);
                         mLinearLayoutEndUser.setVisibility(View.GONE);
                         mLinearLayoutBackEnd.setVisibility(View.VISIBLE);
@@ -132,6 +132,7 @@ public class AddNewAccountFragment extends Fragment implements View.OnClickListe
                     case 0:
                         mCradView1.setVisibility(View.GONE);
                         mCardView2.setVisibility(View.GONE);
+                        mCardView3.setVisibility(View.GONE);
                         mButtonConfirm.setVisibility(View.GONE);
                         break;
 
@@ -139,6 +140,7 @@ public class AddNewAccountFragment extends Fragment implements View.OnClickListe
                         mEditTextAccountID.setHint("Student ID");
                         mCradView1.setVisibility(View.VISIBLE);
                         mCardView2.setVisibility(View.VISIBLE);
+                        mCardView3.setVisibility(View.VISIBLE);
                         mLinearLayoutCampus.setVisibility(View.VISIBLE);
                         mButtonConfirm.setVisibility(View.VISIBLE);
                         break;
@@ -147,6 +149,7 @@ public class AddNewAccountFragment extends Fragment implements View.OnClickListe
                         mEditTextAccountID.setHint("Lecturer / Tutor ID");
                         mCradView1.setVisibility(View.VISIBLE);
                         mCardView2.setVisibility(View.VISIBLE);
+                        mCardView3.setVisibility(View.VISIBLE);
                         mLinearLayoutCampus.setVisibility(View.VISIBLE);
                         mButtonConfirm.setVisibility(View.VISIBLE);
                         break;
@@ -155,6 +158,7 @@ public class AddNewAccountFragment extends Fragment implements View.OnClickListe
                         mEditTextAccountID.setHint("Lecturer / Tutor ID");
                         mCradView1.setVisibility(View.VISIBLE);
                         mCardView2.setVisibility(View.VISIBLE);
+                        mCardView3.setVisibility(View.VISIBLE);
                         mLinearLayoutCampus.setVisibility(View.VISIBLE);
                         mButtonConfirm.setVisibility(View.VISIBLE);
                         break;
@@ -177,12 +181,14 @@ public class AddNewAccountFragment extends Fragment implements View.OnClickListe
                     case 0:
                         mCradView1.setVisibility(View.GONE);
                         mCardView2.setVisibility(View.GONE);
+                        mCardView3.setVisibility(View.GONE);
                         mButtonConfirm.setVisibility(View.GONE);
                         break;
 
                     case 1:
                         mEditTextAccountID.setHint("Admin ID");
                         mCradView1.setVisibility(View.VISIBLE);
+                        mCardView3.setVisibility(View.VISIBLE);
                         mButtonConfirm.setVisibility(View.VISIBLE);
                         mCardView2.setVisibility(View.GONE);
                         mLinearLayoutCampus.setVisibility(View.GONE);
@@ -191,6 +197,7 @@ public class AddNewAccountFragment extends Fragment implements View.OnClickListe
                     case 2:
                         mEditTextAccountID.setHint("Student Affair Department ID");
                         mCradView1.setVisibility(View.VISIBLE);
+                        mCardView3.setVisibility(View.VISIBLE);
                         mButtonConfirm.setVisibility(View.VISIBLE);
                         mCardView2.setVisibility(View.GONE);
                         mLinearLayoutCampus.setVisibility(View.GONE);
@@ -199,6 +206,7 @@ public class AddNewAccountFragment extends Fragment implements View.OnClickListe
                     case 3:
                         mEditTextAccountID.setHint("Examination Department ID");
                         mCradView1.setVisibility(View.VISIBLE);
+                        mCardView3.setVisibility(View.VISIBLE);
                         mButtonConfirm.setVisibility(View.VISIBLE);
                         mCardView2.setVisibility(View.GONE);
                         mLinearLayoutCampus.setVisibility(View.GONE);
@@ -207,6 +215,7 @@ public class AddNewAccountFragment extends Fragment implements View.OnClickListe
                     case 4:
                         mEditTextAccountID.setHint("Management Staff ID");
                         mCradView1.setVisibility(View.VISIBLE);
+                        mCardView3.setVisibility(View.VISIBLE);
                         mButtonConfirm.setVisibility(View.VISIBLE);
                         mCardView2.setVisibility(View.GONE);
                         mLinearLayoutCampus.setVisibility(View.GONE);
@@ -222,38 +231,6 @@ public class AddNewAccountFragment extends Fragment implements View.OnClickListe
 
             }
         });
-
-
-
-        return view;
-    }
-
-    public void setFindviewbyid(View view) {
-        mCradView1 = (CardView) view.findViewById(R.id.cardview1);
-        mCardView2 = (CardView) view.findViewById(R.id.cardview2);
-        mSpinnerAccountType = (Spinner) view.findViewById(R.id.spinner_account_type);
-        mSpinnerAccountEndUserAuthorization = (Spinner) view.findViewById(R.id.spinner_enduser_authorization);
-        mSpinnerAccountBackEndAuthorization = (Spinner) view.findViewById(R.id.spinner_backend_authorization);
-        mLinearLayoutEndUser = (LinearLayout) view.findViewById(R.id.linear_layout_enduser);
-        mLinearLayoutBackEnd = (LinearLayout) view.findViewById(R.id.linear_layout_backend);
-        mEditTextFullName = (EditText) view.findViewById(R.id.edit_text_fullname);
-        mEditTextNRICNo = (EditText) view.findViewById(R.id.edit_text_nric);
-        mEditTextContact = (EditText) view.findViewById(R.id.edit_text_contact);
-        mEditTextEmail = (EditText) view.findViewById(R.id.edit_text_email);
-        mSpinnerGender = (Spinner) view.findViewById(R.id.spinner_gender);
-        mEditTextHomeAddress = (EditText) view.findViewById(R.id.edit_text_homeAddress);
-        mEditTextCampusAddress = (EditText) view.findViewById(R.id.edit_text_campusAddress);
-        mEditTextAccountID = (EditText) view.findViewById(R.id.edit_text_accountID);
-        mEditTextProgramme = (EditText) view.findViewById(R.id.edit_text_programme);
-        mEditTextFaculty = (EditText) view.findViewById(R.id.edit_text_faculty);
-        mEditTextCampus = (EditText) view.findViewById(R.id.edit_text_campus);
-        mEditTextSchoolEmail = (EditText) view.findViewById(R.id.edit_text_school_email);
-        mEditTextSessionJoined = (EditText) view.findViewById(R.id.edit_text_sessionJoined);
-        mLinearLayoutCampus = (LinearLayout) view.findViewById(R.id.linear_layout_campus);
-        mButtonConfirm = (Button) view.findViewById(R.id.button_confirm);
-        mButtonConfirm.setOnClickListener(this);
-        mTextViewLoginID = (TextView) view.findViewById(R.id.text_view_loginID);
-        mTextViewPassword = (TextView) view.findViewById(R.id.text_view_password);
 
         mEditTextAccountID.addTextChangedListener(new TextWatcher() {
             @Override
@@ -286,8 +263,44 @@ public class AddNewAccountFragment extends Fragment implements View.OnClickListe
             @Override
             public void afterTextChanged(Editable s) {
                 mTextViewPassword.setText(mEditTextNRICNo.getText().toString());
+                String accountString = mEditTextAccountID.getText().toString();
+                String accountSub = accountString.substring(0, 2);
+                String accountSub2 = accountString.substring(5, 10);
+                mTextViewLoginID.setText(accountSub + accountSub2);
             }
         });
+
+        return view;
+    }
+
+    public void setFindviewbyid(View view) {
+        mCradView1 = (CardView) view.findViewById(R.id.cardview1);
+        mCardView2 = (CardView) view.findViewById(R.id.cardview2);
+        mCardView3 = (CardView) view.findViewById(R.id.cardview3);
+        mSpinnerAccountType = (Spinner) view.findViewById(R.id.spinner_account_type);
+        mSpinnerAccountEndUserAuthorization = (Spinner) view.findViewById(R.id.spinner_enduser_authorization);
+        mSpinnerAccountBackEndAuthorization = (Spinner) view.findViewById(R.id.spinner_backend_authorization);
+        mLinearLayoutEndUser = (LinearLayout) view.findViewById(R.id.linear_layout_enduser);
+        mLinearLayoutBackEnd = (LinearLayout) view.findViewById(R.id.linear_layout_backend);
+        mEditTextFullName = (EditText) view.findViewById(R.id.edit_text_fullname);
+        mEditTextNRICNo = (EditText) view.findViewById(R.id.edit_text_nric);
+        mEditTextContact = (EditText) view.findViewById(R.id.edit_text_contact);
+        mEditTextEmail = (EditText) view.findViewById(R.id.edit_text_email);
+        mSpinnerGender = (Spinner) view.findViewById(R.id.spinner_gender);
+        mEditTextHomeAddress = (EditText) view.findViewById(R.id.edit_text_homeAddress);
+        mEditTextCampusAddress = (EditText) view.findViewById(R.id.edit_text_campusAddress);
+        mEditTextAccountID = (EditText) view.findViewById(R.id.edit_text_accountID);
+        mEditTextProgramme = (EditText) view.findViewById(R.id.edit_text_programme);
+        mEditTextFaculty = (EditText) view.findViewById(R.id.edit_text_faculty);
+        mEditTextCampus = (EditText) view.findViewById(R.id.edit_text_campus);
+        mEditTextSchoolEmail = (EditText) view.findViewById(R.id.edit_text_school_email);
+        mEditTextSessionJoined = (EditText) view.findViewById(R.id.edit_text_sessionJoined);
+        mLinearLayoutCampus = (LinearLayout) view.findViewById(R.id.linear_layout_campus);
+        mButtonConfirm = (Button) view.findViewById(R.id.button_confirm);
+        mButtonConfirm.setOnClickListener(this);
+        mTextViewLoginID = (TextView) view.findViewById(R.id.text_view_loginID);
+        mTextViewPassword = (TextView) view.findViewById(R.id.text_view_password);
+
     }
 
     @Override
@@ -298,7 +311,6 @@ public class AddNewAccountFragment extends Fragment implements View.OnClickListe
                 verifyData();
                 // insert data
                 addData();
-
                 break;
 
             default:
@@ -339,6 +351,8 @@ public class AddNewAccountFragment extends Fragment implements View.OnClickListe
         // check network
         if(new BaseActivity().isNetworkAvailable(getActivity()) == true) {
             new AddAccount(account, login).execute();
+            getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
+            BaseActivity.shortToast(getActivity(), "Profile Updated.");
         } else {
             BaseActivity.shortToast(getActivity(), "Network not available");
         }
@@ -374,14 +388,14 @@ public class AddNewAccountFragment extends Fragment implements View.OnClickListe
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            UIUtils.getProgressDialog(getActivity(), "ON");
+            //UIUtils.getProgressDialog(getActivity(), "ON");
         }
 
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            UIUtils.getProgressDialog(getActivity(), "OFF");
-            Toast.makeText(getActivity(), s, Toast.LENGTH_LONG).show();
+            //UIUtils.getProgressDialog(getActivity(), "OFF");
+            //Toast.makeText(getActivity(), s, Toast.LENGTH_LONG).show();
         }
 
         @Override
@@ -397,7 +411,7 @@ public class AddNewAccountFragment extends Fragment implements View.OnClickListe
             data.put("gender", this.account.getGender());
             data.put("homeAddress", this.account.getHomeAddress());
             data.put("campusAddress", this.account.getCampusAddress());
-            data.put("accountType", this.account.getCampusAddress());
+            data.put("accountType", this.account.getAccountType());
             data.put("programme", this.account.getProgramme());
             data.put("faculty", this.account.getFaculty());
             data.put("campus", this.account.getCampus());

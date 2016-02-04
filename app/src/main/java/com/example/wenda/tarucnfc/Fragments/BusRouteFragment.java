@@ -33,13 +33,13 @@ import static com.example.wenda.tarucnfc.Activitys.BaseActivity.shortToast;
 public class BusRouteFragment extends Fragment implements View.OnClickListener {
 
     private String condition;
-    Button mButtonBusRoute;
-    TextView mTextViewDate, mTextViewDate2, mTextViewDate3;
-    TextView mTextViewDeparture, mTextViewDeparture2, mTextViewDeparture3;
-    TextView mTextViewDestination, mTextViewDestination2, mTextViewDestination3;
-    TextView mTextViewTime, mTextViewTime2, mTextViewTime3;
-    CardView mCardView1, mCardView2, mCardView3;
-    SwipeRefreshLayout mSwipeContainer;
+    private Button mButtonBusRoute;
+    private TextView mTextViewDate, mTextViewDate2, mTextViewDate3;
+    private TextView mTextViewDeparture, mTextViewDeparture2, mTextViewDeparture3;
+    private TextView mTextViewDestination, mTextViewDestination2, mTextViewDestination3;
+    private TextView mTextViewTime, mTextViewTime2, mTextViewTime3;
+    private CardView mCardView1, mCardView2, mCardView3;
+    private SwipeRefreshLayout mSwipeContainer;
 
     private BusSchedule busSchedule = new BusSchedule();
     private static final String GET_BUS_SCHEDULES_URL = "http://tarucandroid.comxa.com/BusSchedule/get_bus_schedule_view.php";

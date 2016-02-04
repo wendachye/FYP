@@ -25,11 +25,9 @@ import java.util.HashMap;
 
 public class LoginActivity extends BaseActivity {
 
-    private static final String LOGIN_URL = "http://tarucandroid.comxa.com/Login/get_account_data.php";
+    private static final String LOGIN_URL = "http://fypproject.host56.com/Login/get_account_data.php";
     private static final String KEY_LOGINID = "loginID";
     private static final String KEY_PASSWORD = "password";
-    private static final String TYPE_ENDUSER = "EndUser";
-    private static final String TYPE_BACKEND = "BackEnd";
     private static final String KEY_AUTHORIZATION = "Authorization";
     private static final String KEY_RESPONSE = "LoginResponse";
 

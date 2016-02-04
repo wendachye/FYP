@@ -25,10 +25,10 @@ import java.util.HashMap;
 
 public class TransactionActivity extends BaseActivity {
 
-    AdapterTransaction adapterTransaction;
-    RecyclerView mRecyclerView;
+    private AdapterTransaction adapterTransaction;
+    private RecyclerView mRecyclerView;
     private ArrayList<Transaction> mListTransaction = new ArrayList<>();
-    private static final String GET_TRANSACTION_URL = "http://tarucandroid.comxa.com/Wallet/get_transaction_history.php";
+    private static final String GET_TRANSACTION_URL = "http://fypproject.host56.com/Wallet/get_transaction_history.php";
     private JSONArray mJsonArray;
     private Transaction transaction = new Transaction();
 

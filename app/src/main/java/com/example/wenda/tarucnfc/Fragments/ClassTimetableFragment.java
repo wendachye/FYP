@@ -32,8 +32,8 @@ public class ClassTimetableFragment extends Fragment {
     private String mFaculty;
     private String mProgramme;
     private String mGroupNo;
-    RecyclerView mRecyclerView;
-    AdapterClassSchedule adapterClassSchedule;
+    private RecyclerView mRecyclerView;
+    private AdapterClassSchedule adapterClassSchedule;
 
     final static String GET_CLASS_SCHEDULE_URL = "http://tarucandroid.comxa.com/ClassSchedule/get_class_schedule_view.php";
     private ClassSchedule classSchedule = new ClassSchedule();

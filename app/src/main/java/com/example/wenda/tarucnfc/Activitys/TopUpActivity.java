@@ -9,14 +9,22 @@ import android.nfc.NfcAdapter;
 import android.nfc.NfcEvent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.wenda.tarucnfc.R;
 
 public class TopUpActivity extends BaseActivity implements NfcAdapter.CreateNdefMessageCallback{
 
-    private EditText bText;
+    private TextView mTextViewAccountID;
+    private TextView mTextViewFullName;
+    private EditText mEditTextOtherAmount;
+    private Spinner mSpinnerTopUpAmount;
+    private Button mButtonConfirm;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,7 +38,12 @@ public class TopUpActivity extends BaseActivity implements NfcAdapter.CreateNdef
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        bText = (EditText) findViewById(R.id.textview_transac_id);
+        // set finviewbyid
+        mTextViewAccountID = (TextView) findViewById(R.id.text_view_accountID);
+        mTextViewFullName = (TextView) findViewById(R.id.text_view_name);
+        mEditTextOtherAmount = (EditText) findViewById(R.id.edit_text_other_amount);
+        mSpinnerTopUpAmount = (Spinner) findViewById(R.id.spinner_topup_amount);
+        mButtonConfirm = (Button) findViewById(R.id.button_confirm);
 
         NfcAdapter mAdapter = NfcAdapter.getDefaultAdapter(this);
         if (mAdapter == null) {
@@ -56,7 +69,7 @@ public class TopUpActivity extends BaseActivity implements NfcAdapter.CreateNdef
 
     @Override
     public NdefMessage createNdefMessage(NfcEvent event) {
-        String message = bText.getText().toString();
+        String message = mTextViewAccountID.getText().toString();
         NdefRecord ndefRecord = NdefRecord.createMime("text/plain", message.getBytes());
         NdefMessage ndefMessage = new NdefMessage(ndefRecord);
         return ndefMessage;

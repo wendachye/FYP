@@ -76,6 +76,7 @@
     <string name="hint_backendID">Backend ID</string>
     <string name="logininfo">Login Details</string>
     <string name="hint_loginID">Login ID</string>
+    <string name="hint_accountid">Account ID</string>
 
     <string-array name="gender_arrays">
         <item>Male</item>
@@ -86,6 +87,16 @@
         <item>Select Account Type</item>
         <item>End User</item>
         <item>Back End</item>
+    </string-array>
+
+    <string-array name="topup_amount_arrays">
+        <item>Select Top Up Amount</item>
+        <item>RM 5</item>
+        <item>RM 10</item>
+        <item>RM 20</item>
+        <item>RM 50</item>
+        <item>RM 100</item>
+        <item>Other Amount</item>
     </string-array>
 
     <string-array name="enduser_authorization_arrays">

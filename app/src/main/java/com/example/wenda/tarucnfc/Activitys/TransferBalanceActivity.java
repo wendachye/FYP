@@ -26,8 +26,8 @@ import java.util.HashMap;
 
 public class TransferBalanceActivity extends BaseActivity {
 
-    EditText mEditTextAccountID, mEditTextAmount, mEditTextRemark;
-    Button mButtonConfirm;
+    private EditText mEditTextAccountID, mEditTextAmount, mEditTextRemark;
+    private Button mButtonConfirm;
     private String mTransferAccountID;
     private String mRecipientAccountID;
     private String mAmount;
@@ -40,7 +40,7 @@ public class TransferBalanceActivity extends BaseActivity {
     private String KEY_AMOUNT = "amount";
     private String KEY_REMARK = "remark";
     private String KEY_DATETIME = "dateTime";
-    private static final String TRANSFER_BALANCE_URL = "http://tarucandroid.comxa.com/Wallet/transfer_balance.php";
+    private static final String TRANSFER_BALANCE_URL = "http://fypproject.host56.com/Wallet/transfer_balance.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

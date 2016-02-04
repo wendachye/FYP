@@ -31,26 +31,26 @@ import java.util.HashMap;
 
 public class AccountFragment extends Fragment {
 
-    private final static String GET_JSON_URL = "http://tarucandroid.comxa.com/Login/get_account_view.php";
-    TextView mTextStudentId;
-    TextView mTextProgramme;
-    TextView mTextFaculty;
-    TextView mTextCampus;
-    TextView mTextSchoolEmail;
-    TextView mTextSessionJoined;
-    TextView mTextFullName;
-    TextView mTextNRICNO;
-    TextView mTextGender;
-    TextView mTextEmail;
-    TextView mTextContactNo;
-    TextView mTextHomeAddress;
-    TextView mTextCampusAddress;
-    ImageView mImage_profile;
-    LinearLayout mCampusAddress;
-    CardView mStudentInfo;
+    private final static String GET_JSON_URL = "http://fypproject.host56.com/Account/get_account_view.php";
+    private TextView mTextStudentId;
+    private TextView mTextProgramme;
+    private TextView mTextFaculty;
+    private TextView mTextCampus;
+    private TextView mTextSchoolEmail;
+    private TextView mTextSessionJoined;
+    private TextView mTextFullName;
+    private TextView mTextNRICNO;
+    private TextView mTextGender;
+    private TextView mTextEmail;
+    private TextView mTextContactNo;
+    private TextView mTextHomeAddress;
+    private TextView mTextCampusAddress;
+    private ImageView mImage_profile;
+    private LinearLayout mCampusAddress;
+    private CardView mStudentInfo;
     private Account account = new Account();
     private String mAccountID;
-    SwipeRefreshLayout mSwipeContainer;
+    private SwipeRefreshLayout mSwipeContainer;
 
     public AccountFragment() {
         // Required empty public constructor
@@ -167,7 +167,7 @@ public class AccountFragment extends Fragment {
 
     public void initialValues() {
 
-        if (account.getAccountType().equals("BackEnd")) {
+        if (account.getAccountType().equals("Back End")) {
             mStudentInfo.setVisibility(View.GONE);
             mCampusAddress.setVisibility(View.GONE);
         } else {

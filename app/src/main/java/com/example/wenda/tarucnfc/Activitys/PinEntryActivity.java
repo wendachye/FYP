@@ -24,36 +24,36 @@ import java.util.HashMap;
 
 public class PinEntryActivity extends BaseActivity {
 
-    private final static String GET_JSON_URL = "http://tarucandroid.comxa.com/Wallet/get_pin_code.php";
+    private final static String GET_JSON_URL = "http://fypproject.host56.com/Wallet/get_pin_code.php";
     public static final String KEY_PAYMENT = "selected";
     final int PIN_LENGTH = 4;
-    String userEntered;
-    String userPin = null;
+    private String userEntered;
+    private String userPin = null;
     boolean keyPadLockedFlag = false;
-    Context appContext;
-    TextView titleView;
-    TextView pinBox0;
-    TextView pinBox1;
-    TextView pinBox2;
-    TextView pinBox3;
-    TextView[] pinBoxArray;
-    TextView statusView;
-    TextView mTextView0;
-    TextView mTextView1;
-    TextView mTextView2;
-    TextView mTextView3;
-    TextView mTextView4;
-    TextView mTextView5;
-    TextView mTextView6;
-    TextView mTextView7;
-    TextView mTextView8;
-    TextView mTextView9;
-    Button buttonCancel;
-    Button buttonDelete;
+    private Context appContext;
+    private TextView titleView;
+    private TextView pinBox0;
+    private TextView pinBox1;
+    private TextView pinBox2;
+    private TextView pinBox3;
+    private TextView[] pinBoxArray;
+    private TextView statusView;
+    private TextView mTextView0;
+    private TextView mTextView1;
+    private TextView mTextView2;
+    private TextView mTextView3;
+    private TextView mTextView4;
+    private TextView mTextView5;
+    private TextView mTextView6;
+    private TextView mTextView7;
+    private TextView mTextView8;
+    private TextView mTextView9;
+    private Button buttonCancel;
+    private Button buttonDelete;
     private String mAccountID;
     private String selectType;
-
     private Account account = new Account();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

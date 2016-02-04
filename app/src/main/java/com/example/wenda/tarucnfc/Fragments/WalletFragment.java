@@ -32,13 +32,13 @@ import java.util.HashMap;
 
 public class WalletFragment extends Fragment implements View.OnClickListener {
 
-    Button mButtonHistory, mButtonTopUp, mButtonTransfer;
-    TextView mTextViewAccountBalance;
-    SwipeRefreshLayout mSwipeContainer;
+    private Button mButtonHistory, mButtonTopUp, mButtonTransfer;
+    private TextView mTextViewAccountBalance;
+    private SwipeRefreshLayout mSwipeContainer;
     private Account account = new Account();
     private String mAccountID;
     public static final String KEY_SELECTED = "selected";
-    private final static String GET_JSON_URL = "http://tarucandroid.comxa.com/Login/get_account_view.php";
+    private final static String GET_JSON_URL = "http://fypproject.host56.com/Wallet/get_account_balance.php";
 
     public WalletFragment() {
         // Required empty public constructor

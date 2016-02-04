@@ -24,13 +24,14 @@ import java.util.HashMap;
 
 public class ChangePinCodeActivity extends BaseActivity {
 
-    private static final String UPDATE_PINCODE_URL = "http://tarucandroid.comxa.com/Login/update_pincode.php";
+    private static final String UPDATE_PINCODE_URL = "http://fypproject.host56.com/Account/update_pincode.php";
     private OfflineLogin offlineLogin = new OfflineLogin();
     private Account account = new Account();
 
-    EditText mEditTextCurrent;
-    EditText mEditTextNew;
-    EditText mEditTextNewAgain;
+    private EditText mEditTextCurrent;
+    private EditText mEditTextNew;
+    private EditText mEditTextNewAgain;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

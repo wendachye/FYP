@@ -28,14 +28,14 @@ import java.util.HashMap;
 
 public class ForgotPasswordActivity extends BaseActivity {
 
-    EditText mEditTextAccountID, mEditTextNRICNo;
+    private EditText mEditTextAccountID, mEditTextNRICNo;
     private String mEmailAddress;
     private String mPassword;
     private String mAccountID, mNRICNo;
     private Account account = new Account();
     private Login login = new Login();
     private OfflineLogin offlineLogin = new OfflineLogin();
-    private static final String GET_EMAIL_URL = "http://tarucandroid.comxa.com/Login/get_emailAddress.php";
+    private static final String GET_EMAIL_URL = "http://fypproject.host56.com/Login/get_emailAddress.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
