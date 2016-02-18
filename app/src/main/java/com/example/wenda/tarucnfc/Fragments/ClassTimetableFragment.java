@@ -35,7 +35,7 @@ public class ClassTimetableFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private AdapterClassSchedule adapterClassSchedule;
 
-    final static String GET_CLASS_SCHEDULE_URL = "http://tarucandroid.comxa.com/ClassSchedule/get_class_schedule_view.php";
+    final static String GET_CLASS_SCHEDULE_URL = "http://fypproject.host56.com/ClassSchedule/get_class_schedule_view.php";
     private ClassSchedule classSchedule = new ClassSchedule();
     private JSONArray mJsonArray;
     private ArrayList<ClassSchedule> mListClassSchedule = new ArrayList<>();

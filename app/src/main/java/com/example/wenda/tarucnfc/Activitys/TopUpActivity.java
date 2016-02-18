@@ -9,6 +9,7 @@ import android.nfc.NfcAdapter;
 import android.nfc.NfcEvent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -69,7 +70,8 @@ public class TopUpActivity extends BaseActivity implements NfcAdapter.CreateNdef
 
     @Override
     public NdefMessage createNdefMessage(NfcEvent event) {
-        String message = mTextViewAccountID.getText().toString();
+        String message = mTextViewAccountID.getText().toString() + " " + mSpinnerTopUpAmount.getSelectedItem().toString();
+        Log.d("track", " " + message);
         NdefRecord ndefRecord = NdefRecord.createMime("text/plain", message.getBytes());
         NdefMessage ndefMessage = new NdefMessage(ndefRecord);
         return ndefMessage;

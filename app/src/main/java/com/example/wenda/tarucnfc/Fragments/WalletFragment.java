@@ -135,7 +135,8 @@ public class WalletFragment extends Fragment implements View.OnClickListener {
         @Override
         protected String doInBackground(String... strings) {
             HashMap<String, String> data = new HashMap<>();
-            data.put("accountID", String.valueOf(mAccountID));
+            data.put("accountID", mAccountID);
+            Log.d("track", " "+ mAccountID);
             return rh.sendPostRequest(GET_JSON_URL, data);
         }
     }
@@ -146,8 +147,6 @@ public class WalletFragment extends Fragment implements View.OnClickListener {
             JSONArray jsonArray = new JSONObject(json).getJSONArray(BaseActivity.JSON_ARRAY);
             JSONObject jsonObject = jsonArray.getJSONObject(0);
 
-            account.setAccountID(jsonObject.getString(AccountContract.AccountRecord.KEY_ACCOUNT_ID));
-            Log.d("track", "get id *" + jsonObject.getString(AccountContract.AccountRecord.KEY_ACCOUNT_ID));
             account.setAccountBalance(jsonObject.getString(AccountContract.AccountRecord.KEY_ACCOUNT_BALANCE));
 
         } catch (JSONException e) {

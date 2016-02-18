@@ -381,7 +381,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             JSONObject jsonObject = jsonArray.getJSONObject(0);
 
             account.setProfilePicturePath(jsonObject.getString(AccountContract.AccountRecord.KEY_PROFILE_PICTURE_PATH));
-            Log.d("track", "pix" + jsonObject.getString(AccountContract.AccountRecord.KEY_PROFILE_PICTURE_PATH));
 
         } catch (JSONException e) {
             e.printStackTrace();

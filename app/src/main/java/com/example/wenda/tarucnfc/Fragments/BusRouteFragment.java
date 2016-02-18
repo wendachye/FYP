@@ -42,7 +42,7 @@ public class BusRouteFragment extends Fragment implements View.OnClickListener {
     private SwipeRefreshLayout mSwipeContainer;
 
     private BusSchedule busSchedule = new BusSchedule();
-    private static final String GET_BUS_SCHEDULES_URL = "http://tarucandroid.comxa.com/BusSchedule/get_bus_schedule_view.php";
+    private static final String GET_BUS_SCHEDULES_URL = "http://fypproject.host56.com/BusSchedule/get_bus_schedule_view.php";
     private JSONArray mJsonArray;
 
     public BusRouteFragment() {
