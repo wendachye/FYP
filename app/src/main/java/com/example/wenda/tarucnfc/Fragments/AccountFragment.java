@@ -32,19 +32,20 @@ import java.util.HashMap;
 public class AccountFragment extends Fragment {
 
     private final static String GET_JSON_URL = "http://fypproject.host56.com/Account/get_account_view.php";
-    private TextView mTextStudentId;
-    private TextView mTextProgramme;
-    private TextView mTextFaculty;
-    private TextView mTextCampus;
-    private TextView mTextSchoolEmail;
-    private TextView mTextSessionJoined;
-    private TextView mTextFullName;
-    private TextView mTextNRICNO;
-    private TextView mTextGender;
-    private TextView mTextEmail;
-    private TextView mTextContactNo;
-    private TextView mTextHomeAddress;
-    private TextView mTextCampusAddress;
+    private TextView mTextViewStudentId;
+    private TextView mTextViewProgramme;
+    private TextView mTextViewFaculty;
+    private TextView mTextViewCampus;
+    private TextView mTextViewSchoolEmail;
+    private TextView mTextViewSessionJoined;
+    private TextView mTextViewFullName;
+    private TextView mTextViewNRICNO;
+    private TextView mTextViewGender;
+    private TextView mTextViewEmail;
+    private TextView mTextViewContactNo;
+    private TextView mTextViewHomeAddress;
+    private TextView mTextViewCampusAddress;
+    private TextView mTextViewGroupNo;
     private ImageView mImage_profile;
     private LinearLayout mCampusAddress;
     private CardView mStudentInfo;
@@ -84,19 +85,20 @@ public class AccountFragment extends Fragment {
         mCampusAddress = (LinearLayout) view.findViewById(R.id.campus_address);
         mStudentInfo = (CardView) view.findViewById(R.id.student_info);
         mSwipeContainer = (SwipeRefreshLayout) view.findViewById(R.id.swipeContainer);
-        mTextStudentId = (TextView) view.findViewById(R.id.text_studentid);
-        mTextProgramme = (TextView) view.findViewById(R.id.text_programme);
-        mTextFaculty = (TextView) view.findViewById(R.id.text_faculty);
-        mTextCampus = (TextView) view.findViewById(R.id.text_campus);
-        mTextSchoolEmail = (TextView) view.findViewById(R.id.text_school_email);
-        mTextSessionJoined = (TextView) view.findViewById(R.id.text_sessionJoined);
-        mTextFullName = (TextView) view.findViewById(R.id.text_fullname);
-        mTextNRICNO = (TextView) view.findViewById(R.id.text_nricno);
-        mTextGender = (TextView) view.findViewById(R.id.text_gender);
-        mTextEmail = (TextView) view.findViewById(R.id.text_email);
-        mTextContactNo = (TextView) view.findViewById(R.id.text_contactNo);
-        mTextHomeAddress = (TextView) view.findViewById(R.id.text_homeAddress);
-        mTextCampusAddress = (TextView) view.findViewById(R.id.text_campusAddress);
+        mTextViewStudentId = (TextView) view.findViewById(R.id.text_studentid);
+        mTextViewProgramme = (TextView) view.findViewById(R.id.text_programme);
+        mTextViewFaculty = (TextView) view.findViewById(R.id.text_faculty);
+        mTextViewCampus = (TextView) view.findViewById(R.id.text_campus);
+        mTextViewSchoolEmail = (TextView) view.findViewById(R.id.text_school_email);
+        mTextViewSessionJoined = (TextView) view.findViewById(R.id.text_sessionJoined);
+        mTextViewFullName = (TextView) view.findViewById(R.id.text_fullname);
+        mTextViewNRICNO = (TextView) view.findViewById(R.id.text_nricno);
+        mTextViewGender = (TextView) view.findViewById(R.id.text_gender);
+        mTextViewEmail = (TextView) view.findViewById(R.id.text_email);
+        mTextViewContactNo = (TextView) view.findViewById(R.id.text_contactNo);
+        mTextViewHomeAddress = (TextView) view.findViewById(R.id.text_homeAddress);
+        mTextViewCampusAddress = (TextView) view.findViewById(R.id.text_campusAddress);
+        mTextViewGroupNo = (TextView) view.findViewById(R.id.text_groupNo);
         mImage_profile = (ImageView) view.findViewById(R.id.image_profile);
     }
 
@@ -141,6 +143,7 @@ public class AccountFragment extends Fragment {
             account.setAccountID(jsonObject.getString(AccountRecord.KEY_ACCOUNT_ID));
             account.setFaculty(jsonObject.getString(AccountRecord.KEY_FACULTY));
             account.setProgramme(jsonObject.getString(AccountRecord.KEY_PROGRAMME));
+            account.setGroupNo(jsonObject.getString(AccountRecord.KEY_GROUPNO));
             account.setCampus(jsonObject.getString(AccountRecord.KEY_CAMPUS));
             account.setSchoolEmail(jsonObject.getString(AccountRecord.KEY_SCHOOL_EMAIL));
             account.setSessionJoined(jsonObject.getString(AccountRecord.KEY_SESSION_JOINED));
@@ -156,6 +159,7 @@ public class AccountFragment extends Fragment {
             account.setPINcode(jsonObject.getString(AccountRecord.KEY_PIN_CODE));
             account.setStatus(jsonObject.getString(AccountRecord.KEY_STATUS));
             account.setProfilePicturePath(jsonObject.getString(AccountRecord.KEY_PROFILE_PICTURE_PATH));
+            account.setGroupNo(jsonObject.getString(AccountRecord.KEY_GROUPNO));
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -172,22 +176,22 @@ public class AccountFragment extends Fragment {
             mCampusAddress.setVisibility(View.GONE);
         } else {
             mCampusAddress.setVisibility(View.VISIBLE);
-            mTextCampusAddress.setText(account.getCampusAddress());
+            mTextViewCampusAddress.setText(account.getCampusAddress());
         }
 
-        mTextStudentId.setText(account.getAccountID());
-        mTextProgramme.setText(account.getProgramme());
-        mTextFaculty.setText(account.getFaculty());
-        mTextCampus.setText(account.getCampus());
-        mTextSchoolEmail.setText(account.getSchoolEmail());
-        mTextSessionJoined.setText(account.getSessionJoined());
-        mTextFullName.setText(account.getName());
-        mTextNRICNO.setText(account.getNRICNo());
-        mTextGender.setText(account.getGender());
-        mTextEmail.setText(account.getEmailAddress());
-        mTextContactNo.setText(account.getContactNo());
-        mTextHomeAddress.setText(account.getHomeAddress());
-
+        mTextViewStudentId.setText(account.getAccountID());
+        mTextViewProgramme.setText(account.getProgramme());
+        mTextViewFaculty.setText(account.getFaculty());
+        mTextViewCampus.setText(account.getCampus());
+        mTextViewSchoolEmail.setText(account.getSchoolEmail());
+        mTextViewSessionJoined.setText(account.getSessionJoined());
+        mTextViewFullName.setText(account.getName());
+        mTextViewNRICNO.setText(account.getNRICNo());
+        mTextViewGender.setText(account.getGender());
+        mTextViewEmail.setText(account.getEmailAddress());
+        mTextViewContactNo.setText(account.getContactNo());
+        mTextViewHomeAddress.setText(account.getHomeAddress());
+        mTextViewGroupNo.setText(account.getGroupNo());
         ImageLoader.getInstance().displayImage(account.getProfilePicturePath(), mImage_profile, new BaseActivity().options);
     }
 

@@ -3,7 +3,7 @@ package com.example.wenda.tarucnfc.Domains;
 public class BusSchedule {
 
     private int busScheduleID;
-    private int backEndID;
+    private String backEndID;
     private String departure;
     private String destination;
     private String routeTime;
@@ -14,7 +14,7 @@ public class BusSchedule {
         return busScheduleID;
     }
 
-    public int getBackEndID() {
+    public String getBackEndID() {
         return backEndID;
     }
 
@@ -42,7 +42,7 @@ public class BusSchedule {
         this.busScheduleID = busScheduleId;
     }
 
-    public void setBackEndID(int backEndID) {
+    public void setBackEndID(String backEndID) {
         this.backEndID = backEndID;
     }
 

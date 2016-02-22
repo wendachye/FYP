@@ -43,7 +43,7 @@ public class MaintainAccountFragment extends Fragment {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(this.getFragmentManager());
-        adapter.addFragment(new AddNewAccountFragment(), "Add New Account");
+        adapter.addFragment(new AddNewAccountFragment(), "Add Account");
         adapter.addFragment(new SearhAccountFragment(), "Search Account");
         viewPager.setAdapter(adapter);
     }

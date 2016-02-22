@@ -112,6 +112,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                         fragmentTransaction.commit();
                         return true;
 
+                    case R.id.nav_menu_wallet1:
+                        getSupportActionBar().setTitle(R.string.wallet);
+                        WalletFragment fragmentWallet = new WalletFragment();
+                        fragmentTransaction.replace(R.id.frame, fragmentWallet);
+                        fragmentTransaction.commit();
+                        return true;
+
                     case R.id.nav_menu_account:
                         getSupportActionBar().setTitle(R.string.maintain_account);
                         MaintainAccountFragment fragementMaintainAccount = new MaintainAccountFragment();

@@ -8,6 +8,7 @@ public class Account {
 
     private String accountID;
     private String programme;
+    private String groupNo;
     private String faculty;
     private String campus;
     private String schoolEmail;
@@ -26,6 +27,14 @@ public class Account {
     private String profilePicturePath;
     private Bitmap profilePictureBitmap;
     private String authorization;
+
+    public String getGroupNo() {
+        return groupNo;
+    }
+
+    public void setGroupNo(String groupNo) {
+        this.groupNo = groupNo;
+    }
 
     public String getAccountID() {
         return accountID;

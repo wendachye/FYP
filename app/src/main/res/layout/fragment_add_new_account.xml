@@ -1,398 +1,588 @@
-<com.flipboard.bottomsheet.BottomSheetLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/bottomSheetLayout"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <ScrollView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <LinearLayout
+            <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginTop="10dp">
 
-                <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="32dp"
+                        android:layout_marginRight="32dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_gravity="center"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_account_box" />
+
+                        <Spinner
+                            android:id="@+id/spinner_account_type"
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginLeft="@dimen/activity_vertical_margin"
+                            android:layout_marginTop="5dp"
+                            android:entries="@array/account_type_arrays"
+                            android:spinnerMode="dialog" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/linear_layout_enduser"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="32dp"
+                        android:layout_marginRight="32dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_gravity="center"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_account_box" />
+
+                        <Spinner
+                            android:id="@+id/spinner_enduser_authorization"
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginLeft="@dimen/activity_vertical_margin"
+                            android:layout_marginTop="5dp"
+                            android:entries="@array/enduser_authorization_arrays"
+                            android:spinnerMode="dialog" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/linear_layout_backend"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="32dp"
+                        android:layout_marginRight="32dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_gravity="center"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_account_box" />
+
+                        <Spinner
+                            android:id="@+id/spinner_backend_authorization"
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginLeft="@dimen/activity_vertical_margin"
+                            android:layout_marginTop="5dp"
+                            android:entries="@array/backend_authorization_arrays"
+                            android:spinnerMode="dialog" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/cardview1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:background="#ffffff">
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginRight="12dp"
+                    android:layout_marginBottom="10dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp">
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical" >
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="32dp"
-                            android:layout_marginRight="32dp"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="24dp"
-                                android:layout_height="24dp"
-                                android:layout_gravity="center"
-                                android:scaleType="centerCrop"
-                                android:src="@drawable/ic_account_box" />
-
-                            <Spinner
-                                android:id="@+id/spinner_account_type"
-                                android:layout_width="match_parent"
-                                android:layout_height="30dp"
-                                android:layout_gravity="center"
-                                android:layout_marginBottom="5dp"
-                                android:layout_marginLeft="@dimen/activity_vertical_margin"
-                                android:layout_marginTop="5dp"
-                                android:entries="@array/account_type_arrays"
-                                android:spinnerMode="dialog"/>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/linear_layout_enduser"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="32dp"
-                            android:layout_marginRight="32dp"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="24dp"
-                                android:layout_height="24dp"
-                                android:layout_gravity="center"
-                                android:scaleType="centerCrop"
-                                android:src="@drawable/ic_account_box" />
-
-                            <Spinner
-                                android:id="@+id/spinner_enduser_authorization"
-                                android:layout_width="match_parent"
-                                android:layout_height="30dp"
-                                android:layout_gravity="center"
-                                android:layout_marginBottom="5dp"
-                                android:layout_marginLeft="@dimen/activity_vertical_margin"
-                                android:layout_marginTop="5dp"
-                                android:entries="@array/enduser_authorization_arrays"
-                                android:spinnerMode="dialog" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/linear_layout_backend"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="32dp"
-                            android:layout_marginRight="32dp"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="24dp"
-                                android:layout_height="24dp"
-                                android:layout_gravity="center"
-                                android:scaleType="centerCrop"
-                                android:src="@drawable/ic_account_box" />
-
-                            <Spinner
-                                android:id="@+id/spinner_backend_authorization"
-                                android:layout_width="match_parent"
-                                android:layout_height="30dp"
-                                android:layout_gravity="center"
-                                android:layout_marginBottom="5dp"
-                                android:layout_marginLeft="@dimen/activity_vertical_margin"
-                                android:layout_marginTop="5dp"
-                                android:entries="@array/backend_authorization_arrays"
-                                android:spinnerMode="dialog" />
-
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                </android.support.v7.widget.CardView>
-
-                <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:id="@+id/cardview1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginRight="12dp"
-                    android:background="#ffffff">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginTop="10dp"
-                        android:gravity="center"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
                         android:orientation="vertical">
 
-
-                        <LinearLayout
+                        <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="5dp"
-                            android:layout_marginTop="5dp"
-                            android:orientation="vertical">
+                            android:text="@string/privateinfo"
+                            android:textAlignment="center"
+                            android:textSize="20dp"
+                            android:textStyle="bold" />
 
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@string/privateinfo"
-                                android:textAlignment="center"
-                                android:textSize="20dp"
-                                android:textStyle="bold" />
-
-                            <View
-                                android:layout_width="wrap_content"
-                                android:layout_height="0.5dp"
-                                android:layout_marginLeft="16dp"
-                                android:layout_marginRight="16dp"
-                                android:layout_marginTop="3dp"
-                                android:background="@color/colorPrimary" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="30dp"
-                            android:layout_marginRight="28dp"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="24dp"
-                                android:layout_height="24dp"
-                                android:layout_gravity="center"
-                                android:scaleType="centerCrop"
-                                android:src="@drawable/ic_tag_text_outline" />
-
-                            <EditText
-                                android:id="@+id/edit_text_accountID"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:layout_marginLeft="@dimen/activity_vertical_margin"
-                                android:hint=""
-                                android:inputType="text" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="30dp"
-                            android:layout_marginRight="30dp"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="24dp"
-                                android:layout_height="24dp"
-                                android:layout_gravity="center"
-                                android:scaleType="centerCrop"
-                                android:src="@drawable/ic_account_box" />
-
-                            <EditText
-                                android:id="@+id/edit_text_fullname"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:layout_marginLeft="@dimen/activity_vertical_margin"
-                                android:hint="@string/hint_fullname"
-                                android:inputType="text" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="30dp"
-                            android:layout_marginRight="30dp"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="24dp"
-                                android:layout_height="24dp"
-                                android:layout_gravity="center"
-                                android:scaleType="centerCrop"
-                                android:src="@drawable/ic_credit_card" />
-
-                            <EditText
-                                android:id="@+id/edit_text_nric"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:layout_marginLeft="@dimen/activity_vertical_margin"
-                                android:hint="@string/hint_nric"
-                                android:inputType="number" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="30dp"
-                            android:layout_marginRight="30dp"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="24dp"
-                                android:layout_height="24dp"
-                                android:layout_gravity="center"
-                                android:scaleType="centerCrop"
-                                android:src="@drawable/ic_cellphone_android" />
-
-                            <EditText
-                                android:id="@+id/edit_text_contact"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:layout_marginLeft="@dimen/activity_vertical_margin"
-                                android:hint="@string/hint_contact"
-                                android:inputType="text" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="30dp"
-                            android:layout_marginRight="30dp"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="24dp"
-                                android:layout_height="24dp"
-                                android:layout_gravity="center"
-                                android:scaleType="centerCrop"
-                                android:src="@drawable/ic_email" />
-
-                            <EditText
-                                android:id="@+id/edit_text_email"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:layout_marginLeft="@dimen/activity_vertical_margin"
-                                android:hint="@string/hint_email"
-                                android:inputType="text" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="30dp"
-                            android:layout_marginRight="30dp"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="24dp"
-                                android:layout_height="24dp"
-                                android:layout_gravity="center"
-                                android:scaleType="centerCrop"
-                                android:src="@drawable/ic_gender_male_female" />
-
-                            <Spinner
-                                android:id="@+id/spinner_gender"
-                                android:layout_width="135dp"
-                                android:layout_height="30dp"
-                                android:layout_gravity="center"
-                                android:layout_marginBottom="5dp"
-                                android:layout_marginLeft="@dimen/activity_vertical_margin"
-                                android:layout_marginTop="5dp"
-                                android:entries="@array/gender_arrays"
-                                android:prompt="@string/hint_gender"
-                                android:spinnerMode="dialog" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="30dp"
-                            android:layout_marginRight="30dp"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="24dp"
-                                android:layout_height="24dp"
-                                android:layout_gravity="center"
-                                android:scaleType="centerCrop"
-                                android:src="@drawable/ic_home" />
-
-                            <EditText
-                                android:id="@+id/edit_text_homeAddress"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:layout_marginLeft="@dimen/activity_vertical_margin"
-                                android:hint="@string/hint_homeAddress"
-                                android:inputType="text" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/linear_layout_campus"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="30dp"
-                            android:layout_marginRight="30dp"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="24dp"
-                                android:layout_height="24dp"
-                                android:layout_gravity="center"
-                                android:scaleType="centerCrop"
-                                android:src="@drawable/ic_map_marker" />
-
-                            <EditText
-                                android:id="@+id/edit_text_campusAddress"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:layout_marginLeft="@dimen/activity_vertical_margin"
-                                android:hint="@string/hint_campusAddress"
-                                android:inputType="text" />
-
-                        </LinearLayout>
+                        <View
+                            android:layout_width="wrap_content"
+                            android:layout_height="0.5dp"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginRight="16dp"
+                            android:layout_marginTop="3dp"
+                            android:background="@color/colorPrimary" />
 
                     </LinearLayout>
-
-                </android.support.v7.widget.CardView>
-
-                <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:id="@+id/cardview3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginRight="12dp"
-                    android:background="#ffffff">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginTop="10dp"
-                        android:gravity="center"
-                        android:orientation="vertical">
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="28dp"
+                        android:orientation="horizontal">
 
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_gravity="center"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_tag_text_outline" />
 
-                        <LinearLayout
+                        <EditText
+                            android:id="@+id/edit_text_accountID"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="@dimen/activity_vertical_margin"
+                            android:hint=""
+                            android:inputType="text" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="30dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_gravity="center"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_account_box" />
+
+                        <EditText
+                            android:id="@+id/edit_text_fullname"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="@dimen/activity_vertical_margin"
+                            android:hint="@string/hint_fullname"
+                            android:inputType="text" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="30dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_gravity="center"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_credit_card" />
+
+                        <EditText
+                            android:id="@+id/edit_text_nric"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="@dimen/activity_vertical_margin"
+                            android:hint="@string/hint_nric"
+                            android:inputType="number" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="30dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_gravity="center"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_cellphone_android" />
+
+                        <EditText
+                            android:id="@+id/edit_text_contact"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="@dimen/activity_vertical_margin"
+                            android:hint="@string/hint_contact"
+                            android:inputType="text" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="30dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_gravity="center"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_email" />
+
+                        <EditText
+                            android:id="@+id/edit_text_email"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="@dimen/activity_vertical_margin"
+                            android:hint="@string/hint_email"
+                            android:inputType="text" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="30dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_gravity="center"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_gender_male_female" />
+
+                        <Spinner
+                            android:id="@+id/spinner_gender"
+                            android:layout_width="135dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center"
                             android:layout_marginBottom="5dp"
+                            android:layout_marginLeft="@dimen/activity_vertical_margin"
                             android:layout_marginTop="5dp"
-                            android:orientation="vertical">
+                            android:entries="@array/gender_arrays"
+                            android:prompt="@string/hint_gender"
+                            android:spinnerMode="dialog" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="30dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_gravity="center"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_home" />
+
+                        <EditText
+                            android:id="@+id/edit_text_homeAddress"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="@dimen/activity_vertical_margin"
+                            android:hint="@string/hint_homeAddress"
+                            android:inputType="text" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/linear_layout_campus"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="30dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_gravity="center"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_map_marker" />
+
+                        <EditText
+                            android:id="@+id/edit_text_campusAddress"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="@dimen/activity_vertical_margin"
+                            android:hint="@string/hint_campusAddress"
+                            android:inputType="text" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/cardview2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:background="#ffffff">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/studentinfo"
+                            android:textAlignment="center"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                        <View
+                            android:layout_width="wrap_content"
+                            android:layout_height="0.5dp"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginRight="16dp"
+                            android:layout_marginTop="3dp"
+                            android:background="@color/colorPrimary" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="30dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_gravity="center"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_school" />
+
+                        <EditText
+                            android:id="@+id/edit_text_faculty"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="@dimen/activity_vertical_margin"
+                            android:hint="@string/hint_faculty"
+                            android:inputType="text" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="30dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_gravity="center"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_book_open_variant" />
+
+                        <EditText
+                            android:id="@+id/edit_text_programme"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="@dimen/activity_vertical_margin"
+                            android:hint="@string/hint_programme"
+                            android:inputType="text" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="30dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_gravity="center"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_account_multiple" />
+
+                        <EditText
+                            android:id="@+id/edit_text_groupNo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="@dimen/activity_vertical_margin"
+                            android:hint="@string/hint_groupNo"
+                            android:inputType="text" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="30dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_gravity="center"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_hospital_building" />
+
+                        <EditText
+                            android:id="@+id/edit_text_campus"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="@dimen/activity_vertical_margin"
+                            android:hint="@string/hint_campus"
+                            android:inputType="text" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="30dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_gravity="center"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_email" />
+
+                        <EditText
+                            android:id="@+id/edit_text_school_email"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="@dimen/activity_vertical_margin"
+                            android:hint="@string/hint_school_email"
+                            android:inputType="text" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="30dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_gravity="center"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_timetable" />
+
+                        <EditText
+                            android:id="@+id/edit_text_sessionJoined"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="@dimen/activity_vertical_margin"
+                            android:hint="@string/hint_sessionJoined"
+                            android:inputType="text" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/cardview3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:background="#ffffff">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:orientation="vertical">
 
                         <TextView
                             android:layout_width="match_parent"
@@ -410,252 +600,79 @@
                             android:layout_marginTop="3dp"
                             android:background="@color/colorPrimary" />
 
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="5dp"
-                            android:layout_marginLeft="32dp"
-                            android:layout_marginRight="30dp"
-                            android:layout_marginTop="5dp"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="24dp"
-                                android:layout_height="24dp"
-                                android:layout_gravity="center"
-                                android:scaleType="centerCrop"
-                                android:src="@drawable/ic_login" />
-
-                            <TextView
-                                android:id="@+id/text_view_loginID"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:layout_marginLeft="@dimen/activity_vertical_margin"
-                                android:hint="@string/hint_loginID"
-                                android:textSize="17sp" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="5dp"
-                            android:layout_marginLeft="32dp"
-                            android:layout_marginRight="30dp"
-                            android:layout_marginTop="5dp"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="24dp"
-                                android:layout_height="24dp"
-                                android:layout_gravity="center"
-                                android:scaleType="centerCrop"
-                                android:src="@drawable/ic_lock" />
-
-                            <TextView
-                                android:id="@+id/text_view_password"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:layout_marginLeft="@dimen/activity_vertical_margin"
-                                android:hint="@string/hint_password"
-                                android:textSize="17sp" />
-
-                        </LinearLayout>
-
                     </LinearLayout>
-
-                </android.support.v7.widget.CardView>
-
-                <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:id="@+id/cardview2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginRight="12dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="#ffffff">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginTop="10dp"
-                        android:gravity="center"
-                        android:orientation="vertical">
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginLeft="32dp"
+                        android:layout_marginRight="30dp"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal">
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_gravity="center"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_login" />
+
+                        <TextView
+                            android:id="@+id/text_view_loginID"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="5dp"
-                            android:layout_marginTop="5dp"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@string/studentinfo"
-                                android:textAlignment="center"
-                                android:textSize="20sp"
-                                android:textStyle="bold" />
-
-                            <View
-                                android:layout_width="wrap_content"
-                                android:layout_height="0.5dp"
-                                android:layout_marginLeft="16dp"
-                                android:layout_marginRight="16dp"
-                                android:layout_marginTop="3dp"
-                                android:background="@color/colorPrimary" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="30dp"
-                            android:layout_marginRight="30dp"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="24dp"
-                                android:layout_height="24dp"
-                                android:layout_gravity="center"
-                                android:scaleType="centerCrop"
-                                android:src="@drawable/ic_book_open_variant" />
-
-                            <EditText
-                                android:id="@+id/edit_text_programme"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:layout_marginLeft="@dimen/activity_vertical_margin"
-                                android:hint="@string/hint_programme"
-                                android:inputType="text" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="30dp"
-                            android:layout_marginRight="30dp"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="24dp"
-                                android:layout_height="24dp"
-                                android:layout_gravity="center"
-                                android:scaleType="centerCrop"
-                                android:src="@drawable/ic_school" />
-
-                            <EditText
-                                android:id="@+id/edit_text_faculty"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:layout_marginLeft="@dimen/activity_vertical_margin"
-                                android:hint="@string/hint_faculty"
-                                android:inputType="text" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="30dp"
-                            android:layout_marginRight="30dp"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="24dp"
-                                android:layout_height="24dp"
-                                android:layout_gravity="center"
-                                android:scaleType="centerCrop"
-                                android:src="@drawable/ic_hospital_building" />
-
-                            <EditText
-                                android:id="@+id/edit_text_campus"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:layout_marginLeft="@dimen/activity_vertical_margin"
-                                android:hint="@string/hint_campus"
-                                android:inputType="text" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="30dp"
-                            android:layout_marginRight="30dp"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="24dp"
-                                android:layout_height="24dp"
-                                android:layout_gravity="center"
-                                android:scaleType="centerCrop"
-                                android:src="@drawable/ic_email" />
-
-                            <EditText
-                                android:id="@+id/edit_text_school_email"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:layout_marginLeft="@dimen/activity_vertical_margin"
-                                android:hint="@string/hint_school_email"
-                                android:inputType="text" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="30dp"
-                            android:layout_marginRight="30dp"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="24dp"
-                                android:layout_height="24dp"
-                                android:layout_gravity="center"
-                                android:scaleType="centerCrop"
-                                android:src="@drawable/ic_timetable" />
-
-                            <EditText
-                                android:id="@+id/edit_text_sessionJoined"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:layout_marginLeft="@dimen/activity_vertical_margin"
-                                android:hint="@string/hint_sessionJoined"
-                                android:inputType="text"/>
-
-                        </LinearLayout>
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="@dimen/activity_vertical_margin"
+                            android:hint="@string/hint_loginID"
+                            android:textSize="17sp" />
 
                     </LinearLayout>
 
-                </android.support.v7.widget.CardView>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginLeft="32dp"
+                        android:layout_marginRight="30dp"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal">
 
-                <Button
-                    android:id="@+id/button_confirm"
-                    android:layout_width="200dp"
-                    android:layout_height="40dp"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="10dp"
-                    android:text="@string/confirm"
-                    android:textSize="20sp"
-                    android:textColor="@color/colorWhite"
-                    android:background="@color/colorPrimary"/>
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_gravity="center"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_lock" />
 
-            </LinearLayout>
+                        <TextView
+                            android:id="@+id/text_view_password"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="@dimen/activity_vertical_margin"
+                            android:hint="@string/hint_password"
+                            android:textSize="17sp" />
 
-        </ScrollView>
+                    </LinearLayout>
 
-    </LinearLayout>
+                </LinearLayout>
 
-</com.flipboard.bottomsheet.BottomSheetLayout>
+            </android.support.v7.widget.CardView>
+
+            <Button
+                android:id="@+id/button_confirm"
+                android:layout_width="200dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:background="@color/colorPrimary"
+                android:text="@string/confirm"
+                android:textColor="@color/colorWhite"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

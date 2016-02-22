@@ -9,6 +9,7 @@ public class AccountContract {
     public static abstract class AccountRecord implements BaseColumns {
         public final static String KEY_ACCOUNT_ID = "AccountID";
         public final static String KEY_PROGRAMME = "Programme";
+        public final static String KEY_GROUPNO = "GroupNo";
         public final static String KEY_FACULTY = "Faculty";
         public final static String KEY_CAMPUS = "Campus";
         public final static String KEY_SCHOOL_EMAIL = "SchoolEmail";

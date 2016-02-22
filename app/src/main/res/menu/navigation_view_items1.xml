@@ -10,6 +10,11 @@
             android:icon="@drawable/newspaper"/>
 
         <item
+            android:id="@+id/nav_menu_wallet1"
+            android:title="Wallet"
+            android:icon="@drawable/credit_card_multiple"/>
+
+       <item
             android:id="@+id/nav_menu_account"
             android:title="Maintain Account"
             android:icon="@drawable/account_check"/>

@@ -164,6 +164,7 @@ public class LoginActivity extends BaseActivity {
                 offlineLogin.setProfilePicturePath(jsonObject.getString(AccountContract.AccountRecord.KEY_PROFILE_PICTURE_PATH));
                 offlineLogin.setLoginResponse(jsonObject.getInt(KEY_RESPONSE));
                 offlineLogin.set_Authorization(jsonObject.getString(KEY_AUTHORIZATION));
+                offlineLogin.setGroupNo(jsonObject.getString(AccountContract.AccountRecord.KEY_GROUPNO));
 
                 Log.d("track", "authorization " + jsonObject.getString(KEY_AUTHORIZATION));
                 Log.d("track", "Response " + jsonObject.getInt(KEY_RESPONSE));

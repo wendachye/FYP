@@ -43,7 +43,7 @@ public class MaintainBusScheduleFragment extends Fragment {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(this.getFragmentManager());
-        adapter.addFragment(new AddNewBusScheduleFragment(), "Add New Bus Schedule");
+        adapter.addFragment(new AddNewBusScheduleFragment(), "Add Bus Schedule");
         adapter.addFragment(new SearchBusScheduleFragment(), "Search Bus Schedule");
         viewPager.setAdapter(adapter);
     }

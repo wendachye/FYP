@@ -4,6 +4,7 @@ package com.example.wenda.tarucnfc.Fragments;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -34,6 +35,7 @@ public class ClassTimetableFragment extends Fragment {
     private String mGroupNo;
     private RecyclerView mRecyclerView;
     private AdapterClassSchedule adapterClassSchedule;
+    private SwipeRefreshLayout mSwipeContainer;
 
     final static String GET_CLASS_SCHEDULE_URL = "http://fypproject.host56.com/ClassSchedule/get_class_schedule_view.php";
     private ClassSchedule classSchedule = new ClassSchedule();
@@ -54,44 +56,26 @@ public class ClassTimetableFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_class_timetable, container, false);
 
+        mFaculty = new BaseActivity().getLoginDetail(getActivity()).getFaculty();
+        mProgramme = "RSD3";
+        mGroupNo = "F2";
+
         mListClassSchedule.clear();
 
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        mFaculty = new BaseActivity().getLoginDetail(getActivity()).getFaculty();
-        mProgramme = "RSD3";
-        mGroupNo = "F2";
+        new GetJson(mFaculty, mProgramme, mGroupNo, condition).execute();
 
-        switch (condition) {
-            case "Monday":
+        mSwipeContainer = (SwipeRefreshLayout) view.findViewById(R.id.swipeContainer);
+        mSwipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                mListClassSchedule.clear();
+
                 new GetJson(mFaculty, mProgramme, mGroupNo, condition).execute();
-                break;
-
-            case "Tuesday":
-                new GetJson(mFaculty, mProgramme, mGroupNo, condition).execute();
-                break;
-
-            case "Wednesday":
-                new GetJson(mFaculty, mProgramme, mGroupNo, condition).execute();
-                break;
-
-            case "Thursday":
-                new GetJson(mFaculty, mProgramme, mGroupNo, condition).execute();
-                break;
-
-            case "Friday":
-                new GetJson(mFaculty, mProgramme, mGroupNo, condition).execute();
-                break;
-
-            case "Saturday":
-                new GetJson(mFaculty, mProgramme, mGroupNo, condition).execute();
-                break;
-
-            default:
-                break;
-        }
-
+            }
+        });
 
 
         return view;
@@ -119,14 +103,15 @@ public class ClassTimetableFragment extends Fragment {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            UIUtils.getProgressDialog(getActivity(), "ON");
+            //UIUtils.getProgressDialog(getActivity(), "ON");
         }
 
 
         @Override
         protected void onPostExecute(String json) {
             super.onPostExecute(json);
-            UIUtils.getProgressDialog(getActivity(), "OFF");
+            //UIUtils.getProgressDialog(getActivity(), "OFF");
+            mSwipeContainer.setRefreshing(false);
             convertJson(json);
             extractJsonData();
         }
@@ -167,9 +152,6 @@ public class ClassTimetableFragment extends Fragment {
                 classSchedule.setDay(jsonObject.getString(ClassScheduleRecord.COLUMN_DAY));
                 classSchedule.setStartTime(jsonObject.getString(ClassScheduleRecord.COLUMN_START_TIME));
                 classSchedule.setEndTime(jsonObject.getString(ClassScheduleRecord.COLUMN_END_TIME));
-
-
-
 
                 Log.d("track", "a " + jsonObject.getString(ClassScheduleRecord.COLUMN_END_TIME));
                 Log.d("track", "list size " + mListClassSchedule.size());

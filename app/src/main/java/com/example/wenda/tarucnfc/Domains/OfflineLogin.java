@@ -6,6 +6,7 @@ public class OfflineLogin {
     private int loginId;
     private String accountID;
     private String programme;
+    private String groupNo;
     private String faculty;
     private String campus;
     private String schoolEmail;
@@ -24,6 +25,14 @@ public class OfflineLogin {
     private String authorization;
     private String profilePicturePath;
     private int loginResponse;
+
+    public String getGroupNo() {
+        return groupNo;
+    }
+
+    public void setGroupNo(String groupNo) {
+        this.groupNo = groupNo;
+    }
 
     public void setLoginId(int loginId) {
         this.loginId = loginId;

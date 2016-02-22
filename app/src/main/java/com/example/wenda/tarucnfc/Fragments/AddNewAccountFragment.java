@@ -51,6 +51,7 @@ public class AddNewAccountFragment extends Fragment implements View.OnClickListe
     private EditText mEditTextCampusAddress;
     private EditText mEditTextAccountID;
     private EditText mEditTextProgramme;
+    private EditText mEditTextGroupNo;
     private EditText mEditTextFaculty;
     private EditText mEditTextCampus;
     private EditText mEditTextSchoolEmail;
@@ -291,6 +292,7 @@ public class AddNewAccountFragment extends Fragment implements View.OnClickListe
         mEditTextCampusAddress = (EditText) view.findViewById(R.id.edit_text_campusAddress);
         mEditTextAccountID = (EditText) view.findViewById(R.id.edit_text_accountID);
         mEditTextProgramme = (EditText) view.findViewById(R.id.edit_text_programme);
+        mEditTextGroupNo = (EditText) view.findViewById(R.id.edit_text_groupNo);
         mEditTextFaculty = (EditText) view.findViewById(R.id.edit_text_faculty);
         mEditTextCampus = (EditText) view.findViewById(R.id.edit_text_campus);
         mEditTextSchoolEmail = (EditText) view.findViewById(R.id.edit_text_school_email);
@@ -333,6 +335,7 @@ public class AddNewAccountFragment extends Fragment implements View.OnClickListe
         account.setHomeAddress(mEditTextHomeAddress.getText().toString());
         account.setCampusAddress(mEditTextCampusAddress.getText().toString());
         account.setProgramme(mEditTextProgramme.getText().toString());
+        account.setGroupNo(mEditTextGroupNo.getText().toString());
         account.setFaculty(mEditTextFaculty.getText().toString());
         account.setCampus(mEditTextCampus.getText().toString());
         account.setSchoolEmail(mEditTextSchoolEmail.getText().toString());
@@ -351,8 +354,8 @@ public class AddNewAccountFragment extends Fragment implements View.OnClickListe
         // check network
         if(new BaseActivity().isNetworkAvailable(getActivity()) == true) {
             new AddAccount(account, login).execute();
-            getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
-            BaseActivity.shortToast(getActivity(), "Profile Updated.");
+            mSpinnerAccountType.setSelection(0);
+            BaseActivity.shortToast(getActivity(), "New Account Created.");
         } else {
             BaseActivity.shortToast(getActivity(), "Network not available");
         }
@@ -413,6 +416,7 @@ public class AddNewAccountFragment extends Fragment implements View.OnClickListe
             data.put("campusAddress", this.account.getCampusAddress());
             data.put("accountType", this.account.getAccountType());
             data.put("programme", this.account.getProgramme());
+            data.put("groupNo", this.account.getGroupNo());
             data.put("faculty", this.account.getFaculty());
             data.put("campus", this.account.getCampus());
             data.put("schoolEmail", this.account.getSchoolEmail());

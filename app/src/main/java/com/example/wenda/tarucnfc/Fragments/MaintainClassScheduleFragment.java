@@ -43,7 +43,7 @@ public class MaintainClassScheduleFragment extends Fragment {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(this.getFragmentManager());
-        adapter.addFragment(new AddNewClassScheduleFragment(), "Add New Class Schedule");
+        adapter.addFragment(new AddNewClassScheduleFragment(), "Add Class Schedule");
         adapter.addFragment(new SearchClassScheduleFragment(), "Search Class Schedule");
         viewPager.setAdapter(adapter);
     }

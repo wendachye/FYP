@@ -118,6 +118,8 @@ public class EditAccountActivity extends BaseActivity implements View.OnClickLis
         else if (id == R.id.saveButton) {
             updateAccount();
             finish();
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
             shortToast(this, "Profile Updated.");
         }
 
