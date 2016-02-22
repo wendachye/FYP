@@ -165,6 +165,7 @@ public class LoginActivity extends BaseActivity {
                 offlineLogin.setLoginResponse(jsonObject.getInt(KEY_RESPONSE));
                 offlineLogin.set_Authorization(jsonObject.getString(KEY_AUTHORIZATION));
                 offlineLogin.setGroupNo(jsonObject.getString(AccountContract.AccountRecord.KEY_GROUPNO));
+                offlineLogin.setLoginId(Integer.parseInt(jsonObject.getString(AccountContract.AccountRecord.KEY_LOGIN_ID)));
 
                 Log.d("track", "authorization " + jsonObject.getString(KEY_AUTHORIZATION));
                 Log.d("track", "Response " + jsonObject.getInt(KEY_RESPONSE));

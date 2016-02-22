@@ -83,6 +83,9 @@
     <string name="location">Location:</string>
     <string name="startTime">Start Time:</string>
     <string name="endTime">End Time:</string>
+    <string name="faculty">Faculty:</string>
+    <string name="programme">Programme:</string>
+    <string name="groupNo">Group No:</string>
 
     <string-array name="gender_arrays">
         <item>Male</item>
@@ -152,6 +155,23 @@
     <string-array name="sessionJoined2_arrays">
         <item>04</item>
         <item>09</item>
+    </string-array>
+
+    <string-array name="faculty_arrays">
+        <item>FASC</item>
+        <item>FAFB</item>
+        <item>FEBE</item>
+        <item>FSAH</item>
+        <item>CPUS</item>
+    </string-array>
+
+    <string-array name="day_arrays">
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
     </string-array>
 
 </resources>

@@ -7,6 +7,7 @@ public class AccountContract {
     }
 
     public static abstract class AccountRecord implements BaseColumns {
+        public final static String KEY_LOGIN_ID = "LoginID";
         public final static String KEY_ACCOUNT_ID = "AccountID";
         public final static String KEY_PROGRAMME = "Programme";
         public final static String KEY_GROUPNO = "GroupNo";

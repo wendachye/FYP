@@ -1,5 +1,6 @@
 package com.example.wenda.tarucnfc.Activitys;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
@@ -128,7 +129,10 @@ public class ChangePasswordActivity extends BaseActivity {
             switch (offlineLogin.getLoginResponse()){
                 case RESPONSE_SUCCESS:
                     shortToast(ChangePasswordActivity.this,"Password was changed.");
+                    MainActivity.main.finish();
                     finish();
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(intent);
                     break;
                 case RESPONSE_PASSWORD_INCORRECT:
                     // password incorrect
