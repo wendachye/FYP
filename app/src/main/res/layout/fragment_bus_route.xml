@@ -58,16 +58,16 @@
                     android:id="@+id/cardview1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginRight="12dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:layout_marginTop="12dp"
                     android:background="#ffffff">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginTop="8dp"
                         android:orientation="vertical">
 
                         <LinearLayout
@@ -101,7 +101,7 @@
                                 android:layout_gravity="center"
                                 android:layout_marginLeft="10dp"
                                 android:text=""
-                                android:textColor="@color/colorPrimary"
+                                android:textColor="@color/teal"
                                 android:textSize="20sp"
                                 android:textStyle="bold" />
 
@@ -113,7 +113,6 @@
                             android:layout_marginBottom="5dp"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
-                            android:layout_marginTop="5dp"
                             android:orientation="horizontal">
 
                             <ImageView
@@ -139,6 +138,7 @@
                                 android:layout_marginLeft="10dp"
                                 android:text=""
                                 android:textSize="20sp"
+                                android:textColor="@color/teal"
                                 android:textStyle="bold" />
 
                         </LinearLayout>
@@ -149,7 +149,6 @@
                             android:layout_marginBottom="5dp"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
-                            android:layout_marginTop="5dp"
                             android:orientation="horizontal">
 
                             <ImageView
@@ -175,6 +174,7 @@
                                 android:layout_marginLeft="10dp"
                                 android:text=""
                                 android:textSize="20sp"
+                                android:textColor="@color/teal"
                                 android:textStyle="bold" />
 
                         </LinearLayout>
@@ -185,7 +185,6 @@
                             android:layout_marginBottom="5dp"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
-                            android:layout_marginTop="5dp"
                             android:orientation="horizontal">
 
                             <ImageView
@@ -211,6 +210,7 @@
                                 android:layout_marginLeft="10dp"
                                 android:text=""
                                 android:textSize="20sp"
+                                android:textColor="@color/teal"
                                 android:textStyle="bold" />
 
                         </LinearLayout>
@@ -223,16 +223,16 @@
                     android:id="@+id/cardview2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginRight="12dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:layout_marginTop="12dp"
                     android:background="#ffffff">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginTop="8dp"
                         android:orientation="vertical">
 
                         <LinearLayout
@@ -266,8 +266,8 @@
                                 android:layout_gravity="center"
                                 android:layout_marginLeft="10dp"
                                 android:text=""
-                                android:textColor="@color/colorPrimary"
                                 android:textSize="20sp"
+                                android:textColor="@color/teal"
                                 android:textStyle="bold" />
 
                         </LinearLayout>
@@ -278,7 +278,6 @@
                             android:layout_marginBottom="5dp"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
-                            android:layout_marginTop="5dp"
                             android:orientation="horizontal">
 
                             <ImageView
@@ -303,6 +302,7 @@
                                 android:layout_gravity="center"
                                 android:layout_marginLeft="10dp"
                                 android:text=""
+                                android:textColor="@color/teal"
                                 android:textSize="20sp"
                                 android:textStyle="bold" />
 
@@ -314,7 +314,6 @@
                             android:layout_marginBottom="5dp"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
-                            android:layout_marginTop="5dp"
                             android:orientation="horizontal">
 
                             <ImageView
@@ -340,6 +339,7 @@
                                 android:layout_marginLeft="10dp"
                                 android:text=""
                                 android:textSize="20sp"
+                                android:textColor="@color/teal"
                                 android:textStyle="bold" />
 
                         </LinearLayout>
@@ -350,7 +350,6 @@
                             android:layout_marginBottom="5dp"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
-                            android:layout_marginTop="5dp"
                             android:orientation="horizontal">
 
                             <ImageView
@@ -376,6 +375,7 @@
                                 android:layout_marginLeft="10dp"
                                 android:text=""
                                 android:textSize="20sp"
+                                android:textColor="@color/teal"
                                 android:textStyle="bold" />
 
                         </LinearLayout>
@@ -389,16 +389,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginRight="12dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:layout_marginTop="12dp"
                     android:background="#ffffff">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginTop="8dp"
                         android:orientation="vertical">
 
                         <LinearLayout
@@ -432,7 +432,7 @@
                                 android:layout_gravity="center"
                                 android:layout_marginLeft="10dp"
                                 android:text=""
-                                android:textColor="@color/colorPrimary"
+                                android:textColor="@color/teal"
                                 android:textSize="20sp"
                                 android:textStyle="bold" />
 
@@ -444,7 +444,6 @@
                             android:layout_marginBottom="5dp"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
-                            android:layout_marginTop="5dp"
                             android:orientation="horizontal">
 
                             <ImageView
@@ -470,6 +469,7 @@
                                 android:layout_marginLeft="10dp"
                                 android:text=""
                                 android:textSize="20sp"
+                                android:textColor="@color/teal"
                                 android:textStyle="bold" />
 
                         </LinearLayout>
@@ -480,7 +480,6 @@
                             android:layout_marginBottom="5dp"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
-                            android:layout_marginTop="5dp"
                             android:orientation="horizontal">
 
                             <ImageView
@@ -506,6 +505,7 @@
                                 android:layout_marginLeft="10dp"
                                 android:text=""
                                 android:textSize="20sp"
+                                android:textColor="@color/teal"
                                 android:textStyle="bold" />
 
                         </LinearLayout>
@@ -516,7 +516,6 @@
                             android:layout_marginBottom="5dp"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
-                            android:layout_marginTop="5dp"
                             android:orientation="horizontal">
 
                             <ImageView
@@ -542,6 +541,7 @@
                                 android:layout_marginLeft="10dp"
                                 android:text=""
                                 android:textSize="20sp"
+                                android:textColor="@color/teal"
                                 android:textStyle="bold" />
 
                         </LinearLayout>

@@ -31,14 +31,9 @@ public class AdapterClassSchedule extends RecyclerView.Adapter<AdapterClassSched
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-
-        holder.faculty.setText(items.get(position).getFaculty());
-        holder.programme.setText(items.get(position).getProgramme());
-        holder.groupNo.setText(items.get(position).getGroupNo());
         holder.subject.setText(items.get(position).getSubject());
         holder.tutorlecturer.setText(items.get(position).getTutorlecturer());
         holder.location.setText(items.get(position).getLocation());
-        holder.day.setText(items.get(position).getDay());
         holder.startTime.setText(items.get(position).getStartTime());
         holder.endTime.setText(items.get(position).getEndTime());
     }
@@ -50,19 +45,15 @@ public class AdapterClassSchedule extends RecyclerView.Adapter<AdapterClassSched
 
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        TextView faculty, programme, groupNo, subject, tutorlecturer, location, day, startTime, endTime;
+        TextView subject, tutorlecturer, location, startTime, endTime;
 
         public ViewHolder(final View itemView) {
             super(itemView);
-            faculty = (TextView) itemView.findViewById(R.id.faculty);
-            programme = (TextView) itemView.findViewById(R.id.programme);
-            groupNo = (TextView) itemView.findViewById(R.id.groupNo);
-            subject = (TextView) itemView.findViewById(R.id.subject);
-            tutorlecturer = (TextView) itemView.findViewById(R.id.tutorlecturer);
-            location = (TextView) itemView.findViewById(R.id.location);
-            day = (TextView) itemView.findViewById(R.id.day);
-            startTime = (TextView) itemView.findViewById(R.id.startTime);
-            endTime = (TextView) itemView.findViewById(R.id.endTime);
+            subject = (TextView) itemView.findViewById(R.id.text_view_subject);
+            tutorlecturer = (TextView) itemView.findViewById(R.id.text_view_tutorlecturer);
+            location = (TextView) itemView.findViewById(R.id.text_view_location);
+            startTime = (TextView) itemView.findViewById(R.id.text_view_startTime);
+            endTime = (TextView) itemView.findViewById(R.id.text_view_endTime);
         }
 
         @Override

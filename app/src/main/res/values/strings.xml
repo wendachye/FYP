@@ -78,6 +78,11 @@
     <string name="hint_loginID">Login ID</string>
     <string name="hint_accountid">Account ID</string>
     <string name="hint_groupNo">Group No</string>
+    <string name="subject">Subject:</string>
+    <string name="tutorlecturer">Tutor / Lecturer:</string>
+    <string name="location">Location:</string>
+    <string name="startTime">Start Time:</string>
+    <string name="endTime">End Time:</string>
 
     <string-array name="gender_arrays">
         <item>Male</item>

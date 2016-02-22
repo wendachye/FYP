@@ -57,8 +57,8 @@ public class ClassTimetableFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_class_timetable, container, false);
 
         mFaculty = new BaseActivity().getLoginDetail(getActivity()).getFaculty();
-        mProgramme = "RSD3";
-        mGroupNo = "F2";
+        mProgramme = new BaseActivity().getLoginDetail(getActivity()).getProgramme();
+        mGroupNo = new BaseActivity().getLoginDetail(getActivity()).getGroupNo();
 
         mListClassSchedule.clear();
 
