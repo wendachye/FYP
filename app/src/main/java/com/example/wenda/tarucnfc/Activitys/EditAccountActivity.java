@@ -70,7 +70,7 @@ public class EditAccountActivity extends BaseActivity implements View.OnClickLis
 
         // set title to center
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setCustomView(R.layout.edit_account_title);
+        getSupportActionBar().setCustomView(R.layout.title_edit_account);
 
         // set back button
         getSupportActionBar().setHomeButtonEnabled(true);
@@ -78,6 +78,7 @@ public class EditAccountActivity extends BaseActivity implements View.OnClickLis
 
         mAccountID = getLoginDetail(this).getAccountID();
 
+        // setfindviewbyid
         setFindviewbyid();
 
         new GetJson(String.valueOf(mAccountID)).execute();
@@ -348,7 +349,7 @@ public class EditAccountActivity extends BaseActivity implements View.OnClickLis
         }
     }
 
-
+    // update account
     private void updateAccount() {
 
         // set all the related values into account domain
@@ -401,13 +402,11 @@ public class EditAccountActivity extends BaseActivity implements View.OnClickLis
             if (account.getProfilePictureBitmap() == null) {
                 data.put("profilePicture", "");
                 data.put("profilePicturePath", this.account.getProfilePicturePath());
-                Log.d("track", "path " + this.account.getProfilePicturePath());
             } else {
                 data.put("profilePicture", getStringImage(this.account.getProfilePictureBitmap()));
                 data.put("profilePicturePath", "");
             }
             data.put("accountID", mAccountID);
-            Log.d("track", "accountID " + mAccountID);
             data.put("name", this.account.getName());
             data.put("NRICNo", this.account.getNRICNo());
             data.put("contactNo", this.account.getContactNo());

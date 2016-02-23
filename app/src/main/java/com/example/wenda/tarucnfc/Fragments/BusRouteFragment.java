@@ -1,7 +1,6 @@
 package com.example.wenda.tarucnfc.Fragments;
 
 
-import android.app.Dialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,7 +10,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -20,7 +18,6 @@ import com.example.wenda.tarucnfc.Databases.Contracts.BusScheduleContract.BusSch
 import com.example.wenda.tarucnfc.Domains.BusSchedule;
 import com.example.wenda.tarucnfc.R;
 import com.example.wenda.tarucnfc.RequestHandler;
-import com.example.wenda.tarucnfc.UIUtils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -82,7 +79,6 @@ public class BusRouteFragment extends Fragment implements View.OnClickListener {
     }
 
     public void setFindviewbyid(View view) {
-        mButtonBusRoute = (Button) view.findViewById(R.id.button_bus_route);
 
         mTextViewDate = (TextView) view.findViewById(R.id.text_route_date);
         mTextViewDate2 = (TextView) view.findViewById(R.id.text_route_date2);
@@ -112,13 +108,6 @@ public class BusRouteFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.button_bus_route:
-                Dialog settingsDialog = new Dialog(getContext());
-                settingsDialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
-                settingsDialog.setContentView(getActivity().getLayoutInflater().inflate(R.layout.route_wangsamaju
-                        , null));
-                settingsDialog.show();
-                break;
 
             default:
                 break;

@@ -52,7 +52,7 @@ public class TransferBalanceActivity extends BaseActivity {
 
         // set title to center
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setCustomView(R.layout.transfer_balance_title);
+        getSupportActionBar().setCustomView(R.layout.title_transfer_balance);
 
         // set back button
         getSupportActionBar().setHomeButtonEnabled(true);

@@ -1,6 +1,7 @@
 package com.example.wenda.tarucnfc.Fragments;
 
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -13,6 +14,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.wenda.tarucnfc.Activitys.BaseActivity;
+import com.example.wenda.tarucnfc.Activitys.EditBusRouteActivity;
 import com.example.wenda.tarucnfc.Databases.Contracts.BusScheduleContract.BusScheduleRecord;
 import com.example.wenda.tarucnfc.Domains.BusSchedule;
 import com.example.wenda.tarucnfc.R;
@@ -35,6 +37,7 @@ public class SearchBusScheduleFragment extends Fragment implements View.OnClickL
     private TextView mTextViewDeparture;
     private TextView mTextViewDestination;
     private TextView mTextViewRouteTime;
+    private String busRouteID;
 
     private static final String SEARCH_BUS_ROUTE_URL = "http://fypproject.host56.com/BusSchedule/search_bus_route.php";
     private static final String KEY_RESPONSE = "Response";
@@ -80,7 +83,12 @@ public class SearchBusScheduleFragment extends Fragment implements View.OnClickL
                 break;
 
             case R.id.edit_bus_schedule:
-
+                mCardViewEditBusSchedule.setVisibility(View.GONE);
+                mSpinnerDestination.setSelection(0);
+                mSpinnerDate.setSelection(0);
+                Intent intent = new Intent(getActivity(), EditBusRouteActivity.class);
+                intent.putExtra("BusRouteID", busRouteID);
+                startActivity(intent);
                 break;
 
             default:
@@ -149,7 +157,7 @@ public class SearchBusScheduleFragment extends Fragment implements View.OnClickL
             JSONArray jsonArray = new JSONObject(json).getJSONArray(BaseActivity.JSON_ARRAY);
             JSONObject jsonObject = jsonArray.getJSONObject(0);
 
-            busSchedule.setBusScheduleID(Integer.parseInt(jsonObject.getString(BusScheduleRecord.COLUMN_BUS_SCHEDULE_ID)));
+            busSchedule.setBusScheduleID(jsonObject.getString(BusScheduleRecord.COLUMN_BUS_SCHEDULE_ID));
             busSchedule.setBackEndID(jsonObject.getString(BusScheduleRecord.COLUMN_BACKEND_ID));
             busSchedule.setDeparture(jsonObject.getString(BusScheduleRecord.COLUMN_DEPARTURE));
             busSchedule.setDestination(jsonObject.getString(BusScheduleRecord.COLUMN_DESTINATION));
@@ -169,5 +177,6 @@ public class SearchBusScheduleFragment extends Fragment implements View.OnClickL
         mTextViewDeparture.setText(busSchedule.getDeparture());
         mTextViewDestination.setText(busSchedule.getDestination());
         mTextViewRouteTime.setText(busSchedule.getRouteTime());
+        busRouteID = String.valueOf(busSchedule.getBusScheduleID());
     }
 }

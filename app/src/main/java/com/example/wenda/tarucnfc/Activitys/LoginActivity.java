@@ -45,7 +45,7 @@ public class LoginActivity extends BaseActivity {
 
         // set title to center
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setCustomView(R.layout.login_title);
+        getSupportActionBar().setCustomView(R.layout.title_login);
 
         editTextUsername = (EditText) findViewById(R.id.edit_text_username);
         editTextPassword = (EditText) findViewById(R.id.edit_text_password);

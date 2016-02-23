@@ -87,6 +87,9 @@
     <string name="programme">Programme:</string>
     <string name="groupNo">Group No:</string>
     <string name="serach">Search</string>
+    <string name="status">Status:</string>
+    <string name="lastedit">Last Edit By:</string>
+    <string name="delete">Delete</string>
 
     <string-array name="gender_arrays">
         <item>Male</item>

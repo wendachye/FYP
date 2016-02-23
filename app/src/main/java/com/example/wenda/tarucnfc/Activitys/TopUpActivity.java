@@ -35,7 +35,7 @@ public class TopUpActivity extends BaseActivity implements NfcAdapter.CreateNdef
 
         // set title to center
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setCustomView(R.layout.top_up_title);
+        getSupportActionBar().setCustomView(R.layout.title_top_up);
 
         // set back button
         getSupportActionBar().setHomeButtonEnabled(true);

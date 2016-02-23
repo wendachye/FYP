@@ -41,7 +41,7 @@ public class ChangePasswordActivity extends BaseActivity {
 
         // set title to center
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setCustomView(R.layout.change_password_title);
+        getSupportActionBar().setCustomView(R.layout.title_change_password);
 
         // set home button
         getSupportActionBar().setHomeButtonEnabled(true);

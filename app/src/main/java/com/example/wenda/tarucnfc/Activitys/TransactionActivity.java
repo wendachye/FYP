@@ -42,7 +42,7 @@ public class TransactionActivity extends BaseActivity {
 
         // set title to center
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setCustomView(R.layout.transaction_title);
+        getSupportActionBar().setCustomView(R.layout.title_transaction);
 
         // set back button
         getSupportActionBar().setHomeButtonEnabled(true);

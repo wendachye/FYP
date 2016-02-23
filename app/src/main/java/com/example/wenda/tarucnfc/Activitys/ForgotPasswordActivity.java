@@ -44,7 +44,7 @@ public class ForgotPasswordActivity extends BaseActivity {
 
         //set title to center
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setCustomView(R.layout.forgot_password_title);
+        getSupportActionBar().setCustomView(R.layout.title_forgot_password);
 
         //set home button
         getSupportActionBar().setHomeButtonEnabled(true);
