@@ -149,8 +149,9 @@ public class AddNewAccountFragment extends Fragment implements View.OnClickListe
                     case 2:
                         mEditTextAccountID.setHint("Lecturer / Tutor ID");
                         mCradView1.setVisibility(View.VISIBLE);
-                        mCardView2.setVisibility(View.VISIBLE);
+                        mCardView2.setVisibility(View.GONE);
                         mCardView3.setVisibility(View.VISIBLE);
+
                         mLinearLayoutCampus.setVisibility(View.VISIBLE);
                         mButtonConfirm.setVisibility(View.VISIBLE);
                         break;

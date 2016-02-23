@@ -11,6 +11,7 @@ public class BusScheduleContract {
     public static abstract class BusScheduleRecord implements BaseColumns {
         public static final String BUS_SCHEDULE_TABLE = "BusSchedules";
         public static final String COLUMN_BUS_SCHEDULE_ID = "BusScheduleID";
+        public static final String COLUMN_BACKEND_ID = "BackendID";
         public static final String COLUMN_DEPARTURE = "Departure";
         public static final String COLUMN_DESTINATION = "Destination";
         public static final String COLUMN_ROUTE_TIME = "RouteTime";

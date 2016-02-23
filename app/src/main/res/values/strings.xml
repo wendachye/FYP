@@ -86,6 +86,7 @@
     <string name="faculty">Faculty:</string>
     <string name="programme">Programme:</string>
     <string name="groupNo">Group No:</string>
+    <string name="serach">Search</string>
 
     <string-array name="gender_arrays">
         <item>Male</item>

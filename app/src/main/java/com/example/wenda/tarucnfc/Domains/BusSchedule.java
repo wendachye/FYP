@@ -9,6 +9,15 @@ public class BusSchedule {
     private String routeTime;
     private String routeDay;
     private String status;
+    private int response;
+
+    public int getResponse() {
+        return response;
+    }
+
+    public void setResponse(int response) {
+        this.response = response;
+    }
 
     public int getBusScheduleID() {
         return busScheduleID;
