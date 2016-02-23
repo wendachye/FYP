@@ -2,8 +2,8 @@ package com.example.wenda.tarucnfc.Domains;
 
 public class ClassSchedule {
 
-    private int classScheduleID;
-    private int backendID;
+    private String classScheduleID;
+    private String backendID;
     private String faculty;
     private String programme;
     private String groupNo;
@@ -13,12 +13,30 @@ public class ClassSchedule {
     private String day;
     private String startTime;
     private String endTime;
+    private String status;
+    private int response;
 
-    public int getClassScheduleID() {
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public int getResponse() {
+        return response;
+    }
+
+    public void setResponse(int response) {
+        this.response = response;
+    }
+
+    public String getClassScheduleID() {
         return classScheduleID;
     }
 
-    public int getBackendID() {
+    public String getBackendID() {
         return backendID;
     }
 
@@ -58,11 +76,11 @@ public class ClassSchedule {
         return endTime;
     }
 
-    public void setClassScheduleID(int classScheduleID) {
+    public void setClassScheduleID(String classScheduleID) {
         this.classScheduleID = classScheduleID;
     }
 
-    public void setBackendID(int backendID) {
+    public void setBackendID(String backendID) {
         this.backendID = backendID;
     }
 

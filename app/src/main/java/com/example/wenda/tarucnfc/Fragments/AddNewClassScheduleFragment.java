@@ -133,7 +133,7 @@ public class AddNewClassScheduleFragment extends Fragment implements View.OnClic
         classSchedule.setDay(mSpinnerDate.getSelectedItem().toString());
         classSchedule.setStartTime(mTextViewStartTime.getText().toString());
         classSchedule.setEndTime(mTextViewEndTime.getText().toString());
-        classSchedule.setBackendID(new BaseActivity().getLoginDetail(getActivity()).getLoginId());
+        classSchedule.setBackendID(String.valueOf(new BaseActivity().getLoginDetail(getActivity()).getLoginId()));
 
         // check network
         if(new BaseActivity().isNetworkAvailable(getActivity()) == true) {

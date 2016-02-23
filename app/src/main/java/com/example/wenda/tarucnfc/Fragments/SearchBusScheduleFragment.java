@@ -177,6 +177,6 @@ public class SearchBusScheduleFragment extends Fragment implements View.OnClickL
         mTextViewDeparture.setText(busSchedule.getDeparture());
         mTextViewDestination.setText(busSchedule.getDestination());
         mTextViewRouteTime.setText(busSchedule.getRouteTime());
-        busRouteID = String.valueOf(busSchedule.getBusScheduleID());
+        busRouteID = busSchedule.getBusScheduleID();
     }
 }
