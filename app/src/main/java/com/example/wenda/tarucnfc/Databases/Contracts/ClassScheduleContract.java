@@ -16,7 +16,7 @@ public class ClassScheduleContract {
         public static final String COLUMN_PROGRAMME = "Programme";
         public static final String COLUMN_GROUP_No = "GroupNo";
         public static final String COLUMN_SUBJECT = "Subject";
-        public static final String COLUMN_TUTORLECTURER = "Tutorlecturer";
+        public static final String COLUMN_TUTORLECTURER = "TutorLecturer";
         public static final String COLUMN_LOCATION = "Location";
         public static final String COLUMN_DAY = "Day";
         public static final String COLUMN_START_TIME = "StartTime";

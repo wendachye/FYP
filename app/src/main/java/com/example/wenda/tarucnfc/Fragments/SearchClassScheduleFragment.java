@@ -1,6 +1,7 @@
 package com.example.wenda.tarucnfc.Fragments;
 
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,6 +15,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.wenda.tarucnfc.Activitys.BaseActivity;
+import com.example.wenda.tarucnfc.Activitys.EditClassScheduleActivity;
 import com.example.wenda.tarucnfc.Databases.Contracts.ClassScheduleContract.ClassScheduleRecord;
 import com.example.wenda.tarucnfc.Domains.ClassSchedule;
 import com.example.wenda.tarucnfc.R;
@@ -81,6 +83,7 @@ public class SearchClassScheduleFragment extends Fragment implements View.OnClic
         mTextViewStartTime = (TextView) view.findViewById(R.id.text_view_startTime);
         mTextViewEndTime = (TextView) view.findViewById(R.id.text_view_endTime);
         mCardViewEditClassSchedule = (CardView) view.findViewById(R.id.edit_class_schedule);
+        mCardViewEditClassSchedule.setOnClickListener(this);
     }
 
     @Override
@@ -93,6 +96,18 @@ public class SearchClassScheduleFragment extends Fragment implements View.OnClic
                 subject = mEditTextSubject.getText().toString();
                 tutorLecturer = mEditTextTutorLecturer.getText().toString();
                 new searchClassSchedule(faculty, programme, groupNo, subject, tutorLecturer).execute();
+                break;
+
+            case R.id.edit_class_schedule:
+                mCardViewEditClassSchedule.setVisibility(View.GONE);
+                mSpinnerFaculty.setSelection(0);
+                mEditTextProgramme.setText("");
+                mEditTextGroupNo.setText("");
+                mEditTextSubject.setText("");
+                mEditTextTutorLecturer.setText("");
+                Intent intent = new Intent(getActivity(), EditClassScheduleActivity.class);
+                intent.putExtra("ClassScheduleID", classScheduleID);
+                startActivity(intent);
                 break;
 
             default:

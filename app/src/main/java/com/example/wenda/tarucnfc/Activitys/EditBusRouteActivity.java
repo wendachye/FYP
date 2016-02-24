@@ -59,7 +59,7 @@ public class EditBusRouteActivity extends BaseActivity {
 
         busRouteID = getIntent().getStringExtra("BusRouteID");
 
-        new GetJson(String.valueOf(busRouteID)).execute();
+        new GetJson(busRouteID).execute();
     }
 
     private void setFindviewbyid() {
@@ -92,10 +92,7 @@ public class EditBusRouteActivity extends BaseActivity {
         } else if (id == R.id.saveButton) {
             updateBusRoute();
             finish();
-            //MainActivity.main.finish();
-            //Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-            //startActivity(intent);
-            //shortToast(this, "Profile Updated.");
+            shortToast(this, "Bus Route Updated.");
         }
 
         return super.onOptionsItemSelected(item);
