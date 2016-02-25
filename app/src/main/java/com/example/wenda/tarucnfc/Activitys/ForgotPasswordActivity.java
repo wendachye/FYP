@@ -71,23 +71,24 @@ public class ForgotPasswordActivity extends BaseActivity {
             NavUtils.navigateUpFromSameTask(this);
         }
         else if (id == R.id.saveButton) {
-            verifyInput();
+            try {
+                verifyInput();
+            } catch (InvalidInputException e) {
+                e.printStackTrace();
+            }
+            new get_email_address(mAccountID, mNRICNo).execute();
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    public void verifyInput() {
+    public void verifyInput() throws InvalidInputException {
         mAccountID = mEditTextAccountID.getText().toString();
         mNRICNo = mEditTextNRICNo.getText().toString();
-        try {
-            account.verifyAccountID(mAccountID);
-            account.verifyNRICNo(mNRICNo);
 
-            new get_email_address(mAccountID, mNRICNo).execute();
-        } catch (InvalidInputException ex) {
-            shortToast(this, ex.getInfo());
-        }
+        account.verifyAccountID(mAccountID);
+        account.verifyNRICNo(mNRICNo);
+
     }
 
     // this one is get json
@@ -109,7 +110,6 @@ public class ForgotPasswordActivity extends BaseActivity {
         @Override
         protected void onPostExecute(String json) {
             super.onPostExecute(json);
-            UIUtils.getProgressDialog(ForgotPasswordActivity.this, "OFF");
             extractJsonData(json);
 
             switch (offlineLogin.getLoginResponse()){
@@ -123,6 +123,7 @@ public class ForgotPasswordActivity extends BaseActivity {
                 // incorrect accountID & nricNo
                 case 2:
                     shortToast(ForgotPasswordActivity.this,"Account ID or NRIC.No is Incorrect.");
+                    UIUtils.getProgressDialog(ForgotPasswordActivity.this, "OFF");
                     mEditTextAccountID.setText("");
                     mEditTextNRICNo.setText("");
                     break;
@@ -132,7 +133,6 @@ public class ForgotPasswordActivity extends BaseActivity {
         @Override
         protected String doInBackground(String... strings) {
             HashMap<String, String> data = new HashMap<>();
-
             data.put(KEY_ACCOUNT_ID, accountID);
             data.put("NRICNo", nricNo);
 
@@ -141,7 +141,6 @@ public class ForgotPasswordActivity extends BaseActivity {
     }
 
     private void extractJsonData(String json) {
-
         try {
             JSONArray jsonArray = new JSONObject(json).getJSONArray(BaseActivity.JSON_ARRAY);
             JSONObject jsonObject = jsonArray.getJSONObject(0);
@@ -173,6 +172,7 @@ public class ForgotPasswordActivity extends BaseActivity {
                                 longToast("Password was sent to your email successfully");
                             }
                         });
+                        UIUtils.getProgressDialog(ForgotPasswordActivity.this, "OFF");
                         finish();
                     } else {
                         ForgotPasswordActivity.this.runOnUiThread(new Runnable() {

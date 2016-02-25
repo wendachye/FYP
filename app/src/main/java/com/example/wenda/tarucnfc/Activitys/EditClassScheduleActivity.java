@@ -1,5 +1,6 @@
 package com.example.wenda.tarucnfc.Activitys;
 
+import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.example.wenda.tarucnfc.Databases.Contracts.ClassScheduleContract.ClassScheduleRecord;
 import com.example.wenda.tarucnfc.Domains.ClassSchedule;
@@ -46,7 +48,7 @@ public class EditClassScheduleActivity extends BaseActivity implements View.OnCl
     private String classScheduleID;
     private ClassSchedule classSchedule = new ClassSchedule();
     private final static String GET_JSON_URL = "http://fypproject.host56.com/ClassSchedule/edit_class_schedule_view.php";
-    private final static String UPDATE_CLASS_SCHEDULE_URL = "";
+    private final static String UPDATE_CLASS_SCHEDULE_URL = "http://fypproject.host56.com/ClassSchedule/update_class_schedule.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,7 +109,7 @@ public class EditClassScheduleActivity extends BaseActivity implements View.OnCl
         if (id == android.R.id.home) {
             NavUtils.navigateUpFromSameTask(this);
         } else if (id == R.id.saveButton) {
-            //updateClassSchedule();
+            updateClassSchedule();
             finish();
             shortToast(this, "Class Schedule Updated.");
         }
@@ -240,5 +242,75 @@ public class EditClassScheduleActivity extends BaseActivity implements View.OnCl
         mEditTextLocation.setText(classSchedule.getLocation());
         mTextViewStartTime.setText(classSchedule.getStartTime());
         mTextViewEndTime.setText(classSchedule.getEndTime());
+    }
+
+    //update class schedule
+    private void updateClassSchedule() {
+        // set all the related values into account domain
+        classSchedule.setClassScheduleID(classScheduleID);
+        classSchedule.setBackendID(String.valueOf(getLoginDetail(this).getLoginId()));
+        classSchedule.setFaculty(mTextViewFaculty.getText().toString());
+        classSchedule.setProgramme(mTextViewProgramme.getText().toString());
+        classSchedule.setGroupNo(mTextViewGroupNo.getText().toString());
+        classSchedule.setTutorlecturer(mEditTextTutorLecturer.getText().toString());
+        classSchedule.setSubject(mTextViewSubject.getText().toString());
+        classSchedule.setLocation(mEditTextLocation.getText().toString());
+        classSchedule.setDay(mSpinnerDate.getSelectedItem().toString());
+        classSchedule.setStartTime(mTextViewStartTime.getText().toString());
+        classSchedule.setEndTime(mTextViewEndTime.getText().toString());
+        classSchedule.setStatus(mTextViewStatus.getText().toString());
+
+        // check network
+        if(isNetworkAvailable(this) == true) {
+            new UpdateClassSchedule(classSchedule).execute();
+        } else {
+            shortToast(this, "Network not available");
+        }
+    }
+
+    public class UpdateClassSchedule extends AsyncTask<Void, Void, String> {
+
+        ProgressDialog loading;
+        RequestHandler requestHandler = new RequestHandler();
+        ClassSchedule classSchedule;
+
+        public UpdateClassSchedule(ClassSchedule classSchedule) {
+            this.classSchedule = classSchedule;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            UIUtils.getProgressDialog(EditClassScheduleActivity.this, "ON");
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            UIUtils.getProgressDialog(EditClassScheduleActivity.this, "OFF");
+            Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();
+            finish();
+        }
+
+        @Override
+        protected String doInBackground(Void... params) {
+
+            HashMap<String, String> data = new HashMap<>();
+
+            data.put("classScheduleID", this.classSchedule.getClassScheduleID());
+            data.put("backendID", this.classSchedule.getBackendID());
+            data.put("faculty", this.classSchedule.getFaculty());
+            data.put("programme", this.classSchedule.getProgramme());
+            data.put("groupNo", this.classSchedule.getGroupNo());
+            data.put("subject", this.classSchedule.getSubject());
+            data.put("tutorLecturer", this.classSchedule.getTutorlecturer());
+            data.put("location", this.classSchedule.getLocation());
+            data.put("date", this.classSchedule.getDay());
+            data.put("startTime", this.classSchedule.getStartTime());
+            data.put("endTime", this.classSchedule.getEndTime());
+            data.put("status", this.classSchedule.getStatus());
+
+            return requestHandler.sendPostRequest(UPDATE_CLASS_SCHEDULE_URL, data);
+        }
     }
 }

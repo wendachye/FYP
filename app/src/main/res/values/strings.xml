@@ -90,6 +90,16 @@
     <string name="status">Status:</string>
     <string name="lastedit">Last Edit By:</string>
     <string name="delete">Delete</string>
+    <string name="title">Transfer option:</string>
+    <string name="title2">Top Up</string>
+    <string name="content">Please pass your device to the Top Up Management.</string>
+    <string name="agree">Finish</string>
+    <string name="recipientID">Recipient\'s Account:</string>
+    <string name="transactionType">Transaction Type:</string>
+    <string name="amount">Amount</string>
+    <string name="dateTime"><![CDATA[Date&Time:]]></string>
+    <string name="remark">Remark:</string>
+    <string name="senderID">Sender\'s Account:</string>
 
     <string-array name="gender_arrays">
         <item>Male</item>
@@ -159,6 +169,11 @@
     <string-array name="sessionJoined2_arrays">
         <item>04</item>
         <item>09</item>
+    </string-array>
+
+    <string-array name="items">
+        <item>Direct Transfer</item>
+        <item>Via NFC Transfer</item>
     </string-array>
 
     <string-array name="faculty_arrays">

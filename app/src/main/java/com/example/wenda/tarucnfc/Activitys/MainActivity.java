@@ -106,10 +106,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 switch (menuItem.getItemId()) {
 
                     case R.id.nav_menu_dashboard1:
-                        getSupportActionBar().setTitle(R.string.dashboard);
-                        DashboardFragment fragmentHome = new DashboardFragment();
-                        fragmentTransaction.replace(R.id.frame, fragmentHome);
-                        fragmentTransaction.commit();
+                        Intent intent = new Intent(MainActivity.this, DisplayNFCActivity.class);
+                        startActivity(intent);
                         return true;
 
                     case R.id.nav_menu_wallet1:

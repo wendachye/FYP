@@ -8,25 +8,31 @@ import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
 import android.nfc.NfcEvent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
-import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.wenda.tarucnfc.R;
 
-public class TopUpActivity extends BaseActivity implements NfcAdapter.CreateNdefMessageCallback{
+public class TopUpActivity extends BaseActivity implements NfcAdapter.CreateNdefMessageCallback, View.OnClickListener {
 
     private TextView mTextViewAccountID;
     private TextView mTextViewFullName;
     private EditText mEditTextOtherAmount;
     private Spinner mSpinnerTopUpAmount;
     private Button mButtonConfirm;
+    private LinearLayout mLinearLayoutOtherAmount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +53,30 @@ public class TopUpActivity extends BaseActivity implements NfcAdapter.CreateNdef
         mEditTextOtherAmount = (EditText) findViewById(R.id.edit_text_other_amount);
         mSpinnerTopUpAmount = (Spinner) findViewById(R.id.spinner_topup_amount);
         mButtonConfirm = (Button) findViewById(R.id.button_confirm);
+        mButtonConfirm.setOnClickListener(this);
+        mLinearLayoutOtherAmount = (LinearLayout) findViewById(R.id.other_amount);
+        mLinearLayoutOtherAmount.setVisibility(View.GONE);
+        mTextViewAccountID.setText(getLoginDetail(this).getAccountID());
+        mTextViewFullName.setText(getLoginDetail(this).getName());
+
+        mSpinnerTopUpAmount.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                switch (mSpinnerTopUpAmount.getSelectedItemPosition()) {
+                    case 6:
+                        mLinearLayoutOtherAmount.setVisibility(View.VISIBLE);
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         NfcAdapter mAdapter = NfcAdapter.getDefaultAdapter(this);
         if (mAdapter == null) {
@@ -72,8 +102,7 @@ public class TopUpActivity extends BaseActivity implements NfcAdapter.CreateNdef
 
     @Override
     public NdefMessage createNdefMessage(NfcEvent event) {
-        String message = mTextViewAccountID.getText().toString() + " " + mSpinnerTopUpAmount.getSelectedItem().toString();
-        Log.d("track", " " + message);
+        String message = "1234";
         NdefRecord ndefRecord = NdefRecord.createMime("text/plain", message.getBytes());
         NdefMessage ndefMessage = new NdefMessage(ndefRecord);
         return ndefMessage;
@@ -92,5 +121,25 @@ public class TopUpActivity extends BaseActivity implements NfcAdapter.CreateNdef
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.button_confirm:
+                MaterialDialog dialog = new MaterialDialog.Builder(this)
+                        .title(R.string.title2) .content(R.string.content)
+                        .positiveText(R.string.agree).negativeText(R.string.cancel)
+                        .onPositive(new MaterialDialog.SingleButtonCallback() { @Override public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                            shortToast(TopUpActivity.this, "Top Up Successful.");
+                            finish();
+                        }})
+                            .show();
+
+                break;
+
+            default:
+                break;
+        }
     }
 }

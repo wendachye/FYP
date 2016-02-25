@@ -130,7 +130,11 @@ public class PinEntryActivity extends BaseActivity {
                                 Intent intent = new Intent(appContext, TopUpActivity.class);
                                 startActivity(intent);
                                 finish();
-                            } else if (selectType.equals("transfer")) {
+                            } else if (selectType.equals("direct_transfer")) {
+                                Intent intent = new Intent(appContext, TransferBalanceActivity.class);
+                                startActivity(intent);
+                                finish();
+                            } else {
                                 Intent intent = new Intent(appContext, TransferBalanceActivity.class);
                                 startActivity(intent);
                                 finish();
@@ -293,7 +297,6 @@ public class PinEntryActivity extends BaseActivity {
             JSONObject jsonObject = jsonArray.getJSONObject(0);
 
             account.setPINcode(jsonObject.getString(AccountRecord.KEY_PIN_CODE));
-            Log.d("track", "get id *" + jsonObject.getString(AccountRecord.KEY_PIN_CODE));
             userPin = account.getPINcode();
 
         } catch (JSONException e) {
