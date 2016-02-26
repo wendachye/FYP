@@ -27,6 +27,15 @@ public class Account {
     private String profilePicturePath;
     private Bitmap profilePictureBitmap;
     private String authorization;
+    private int response;
+
+    public int getResponse() {
+        return response;
+    }
+
+    public void setResponse(int response) {
+        this.response = response;
+    }
 
     public String getGroupNo() {
         return groupNo;

@@ -100,6 +100,12 @@
     <string name="dateTime"><![CDATA[Date&Time:]]></string>
     <string name="remark">Remark:</string>
     <string name="senderID">Sender\'s Account:</string>
+    <string name="accountID">Account ID:</string>
+    <string name="fullname">Name:</string>
+    <string name="account_authorization">Authorization:</string>
+    <string name="contactNo">Contact Number:</string>
+    <string name="email">Email Address:</string>
+    <string name="account_type">Account Type:</string>
 
     <string-array name="gender_arrays">
         <item>Male</item>
