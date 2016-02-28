@@ -36,7 +36,7 @@
                     android:layout_height="25dp"
                     android:layout_gravity="center"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/ic_book_open_variant" />
+                    android:src="@drawable/ic_tag_text_outline" />
 
                 <TextView
                     android:id="@+id/text_view_accountID"
@@ -63,7 +63,7 @@
                     android:layout_height="25dp"
                     android:layout_gravity="center"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/ic_book_open_variant" />
+                    android:src="@drawable/ic_account_box" />
 
                 <TextView
                     android:id="@+id/text_view_name"
@@ -90,7 +90,7 @@
                     android:layout_height="25dp"
                     android:layout_gravity="center"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/ic_book_open_variant" />
+                    android:src="@drawable/ic_cash_usd" />
 
                 <Spinner
                     android:id="@+id/spinner_topup_amount"
@@ -116,7 +116,7 @@
                     android:layout_height="25dp"
                     android:layout_gravity="center"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/ic_tag_text_outline" />
+                    android:src="@drawable/ic_cash_usd" />
 
                 <EditText
                     android:id="@+id/edit_text_other_amount"

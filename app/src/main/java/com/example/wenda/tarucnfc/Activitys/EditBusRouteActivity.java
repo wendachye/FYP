@@ -8,6 +8,7 @@ import android.support.v7.app.ActionBar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -26,7 +27,7 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 
-public class EditBusRouteActivity extends BaseActivity {
+public class EditBusRouteActivity extends BaseActivity implements View.OnClickListener {
 
     private Spinner mSpinnerRouteDate;
     private EditText mEditTextRouteTime;
@@ -70,6 +71,7 @@ public class EditBusRouteActivity extends BaseActivity {
         mTextViewBackendID = (TextView) findViewById(R.id.text_view_backendID);
         mTextViewStatus = (TextView) findViewById(R.id.text_view_status);
         mButttonDelete = (Button) findViewById(R.id.button_delete);
+        mButttonDelete.setOnClickListener(this);
     }
 
     @Override
@@ -96,6 +98,18 @@ public class EditBusRouteActivity extends BaseActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.button_delete:
+
+                break;
+
+            default:
+                break;
+        }
     }
 
     // this one is get json

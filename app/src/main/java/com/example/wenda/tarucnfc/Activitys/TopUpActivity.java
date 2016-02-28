@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -58,6 +59,7 @@ public class TopUpActivity extends BaseActivity implements NfcAdapter.CreateNdef
         mLinearLayoutOtherAmount.setVisibility(View.GONE);
         mTextViewAccountID.setText(getLoginDetail(this).getAccountID());
         mTextViewFullName.setText(getLoginDetail(this).getName());
+        Log.d("track", " " + getLoginDetail(this).getName());
 
         mSpinnerTopUpAmount.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -102,7 +104,35 @@ public class TopUpActivity extends BaseActivity implements NfcAdapter.CreateNdef
 
     @Override
     public NdefMessage createNdefMessage(NfcEvent event) {
-        String message = "1234";
+        String accountIDAmount = null;
+        switch (mSpinnerTopUpAmount.getSelectedItemPosition()){
+            case 1:
+                accountIDAmount = mTextViewAccountID.getText().toString() + mSpinnerTopUpAmount.getSelectedItem().toString();
+                break;
+
+            case 2:
+                accountIDAmount = mTextViewAccountID.getText().toString() + mSpinnerTopUpAmount.getSelectedItem().toString();
+                break;
+
+            case 3:
+                accountIDAmount = mTextViewAccountID.getText().toString() + mSpinnerTopUpAmount.getSelectedItem().toString();
+                break;
+
+            case 4:
+                accountIDAmount = mTextViewAccountID.getText().toString() + mSpinnerTopUpAmount.getSelectedItem().toString();
+                break;
+
+            case 5:
+                accountIDAmount = mTextViewAccountID.getText().toString() + mSpinnerTopUpAmount.getSelectedItem().toString();
+                break;
+
+            case 6:
+                accountIDAmount = mTextViewAccountID.getText().toString() + mEditTextOtherAmount.getText().toString();
+                break;
+            default:
+                break;
+        }
+        String message = accountIDAmount;
         NdefRecord ndefRecord = NdefRecord.createMime("text/plain", message.getBytes());
         NdefMessage ndefMessage = new NdefMessage(ndefRecord);
         return ndefMessage;

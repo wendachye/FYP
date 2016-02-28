@@ -1,6 +1,7 @@
 package com.example.wenda.tarucnfc.Fragments;
 
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -13,6 +14,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.wenda.tarucnfc.Activitys.BaseActivity;
+import com.example.wenda.tarucnfc.Activitys.EditAuthorizationActivity;
 import com.example.wenda.tarucnfc.Databases.Contracts.AccountContract.AccountRecord;
 import com.example.wenda.tarucnfc.Domains.Account;
 import com.example.wenda.tarucnfc.R;
@@ -25,8 +27,10 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 
-public class SearhAccountFragment extends Fragment implements View.OnClickListener{
+public class SearhAccountFragment extends Fragment implements View.OnClickListener {
 
+    private static final String SEARCH_ACCOUNT_URL = "http://fypproject.host56.com/Account/search_account.php";
+    private static final String KEY_RESPONSE = "Response";
     private EditText mEditTextAccountID;
     private Button mButtonSearch;
     private CardView mCardViewEditAccount;
@@ -37,9 +41,7 @@ public class SearhAccountFragment extends Fragment implements View.OnClickListen
     private TextView mTextViewAuthorization;
     private TextView mTextViewAccountType;
     private TextView mTextViewStatus;
-
-    private static final String SEARCH_ACCOUNT_URL = "http://fypproject.host56.com/Account/search_account.php";
-    private static final String KEY_RESPONSE = "Response";
+    private String mAccountID;
     private Account account = new Account();
 
 
@@ -85,64 +87,14 @@ public class SearhAccountFragment extends Fragment implements View.OnClickListen
                 break;
 
             case R.id.edit_account:
-
+                mEditTextAccountID.setText("");
+                Intent intent = new Intent(getActivity(), EditAuthorizationActivity.class);
+                intent.putExtra("AccountID", mAccountID);
+                startActivity(intent);
                 break;
 
             default:
                 break;
-        }
-    }
-
-    // this is get json
-    public class searchAccount extends AsyncTask<String, Void, String> {
-
-        String accountID;
-        RequestHandler rh = new RequestHandler();
-
-        public searchAccount(String accountID) {
-            this.accountID = accountID;
-        }
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            UIUtils.getProgressDialog(getActivity(), "ON");
-        }
-
-
-        @Override
-        protected void onPostExecute(String json) {
-            super.onPostExecute(json);
-            UIUtils.getProgressDialog(getActivity(), "OFF");
-            extractJsonData(json);
-
-            switch (account.getResponse()){
-                case 1:
-                    // class schedule found
-                    mCardViewEditAccount.setVisibility(View.VISIBLE);
-                    initialValues();
-                    break;
-
-                case 2:
-                    // class schedule inactive
-
-                    break;
-
-                case 0:
-                    // class schedule not found
-
-                    break;
-
-                default:
-                    break;
-            }
-        }
-
-        @Override
-        protected String doInBackground(String... strings) {
-            HashMap<String, String> data = new HashMap<>();
-            data.put("accountID", accountID);
-            return rh.sendPostRequest(SEARCH_ACCOUNT_URL, data);
         }
     }
 
@@ -175,5 +127,59 @@ public class SearhAccountFragment extends Fragment implements View.OnClickListen
         mTextViewAccountType.setText(account.getAccountType());
         mTextViewAuthorization.setText(account.getAuthorization());
         mTextViewStatus.setText(account.getStatus());
+        mAccountID = account.getAccountID();
+    }
+
+    // this is get json
+    public class searchAccount extends AsyncTask<String, Void, String> {
+
+        String accountID;
+        RequestHandler rh = new RequestHandler();
+
+        public searchAccount(String accountID) {
+            this.accountID = accountID;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            UIUtils.getProgressDialog(getActivity(), "ON");
+        }
+
+
+        @Override
+        protected void onPostExecute(String json) {
+            super.onPostExecute(json);
+            UIUtils.getProgressDialog(getActivity(), "OFF");
+            extractJsonData(json);
+
+            switch (account.getResponse()) {
+                case 1:
+                    // class schedule found
+                    mCardViewEditAccount.setVisibility(View.VISIBLE);
+                    initialValues();
+                    break;
+
+                case 2:
+                    // class schedule inactive
+
+                    break;
+
+                case 0:
+                    // class schedule not found
+
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+            HashMap<String, String> data = new HashMap<>();
+            data.put("accountID", accountID);
+            return rh.sendPostRequest(SEARCH_ACCOUNT_URL, data);
+        }
     }
 }

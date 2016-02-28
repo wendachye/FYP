@@ -106,6 +106,7 @@
     <string name="contactNo">Contact Number:</string>
     <string name="email">Email Address:</string>
     <string name="account_type">Account Type:</string>
+    <string name="topupAmount">Top Up Amount:</string>
 
     <string-array name="gender_arrays">
         <item>Male</item>
@@ -140,6 +141,7 @@
         <item>Student Affair Department</item>
         <item>Examination Department</item>
         <item>Management Staff</item>
+        <item>Food Stall Owner</item>
     </string-array>
 
     <string-array name="busDate_arrays">
