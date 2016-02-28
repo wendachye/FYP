@@ -102,6 +102,10 @@ public class BusRouteFragment extends Fragment implements View.OnClickListener {
         mCardView2.setOnClickListener(this);
         mCardView3 = (CardView) view.findViewById(R.id.cardview3);
         mCardView3.setOnClickListener(this);
+
+        mCardView1.setVisibility(View.GONE);
+        mCardView2.setVisibility(View.GONE);
+        mCardView3.setVisibility(View.GONE);
     }
 
 
@@ -172,12 +176,15 @@ public class BusRouteFragment extends Fragment implements View.OnClickListener {
                 if (busSchedule.getStatus().equals("Active")) {
                     switch (busSchedule.getRouteDay()) {
                         case "Monday to Thursday":
+                            mCardView1.setVisibility(View.VISIBLE);
                             initialValuesMondaytoThursday();
                             break;
                         case "Friday":
+                            mCardView2.setVisibility(View.VISIBLE);
                             initialValuesFriday();
                             break;
                         case "Saturday":
+                            mCardView3.setVisibility(View.VISIBLE);
                             initialValuesSaturday();
                         default:
                             break;

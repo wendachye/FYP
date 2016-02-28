@@ -79,6 +79,7 @@ public class SearchBusScheduleFragment extends Fragment implements View.OnClickL
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.button_search:
+                mCardViewEditBusSchedule.setVisibility(View.GONE);
                 new searchBusRoute(mSpinnerDestination.getSelectedItem().toString(), mSpinnerDate.getSelectedItem().toString()).execute();
                 break;
 
@@ -129,12 +130,14 @@ public class SearchBusScheduleFragment extends Fragment implements View.OnClickL
 
                 case 2:
                     // bus route inactive
-
+                    mCardViewEditBusSchedule.setVisibility(View.GONE);
+                    new BaseActivity().shortToast(getActivity(), "No Record.");
                     break;
 
                 case 0:
                     // bus route not found
-
+                    mCardViewEditBusSchedule.setVisibility(View.GONE);
+                    new BaseActivity().shortToast(getActivity(), "No Record.");
                     break;
 
                 default:

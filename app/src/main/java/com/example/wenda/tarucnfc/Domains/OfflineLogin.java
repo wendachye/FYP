@@ -1,6 +1,10 @@
 package com.example.wenda.tarucnfc.Domains;
 
 
+import android.text.TextUtils;
+
+import com.example.wenda.tarucnfc.InvalidInputException;
+
 public class OfflineLogin {
 
     private int loginId;
@@ -200,5 +204,32 @@ public class OfflineLogin {
 
     public int getLoginResponse() {
         return loginResponse;
+    }
+
+    public void verifyProgramme(String programme) throws InvalidInputException {
+        if(programme.equals(""))
+            throw new InvalidInputException("Please enter Programme.");
+        else
+            this.programme = programme;
+    }
+
+    public void verifyGroupNo(String groupNo) throws InvalidInputException {
+        if(groupNo.equals(""))
+            throw new InvalidInputException("Please enter Group No.");
+        else
+            this.groupNo = groupNo;
+    }
+
+    public void verifySchoolEmail(String schoolEmail) throws InvalidInputException {
+        if(schoolEmail.equals(""))
+            throw new InvalidInputException("Please enter School Email.");
+        else if (isValidEmail(schoolEmail) == false)
+            throw new InvalidInputException("Invalid School Email.");
+        else
+            this.schoolEmail = schoolEmail;
+    }
+
+    public final static boolean isValidEmail(CharSequence target) {
+        return !TextUtils.isEmpty(target) && android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
     }
 }

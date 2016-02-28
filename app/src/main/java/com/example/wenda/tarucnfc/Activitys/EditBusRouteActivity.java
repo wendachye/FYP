@@ -41,6 +41,7 @@ public class EditBusRouteActivity extends BaseActivity implements View.OnClickLi
     private BusSchedule busSchedule = new BusSchedule();
     private final static String GET_JSON_URL = "http://fypproject.host56.com/BusSchedule/edit_bus_schedule_view.php";
     private final static String UPDATE_BUS_ROUTE_URL = "http://fypproject.host56.com/BusSchedule/update_bus_route.php";
+    private final static String DELETE_BUS_ROUTE_URL = "http://fypproject.host56.com/BusSchedule/delete_bus_route.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,7 +105,7 @@ public class EditBusRouteActivity extends BaseActivity implements View.OnClickLi
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.button_delete:
-
+                new DeleteBusRoute(busRouteID).execute();
                 break;
 
             default:
@@ -270,6 +271,41 @@ public class EditBusRouteActivity extends BaseActivity implements View.OnClickLi
             data.put("status", this.busSchedule.getStatus());
 
             return requestHandler.sendPostRequest(UPDATE_BUS_ROUTE_URL, data);
+        }
+    }
+
+    public class DeleteBusRoute extends AsyncTask<Void, Void, String> {
+
+        ProgressDialog loading;
+        RequestHandler requestHandler = new RequestHandler();
+        String busRouteID;
+
+        public DeleteBusRoute(String busRouteID) {
+            this.busRouteID = busRouteID;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            UIUtils.getProgressDialog(EditBusRouteActivity.this, "ON");
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            UIUtils.getProgressDialog(EditBusRouteActivity.this, "OFF");
+            shortToast(EditBusRouteActivity.this, "Delete Bus Route Successful.");
+            finish();
+        }
+
+        @Override
+        protected String doInBackground(Void... params) {
+
+            HashMap<String, String> data = new HashMap<>();
+
+            data.put("busScheduleID", busRouteID);
+
+            return requestHandler.sendPostRequest(DELETE_BUS_ROUTE_URL, data);
         }
     }
 }

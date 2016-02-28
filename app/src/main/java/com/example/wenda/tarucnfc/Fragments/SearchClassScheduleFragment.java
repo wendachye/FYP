@@ -95,6 +95,7 @@ public class SearchClassScheduleFragment extends Fragment implements View.OnClic
                 groupNo = mEditTextGroupNo.getText().toString();
                 subject = mEditTextSubject.getText().toString();
                 tutorLecturer = mEditTextTutorLecturer.getText().toString();
+                mCardViewEditClassSchedule.setVisibility(View.GONE);
                 new searchClassSchedule(faculty, programme, groupNo, subject, tutorLecturer).execute();
                 break;
 
@@ -144,19 +145,21 @@ public class SearchClassScheduleFragment extends Fragment implements View.OnClic
 
             switch (classSchedule.getResponse()){
                 case 1:
-                    // bus route found
+                    // class schedule found
                     mCardViewEditClassSchedule.setVisibility(View.VISIBLE);
                     initialValues();
                     break;
 
                 case 2:
-                    // bus route inactive
-
+                    // class schedule inactive
+                    mCardViewEditClassSchedule.setVisibility(View.GONE);
+                    new BaseActivity().shortToast(getActivity(), "No Record.");
                     break;
 
                 case 0:
-                    // bus route not found
-
+                    // class schedule not found
+                    mCardViewEditClassSchedule.setVisibility(View.GONE);
+                    new BaseActivity().shortToast(getActivity(), "No Record.");
                     break;
 
                 default:

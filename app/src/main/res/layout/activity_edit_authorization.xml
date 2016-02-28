@@ -84,6 +84,42 @@
                             android:layout_height="25dp"
                             android:layout_gravity="center"
                             android:scaleType="centerCrop"
+                            android:src="@drawable/ic_account_box" />
+
+                        <TextView
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="7dp"
+                            android:text="@string/name"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/text_view_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="10dp"
+                            android:textSize="18sp"
+                            android:textColor="@color/teal"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="7dp"
+                        android:layout_marginBottom="7dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_gravity="center"
+                            android:scaleType="centerCrop"
                             android:src="@drawable/ic_account_multiple" />
 
                         <TextView

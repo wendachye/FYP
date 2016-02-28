@@ -49,6 +49,7 @@ public class EditClassScheduleActivity extends BaseActivity implements View.OnCl
     private ClassSchedule classSchedule = new ClassSchedule();
     private final static String GET_JSON_URL = "http://fypproject.host56.com/ClassSchedule/edit_class_schedule_view.php";
     private final static String UPDATE_CLASS_SCHEDULE_URL = "http://fypproject.host56.com/ClassSchedule/update_class_schedule.php";
+    private final static String DELETE_CLASS_SCHEDULE_URL = "http://fypproject.host56.com/ClassSchedule/delete_class_schedule.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -144,6 +145,10 @@ public class EditClassScheduleActivity extends BaseActivity implements View.OnCl
                     }
                 };
                 new TimePickerDialog(this, timeEndListener, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true).show();
+                break;
+
+            case R.id.button_delete:
+                new DeleteClassSchedule(classScheduleID).execute();
                 break;
 
             default:
@@ -311,6 +316,41 @@ public class EditClassScheduleActivity extends BaseActivity implements View.OnCl
             data.put("status", this.classSchedule.getStatus());
 
             return requestHandler.sendPostRequest(UPDATE_CLASS_SCHEDULE_URL, data);
+        }
+    }
+
+    public class DeleteClassSchedule extends AsyncTask<Void, Void, String> {
+
+        ProgressDialog loading;
+        RequestHandler requestHandler = new RequestHandler();
+        String classScheduleID;
+
+        public DeleteClassSchedule(String classScheduleID) {
+            this.classScheduleID = classScheduleID;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            UIUtils.getProgressDialog(EditClassScheduleActivity.this, "ON");
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            UIUtils.getProgressDialog(EditClassScheduleActivity.this, "OFF");
+            shortToast(EditClassScheduleActivity.this, "Delete Class Schedule Successful.");
+            finish();
+        }
+
+        @Override
+        protected String doInBackground(Void... params) {
+
+            HashMap<String, String> data = new HashMap<>();
+
+            data.put("classScheduleID", classScheduleID);
+
+            return requestHandler.sendPostRequest(DELETE_CLASS_SCHEDULE_URL, data);
         }
     }
 }

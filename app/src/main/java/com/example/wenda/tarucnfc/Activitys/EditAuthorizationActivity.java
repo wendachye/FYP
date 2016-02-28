@@ -1,6 +1,7 @@
 package com.example.wenda.tarucnfc.Activitys;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
@@ -14,7 +15,6 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.wenda.tarucnfc.Databases.Contracts.AccountContract;
 import com.example.wenda.tarucnfc.Domains.Account;
@@ -35,6 +35,7 @@ public class EditAuthorizationActivity extends BaseActivity implements AdapterVi
     private TextView mTextViewAccountID;
     private TextView mTextViewAccountType;
     private TextView mTextViewStatus;
+    private TextView mTextViewName;
     private Button mButtonDelete;
     private Spinner mSpinnerEnduser;
     private Spinner mSpinnerBackend;
@@ -43,6 +44,7 @@ public class EditAuthorizationActivity extends BaseActivity implements AdapterVi
     private Account account = new Account();
     private final static String GET_JSON_URL = "http://fypproject.host56.com/Account/edit_account_authorization_view.php";
     private final static String UPDATE_AUTHORIZATION_URL = "http://fypproject.host56.com/Account/update_account1.php";
+    private final static String DELETE_AUTHORIZATION_URL = "http://fypproject.host56.com/Account/delete_account.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,8 +86,6 @@ public class EditAuthorizationActivity extends BaseActivity implements AdapterVi
             NavUtils.navigateUpFromSameTask(this);
         } else if (id == R.id.saveButton) {
             updateAuthorization();
-            finish();
-            shortToast(this, "Account Authorization Updated.");
         }
 
         return super.onOptionsItemSelected(item);
@@ -95,6 +95,7 @@ public class EditAuthorizationActivity extends BaseActivity implements AdapterVi
         mTextViewAccountID = (TextView) findViewById(R.id.text_view_accountID);
         mTextViewAccountType = (TextView) findViewById(R.id.text_view_accountType);
         mTextViewStatus = (TextView) findViewById(R.id.text_view_status);
+        mTextViewName = (TextView) findViewById(R.id.text_view_name);
         mSpinnerEnduser = (Spinner) findViewById(R.id.spinner_enduser_authorization);
         mSpinnerEnduser.setOnItemSelectedListener(this);
         mSpinnerBackend = (Spinner) findViewById(R.id.spinner_backend_authorization);
@@ -118,7 +119,7 @@ public class EditAuthorizationActivity extends BaseActivity implements AdapterVi
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.button_delete:
-
+                new DeleteAuthorization(mAccountID).execute();
                 break;
 
             default:
@@ -164,6 +165,7 @@ public class EditAuthorizationActivity extends BaseActivity implements AdapterVi
             JSONObject jsonObject = jsonArray.getJSONObject(0);
 
             account.setAccountID(jsonObject.getString(AccountContract.AccountRecord.KEY_ACCOUNT_ID));
+            account.setName(jsonObject.getString(AccountContract.AccountRecord.KEY_NAME));
             account.setAccountType(jsonObject.getString(AccountContract.AccountRecord.KEY_ACCOUNT_TYPE));
             account.setAuthorization(jsonObject.getString(AccountContract.AccountRecord.KEY_AUTHORIZATION));
             account.setStatus(jsonObject.getString(AccountContract.AccountRecord.KEY_STATUS));
@@ -178,6 +180,7 @@ public class EditAuthorizationActivity extends BaseActivity implements AdapterVi
 
     public void initialValues() {
         mTextViewAccountID.setText(account.getAccountID());
+        mTextViewName.setText(account.getName());
         mTextViewAccountType.setText(account.getAccountType());
         mTextViewStatus.setText(account.getStatus());
         if (account.getAccountType().equals("End User")) {
@@ -224,6 +227,7 @@ public class EditAuthorizationActivity extends BaseActivity implements AdapterVi
     private void updateAuthorization() {
         // set all the related values into account domain
         account.setAccountID(mTextViewAccountID.getText().toString());
+        account.setName(mTextViewName.getText().toString());
         account.setAccountType(mTextViewAccountType.getText().toString());
         if (mTextViewAccountType.getText().toString().equals("Back End")) {
             account.setAuthorization(mSpinnerBackend.getSelectedItem().toString());
@@ -260,7 +264,8 @@ public class EditAuthorizationActivity extends BaseActivity implements AdapterVi
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             UIUtils.getProgressDialog(EditAuthorizationActivity.this, "OFF");
-            Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();
+            //Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();
+            shortToast(EditAuthorizationActivity.this, "Account Updated.");
             finish();
         }
 
@@ -270,11 +275,49 @@ public class EditAuthorizationActivity extends BaseActivity implements AdapterVi
             HashMap<String, String> data = new HashMap<>();
 
             data.put("accountID", this.account.getAccountID());
+            data.put("name", this.account.getName());
             data.put("accountType", this.account.getAccountType());
             data.put("authorization", this.account.getAuthorization());
             data.put("status", this.account.getStatus());
 
             return requestHandler.sendPostRequest(UPDATE_AUTHORIZATION_URL, data);
+        }
+    }
+
+    public class DeleteAuthorization extends AsyncTask<Void, Void, String> {
+
+        ProgressDialog loading;
+        RequestHandler requestHandler = new RequestHandler();
+        String accountID;
+
+        public DeleteAuthorization(String accountID) {
+            this.accountID = accountID;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            UIUtils.getProgressDialog(EditAuthorizationActivity.this, "ON");
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            UIUtils.getProgressDialog(EditAuthorizationActivity.this, "OFF");
+            shortToast(EditAuthorizationActivity.this, "Delete Account Successful.");
+            finish();
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
+        }
+
+        @Override
+        protected String doInBackground(Void... params) {
+
+            HashMap<String, String> data = new HashMap<>();
+
+            data.put("accountID", accountID);
+
+            return requestHandler.sendPostRequest(DELETE_AUTHORIZATION_URL, data);
         }
     }
 

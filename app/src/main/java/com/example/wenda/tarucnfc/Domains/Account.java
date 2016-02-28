@@ -1,6 +1,7 @@
 package com.example.wenda.tarucnfc.Domains;
 
 import android.graphics.Bitmap;
+import android.text.TextUtils;
 
 import com.example.wenda.tarucnfc.InvalidInputException;
 
@@ -55,7 +56,7 @@ public class Account {
 
     public void verifyAccountID(String accountID) throws InvalidInputException {
         if(accountID.equals(""))
-            throw new InvalidInputException("Please Enter Account ID.");
+            throw new InvalidInputException("Please enter Account ID.");
         else if (accountID.length() > 10)
             throw new InvalidInputException("Account ID must be 10 character.");
         else if (accountID.length() < 10)
@@ -66,7 +67,7 @@ public class Account {
 
     public void verifyRecipientAccountID(String accountID) throws InvalidInputException {
         if(accountID.equals(""))
-            throw new InvalidInputException("Please Enter Recipient Account ID.");
+            throw new InvalidInputException("Please enter Recipient Account ID.");
         else if (accountID.length() > 10)
             throw new InvalidInputException("Recipient Account ID must be 10 character.");
         else if (accountID.length() < 10)
@@ -125,7 +126,9 @@ public class Account {
 
     public void verifyName(String name) throws InvalidInputException {
         if(name.equals(""))
-            throw new InvalidInputException("Please enter name.");
+            throw new InvalidInputException("Please enter Name.");
+        else if(!name.matches("[a-zA-Z]+"))
+            throw new InvalidInputException("Please enter Character Only.");
         else
             this.name = name;
     }
@@ -140,11 +143,11 @@ public class Account {
 
     public void verifyNRICNo(String NRICNo) throws InvalidInputException {
         if(NRICNo.equals(""))
-            throw new InvalidInputException("Please Enter NRIC.NO.");
+            throw new InvalidInputException("Please enter NRIC.NO.");
         else if (NRICNo.length() > 12)
-            throw new InvalidInputException("NRIC.NO must be 10 number.");
+            throw new InvalidInputException("NRIC.NO must be 12 number.");
         else if (NRICNo.length() < 12)
-            throw new InvalidInputException("NRIC.NO must be 10 number.");
+            throw new InvalidInputException("NRIC.NO must be 12 number.");
         else
             this.NRICNo = NRICNo;
     }
@@ -157,12 +160,36 @@ public class Account {
         this.contactNo = contactNo;
     }
 
+    public void verifyContactNo(String contactNo) throws InvalidInputException {
+        if(contactNo.equals(""))
+            throw new InvalidInputException("Please enter Contact Number.");
+        else if (contactNo.length() > 11)
+            throw new InvalidInputException("Contact Number must be 11 number.");
+        else if (contactNo.length() < 1)
+            throw new InvalidInputException("Contact Number must be 11 number.");
+        else
+            this.contactNo = contactNo;
+    }
+
     public String getEmailAddress() {
         return emailAddress;
     }
 
     public void setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
+    }
+
+    public void verifyEmail(String emailAddress) throws InvalidInputException {
+        if(emailAddress.equals(""))
+            throw new InvalidInputException("Please enter Email Address.");
+        else if (isValidEmail(emailAddress) == false)
+            throw new InvalidInputException("Invalid Email Address.");
+        else
+            this.emailAddress = emailAddress;
+    }
+
+    public final static boolean isValidEmail(CharSequence target) {
+        return !TextUtils.isEmpty(target) && android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
     }
 
     public String getGender() {
@@ -181,12 +208,26 @@ public class Account {
         this.homeAddress = homeAddress;
     }
 
+    public void verifyHomeAddress(String homeAddress) throws InvalidInputException {
+        if(homeAddress.equals(""))
+            throw new InvalidInputException("Please enter Home Address.");
+        else
+            this.homeAddress = homeAddress;
+    }
+
     public String getCampusAddress() {
         return campusAddress;
     }
 
     public void setCampusAddress(String campusAddress) {
         this.campusAddress = campusAddress;
+    }
+
+    public void verifyCampusAddress(String campusAddress) throws InvalidInputException {
+        if(campusAddress.equals(""))
+            throw new InvalidInputException("Please enter Campus Address.");
+        else
+            this.campusAddress = campusAddress;
     }
 
     public String getAccountType() {

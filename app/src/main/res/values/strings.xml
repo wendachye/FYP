@@ -107,6 +107,7 @@
     <string name="email">Email Address:</string>
     <string name="account_type">Account Type:</string>
     <string name="topupAmount">Top Up Amount:</string>
+    <string name="name">Name:</string>
 
     <string-array name="gender_arrays">
         <item>Male</item>
@@ -190,6 +191,15 @@
         <item>FEBE</item>
         <item>FSAH</item>
         <item>CPUS</item>
+    </string-array>
+
+    <string-array name="campus_arrays">
+        <item>Kuala Lumpur Main Campus</item>
+        <item>Penang Branch Campus</item>
+        <item>Perak Branch Campus</item>
+        <item>Johor Branch Campus</item>
+        <item>Pahang Branch Campus</item>
+        <item>Sabah Branch Campus</item>
     </string-array>
 
     <string-array name="day_arrays">

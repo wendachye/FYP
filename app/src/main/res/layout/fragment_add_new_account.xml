@@ -297,7 +297,7 @@
 
                         <Spinner
                             android:id="@+id/spinner_gender"
-                            android:layout_width="135dp"
+                            android:layout_width="match_parent"
                             android:layout_height="30dp"
                             android:layout_gravity="center"
                             android:layout_marginBottom="5dp"
@@ -421,14 +421,17 @@
                             android:scaleType="centerCrop"
                             android:src="@drawable/ic_school" />
 
-                        <EditText
-                            android:id="@+id/edit_text_faculty"
+                        <Spinner
+                            android:id="@+id/spinner_faculty"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="30dp"
                             android:layout_gravity="center"
+                            android:layout_marginBottom="5dp"
                             android:layout_marginLeft="@dimen/activity_vertical_margin"
-                            android:hint="@string/hint_faculty"
-                            android:inputType="text" />
+                            android:layout_marginTop="5dp"
+                            android:entries="@array/faculty_arrays"
+                            android:prompt="@string/hint_faculty"
+                            android:spinnerMode="dialog" />
 
                     </LinearLayout>
 
@@ -496,14 +499,17 @@
                             android:scaleType="centerCrop"
                             android:src="@drawable/ic_hospital_building" />
 
-                        <EditText
-                            android:id="@+id/edit_text_campus"
+                        <Spinner
+                            android:id="@+id/spinner_campus"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="30dp"
                             android:layout_gravity="center"
+                            android:layout_marginBottom="5dp"
                             android:layout_marginLeft="@dimen/activity_vertical_margin"
-                            android:hint="@string/hint_campus"
-                            android:inputType="text" />
+                            android:layout_marginTop="5dp"
+                            android:entries="@array/campus_arrays"
+                            android:prompt="@string/hint_campus"
+                            android:spinnerMode="dialog" />
 
                     </LinearLayout>
 

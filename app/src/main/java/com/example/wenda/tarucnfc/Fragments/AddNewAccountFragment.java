@@ -22,6 +22,8 @@ import android.widget.Toast;
 import com.example.wenda.tarucnfc.Activitys.BaseActivity;
 import com.example.wenda.tarucnfc.Domains.Account;
 import com.example.wenda.tarucnfc.Domains.Login;
+import com.example.wenda.tarucnfc.Domains.OfflineLogin;
+import com.example.wenda.tarucnfc.InvalidInputException;
 import com.example.wenda.tarucnfc.R;
 import com.example.wenda.tarucnfc.RequestHandler;
 
@@ -52,8 +54,8 @@ public class AddNewAccountFragment extends Fragment implements View.OnClickListe
     private EditText mEditTextAccountID;
     private EditText mEditTextProgramme;
     private EditText mEditTextGroupNo;
-    private EditText mEditTextFaculty;
-    private EditText mEditTextCampus;
+    private Spinner mSpinnerFaculty;
+    private Spinner mSpinnerCampus;
     private EditText mEditTextSchoolEmail;
     private EditText mEditTextSessionJoined;
 
@@ -64,6 +66,7 @@ public class AddNewAccountFragment extends Fragment implements View.OnClickListe
 
     private Account account = new Account();
     private Login login = new Login();
+    private OfflineLogin offlineLogin = new OfflineLogin();
     private final static String Add_NEW_ACCOUNT_URL = "http://fypproject.host56.com/Account/add_account.php";
 
     public AddNewAccountFragment() {
@@ -294,8 +297,8 @@ public class AddNewAccountFragment extends Fragment implements View.OnClickListe
         mEditTextAccountID = (EditText) view.findViewById(R.id.edit_text_accountID);
         mEditTextProgramme = (EditText) view.findViewById(R.id.edit_text_programme);
         mEditTextGroupNo = (EditText) view.findViewById(R.id.edit_text_groupNo);
-        mEditTextFaculty = (EditText) view.findViewById(R.id.edit_text_faculty);
-        mEditTextCampus = (EditText) view.findViewById(R.id.edit_text_campus);
+        mSpinnerFaculty = (Spinner) view.findViewById(R.id.spinner_faculty);
+        mSpinnerCampus = (Spinner) view.findViewById(R.id.spinner_campus);
         mEditTextSchoolEmail = (EditText) view.findViewById(R.id.edit_text_school_email);
         mEditTextSessionJoined = (EditText) view.findViewById(R.id.edit_text_sessionJoined);
         mLinearLayoutCampus = (LinearLayout) view.findViewById(R.id.linear_layout_campus);
@@ -311,7 +314,11 @@ public class AddNewAccountFragment extends Fragment implements View.OnClickListe
         switch (view.getId()) {
             case R.id.button_confirm:
                 // verify input data
-                verifyData();
+                try {
+                    verifyData();
+                } catch (InvalidInputException e) {
+                    e.printStackTrace();
+                }
                 // insert data
                 addData();
                 break;
@@ -321,8 +328,34 @@ public class AddNewAccountFragment extends Fragment implements View.OnClickListe
         }
     }
 
-    public void verifyData() {
-
+    public void verifyData() throws InvalidInputException {
+        if (mSpinnerAccountType.getSelectedItem().toString().equals("Back End")) {
+            account.verifyAccountID(mEditTextAccountID.getText().toString());
+            account.verifyName(mEditTextFullName.getText().toString());
+            account.verifyNRICNo(mEditTextNRICNo.getText().toString());
+            account.verifyContactNo(mEditTextContact.getText().toString());
+            account.verifyEmail(mEditTextEmail.getText().toString());
+            account.verifyHomeAddress(mEditTextHomeAddress.getText().toString());
+        } else if (mSpinnerAccountEndUserAuthorization.getSelectedItem().toString().equals("Lecturer / Tutor")){
+            account.verifyAccountID(mEditTextAccountID.getText().toString());
+            account.verifyName(mEditTextFullName.getText().toString());
+            account.verifyNRICNo(mEditTextNRICNo.getText().toString());
+            account.verifyContactNo(mEditTextContact.getText().toString());
+            account.verifyEmail(mEditTextEmail.getText().toString());
+            account.verifyHomeAddress(mEditTextHomeAddress.getText().toString());
+            account.verifyCampusAddress(mEditTextCampusAddress.getText().toString());
+        } else {
+            account.verifyAccountID(mEditTextAccountID.getText().toString());
+            account.verifyName(mEditTextFullName.getText().toString());
+            account.verifyNRICNo(mEditTextNRICNo.getText().toString());
+            account.verifyContactNo(mEditTextContact.getText().toString());
+            account.verifyEmail(mEditTextEmail.getText().toString());
+            account.verifyHomeAddress(mEditTextHomeAddress.getText().toString());
+            account.verifyCampusAddress(mEditTextCampusAddress.getText().toString());
+            offlineLogin.verifyProgramme(mEditTextProgramme.getText().toString());
+            offlineLogin.verifyGroupNo(mEditTextGroupNo.getText().toString());
+            offlineLogin.verifySchoolEmail(mEditTextSchoolEmail.getText().toString());
+        }
     }
 
     public void addData() {
@@ -337,8 +370,8 @@ public class AddNewAccountFragment extends Fragment implements View.OnClickListe
         account.setCampusAddress(mEditTextCampusAddress.getText().toString());
         account.setProgramme(mEditTextProgramme.getText().toString());
         account.setGroupNo(mEditTextGroupNo.getText().toString());
-        account.setFaculty(mEditTextFaculty.getText().toString());
-        account.setCampus(mEditTextCampus.getText().toString());
+        account.setFaculty(mSpinnerFaculty.getSelectedItem().toString());
+        account.setCampus(mSpinnerCampus.getSelectedItem().toString());
         account.setSchoolEmail(mEditTextSchoolEmail.getText().toString());
         account.setSessionJoined(mEditTextSessionJoined.getText().toString());
         account.setAccountType(mSpinnerAccountType.getSelectedItem().toString());

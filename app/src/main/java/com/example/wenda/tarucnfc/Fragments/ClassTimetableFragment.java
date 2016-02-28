@@ -152,10 +152,13 @@ public class ClassTimetableFragment extends Fragment {
                 classSchedule.setDay(jsonObject.getString(ClassScheduleRecord.COLUMN_DAY));
                 classSchedule.setStartTime(jsonObject.getString(ClassScheduleRecord.COLUMN_START_TIME));
                 classSchedule.setEndTime(jsonObject.getString(ClassScheduleRecord.COLUMN_END_TIME));
+                classSchedule.setStatus(jsonObject.getString(ClassScheduleRecord.COLUMN_STATUS));
 
-                Log.d("track", "a " + jsonObject.getString(ClassScheduleRecord.COLUMN_END_TIME));
                 Log.d("track", "list size " + mListClassSchedule.size());
-                mListClassSchedule.add(classSchedule);
+
+                if (classSchedule.getStatus().toString().equals("Active")) {
+                    mListClassSchedule.add(classSchedule);
+                }
 
             } catch (JSONException e) {
                 e.printStackTrace();

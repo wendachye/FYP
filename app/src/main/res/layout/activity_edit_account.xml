@@ -173,7 +173,7 @@
                                 android:layout_marginLeft="@dimen/activity_vertical_margin"
                                 android:layout_marginRight="16dp"
                                 android:hint="@string/hint_nric"
-                                android:inputType="text" />
+                                android:inputType="number" />
 
                         </LinearLayout>
 

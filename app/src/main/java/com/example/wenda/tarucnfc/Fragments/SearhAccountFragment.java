@@ -83,11 +83,13 @@ public class SearhAccountFragment extends Fragment implements View.OnClickListen
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.button_search:
+                mCardViewEditAccount.setVisibility(View.GONE);
                 new searchAccount(mEditTextAccountID.getText().toString()).execute();
                 break;
 
             case R.id.edit_account:
                 mEditTextAccountID.setText("");
+                mCardViewEditAccount.setVisibility(View.GONE);
                 Intent intent = new Intent(getActivity(), EditAuthorizationActivity.class);
                 intent.putExtra("AccountID", mAccountID);
                 startActivity(intent);
@@ -155,19 +157,21 @@ public class SearhAccountFragment extends Fragment implements View.OnClickListen
 
             switch (account.getResponse()) {
                 case 1:
-                    // class schedule found
+                    // account found
                     mCardViewEditAccount.setVisibility(View.VISIBLE);
                     initialValues();
                     break;
 
                 case 2:
-                    // class schedule inactive
-
+                    // account inactive
+                    mCardViewEditAccount.setVisibility(View.GONE);
+                    new BaseActivity().shortToast(getActivity(), "No Record.");
                     break;
 
                 case 0:
-                    // class schedule not found
-
+                    // account not found
+                    mCardViewEditAccount.setVisibility(View.GONE);
+                    new BaseActivity().shortToast(getActivity(), "No Record.");
                     break;
 
                 default:

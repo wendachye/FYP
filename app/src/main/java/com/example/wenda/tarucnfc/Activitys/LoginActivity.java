@@ -95,14 +95,14 @@ public class LoginActivity extends BaseActivity {
            switch (offlineLogin.getLoginResponse()){
                 case RESPONSE_404:
                     // account not found
-                    shortToast(LoginActivity.this,"Account not found");
+                    shortToast(LoginActivity.this,"Account not found.");
                     editTextUsername.setText("");
                     editTextPassword.setText("");
                     break;
 
                 case RESPONSE_SUCCESS:
                     // login success, save login state and direct to main screen
-                    shortToast(LoginActivity.this,"success");
+                    //shortToast(LoginActivity.this,"success");
                     saveLoginDetail(offlineLogin,LoginActivity.this);
                     // go to main screen
                     finish();
@@ -112,13 +112,13 @@ public class LoginActivity extends BaseActivity {
 
                 case RESPONSE_PASSWORD_INCORRECT:
                     // password incorrect
-                    shortToast(LoginActivity.this,"password incorrect");
+                    shortToast(LoginActivity.this,"Password Incorrect.");
                     editTextPassword.setText("");
                     break;
 
                 case RESPONSE_STATUS_NOT_ACTIVE:
                     // inactive account
-                    shortToast(LoginActivity.this,"account inactive");
+                    shortToast(LoginActivity.this,"Account Inactive.");
                     editTextUsername.setText("");
                     editTextPassword.setText("");
                     break;

@@ -124,7 +124,6 @@ public class TransactionActivity extends BaseActivity {
                 transaction.setStatus(jsonObject.getString(TransactionRecord.COLUMN_STATUS));
                 transaction.setRemark(jsonObject.getString(TransactionRecord.COLUMN_REMARK));
 
-                Log.d("track", "t " + jsonObject.getString(TransactionRecord.COLUMN_REMARK));
                 Log.d("track", "list size " + mListTransaction.size());
                 mListTransaction.add(transaction);
 

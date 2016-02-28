@@ -35,7 +35,7 @@ public class AdapterTransaction extends RecyclerView.Adapter<AdapterTransaction.
         holder.senderID.setText(items.get(position).getSenderID());
         holder.recipientID.setText(items.get(position).getRecipientID());
         holder.transactionType.setText(items.get(position).getTransactionType());
-        holder.amount.setText(items.get(position).getAmount());
+        holder.amount.setText("RM " + items.get(position).getAmount());
         holder.dateTime.setText(items.get(position).getDateTime());
         holder.status.setText(items.get(position).getStatus());
         holder.remark.setText(items.get(position).getRemark());
