@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.example.wenda.tarucnfc.R;
 import com.example.wenda.tarucnfc.RequestHandler;
+import com.example.wenda.tarucnfc.UIUtils;
 
 import java.util.HashMap;
 
@@ -23,7 +24,7 @@ public class DisplayNFCActivity extends BaseActivity implements View.OnClickList
     private TextView mTextViewAmount;
     private String messageRecevied;
     private Button mButtonConfirm;
-    private String amount;
+    private String amount, mbackendID;
     private static final String TOP_UP_BALANCE_URL = "http://fypproject.host56.com/Wallet/top_up_balance.php";
 
     @Override
@@ -39,6 +40,8 @@ public class DisplayNFCActivity extends BaseActivity implements View.OnClickList
         mTextViewAmount = (TextView)findViewById(R.id.text_view_topupAmount);
         mButtonConfirm = (Button)findViewById(R.id.button_confirm);
         mButtonConfirm.setOnClickListener(this);
+
+        mbackendID = getLoginDetail(this).getAccountID();
     }
 
 
@@ -62,7 +65,7 @@ public class DisplayNFCActivity extends BaseActivity implements View.OnClickList
         switch (view.getId()){
             case R.id.button_confirm:
                 amount = mTextViewAmount.getText().toString().substring(2,5);
-                new TopUpBalnce(mTextViewAccountID.getText().toString(), amount).execute();
+                new TopUpBalance(mbackendID, mTextViewAccountID.getText().toString(), amount).execute();
                 break;
 
             default:
@@ -70,14 +73,17 @@ public class DisplayNFCActivity extends BaseActivity implements View.OnClickList
         }
     }
 
-    public class TopUpBalnce extends AsyncTask<Void, Void, String> {
+    public class TopUpBalance extends AsyncTask<Void, Void, String> {
 
         ProgressDialog loading;
         RequestHandler requestHandler = new RequestHandler();
+        String backendID;
         String accountID;
         String amount;
 
-        public TopUpBalnce(String accountID, String amount) {
+
+        public TopUpBalance(String backendID, String accountID, String amount) {
+            this.backendID = backendID;
             this.accountID = accountID;
             this.amount = amount;
         }
@@ -85,23 +91,24 @@ public class DisplayNFCActivity extends BaseActivity implements View.OnClickList
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            //UIUtils.getProgressDialog(getActivity(), "ON");
+            UIUtils.getProgressDialog(DisplayNFCActivity.this, "ON");
         }
 
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            //UIUtils.getProgressDialog(getActivity(), "OFF");
-            //Toast.makeText(DisplayNFCActivity.this, s, Toast.LENGTH_LONG).show();
+            UIUtils.getProgressDialog(DisplayNFCActivity.this, "OFF");
         }
 
         @Override
         protected String doInBackground(Void... params) {
 
             HashMap<String, String> data = new HashMap<>();
-
+            data.put("backendID", backendID);
             data.put("accountID", accountID);
+            data.put("transactionType", "Top Up");
             data.put("amount", amount);
+            data.put("dateTime", dateTimeFormat.format(calendar.getTime()));
 
             return requestHandler.sendPostRequest(TOP_UP_BALANCE_URL, data);
         }

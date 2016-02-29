@@ -3,6 +3,7 @@ package com.example.wenda.tarucnfc.Activitys;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -30,6 +31,7 @@ public class TransactionActivity extends BaseActivity {
     private ArrayList<Transaction> mListTransaction = new ArrayList<>();
     private static final String GET_TRANSACTION_URL = "http://fypproject.host56.com/Wallet/get_transaction_history.php";
     private JSONArray mJsonArray;
+    private SwipeRefreshLayout mSwipeContainer;
     private Transaction transaction = new Transaction();
 
     @Override
@@ -48,8 +50,18 @@ public class TransactionActivity extends BaseActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        mSwipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
+
         new GetJson(getLoginDetail(this).getAccountID()).execute();
-        Log.d("track", "pass");
+
+        mSwipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                mListTransaction.clear();
+
+                new GetJson(getLoginDetail(TransactionActivity.this).getAccountID()).execute();
+            }
+        });
 
     }
 
@@ -88,6 +100,7 @@ public class TransactionActivity extends BaseActivity {
         protected void onPostExecute(String json) {
             super.onPostExecute(json);
             UIUtils.getProgressDialog(TransactionActivity.this, "OFF");
+            mSwipeContainer.setRefreshing(false);
             convertJson(json);
             extractJsonData();
         }

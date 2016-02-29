@@ -8,7 +8,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="TARUC"
+        android:text="TARUC App"
         android:textColor="@color/white"
         android:textStyle="bold"
         android:id="@+id/login_title"

@@ -17,6 +17,8 @@ import android.widget.TimePicker;
 
 import com.example.wenda.tarucnfc.Activitys.BaseActivity;
 import com.example.wenda.tarucnfc.Domains.ClassSchedule;
+import com.example.wenda.tarucnfc.Domains.OfflineLogin;
+import com.example.wenda.tarucnfc.InvalidInputException;
 import com.example.wenda.tarucnfc.R;
 import com.example.wenda.tarucnfc.RequestHandler;
 
@@ -37,6 +39,7 @@ public class AddNewClassScheduleFragment extends Fragment implements View.OnClic
     private Button mButtonConfirm;
 
     private ClassSchedule classSchedule = new ClassSchedule();
+    private OfflineLogin offlineLogin = new OfflineLogin();
     Calendar calendar;
     private final static String Add_NEW_CLASS_TIMETABLE_URL = "http://fypproject.host56.com/ClassSchedule/add_class_schedule.php";
 
@@ -109,8 +112,6 @@ public class AddNewClassScheduleFragment extends Fragment implements View.OnClic
             case R.id.button_confirm:
                 // verify input data
                 verifyData();
-                // insert data
-                addData();
                 break;
 
             default:
@@ -119,6 +120,17 @@ public class AddNewClassScheduleFragment extends Fragment implements View.OnClic
     }
 
     public void verifyData(){
+        try {
+            offlineLogin.verifyProgramme(mEditTextProgramme.getText().toString());
+            offlineLogin.verifyGroupNo(mEditTextGroupNo.getText().toString());
+            classSchedule.verifySubject(mEditTextSubject.getText().toString());
+            classSchedule.verifyTutorlecturer(mEditTextTutorLecturer.getText().toString());
+            classSchedule.verifyLocation(mEditTextLocation.getText().toString());
+            // insert data
+            addData();
+        } catch (InvalidInputException e) {
+            new BaseActivity().shortToast(getActivity(), e.getInfo());
+        }
 
     }
 

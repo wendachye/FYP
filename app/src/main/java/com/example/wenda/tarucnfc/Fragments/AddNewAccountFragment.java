@@ -314,13 +314,7 @@ public class AddNewAccountFragment extends Fragment implements View.OnClickListe
         switch (view.getId()) {
             case R.id.button_confirm:
                 // verify input data
-                try {
-                    verifyData();
-                } catch (InvalidInputException e) {
-                    e.printStackTrace();
-                }
-                // insert data
-                addData();
+                verifyData();
                 break;
 
             default:
@@ -328,33 +322,43 @@ public class AddNewAccountFragment extends Fragment implements View.OnClickListe
         }
     }
 
-    public void verifyData() throws InvalidInputException {
-        if (mSpinnerAccountType.getSelectedItem().toString().equals("Back End")) {
-            account.verifyAccountID(mEditTextAccountID.getText().toString());
-            account.verifyName(mEditTextFullName.getText().toString());
-            account.verifyNRICNo(mEditTextNRICNo.getText().toString());
-            account.verifyContactNo(mEditTextContact.getText().toString());
-            account.verifyEmail(mEditTextEmail.getText().toString());
-            account.verifyHomeAddress(mEditTextHomeAddress.getText().toString());
-        } else if (mSpinnerAccountEndUserAuthorization.getSelectedItem().toString().equals("Lecturer / Tutor")){
-            account.verifyAccountID(mEditTextAccountID.getText().toString());
-            account.verifyName(mEditTextFullName.getText().toString());
-            account.verifyNRICNo(mEditTextNRICNo.getText().toString());
-            account.verifyContactNo(mEditTextContact.getText().toString());
-            account.verifyEmail(mEditTextEmail.getText().toString());
-            account.verifyHomeAddress(mEditTextHomeAddress.getText().toString());
-            account.verifyCampusAddress(mEditTextCampusAddress.getText().toString());
-        } else {
-            account.verifyAccountID(mEditTextAccountID.getText().toString());
-            account.verifyName(mEditTextFullName.getText().toString());
-            account.verifyNRICNo(mEditTextNRICNo.getText().toString());
-            account.verifyContactNo(mEditTextContact.getText().toString());
-            account.verifyEmail(mEditTextEmail.getText().toString());
-            account.verifyHomeAddress(mEditTextHomeAddress.getText().toString());
-            account.verifyCampusAddress(mEditTextCampusAddress.getText().toString());
-            offlineLogin.verifyProgramme(mEditTextProgramme.getText().toString());
-            offlineLogin.verifyGroupNo(mEditTextGroupNo.getText().toString());
-            offlineLogin.verifySchoolEmail(mEditTextSchoolEmail.getText().toString());
+    public void verifyData(){
+        try {
+            if (mSpinnerAccountType.getSelectedItem().toString().equals("Back End")) {
+                account.verifyAccountID(mEditTextAccountID.getText().toString());
+                account.verifyName(mEditTextFullName.getText().toString());
+                account.verifyNRICNo(mEditTextNRICNo.getText().toString());
+                account.verifyContactNo(mEditTextContact.getText().toString());
+                account.verifyEmail(mEditTextEmail.getText().toString());
+                account.verifyHomeAddress(mEditTextHomeAddress.getText().toString());
+                // insert data
+                addData();
+            } else if (mSpinnerAccountEndUserAuthorization.getSelectedItem().toString().equals("Lecturer / Tutor")){
+                account.verifyAccountID(mEditTextAccountID.getText().toString());
+                account.verifyName(mEditTextFullName.getText().toString());
+                account.verifyNRICNo(mEditTextNRICNo.getText().toString());
+                account.verifyContactNo(mEditTextContact.getText().toString());
+                account.verifyEmail(mEditTextEmail.getText().toString());
+                account.verifyHomeAddress(mEditTextHomeAddress.getText().toString());
+                account.verifyCampusAddress(mEditTextCampusAddress.getText().toString());
+                // insert data
+                addData();
+            } else {
+                account.verifyAccountID(mEditTextAccountID.getText().toString());
+                account.verifyName(mEditTextFullName.getText().toString());
+                account.verifyNRICNo(mEditTextNRICNo.getText().toString());
+                account.verifyContactNo(mEditTextContact.getText().toString());
+                account.verifyEmail(mEditTextEmail.getText().toString());
+                account.verifyHomeAddress(mEditTextHomeAddress.getText().toString());
+                account.verifyCampusAddress(mEditTextCampusAddress.getText().toString());
+                offlineLogin.verifyProgramme(mEditTextProgramme.getText().toString());
+                offlineLogin.verifyGroupNo(mEditTextGroupNo.getText().toString());
+                offlineLogin.verifySchoolEmail(mEditTextSchoolEmail.getText().toString());
+                // insert data
+                addData();
+            }
+        } catch (InvalidInputException e) {
+            new BaseActivity().shortToast(getActivity(), e.getInfo());
         }
     }
 

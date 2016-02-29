@@ -1,5 +1,7 @@
 package com.example.wenda.tarucnfc.Domains;
 
+import com.example.wenda.tarucnfc.InvalidInputException;
+
 public class ClassSchedule {
 
     private String classScheduleID;
@@ -118,5 +120,28 @@ public class ClassSchedule {
 
     public void setEndTime(String endTime) {
         this.endTime = endTime;
+    }
+
+    public void verifySubject(String subject) throws InvalidInputException {
+        if(subject.equals(""))
+            throw new InvalidInputException("Please enter Subject.");
+        else
+            this.subject = subject;
+    }
+
+    public void verifyTutorlecturer(String tutorlecturer) throws InvalidInputException {
+        if(tutorlecturer.equals(""))
+            throw new InvalidInputException("Please enter Tutor or Lecturer Name.");
+        else if(!tutorlecturer.matches("[a-zA-Z]+"))
+            throw new InvalidInputException("Please enter Character Only.");
+        else
+            this.tutorlecturer = tutorlecturer;
+    }
+
+    public void verifyLocation(String location) throws InvalidInputException {
+        if(location.equals(""))
+            throw new InvalidInputException("Please enter Location.");
+        else
+            this.location = location;
     }
 }

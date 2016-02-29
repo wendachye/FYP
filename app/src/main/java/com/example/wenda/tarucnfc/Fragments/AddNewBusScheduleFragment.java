@@ -14,6 +14,7 @@ import android.widget.Spinner;
 
 import com.example.wenda.tarucnfc.Activitys.BaseActivity;
 import com.example.wenda.tarucnfc.Domains.BusSchedule;
+import com.example.wenda.tarucnfc.InvalidInputException;
 import com.example.wenda.tarucnfc.R;
 import com.example.wenda.tarucnfc.RequestHandler;
 
@@ -63,8 +64,6 @@ public class AddNewBusScheduleFragment extends Fragment implements View.OnClickL
             case R.id.button_confirm:
                 // verify input data
                 verifyData();
-                // insert data
-                addData();
                 break;
 
             default:
@@ -73,7 +72,14 @@ public class AddNewBusScheduleFragment extends Fragment implements View.OnClickL
     }
 
     public void verifyData(){
+        try {
+            busSchedule.verifyRouteTime(mEditTextTime.getText().toString());
 
+            // insert data
+            addData();
+        } catch (InvalidInputException e) {
+            new BaseActivity().shortToast(getActivity(), e.getInfo());
+        }
     }
 
     public void addData(){

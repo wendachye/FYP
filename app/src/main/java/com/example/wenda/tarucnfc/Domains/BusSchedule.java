@@ -1,5 +1,7 @@
 package com.example.wenda.tarucnfc.Domains;
 
+import com.example.wenda.tarucnfc.InvalidInputException;
+
 public class BusSchedule {
 
     private String busScheduleID;
@@ -73,6 +75,15 @@ public class BusSchedule {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public void verifyRouteTime(String routeTime) throws InvalidInputException {
+        if(routeTime.equals(""))
+            throw new InvalidInputException("Please enter Bus Time.");
+        else if(routeTime.matches("[a-zA-Z]+"))
+            throw new InvalidInputException("Please enter Numeric Only.");
+        else
+            this.routeTime = routeTime;
     }
 }
 
