@@ -10,7 +10,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.wenda.tarucnfc.Activitys.BaseActivity;
@@ -23,6 +22,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 
 import static com.example.wenda.tarucnfc.Activitys.BaseActivity.shortToast;
@@ -30,7 +33,6 @@ import static com.example.wenda.tarucnfc.Activitys.BaseActivity.shortToast;
 public class BusRouteFragment extends Fragment implements View.OnClickListener {
 
     private String condition;
-    private Button mButtonBusRoute;
     private TextView mTextViewDate, mTextViewDate2, mTextViewDate3;
     private TextView mTextViewDeparture, mTextViewDeparture2, mTextViewDeparture3;
     private TextView mTextViewDestination, mTextViewDestination2, mTextViewDestination3;
@@ -41,6 +43,8 @@ public class BusRouteFragment extends Fragment implements View.OnClickListener {
     private BusSchedule busSchedule = new BusSchedule();
     private static final String GET_BUS_SCHEDULES_URL = "http://fypproject.host56.com/BusSchedule/get_bus_schedule_view.php";
     private JSONArray mJsonArray;
+    private Calendar calendar;
+    public static final SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
 
     public BusRouteFragment() {
         // Required empty public constructor
@@ -55,16 +59,35 @@ public class BusRouteFragment extends Fragment implements View.OnClickListener {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_bus_route, container, false);
 
+        // set current date time
+        calendar = Calendar.getInstance();
+
         // set findviewbyid
         setFindviewbyid(view);
 
-        new GetJson(String.valueOf(condition)).execute();
+        if (new BaseActivity().isNetworkAvailable(getActivity())) {
+            mCardView1.setVisibility(View.GONE);
+            mCardView2.setVisibility(View.GONE);
+            mCardView3.setVisibility(View.GONE);
+            new GetJson(String.valueOf(condition)).execute();
+        } else {
+            new BaseActivity().shortToast(getActivity(), "Network not available.");
+        }
+
 
         mSwipeContainer = (SwipeRefreshLayout) view.findViewById(R.id.swipeContainer);
         mSwipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                new GetJson(String.valueOf(condition)).execute();
+                if (new BaseActivity().isNetworkAvailable(getActivity())) {
+                    mCardView1.setVisibility(View.GONE);
+                    mCardView2.setVisibility(View.GONE);
+                    mCardView3.setVisibility(View.GONE);
+                    new GetJson(String.valueOf(condition)).execute();
+                } else {
+                    new BaseActivity().shortToast(getActivity(), "Network not available, couldn't refresh.");
+                    mSwipeContainer.setRefreshing(false);
+                }
             }
         });
 
@@ -102,10 +125,6 @@ public class BusRouteFragment extends Fragment implements View.OnClickListener {
         mCardView2.setOnClickListener(this);
         mCardView3 = (CardView) view.findViewById(R.id.cardview3);
         mCardView3.setOnClickListener(this);
-
-        mCardView1.setVisibility(View.GONE);
-        mCardView2.setVisibility(View.GONE);
-        mCardView3.setVisibility(View.GONE);
     }
 
 
@@ -204,7 +223,35 @@ public class BusRouteFragment extends Fragment implements View.OnClickListener {
         mTextViewDate.setText(busSchedule.getRouteDay());
         mTextViewDeparture.setText(busSchedule.getDeparture());
         mTextViewDestination.setText(busSchedule.getDestination());
-        mTextViewTime.setText(busSchedule.getRouteTime());
+        //mTextViewTime.setText(busSchedule.getRouteTime());
+
+        String[] arrayBusTime = busSchedule.getRouteTime().split("\\s+");
+        ArrayList<String> arrayUpcomingBus = new ArrayList<>();
+
+        for (String busTime : arrayBusTime) {
+            try {
+                if (timeFormat.format(timeFormat.parse(busTime)).equals((timeFormat.format(calendar.getTime())))
+                        || (timeFormat.parse(busTime).after(timeFormat.parse(timeFormat.format(calendar.getTime()))))) {
+                    arrayUpcomingBus.add(busTime);
+                }
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (arrayUpcomingBus.size() != 0) {
+            StringBuilder builder = new StringBuilder();
+            for (String value : arrayUpcomingBus) {
+                builder.append(value + "  ");
+            }
+            String text = builder.toString();
+
+            mTextViewTime.setText(arrayUpcomingBus.get(0));
+            //mTextViewTime.setText(text);
+        } else {
+            //mTextFollowingBus.setText("");
+            mTextViewTime.setText("");
+        }
     }
 
     public void initialValuesFriday() {

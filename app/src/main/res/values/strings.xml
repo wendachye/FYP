@@ -70,7 +70,7 @@
     <string name="maintain_account">Maintain Account</string>
     <string name="maintain_classSchedule">Maintain Class Schedule</string>
     <string name="maintain_busSchedule">Maintain Bus Schedule</string>
-    <string name="maintain_foodmenu">Maintain Food Menu</string>
+    <string name="maintain_foodstall">Maintain Food Stall</string>
     <string name="hint_account_type">Account Type</string>
     <string name="hint_account_authorization">Account Authorization</string>
     <string name="hint_backendID">Backend ID</string>
@@ -108,6 +108,10 @@
     <string name="account_type">Account Type:</string>
     <string name="topupAmount">Top Up Amount:</string>
     <string name="name">Name:</string>
+    <string name="report">Overall Transaction</string>
+    <string name="report1">Overall Report</string>
+    <string name="foodstallName">Stall Name:</string>
+    <string name="upcomingtime">Upcoming Time:</string>
 
     <string-array name="gender_arrays">
         <item>Male</item>

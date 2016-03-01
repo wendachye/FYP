@@ -71,23 +71,28 @@ public class ForgotPasswordActivity extends BaseActivity {
             NavUtils.navigateUpFromSameTask(this);
         }
         else if (id == R.id.saveButton) {
-            try {
-                verifyInput();
-            } catch (InvalidInputException e) {
-                e.printStackTrace();
+            // verify data
+            verifyInput();
+            if (isNetworkAvailable(this)) {
+                new get_email_address(mAccountID, mNRICNo).execute();
+            } else {
+                shortToast(this, "Network not available.");
             }
-            new get_email_address(mAccountID, mNRICNo).execute();
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    public void verifyInput() throws InvalidInputException {
+    public void verifyInput() {
         mAccountID = mEditTextAccountID.getText().toString();
         mNRICNo = mEditTextNRICNo.getText().toString();
 
-        account.verifyAccountID(mAccountID);
-        account.verifyNRICNo(mNRICNo);
+        try {
+            account.verifyNRICNo(mNRICNo);
+            account.verifyAccountID(mAccountID);
+        } catch (InvalidInputException e) {
+            shortToast(this, e.getInfo());
+        }
 
     }
 

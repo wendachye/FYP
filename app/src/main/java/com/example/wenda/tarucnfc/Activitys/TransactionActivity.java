@@ -52,14 +52,23 @@ public class TransactionActivity extends BaseActivity {
 
         mSwipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
 
-        new GetJson(getLoginDetail(this).getAccountID()).execute();
+        if (isNetworkAvailable(this)) {
+            mListTransaction.clear();
+            new GetJson(getLoginDetail(this).getAccountID()).execute();
+        } else {
+            shortToast(this, "Network not available.");
+        }
 
         mSwipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                mListTransaction.clear();
-
-                new GetJson(getLoginDetail(TransactionActivity.this).getAccountID()).execute();
+                if (isNetworkAvailable(TransactionActivity.this)) {
+                    mListTransaction.clear();
+                    new GetJson(getLoginDetail(TransactionActivity.this).getAccountID()).execute();
+                } else {
+                    shortToast(TransactionActivity.this, "Network not available, couldn't refresh.");
+                    mSwipeContainer.setRefreshing(false);
+                }
             }
         });
 
@@ -137,7 +146,6 @@ public class TransactionActivity extends BaseActivity {
                 transaction.setStatus(jsonObject.getString(TransactionRecord.COLUMN_STATUS));
                 transaction.setRemark(jsonObject.getString(TransactionRecord.COLUMN_REMARK));
 
-                Log.d("track", "list size " + mListTransaction.size());
                 mListTransaction.add(transaction);
 
             } catch (JSONException e) {

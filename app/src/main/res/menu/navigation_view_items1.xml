@@ -30,9 +30,14 @@
             android:icon="@drawable/bus"/>
 
         <item
-            android:id="@+id/nav_menu_foodOrder1"
-            android:title="Maintain Food Menu"
+            android:id="@+id/nav_menu_foodstall"
+            android:title="Maintain Food Stall"
             android:icon="@drawable/food"/>
+
+        <item
+            android:id="@+id/nav_menu_report1"
+            android:title="Overall Report"
+            android:icon="@drawable/login"/>
 
         <item
             android:id="@+id/nav_menu_sign_out1"

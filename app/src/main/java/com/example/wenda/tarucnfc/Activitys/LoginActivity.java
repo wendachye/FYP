@@ -61,7 +61,12 @@ public class LoginActivity extends BaseActivity {
             login.verifyLoginID(editTextUsername.getText().toString());
             login.verifyPassword(editTextPassword.getText().toString());
 
-            new LoginAccount(editTextUsername.getText().toString(), editTextPassword.getText().toString()).execute();
+            // check network
+            if(new BaseActivity().isNetworkAvailable(this) == true) {
+                new LoginAccount(editTextUsername.getText().toString(), editTextPassword.getText().toString()).execute();
+            } else {
+                shortToast(this, "Network not available");
+            }
         } catch (InvalidInputException ex) {
             shortToast(this, ex.getInfo());
         }
@@ -89,7 +94,7 @@ public class LoginActivity extends BaseActivity {
         protected void onPostExecute(String json) {
             super.onPostExecute(json);
             UIUtils.getProgressDialog(LoginActivity.this, "OFF");
-            shortToast(LoginActivity.this, json);
+            //shortToast(LoginActivity.this, json);
             extractJsonData(json);
 
            switch (offlineLogin.getLoginResponse()){

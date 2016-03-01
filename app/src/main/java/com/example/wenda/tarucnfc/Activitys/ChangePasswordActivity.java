@@ -74,6 +74,7 @@ public class ChangePasswordActivity extends BaseActivity {
             NavUtils.navigateUpFromSameTask(this);
         }
         else if (id == R.id.saveButton) {
+            // verify new password
             checkConfirmPassword();
         }
 
@@ -82,6 +83,7 @@ public class ChangePasswordActivity extends BaseActivity {
 
     public void checkConfirmPassword() {
         if (mEditTextNewAgain.getText().toString().equals(mEditTextNew.getText().toString())) {
+            // verify current password
             verifyCurrentPassword();
         } else {
             shortToast(ChangePasswordActivity.this, "New Password doesn't match.");
@@ -95,8 +97,13 @@ public class ChangePasswordActivity extends BaseActivity {
             login.verifyPassword(mEditTextCurrent.getText().toString());
             login.verifyPassword(mEditTextNew.getText().toString());
             login.verifyPassword(mEditTextNewAgain.getText().toString());
-            Log.d("track", "accountID " + getLoginDetail(this).getAccountID());
-            new UpdateCurrentPassword(getLoginDetail(this).getAccountID(), mEditTextCurrent.getText().toString(), mEditTextNew.getText().toString()).execute();
+
+            if (isNetworkAvailable(this)) {
+                new UpdateCurrentPassword(getLoginDetail(this).getAccountID(), mEditTextCurrent.getText().toString(), mEditTextNew.getText().toString()).execute();
+            } else {
+                shortToast(this, "Network not available.");
+            }
+
         } catch (InvalidInputException ex) {
             shortToast(this, ex.getInfo());
         }

@@ -15,6 +15,7 @@ import com.example.wenda.tarucnfc.Databases.Contracts.AccountContract.AccountRec
 import com.example.wenda.tarucnfc.Domains.Account;
 import com.example.wenda.tarucnfc.R;
 import com.example.wenda.tarucnfc.RequestHandler;
+import com.example.wenda.tarucnfc.UIUtils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -269,14 +270,14 @@ public class PinEntryActivity extends BaseActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            //UIUtils.getProgressDialog(PinEntryActivity.this, "ON");
+            UIUtils.getProgressDialog(PinEntryActivity.this, "ON");
         }
 
 
         @Override
         protected void onPostExecute(String json) {
             super.onPostExecute(json);
-            //UIUtils.getProgressDialog(PinEntryActivity.this, "OFF");
+            UIUtils.getProgressDialog(PinEntryActivity.this, "OFF");
             extractJsonData(json);
         }
 
@@ -298,6 +299,11 @@ public class PinEntryActivity extends BaseActivity {
 
             account.setPINcode(jsonObject.getString(AccountRecord.KEY_PIN_CODE));
             userPin = account.getPINcode();
+            if (userPin.equals("0")){
+                Intent intent = new Intent(this, SetPinCodeActivity.class);
+                startActivity(intent);
+                finish();
+            }
 
         } catch (JSONException e) {
             e.printStackTrace();

@@ -60,20 +60,29 @@ public class ClassTimetableFragment extends Fragment {
         mProgramme = new BaseActivity().getLoginDetail(getActivity()).getProgramme();
         mGroupNo = new BaseActivity().getLoginDetail(getActivity()).getGroupNo();
 
-        mListClassSchedule.clear();
+
 
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        new GetJson(mFaculty, mProgramme, mGroupNo, condition).execute();
+        if (new BaseActivity().isNetworkAvailable(getActivity())) {
+            mListClassSchedule.clear();
+            new GetJson(mFaculty, mProgramme, mGroupNo, condition).execute();
+        } else {
+            new BaseActivity().shortToast(getActivity(), "Network not available.");
+        }
 
         mSwipeContainer = (SwipeRefreshLayout) view.findViewById(R.id.swipeContainer);
         mSwipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                mListClassSchedule.clear();
-
-                new GetJson(mFaculty, mProgramme, mGroupNo, condition).execute();
+                if (new BaseActivity().isNetworkAvailable(getActivity())) {
+                    mListClassSchedule.clear();
+                    new GetJson(mFaculty, mProgramme, mGroupNo, condition).execute();
+                } else {
+                    new BaseActivity().shortToast(getActivity(), "Network not available, couldn't refresh.");
+                    mSwipeContainer.setRefreshing(false);
+                }
             }
         });
 

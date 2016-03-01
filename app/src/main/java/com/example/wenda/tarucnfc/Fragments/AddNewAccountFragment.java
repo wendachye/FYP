@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -226,6 +227,15 @@ public class AddNewAccountFragment extends Fragment implements View.OnClickListe
                         mLinearLayoutCampus.setVisibility(View.GONE);
                         break;
 
+                    case 5:
+                        mEditTextAccountID.setHint("Stall Owner ID");
+                        mCradView1.setVisibility(View.VISIBLE);
+                        mCardView3.setVisibility(View.VISIBLE);
+                        mButtonConfirm.setVisibility(View.VISIBLE);
+                        mCardView2.setVisibility(View.GONE);
+                        mLinearLayoutCampus.setVisibility(View.GONE);
+                        break;
+
                     default:
                         break;
                 }
@@ -267,11 +277,18 @@ public class AddNewAccountFragment extends Fragment implements View.OnClickListe
 
             @Override
             public void afterTextChanged(Editable s) {
-                mTextViewPassword.setText(mEditTextNRICNo.getText().toString());
-                String accountString = mEditTextAccountID.getText().toString();
-                String accountSub = accountString.substring(0, 2);
-                String accountSub2 = accountString.substring(5, 10);
-                mTextViewLoginID.setText(accountSub + accountSub2);
+                try {
+                    account.verifyAccountID(mEditTextAccountID.getText().toString());
+                    account.verifyNRICNo(mEditTextNRICNo.getText().toString());
+
+                    String accountString = mEditTextAccountID.getText().toString();
+                    String accountSub = accountString.substring(0, 2);
+                    String accountSub2 = accountString.substring(5, 10);
+                    mTextViewLoginID.setText(accountSub + accountSub2);
+                    mTextViewPassword.setText(mEditTextNRICNo.getText().toString());
+                } catch (InvalidInputException e) {
+                    new BaseActivity().shortToast(getActivity(), e.getInfo());
+                }
             }
         });
 
@@ -392,11 +409,29 @@ public class AddNewAccountFragment extends Fragment implements View.OnClickListe
         // check network
         if(new BaseActivity().isNetworkAvailable(getActivity()) == true) {
             new AddAccount(account, login).execute();
-            mSpinnerAccountType.setSelection(0);
+            clearData();
             BaseActivity.shortToast(getActivity(), "New Account Created.");
         } else {
             BaseActivity.shortToast(getActivity(), "Network not available");
         }
+    }
+
+    public void clearData(){
+        mSpinnerAccountType.setSelection(0);
+        mEditTextAccountID.setText("");
+        mEditTextNRICNo.setText("");
+        mEditTextFullName.setText("");
+        mEditTextContact.setText("");
+        mEditTextEmail.setText("");
+        mSpinnerGender.setSelection(0);
+        mEditTextHomeAddress.setText("");
+        mEditTextCampusAddress.setText("");
+        mSpinnerFaculty.setSelection(0);
+        mEditTextProgramme.setText("");
+        mEditTextGroupNo.setText("");
+        mSpinnerCampus.setSelection(0);
+        mEditTextSchoolEmail.setText("");
+        mEditTextSessionJoined.setText("");
     }
 
     @Override
@@ -436,7 +471,6 @@ public class AddNewAccountFragment extends Fragment implements View.OnClickListe
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             //UIUtils.getProgressDialog(getActivity(), "OFF");
-            //Toast.makeText(getActivity(), s, Toast.LENGTH_LONG).show();
         }
 
         @Override
@@ -453,6 +487,7 @@ public class AddNewAccountFragment extends Fragment implements View.OnClickListe
             data.put("homeAddress", this.account.getHomeAddress());
             data.put("campusAddress", this.account.getCampusAddress());
             data.put("accountType", this.account.getAccountType());
+            Log.d("track", " " +this.account.getAccountType());
             data.put("programme", this.account.getProgramme());
             data.put("groupNo", this.account.getGroupNo());
             data.put("faculty", this.account.getFaculty());

@@ -30,6 +30,9 @@ import com.example.wenda.tarucnfc.Fragments.FoodOrderFragment;
 import com.example.wenda.tarucnfc.Fragments.MaintainAccountFragment;
 import com.example.wenda.tarucnfc.Fragments.MaintainBusScheduleFragment;
 import com.example.wenda.tarucnfc.Fragments.MaintainClassScheduleFragment;
+import com.example.wenda.tarucnfc.Fragments.MaintainFoodStallFragment;
+import com.example.wenda.tarucnfc.Fragments.MaintainReportFragment;
+import com.example.wenda.tarucnfc.Fragments.ReportFragment;
 import com.example.wenda.tarucnfc.Fragments.WalletFragment;
 import com.example.wenda.tarucnfc.R;
 import com.example.wenda.tarucnfc.RequestHandler;
@@ -106,8 +109,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 switch (menuItem.getItemId()) {
 
                     case R.id.nav_menu_dashboard1:
-                        Intent intent = new Intent(MainActivity.this, DisplayNFCActivity.class);
-                        startActivity(intent);
+                        getSupportActionBar().setTitle(R.string.dashboard);
+                        DashboardFragment fragmentHome = new DashboardFragment();
+                        fragmentTransaction.replace(R.id.frame, fragmentHome);
+                        fragmentTransaction.commit();
                         return true;
 
                     case R.id.nav_menu_wallet1:
@@ -138,10 +143,17 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                         fragmentTransaction.commit();
                         return true;
 
-                    case R.id.nav_menu_foodOrder1:
-                        getSupportActionBar().setTitle(R.string.maintain_foodmenu);
-                        FoodOrderFragment fragmentFoodOrder = new FoodOrderFragment();
-                        fragmentTransaction.replace(R.id.frame, fragmentFoodOrder);
+                    case R.id.nav_menu_foodstall:
+                        getSupportActionBar().setTitle(R.string.maintain_foodstall);
+                        MaintainFoodStallFragment fragmentFoodStall = new MaintainFoodStallFragment();
+                        fragmentTransaction.replace(R.id.frame, fragmentFoodStall);
+                        fragmentTransaction.commit();
+                        return true;
+
+                    case R.id.nav_menu_report1:
+                        getSupportActionBar().setTitle(R.string.report1);
+                        MaintainReportFragment fragmentMaintainReport = new MaintainReportFragment();
+                        fragmentTransaction.replace(R.id.frame, fragmentMaintainReport);
                         fragmentTransaction.commit();
                         return true;
 
@@ -246,6 +258,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                         getSupportActionBar().setTitle(R.string.foodOrder);
                         FoodOrderFragment fragmentFoodOrder = new FoodOrderFragment();
                         fragmentTransaction.replace(R.id.frame, fragmentFoodOrder);
+                        fragmentTransaction.commit();
+                        return true;
+
+                    case R.id.nav_menu_report:
+                        getSupportActionBar().setTitle(R.string.report);
+                        ReportFragment fragmentReport = new ReportFragment();
+                        fragmentTransaction.replace(R.id.frame, fragmentReport);
                         fragmentTransaction.commit();
                         return true;
 

@@ -59,7 +59,6 @@ public class TopUpActivity extends BaseActivity implements NfcAdapter.CreateNdef
         mLinearLayoutOtherAmount.setVisibility(View.GONE);
         mTextViewAccountID.setText(getLoginDetail(this).getAccountID());
         mTextViewFullName.setText(getLoginDetail(this).getName());
-        Log.d("track", " " + getLoginDetail(this).getName());
 
         mSpinnerTopUpAmount.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

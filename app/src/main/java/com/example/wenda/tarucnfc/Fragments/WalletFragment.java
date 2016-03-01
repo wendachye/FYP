@@ -55,13 +55,21 @@ public class WalletFragment extends Fragment implements View.OnClickListener {
 
         // setFinviewbyid
         setFinviewbyid(view);
-
-        new GetJson(String.valueOf(mAccountID)).execute();
+        if (new BaseActivity().isNetworkAvailable(getActivity())) {
+            new GetJson(String.valueOf(mAccountID)).execute();
+        } else {
+            new BaseActivity().shortToast(getActivity(), "Network not available.");
+        }
 
         mSwipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                new GetJson(String.valueOf(mAccountID)).execute();
+                if (new BaseActivity().isNetworkAvailable(getActivity())) {
+                    new GetJson(String.valueOf(mAccountID)).execute();
+                } else {
+                    new BaseActivity().shortToast(getActivity(), "Network not available, couldn't refresh.");
+                    mSwipeContainer.setRefreshing(false);
+                }
             }
         });
 

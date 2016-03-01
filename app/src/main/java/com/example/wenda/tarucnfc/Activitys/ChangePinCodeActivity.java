@@ -5,7 +5,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
@@ -73,6 +72,7 @@ public class ChangePinCodeActivity extends BaseActivity {
             NavUtils.navigateUpFromSameTask(this);
         }
         else if (id == R.id.saveButton) {
+            // verify new pincode
             checkConfirmPincode();
         }
 
@@ -81,6 +81,7 @@ public class ChangePinCodeActivity extends BaseActivity {
 
     public void checkConfirmPincode() {
         if (mEditTextNewAgain.getText().toString().equals(mEditTextNewAgain.getText().toString())) {
+            // verify current pincode
             verifyCurrentPincode();
         } else {
             shortToast(ChangePinCodeActivity.this, "New PIN Code doesn't match.");
@@ -91,11 +92,16 @@ public class ChangePinCodeActivity extends BaseActivity {
 
     public void verifyCurrentPincode() {
         try {
-            Log.d("track", "pincode " + mEditTextCurrent.getText().toString());
             account.verifyPincode(mEditTextCurrent.getText().toString());
             account.verifyPincode(mEditTextNew.getText().toString());
             account.verifyPincode(mEditTextNewAgain.getText().toString());
-            new UpdateCurrentPincode(getLoginDetail(this).getAccountID(), mEditTextCurrent.getText().toString(), mEditTextNew.getText().toString()).execute();
+
+            if (isNetworkAvailable(this)) {
+                new UpdateCurrentPincode(getLoginDetail(this).getAccountID(), mEditTextCurrent.getText().toString(), mEditTextNew.getText().toString()).execute();
+            } else {
+                shortToast(this, "Network not available.");
+            }
+
         } catch (InvalidInputException ex) {
             shortToast(this, ex.getInfo());
         }

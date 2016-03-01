@@ -103,7 +103,13 @@ public class TransferBalanceActivity extends BaseActivity {
     public void verifyReceiveAccount() {
         try {
             account.verifyRecipientAccountID(mRecipientAccountID);
-            new UpdateAccountBalance(mTransferAccountID, mRecipientAccountID, mAmount, mRemark).execute();
+
+            if (isNetworkAvailable(this)) {
+                new UpdateAccountBalance(mTransferAccountID, mRecipientAccountID, mAmount, mRemark).execute();
+            } else {
+                shortToast(this, "Network not available.");
+            }
+
         } catch (InvalidInputException ex) {
             shortToast(this, ex.getInfo());
         }
