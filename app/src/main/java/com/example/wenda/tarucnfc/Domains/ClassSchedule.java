@@ -17,6 +17,15 @@ public class ClassSchedule {
     private String endTime;
     private String status;
     private int response;
+    private String classType;
+
+    public String getClassType() {
+        return classType;
+    }
+
+    public void setClassType(String classType) {
+        this.classType = classType;
+    }
 
     public String getStatus() {
         return status;

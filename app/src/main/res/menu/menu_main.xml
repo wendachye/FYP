@@ -13,4 +13,12 @@
         android:orderInCategory="100"
         android:title="@string/change_pincode"
         app:showAsAction="never" />
+
+    <item
+        android:visible="true"
+        android:id="@+id/action_search"
+        android:icon="@drawable/ic_magnify"
+        android:orderInCategory="100"
+        android:title="@string/abc_search_hint"
+        app:showAsAction="always" />
 </menu>

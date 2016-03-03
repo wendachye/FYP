@@ -356,6 +356,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
             case R.id.navigation_view_profile_picture:
                 mDrawerLayout.closeDrawers();
+                getSupportActionBar().setTitle(R.string.personalAccount);
                 AccountFragment fragmentAccount = new AccountFragment();
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 FragmentTransaction transaction = fragmentManager.beginTransaction();

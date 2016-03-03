@@ -22,6 +22,7 @@ public class ClassScheduleContract {
         public static final String COLUMN_START_TIME = "StartTime";
         public static final String COLUMN_END_TIME = "EndTime";
         public static final String COLUMN_STATUS = "Status";
+        public static final String COLUMN_CLASS_TYPE = "ClassType";
     }
 
 }

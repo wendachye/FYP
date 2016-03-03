@@ -79,17 +79,25 @@ public class SearchBusScheduleFragment extends Fragment implements View.OnClickL
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.button_search:
-                mCardViewEditBusSchedule.setVisibility(View.GONE);
-                new searchBusRoute(mSpinnerDestination.getSelectedItem().toString(), mSpinnerDate.getSelectedItem().toString()).execute();
+                if(new BaseActivity().isNetworkAvailable(getActivity()) == true) {
+                    mCardViewEditBusSchedule.setVisibility(View.GONE);
+                    new searchBusRoute(mSpinnerDestination.getSelectedItem().toString(), mSpinnerDate.getSelectedItem().toString()).execute();
+                } else {
+                    BaseActivity.shortToast(getActivity(), "Network not available");
+                }
                 break;
 
             case R.id.edit_bus_schedule:
-                mCardViewEditBusSchedule.setVisibility(View.GONE);
-                mSpinnerDestination.setSelection(0);
-                mSpinnerDate.setSelection(0);
-                Intent intent = new Intent(getActivity(), EditBusRouteActivity.class);
-                intent.putExtra("BusRouteID", busRouteID);
-                startActivity(intent);
+                if(new BaseActivity().isNetworkAvailable(getActivity()) == true) {
+                    mCardViewEditBusSchedule.setVisibility(View.GONE);
+                    mSpinnerDestination.setSelection(0);
+                    mSpinnerDate.setSelection(0);
+                    Intent intent = new Intent(getActivity(), EditBusRouteActivity.class);
+                    intent.putExtra("BusRouteID", busRouteID);
+                    startActivity(intent);
+                } else {
+                    BaseActivity.shortToast(getActivity(), "Network not available");
+                }
                 break;
 
             default:

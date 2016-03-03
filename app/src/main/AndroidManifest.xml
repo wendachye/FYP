@@ -129,6 +129,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Activitys.MainActivity" />
         </activity>
+        <activity android:name=".Activitys.FoodMenuActivity"></activity>
     </application>
 
 </manifest>

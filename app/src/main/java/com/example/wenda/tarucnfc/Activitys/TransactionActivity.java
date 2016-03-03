@@ -32,7 +32,6 @@ public class TransactionActivity extends BaseActivity {
     private static final String GET_TRANSACTION_URL = "http://fypproject.host56.com/Wallet/get_transaction_history.php";
     private JSONArray mJsonArray;
     private SwipeRefreshLayout mSwipeContainer;
-    private Transaction transaction = new Transaction();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

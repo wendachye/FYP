@@ -32,6 +32,7 @@ public class AdapterClassSchedule extends RecyclerView.Adapter<AdapterClassSched
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.subject.setText(items.get(position).getSubject());
+        holder.classType.setText(items.get(position).getClassType());
         holder.tutorlecturer.setText(items.get(position).getTutorlecturer());
         holder.location.setText(items.get(position).getLocation());
         holder.startTime.setText(items.get(position).getStartTime());
@@ -45,11 +46,12 @@ public class AdapterClassSchedule extends RecyclerView.Adapter<AdapterClassSched
 
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        TextView subject, tutorlecturer, location, startTime, endTime;
+        TextView subject, classType, tutorlecturer, location, startTime, endTime;
 
         public ViewHolder(final View itemView) {
             super(itemView);
             subject = (TextView) itemView.findViewById(R.id.text_view_subject);
+            classType = (TextView) itemView.findViewById(R.id.text_view_classType);
             tutorlecturer = (TextView) itemView.findViewById(R.id.text_view_tutorlecturer);
             location = (TextView) itemView.findViewById(R.id.text_view_location);
             startTime = (TextView) itemView.findViewById(R.id.text_view_startTime);

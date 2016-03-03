@@ -33,6 +33,7 @@ public class SearchClassScheduleFragment extends Fragment implements View.OnClic
     private String faculty, programme, groupNo, subject, tutorLecturer, classScheduleID;
     private Button mButtonSearch;
     private Spinner mSpinnerFaculty;
+    private TextView mTextViewClassType;
     private EditText mEditTextProgramme;
     private EditText mEditTextGroupNo;
     private EditText mEditTextSubject;
@@ -72,6 +73,7 @@ public class SearchClassScheduleFragment extends Fragment implements View.OnClic
         mButtonSearch = (Button) view.findViewById(R.id.button_search);
         mButtonSearch.setOnClickListener(this);
         mSpinnerFaculty = (Spinner) view.findViewById(R.id.spinner_faculty);
+        mTextViewClassType = (TextView) view.findViewById(R.id.text_view_classType);
         mEditTextProgramme = (EditText) view.findViewById(R.id.editText_programme);
         mEditTextGroupNo = (EditText) view.findViewById(R.id.editText_groupNo);
         mEditTextSubject = (EditText) view.findViewById(R.id.editText_subject);
@@ -95,20 +97,28 @@ public class SearchClassScheduleFragment extends Fragment implements View.OnClic
                 groupNo = mEditTextGroupNo.getText().toString();
                 subject = mEditTextSubject.getText().toString();
                 tutorLecturer = mEditTextTutorLecturer.getText().toString();
-                mCardViewEditClassSchedule.setVisibility(View.GONE);
-                new searchClassSchedule(faculty, programme, groupNo, subject, tutorLecturer).execute();
+                if(new BaseActivity().isNetworkAvailable(getActivity()) == true) {
+                    mCardViewEditClassSchedule.setVisibility(View.GONE);
+                    new searchClassSchedule(faculty, programme, groupNo, subject, tutorLecturer).execute();
+                } else {
+                    BaseActivity.shortToast(getActivity(), "Network not available");
+                }
                 break;
 
             case R.id.edit_class_schedule:
-                mCardViewEditClassSchedule.setVisibility(View.GONE);
-                mSpinnerFaculty.setSelection(0);
-                mEditTextProgramme.setText("");
-                mEditTextGroupNo.setText("");
-                mEditTextSubject.setText("");
-                mEditTextTutorLecturer.setText("");
-                Intent intent = new Intent(getActivity(), EditClassScheduleActivity.class);
-                intent.putExtra("ClassScheduleID", classScheduleID);
-                startActivity(intent);
+                if(new BaseActivity().isNetworkAvailable(getActivity()) == true) {
+                    mCardViewEditClassSchedule.setVisibility(View.GONE);
+                    mSpinnerFaculty.setSelection(0);
+                    mEditTextProgramme.setText("");
+                    mEditTextGroupNo.setText("");
+                    mEditTextSubject.setText("");
+                    mEditTextTutorLecturer.setText("");
+                    Intent intent = new Intent(getActivity(), EditClassScheduleActivity.class);
+                    intent.putExtra("ClassScheduleID", classScheduleID);
+                    startActivity(intent);
+                } else {
+                    BaseActivity.shortToast(getActivity(), "Network not available");
+                }
                 break;
 
             default:
@@ -200,6 +210,7 @@ public class SearchClassScheduleFragment extends Fragment implements View.OnClic
             classSchedule.setEndTime(jsonObject.getString(ClassScheduleRecord.COLUMN_END_TIME));
             classSchedule.setStatus(jsonObject.getString(ClassScheduleRecord.COLUMN_STATUS));
             classSchedule.setResponse(jsonObject.getInt(KEY_RESPONSE));
+            classSchedule.setClassType(jsonObject.getString(ClassScheduleRecord.COLUMN_CLASS_TYPE));
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -214,5 +225,6 @@ public class SearchClassScheduleFragment extends Fragment implements View.OnClic
         mTextViewDate.setText(classSchedule.getDay());
         mTextViewStartTime.setText(classSchedule.getStartTime());
         mTextViewEndTime.setText(classSchedule.getEndTime());
+        mTextViewClassType.setText(classSchedule.getClassType());
     }
 }

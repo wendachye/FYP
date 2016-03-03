@@ -112,6 +112,11 @@
     <string name="report1">Overall Report</string>
     <string name="foodstallName">Stall Name:</string>
     <string name="upcomingtime">Upcoming Time:</string>
+    <string name="stallname">Stall Name:</string>
+    <string name="ownerID">Owner ID:</string>
+    <string name="joinedDate">Joined Date:</string>
+    <string name="personalAccount">Personal Account</string>
+    <string name="classType">Class Type:</string>
 
     <string-array name="gender_arrays">
         <item>Male</item>
@@ -195,6 +200,11 @@
         <item>FEBE</item>
         <item>FSAH</item>
         <item>CPUS</item>
+    </string-array>
+
+    <string-array name="classType_arrays">
+        <item>Lecture</item>
+        <item>Tutorial</item>
     </string-array>
 
     <string-array name="campus_arrays">

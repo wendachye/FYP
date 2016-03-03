@@ -8,10 +8,19 @@ public class FoodStall {
     private String foodStallID;
     private String accountID;
     private String stallName;
+    private String location;
     private String joinedDate;
     private String status;
     private String foodStallImagePath;
     private int response;
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
 
     public String getFoodStallID() {
         return foodStallID;

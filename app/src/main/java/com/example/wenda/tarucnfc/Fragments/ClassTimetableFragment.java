@@ -38,7 +38,6 @@ public class ClassTimetableFragment extends Fragment {
     private SwipeRefreshLayout mSwipeContainer;
 
     final static String GET_CLASS_SCHEDULE_URL = "http://fypproject.host56.com/ClassSchedule/get_class_schedule_view.php";
-    private ClassSchedule classSchedule = new ClassSchedule();
     private JSONArray mJsonArray;
     private ArrayList<ClassSchedule> mListClassSchedule = new ArrayList<>();
 
@@ -162,8 +161,7 @@ public class ClassTimetableFragment extends Fragment {
                 classSchedule.setStartTime(jsonObject.getString(ClassScheduleRecord.COLUMN_START_TIME));
                 classSchedule.setEndTime(jsonObject.getString(ClassScheduleRecord.COLUMN_END_TIME));
                 classSchedule.setStatus(jsonObject.getString(ClassScheduleRecord.COLUMN_STATUS));
-
-                Log.d("track", "list size " + mListClassSchedule.size());
+                classSchedule.setClassType(jsonObject.getString(ClassScheduleRecord.COLUMN_CLASS_TYPE));
 
                 if (classSchedule.getStatus().toString().equals("Active")) {
                     mListClassSchedule.add(classSchedule);

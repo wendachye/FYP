@@ -28,6 +28,7 @@ import java.util.HashMap;
 public class AddNewClassScheduleFragment extends Fragment implements View.OnClickListener{
 
     private Spinner mSpinnerFaculty;
+    private Spinner mSpinnerClassType;
     private Spinner mSpinnerDate;
     private EditText mEditTextProgramme;
     private EditText mEditTextGroupNo;
@@ -66,6 +67,7 @@ public class AddNewClassScheduleFragment extends Fragment implements View.OnClic
 
     public void setFindviewbyid(View view){
         mSpinnerFaculty = (Spinner) view.findViewById(R.id.spinner_faculty);
+        mSpinnerClassType = (Spinner) view.findViewById(R.id.spinner_classType);
         mSpinnerDate = (Spinner) view.findViewById(R.id.spinner_date);
         mEditTextProgramme = (EditText) view.findViewById(R.id.editText_programme);
         mEditTextGroupNo = (EditText) view.findViewById(R.id.editText_groupNo);
@@ -137,6 +139,7 @@ public class AddNewClassScheduleFragment extends Fragment implements View.OnClic
     public void addData(){
         // set all the related values into account domain
         classSchedule.setFaculty(mSpinnerFaculty.getSelectedItem().toString());
+        classSchedule.setClassType(mSpinnerClassType.getSelectedItem().toString());
         classSchedule.setProgramme(mEditTextProgramme.getText().toString());
         classSchedule.setGroupNo(mEditTextGroupNo.getText().toString());
         classSchedule.setSubject(mEditTextSubject.getText().toString());
@@ -186,6 +189,7 @@ public class AddNewClassScheduleFragment extends Fragment implements View.OnClic
 
             data.put("backendID", String.valueOf(this.classSchedule.getBackendID()));
             data.put("faculty", this.classSchedule.getFaculty());
+            data.put("classType", this.classSchedule.getClassType());
             data.put("programme", this.classSchedule.getProgramme());
             data.put("groupNo", this.classSchedule.getGroupNo());
             data.put("subject", this.classSchedule.getSubject());

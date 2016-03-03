@@ -9,8 +9,8 @@
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="8dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
         android:orientation="vertical">
 
         <LinearLayout
@@ -30,16 +30,51 @@
                 android:src="@drawable/ic_book_open_variant" />
 
             <TextView
-                android:layout_width="120dp"
+                android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
                 android:text="@string/subject"
-                android:textSize="16sp" />
+                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/text_view_subject"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:textSize="18sp"
+                android:textColor="@color/teal"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="6dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_gravity="center"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_bookmark_plus" />
+
+            <TextView
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:text="@string/classType"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/text_view_classType"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="10dp"
@@ -65,16 +100,16 @@
                 android:src="@drawable/ic_account" />
 
             <TextView
-                android:layout_width="120dp"
+                android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
                 android:text="@string/tutorlecturer"
-                android:textSize="16sp" />
+                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/text_view_tutorlecturer"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="10dp"
@@ -100,16 +135,16 @@
                 android:src="@drawable/ic_hospital_building" />
 
             <TextView
-                android:layout_width="120dp"
+                android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
                 android:text="@string/location"
-                android:textSize="16sp" />
+                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/text_view_location"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="10dp"
@@ -135,16 +170,16 @@
                 android:src="@drawable/ic_timer" />
 
             <TextView
-                android:layout_width="120dp"
+                android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
                 android:text="@string/startTime"
-                android:textSize="16sp" />
+                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/text_view_startTime"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="10dp"
@@ -170,16 +205,16 @@
                 android:src="@drawable/ic_timer" />
 
             <TextView
-                android:layout_width="120dp"
+                android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
                 android:text="@string/endTime"
-                android:textSize="16sp" />
+                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/text_view_endTime"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="10dp"
