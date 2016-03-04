@@ -7,7 +7,6 @@ import android.support.v7.app.ActionBar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.wenda.tarucnfc.Domains.Account;
@@ -27,7 +26,6 @@ import java.util.HashMap;
 public class TransferBalanceActivity extends BaseActivity {
 
     private EditText mEditTextAccountID, mEditTextAmount, mEditTextRemark;
-    private Button mButtonConfirm;
     private String mTransferAccountID;
     private String mRecipientAccountID;
     private String mAmount;
@@ -63,7 +61,6 @@ public class TransferBalanceActivity extends BaseActivity {
     }
 
     public void setFindviewbyid () {
-        mButtonConfirm = (Button) findViewById(R.id.button_confirm);
         mEditTextAccountID = (EditText) findViewById(R.id.edit_text_accountID);
         mEditTextAmount = (EditText) findViewById(R.id.edit_text_amount);
         mEditTextRemark = (EditText) findViewById(R.id.edit_text_remark);

@@ -129,7 +129,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Activitys.MainActivity" />
         </activity>
-        <activity android:name=".Activitys.FoodMenuActivity"></activity>
+        <activity
+            android:name=".Activitys.FoodMenuActivity"
+            android:label="FoodMenu">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Activitys.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

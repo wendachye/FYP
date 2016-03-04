@@ -180,10 +180,7 @@ public class WalletFragment extends Fragment implements View.OnClickListener {
             Log.d("track", "error");
         }
 
-        initialValues();
-    }
-
-    public void initialValues() {
         mTextViewAccountBalance.setText(account.getAccountBalance());
     }
+
 }

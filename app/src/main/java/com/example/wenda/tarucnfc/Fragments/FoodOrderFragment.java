@@ -13,7 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.wenda.tarucnfc.Activitys.BaseActivity;
-import com.example.wenda.tarucnfc.AdapterFoodOrder;
+import com.example.wenda.tarucnfc.Adapter.AdapterFoodOrder;
 import com.example.wenda.tarucnfc.Databases.Contracts.FoodStallContract;
 import com.example.wenda.tarucnfc.Domains.FoodStall;
 import com.example.wenda.tarucnfc.R;

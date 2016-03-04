@@ -13,7 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.wenda.tarucnfc.Activitys.BaseActivity;
-import com.example.wenda.tarucnfc.AdapterClassSchedule;
+import com.example.wenda.tarucnfc.Adapter.AdapterClassSchedule;
 import com.example.wenda.tarucnfc.Databases.Contracts.ClassScheduleContract.ClassScheduleRecord;
 import com.example.wenda.tarucnfc.Domains.ClassSchedule;
 import com.example.wenda.tarucnfc.R;

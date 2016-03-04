@@ -10,7 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.MenuItem;
 
-import com.example.wenda.tarucnfc.AdapterTransaction;
+import com.example.wenda.tarucnfc.Adapter.AdapterTransaction;
 import com.example.wenda.tarucnfc.Databases.Contracts.TransactionContract.TransactionRecord;
 import com.example.wenda.tarucnfc.Domains.Transaction;
 import com.example.wenda.tarucnfc.R;
