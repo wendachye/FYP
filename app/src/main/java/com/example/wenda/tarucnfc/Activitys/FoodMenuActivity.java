@@ -2,6 +2,7 @@ package com.example.wenda.tarucnfc.Activitys;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.NavUtils;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
@@ -10,10 +11,13 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.MenuItem;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.wenda.tarucnfc.Adapter.AdapterFoodMenu;
 import com.example.wenda.tarucnfc.Databases.Contracts.FoodMenuContract;
 import com.example.wenda.tarucnfc.Domains.FoodMenu;
 import com.example.wenda.tarucnfc.R;
+import com.example.wenda.tarucnfc.RequestHandler;
 import com.example.wenda.tarucnfc.UIUtils;
 
 import org.json.JSONArray;
@@ -25,9 +29,11 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class FoodMenuActivity extends BaseActivity implements AdapterFoodMenu.AdapterCallBack{
 
+    private String foodStallID;
     private RecyclerView mRecyclerView;
     private JSONArray mJsonArray;
     private SwipeRefreshLayout mSwipeContainer;
@@ -48,6 +54,8 @@ public class FoodMenuActivity extends BaseActivity implements AdapterFoodMenu.Ad
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        foodStallID = getIntent().getStringExtra("FoodStallID");
+
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -55,7 +63,7 @@ public class FoodMenuActivity extends BaseActivity implements AdapterFoodMenu.Ad
 
         if (isNetworkAvailable(this)) {
             mListFoodMenu.clear();
-            new GetJson(GET_FOOD_MENU_URL).execute();
+            new GetJson(foodStallID).execute();
         } else {
             shortToast(this, "Network not available.");
         }
@@ -65,7 +73,7 @@ public class FoodMenuActivity extends BaseActivity implements AdapterFoodMenu.Ad
             public void onRefresh() {
                 if (isNetworkAvailable(FoodMenuActivity.this)) {
                     mListFoodMenu.clear();
-                    new GetJson(GET_FOOD_MENU_URL).execute();
+                    new GetJson(foodStallID).execute();
                 } else {
                     shortToast(FoodMenuActivity.this, "Network not available, couldn't refresh.");
                     mSwipeContainer.setRefreshing(false);
@@ -91,16 +99,30 @@ public class FoodMenuActivity extends BaseActivity implements AdapterFoodMenu.Ad
 
     @Override
     public void adapterOnClick(int adapterPosition) {
+        // display dialog box
+        MaterialDialog dialog = new MaterialDialog.Builder(this)
+                .title(R.string.quantity)
+                .customView(R.layout.dialog_custom_view, true)
+                .positiveText(R.string.confirm)
+                .negativeText(android.R.string.cancel)
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        shortToast(FoodMenuActivity.this, "Added to cart.");
+                    }
+                }).build();
 
+        dialog.show();
     }
 
     // this one is get json
     public class GetJson extends AsyncTask<String, Void, String> {
 
-        String url;
+        String foodStallID;
+        RequestHandler rh = new RequestHandler();
 
-        public GetJson(String url) {
-            this.url = url;
+        public GetJson(String foodStallID) {
+            this.foodStallID = foodStallID;
         }
 
         @Override
@@ -121,25 +143,9 @@ public class FoodMenuActivity extends BaseActivity implements AdapterFoodMenu.Ad
 
         @Override
         protected String doInBackground(String... strings) {
-            BufferedReader bufferedReader;
-
-            try {
-                URL url = new URL(this.url);
-                HttpURLConnection con = (HttpURLConnection) url.openConnection();
-                StringBuilder sb = new StringBuilder();
-
-                bufferedReader = new BufferedReader(new InputStreamReader(con.getInputStream()));
-
-                String json;
-                while ((json = bufferedReader.readLine()) != null) {
-                    sb.append(json + "\n");
-                }
-
-                return sb.toString().trim();
-
-            } catch (Exception e) {
-                return null;
-            }
+            HashMap<String, String> data = new HashMap<>();
+            data.put("foodStallID", foodStallID);
+            return rh.sendPostRequest(GET_FOOD_MENU_URL, data);
         }
     }
 

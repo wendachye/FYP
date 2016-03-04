@@ -117,6 +117,8 @@
     <string name="joinedDate">Joined Date:</string>
     <string name="personalAccount">Personal Account</string>
     <string name="classType">Class Type:</string>
+    <string name="quantity">Select Quantities</string>
+    <string name="quantity2">Quantity:</string>
 
     <string-array name="gender_arrays">
         <item>Male</item>
@@ -166,6 +168,14 @@
         <item>Bus Stop 4 and 5</item>
         <item>Bus Stop 6</item>
         <item>Library</item>
+    </string-array>
+
+    <string-array name="quantity_arrays">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
     </string-array>
 
     <string-array name="busDestination_arrays">

@@ -2,13 +2,17 @@ package com.example.wenda.tarucnfc.Adapter;
 
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.wenda.tarucnfc.Domains.FoodMenu;
 import com.example.wenda.tarucnfc.R;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -80,8 +84,6 @@ public class AdapterFoodMenu extends RecyclerView.Adapter<AdapterFoodMenu.ViewHo
             String foodMenuID;
             foodMenu.setFoodMenuID(items.get(getAdapterPosition()).getFoodMenuID());
             foodMenuID = foodMenu.getFoodMenuID();
-
-            // display dialog box
 
         }
     }
