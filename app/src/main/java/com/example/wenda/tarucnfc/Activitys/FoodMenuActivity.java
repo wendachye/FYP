@@ -45,11 +45,9 @@ public class FoodMenuActivity extends BaseActivity implements AdapterFoodMenu.Ad
     private JSONArray mJsonArray;
     private SwipeRefreshLayout mSwipeContainer;
     private AdapterFoodMenu adapterFoodMenu;
-    private FloatingActionButton mFabCart;
     private LinearLayout mLinearLayoutNoRecord;
     private ArrayList<FoodMenu> mListFoodMenu = new ArrayList<>();
     final static String GET_FOOD_MENU_URL = "http://fypproject.host56.com/FoodOrder/get_food_menu.php";
-    final static String ADD_FOOD_ORDER_URL = "http://fypproject.host56.com/FoodOrder/add_food_transaction.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,8 +65,6 @@ public class FoodMenuActivity extends BaseActivity implements AdapterFoodMenu.Ad
         foodStallID = getIntent().getStringExtra("FoodStallID");
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        mFabCart = (FloatingActionButton) findViewById(R.id.fab_cart);
-        mFabCart.setOnClickListener(this);
         mLinearLayoutNoRecord = (LinearLayout) findViewById(R.id.layout_no_record);
         mSwipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
 
@@ -115,15 +111,7 @@ public class FoodMenuActivity extends BaseActivity implements AdapterFoodMenu.Ad
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.fab_cart:
-                Intent intent = new Intent(this, CartActivity.class);
-                startActivity(intent);
-                break;
 
-            default:
-                break;
-        }
     }
 
     // this one is get json

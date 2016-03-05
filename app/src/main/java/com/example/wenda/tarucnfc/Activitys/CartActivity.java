@@ -1,6 +1,7 @@
 package com.example.wenda.tarucnfc.Activitys;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
@@ -26,6 +27,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -41,7 +43,8 @@ public class CartActivity extends BaseActivity implements View.OnClickListener{
     private JSONArray mJsonArray;
     private ArrayList<FoodOrder> mListFoodOrder = new ArrayList<>();
     private AdapterOrderCart adapterOrderCart;
-    final static String GET_FOOD_ORDER_URL = "";
+    final static String GET_FOOD_ORDER_URL = "http://fypproject.host56.com/FoodOrder/get_order_cart.php";
+    final static String CLEAR_FOOD_ORDER_URL = "http://fypproject.host56.com/FoodOrder/clear_order.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +62,7 @@ public class CartActivity extends BaseActivity implements View.OnClickListener{
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         mSwipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
         mLinearLayoutNoRecord = (LinearLayout) findViewById(R.id.layout_no_record);
-        mButtonCancel = (Button) findViewById(R.id.button_cancel);
+        mButtonCancel = (Button) findViewById(R.id.button_clear);
         mButtonCancel.setOnClickListener(this);
         mButtonCheckout = (Button) findViewById(R.id.button_checkout);
         mButtonCheckout.setOnClickListener(this);
@@ -107,7 +110,56 @@ public class CartActivity extends BaseActivity implements View.OnClickListener{
 
     @Override
     public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.button_clear:
+                new ClearData(accountID).execute();
+                break;
 
+            case R.id.button_checkout:
+                Intent intent = new Intent(this, PaymentActivity.class);
+                startActivity(intent);
+                break;
+
+            default:
+                break;
+        }
+
+    }
+
+    // this one is get json
+    public class ClearData extends AsyncTask<String, Void, String> {
+        String accountID;
+        RequestHandler rh = new RequestHandler();
+
+        public ClearData(String accountID) {
+            this.accountID = accountID;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            UIUtils.getProgressDialog(CartActivity.this, "ON");
+        }
+
+
+        @Override
+        protected void onPostExecute(String json) {
+            super.onPostExecute(json);
+            UIUtils.getProgressDialog(CartActivity.this, "OFF");
+            mSwipeContainer.setRefreshing(false);
+            mLinearLayoutNoRecord.setVisibility(View.VISIBLE);
+            mRecyclerView.setVisibility(View.GONE);
+            mTextViewGSTPrice.setText("");
+            mTextViewFoodTotalPrice.setText("");
+            mTextViewGrandTotalPrice.setText("");
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+            HashMap<String, String> data = new HashMap<>();
+            data.put(KEY_ACCOUNT_ID, accountID);
+            return rh.sendPostRequest(CLEAR_FOOD_ORDER_URL, data);
+        }
     }
 
     // this one is get json
@@ -132,7 +184,7 @@ public class CartActivity extends BaseActivity implements View.OnClickListener{
             UIUtils.getProgressDialog(CartActivity.this, "OFF");
             mSwipeContainer.setRefreshing(false);
             convertJson(json);
-            extractJsonData(json);
+            extractJsonData();
         }
 
         @Override
@@ -153,7 +205,7 @@ public class CartActivity extends BaseActivity implements View.OnClickListener{
         }
     }
 
-    private void extractJsonData(String json) {
+    private void extractJsonData() {
         double totalPrice = 0.00;
         double GSTPrice = 0.00;
         double grandTotal = 0.00;
@@ -161,15 +213,14 @@ public class CartActivity extends BaseActivity implements View.OnClickListener{
         for (int i = 0; i < mJsonArray.length(); i++) {
             double subTotal = 0.00;
             try {
-                JSONArray jsonArray = new JSONObject(json).getJSONArray(BaseActivity.JSON_ARRAY);
-                JSONObject jsonObject = jsonArray.getJSONObject(0);
+                JSONObject jsonObject = mJsonArray.getJSONObject(i);
+                FoodOrder foodOrder = new FoodOrder();
 
-                foodOrder.setFoodOrderID(jsonObject.getString("FoodOrderID"));
                 foodOrder.setFoodName(jsonObject.getString("FoodName"));
                 foodOrder.setItemQuantity(jsonObject.getString("Quantity"));
                 foodOrder.setFoodPrice(jsonObject.getString("FoodPrice"));
                 subTotal = Double.parseDouble(foodOrder.getFoodPrice()) * Integer.parseInt(foodOrder.getItemQuantity());
-                foodOrder.setSubTotal(String.valueOf(subTotal));
+                foodOrder.setSubTotal(String.format("%.2f", subTotal));
 
                 mListFoodOrder.add(foodOrder);
 
@@ -185,13 +236,16 @@ public class CartActivity extends BaseActivity implements View.OnClickListener{
         grandTotal = GSTPrice + totalPrice;
 
         if (mJsonArray.length() > 0) {
-            mTextViewFoodTotalPrice.setText(String.valueOf(totalPrice));
-            mTextViewGSTPrice.setText(String.valueOf(GSTPrice));
-            mTextViewGrandTotalPrice.setText(String.valueOf(grandTotal));
+            mRecyclerView.setVisibility(View.VISIBLE);
+            mLinearLayoutNoRecord.setVisibility(View.GONE);
+            mTextViewFoodTotalPrice.setText("RM " + String.format("%.2f", totalPrice));
+            mTextViewGSTPrice.setText("RM " + String.format("%.2f", GSTPrice));
+            mTextViewGrandTotalPrice.setText("RM " + String.format("%.2f", grandTotal));
             mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
             adapterOrderCart = new AdapterOrderCart(this, mListFoodOrder, R.layout.row_cart);
             mRecyclerView.setAdapter(adapterOrderCart);
         } else {
+            mRecyclerView.setVisibility(View.GONE);
             mLinearLayoutNoRecord.setVisibility(View.VISIBLE);
         }
     }

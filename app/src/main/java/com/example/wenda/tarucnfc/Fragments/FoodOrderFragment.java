@@ -1,8 +1,10 @@
 package com.example.wenda.tarucnfc.Fragments;
 
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.wenda.tarucnfc.Activitys.BaseActivity;
+import com.example.wenda.tarucnfc.Activitys.CartActivity;
 import com.example.wenda.tarucnfc.Adapter.AdapterFoodOrder;
 import com.example.wenda.tarucnfc.Databases.Contracts.FoodStallContract;
 import com.example.wenda.tarucnfc.Domains.FoodStall;
@@ -32,12 +35,13 @@ import java.net.URL;
 import java.util.ArrayList;
 
 
-public class FoodOrderFragment extends Fragment implements AdapterFoodOrder.AdapterCallBack{
+public class FoodOrderFragment extends Fragment implements AdapterFoodOrder.AdapterCallBack, View.OnClickListener {
 
     private SwipeRefreshLayout mSwipeContainer;
     private RecyclerView mRecyclerView;
     private AdapterFoodOrder adapterFoodOrder;
     private JSONArray mJsonArray;
+    private FloatingActionButton mFabCart;
     private LinearLayout mLinearLayoutNoRecord;
     private ArrayList<FoodStall> mListFoodStall = new ArrayList<>();
     final static String GET_FOOD_STALL_URL = "http://fypproject.host56.com/FoodOrder/get_food_stall.php";
@@ -54,6 +58,8 @@ public class FoodOrderFragment extends Fragment implements AdapterFoodOrder.Adap
 
         mLinearLayoutNoRecord = (LinearLayout) view.findViewById(R.id.layout_no_record);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
+        mFabCart = (FloatingActionButton) view.findViewById(R.id.fab_cart);
+        mFabCart.setOnClickListener(this);
         mSwipeContainer = (SwipeRefreshLayout) view.findViewById(R.id.swipeContainer);
 
         if (new BaseActivity().isNetworkAvailable(getActivity())) {
@@ -83,6 +89,19 @@ public class FoodOrderFragment extends Fragment implements AdapterFoodOrder.Adap
     @Override
     public void adapterOnClick(int adapterPosition) {
 
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.fab_cart:
+                Intent intent = new Intent(getActivity(), CartActivity.class);
+                startActivity(intent);
+                break;
+
+            default:
+                break;
+        }
     }
 
     // this one is get json

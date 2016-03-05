@@ -121,6 +121,7 @@ public class FoodDetailsActivity extends BaseActivity implements View.OnClickLis
                                 String accountID;
                                 accountID = getLoginDetail(FoodDetailsActivity.this).getAccountID();
                                 new addOrder(accountID, FoodMenuID, quantity).execute();
+                                finish();
                             }
                         }).build();
 

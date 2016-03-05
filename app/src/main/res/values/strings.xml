@@ -124,10 +124,11 @@
     <string name="foodDescription">Food Description:</string>
     <string name="foodCategory">Food Category:</string>
     <string name="foodPrice">Food Price:</string>
-    <string name="totalGST">Total GST:</string>
+    <string name="totalGST">Total GST 6%:</string>
     <string name="totalprice">Total Price:</string>
     <string name="grandTotal">Grand Total:</string>
     <string name="checkout">Checkout</string>
+    <string name="clear">Clear</string>
 
     <string-array name="gender_arrays">
         <item>Male</item>

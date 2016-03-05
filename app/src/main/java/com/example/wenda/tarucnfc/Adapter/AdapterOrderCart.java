@@ -40,8 +40,8 @@ public class AdapterOrderCart extends RecyclerView.Adapter<AdapterOrderCart.View
 
         holder.foodName.setText(items.get(position).getFoodName());
         holder.quantity.setText(items.get(position).getItemQuantity());
-        holder.foodPrice.setText("RM " + items.get(position).getItemQuantity());
-        holder.subTotal.setText("RM " + items.get(position).getSubTotal());
+        holder.foodPrice.setText("RM " + items.get(position).getFoodPrice());
+        holder.subTotal.setText("RM " +  items.get(position).getSubTotal());
     }
 
     @Override
@@ -55,10 +55,10 @@ public class AdapterOrderCart extends RecyclerView.Adapter<AdapterOrderCart.View
 
         public ViewHolder(final View itemView) {
             super(itemView);
-            //foodName = (TextView) itemView.findViewById(R.id.);
-            //quantity = (TextView) itemView.findViewById(R.id);
-            //foodPrice = (TextView) itemView.findViewById(R.id.);
-            //subTotal = (TextView) itemView.findViewById(R.id);
+            foodName = (TextView) itemView.findViewById(R.id.text_view_foodName);
+            quantity = (TextView) itemView.findViewById(R.id.text_view_quantity);
+            foodPrice = (TextView) itemView.findViewById(R.id.text_view_foodPrice);
+            subTotal = (TextView) itemView.findViewById(R.id.text_view_subTotal);
         }
 
         @Override
