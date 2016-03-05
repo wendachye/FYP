@@ -62,7 +62,7 @@ public class AdapterFoodMenu extends RecyclerView.Adapter<AdapterFoodMenu.ViewHo
     public void onBindViewHolder(ViewHolder holder, int position) {
 
         holder.foodName.setText(items.get(position).getFoodName());
-        holder.foodPrice.setText("\n" + items.get(position).getFoodPrice());
+        holder.foodPrice.setText("\nRM " + items.get(position).getFoodPrice());
         ImageLoader.getInstance().displayImage(items.get(position).getFoodMenuImagePath(), holder.foodMenuImagePath, options);
     }
 
@@ -97,57 +97,6 @@ public class AdapterFoodMenu extends RecyclerView.Adapter<AdapterFoodMenu.ViewHo
             Intent intent = new Intent(context, FoodDetailsActivity.class);
             intent.putExtra("FoodMenuID", foodMenuID);
             context.startActivity(intent);
-
-            // display dialog box
-            MaterialDialog dialog = new MaterialDialog.Builder(context)
-                    .title(R.string.quantity)
-                    .customView(R.layout.dialog_custom_view, true)
-                    .positiveText(R.string.confirm)
-                    .negativeText(android.R.string.cancel)
-                    .onPositive(new MaterialDialog.SingleButtonCallback() {
-                        @Override
-                        public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                            new BaseActivity().shortToast(context, "Added to cart.");
-                            // run php to add order line
-                            ((FoodMenuActivity) context).AddOrder(foodMenuID, quantity);
-                        }
-                    }).build();
-
-            final Spinner mSpinner = (Spinner) dialog.getCustomView().findViewById(R.id.spinner_quantity);
-            mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                    switch (mSpinner.getSelectedItemPosition()){
-                        case 0:
-                            quantity = "1";
-                            break;
-
-                        case 1:
-                            quantity = "2";
-                            break;
-
-                        case 2:
-                            quantity = "3";
-                            break;
-
-                        case 3:
-                            quantity = "4";
-                            break;
-
-                        case 4:
-                            quantity = "5";
-                            break;
-                    }
-                }
-
-                @Override
-                public void onNothingSelected(AdapterView<?> adapterView) {
-
-                }
-            });
-            mSpinner.setSelection(0);
-
-            dialog.show();
         }
     }
 

@@ -11,6 +11,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.wenda.tarucnfc.Activitys.BaseActivity;
 import com.example.wenda.tarucnfc.Adapter.AdapterFoodOrder;
@@ -36,6 +38,7 @@ public class FoodOrderFragment extends Fragment implements AdapterFoodOrder.Adap
     private RecyclerView mRecyclerView;
     private AdapterFoodOrder adapterFoodOrder;
     private JSONArray mJsonArray;
+    private LinearLayout mLinearLayoutNoRecord;
     private ArrayList<FoodStall> mListFoodStall = new ArrayList<>();
     final static String GET_FOOD_STALL_URL = "http://fypproject.host56.com/FoodOrder/get_food_stall.php";
 
@@ -49,9 +52,8 @@ public class FoodOrderFragment extends Fragment implements AdapterFoodOrder.Adap
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_food_order, container, false);
 
+        mLinearLayoutNoRecord = (LinearLayout) view.findViewById(R.id.layout_no_record);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
         mSwipeContainer = (SwipeRefreshLayout) view.findViewById(R.id.swipeContainer);
 
         if (new BaseActivity().isNetworkAvailable(getActivity())) {
@@ -164,8 +166,14 @@ public class FoodOrderFragment extends Fragment implements AdapterFoodOrder.Adap
                 Log.d("track", "error");
             }
         }
-        adapterFoodOrder = new AdapterFoodOrder(getActivity(), mListFoodStall, R.layout.row_food_stall, this);
-        mRecyclerView.setAdapter(adapterFoodOrder);
+
+        if (mListFoodStall.size()  > 0){
+            mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+            adapterFoodOrder = new AdapterFoodOrder(getActivity(), mListFoodStall, R.layout.row_food_stall, this);
+            mRecyclerView.setAdapter(adapterFoodOrder);
+        } else {
+            mLinearLayoutNoRecord.setVisibility(View.VISIBLE);
+        }
     }
 
 }

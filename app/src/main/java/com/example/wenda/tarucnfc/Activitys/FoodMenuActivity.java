@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 
 import com.afollestad.materialdialogs.DialogAction;
@@ -45,6 +46,7 @@ public class FoodMenuActivity extends BaseActivity implements AdapterFoodMenu.Ad
     private SwipeRefreshLayout mSwipeContainer;
     private AdapterFoodMenu adapterFoodMenu;
     private FloatingActionButton mFabCart;
+    private LinearLayout mLinearLayoutNoRecord;
     private ArrayList<FoodMenu> mListFoodMenu = new ArrayList<>();
     final static String GET_FOOD_MENU_URL = "http://fypproject.host56.com/FoodOrder/get_food_menu.php";
     final static String ADD_FOOD_ORDER_URL = "http://fypproject.host56.com/FoodOrder/add_food_transaction.php";
@@ -65,9 +67,9 @@ public class FoodMenuActivity extends BaseActivity implements AdapterFoodMenu.Ad
         foodStallID = getIntent().getStringExtra("FoodStallID");
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mFabCart = (FloatingActionButton) findViewById(R.id.fab_cart);
         mFabCart.setOnClickListener(this);
+        mLinearLayoutNoRecord = (LinearLayout) findViewById(R.id.layout_no_record);
         mSwipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
 
         if (isNetworkAvailable(this)) {
@@ -111,60 +113,16 @@ public class FoodMenuActivity extends BaseActivity implements AdapterFoodMenu.Ad
 
     }
 
-    public void AddOrder(String foodMenuID, String quantity){
-        shortToast(this, "add order" + foodMenuID + quantity);
-        String accountID;
-        accountID = getLoginDetail(this).getAccountID();
-        new addOrder(accountID, foodMenuID, quantity).execute();
-    }
-
     @Override
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.fab_cart:
-
+                Intent intent = new Intent(this, CartActivity.class);
+                startActivity(intent);
                 break;
 
             default:
                 break;
-        }
-    }
-
-    public class addOrder extends AsyncTask<Void, Void, String> {
-
-        ProgressDialog loading;
-        RequestHandler requestHandler = new RequestHandler();
-        String accountID, foodMenuID, quantity;
-
-        public addOrder(String accountID, String foodMenuID, String quantity) {
-            this.accountID = accountID;
-            this.foodMenuID = foodMenuID;
-            this.quantity = quantity;
-        }
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            //UIUtils.getProgressDialog(getActivity(), "ON");
-        }
-
-        @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
-            //UIUtils.getProgressDialog(getActivity(), "OFF");
-            //Toast.makeText(getActivity(), s, Toast.LENGTH_LONG).show();
-        }
-
-        @Override
-        protected String doInBackground(Void... params) {
-
-            HashMap<String, String> data = new HashMap<>();
-
-            data.put("accountID", accountID);
-            data.put("foodMenuID", foodMenuID);
-            data.put("quantity", quantity);
-
-            return requestHandler.sendPostRequest(ADD_FOOD_ORDER_URL, data);
         }
     }
 
@@ -215,7 +173,7 @@ public class FoodMenuActivity extends BaseActivity implements AdapterFoodMenu.Ad
     private void extractJsonData() {
 
         for (int i = 0; i < mJsonArray.length(); i++) {
-            try { 
+                try {
                 JSONObject jsonObject = mJsonArray.getJSONObject(i);
                 FoodMenu foodMenu = new FoodMenu();
 
@@ -232,7 +190,13 @@ public class FoodMenuActivity extends BaseActivity implements AdapterFoodMenu.Ad
                 Log.d("track", "error");
             }
         }
-        adapterFoodMenu = new AdapterFoodMenu(this, mListFoodMenu, R.layout.row_food_menu, this);
-        mRecyclerView.setAdapter(adapterFoodMenu);
+
+        if(mJsonArray.length() > 0) {
+            mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+            adapterFoodMenu = new AdapterFoodMenu(this, mListFoodMenu, R.layout.row_food_menu, this);
+            mRecyclerView.setAdapter(adapterFoodMenu);
+        } else {
+            mLinearLayoutNoRecord.setVisibility(View.VISIBLE);
+        }
     }
 }

@@ -13,6 +13,7 @@ public class FoodMenuContract {
         public static final String COLUMN_FOOD_MENU_ID = "FoodMenuID";
         public static final String COLUMN_FOOD_STALL_ID = "FoodStallID";
         public static final String COLUMN_FOOD_CATEGORY = "FoodCategory";
+        public static final String COLUMN_FOOD_DESCRIPTION = "FoodDescription";
         public static final String COLUMN_FOOD_NAME = "FoodName";
         public static final String COLUMN_FOOD_PRICE = "FoodPrice";
         public static final String COLUMN_FOOD_GST_PRICE = "FoodGSTPrice";

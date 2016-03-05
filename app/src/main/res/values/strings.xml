@@ -121,6 +121,13 @@
     <string name="quantity2">Quantity:</string>
     <string name="foodDetails">Food Details</string>
     <string name="foodName">Food Name:</string>
+    <string name="foodDescription">Food Description:</string>
+    <string name="foodCategory">Food Category:</string>
+    <string name="foodPrice">Food Price:</string>
+    <string name="totalGST">Total GST:</string>
+    <string name="totalprice">Total Price:</string>
+    <string name="grandTotal">Grand Total:</string>
+    <string name="checkout">Checkout</string>
 
     <string-array name="gender_arrays">
         <item>Male</item>

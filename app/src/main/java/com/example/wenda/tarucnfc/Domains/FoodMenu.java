@@ -6,11 +6,20 @@ public class FoodMenu {
     private String foodMenuID;
     private String foodStallID;
     private String foodCategory;
+    private String foodDescription;
     private String foodName;
     private String foodPrice;
     private String foodGSTPrice;
     private String foodMenuImagePath;
     private int response;
+
+    public String getFoodDescription() {
+        return foodDescription;
+    }
+
+    public void setFoodDescription(String foodDescription) {
+        this.foodDescription = foodDescription;
+    }
 
     public String getFoodMenuID() {
         return foodMenuID;
