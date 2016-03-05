@@ -84,7 +84,7 @@ public class AdapterFoodOrder extends RecyclerView.Adapter<AdapterFoodOrder.View
             foodStall.setFoodStallID(items.get(getAdapterPosition()).getFoodStallID());
             foodStallID = foodStall.getFoodStallID();
 
-            // pass news data to new activity
+            // pass data to new activity
             Intent intent = new Intent(context, FoodMenuActivity.class);
             intent.putExtra("FoodStallID", foodStallID);
             context.startActivity(intent);

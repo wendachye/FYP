@@ -119,6 +119,8 @@
     <string name="classType">Class Type:</string>
     <string name="quantity">Select Quantities</string>
     <string name="quantity2">Quantity:</string>
+    <string name="foodDetails">Food Details</string>
+    <string name="foodName">Food Name:</string>
 
     <string-array name="gender_arrays">
         <item>Male</item>

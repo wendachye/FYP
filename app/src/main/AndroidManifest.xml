@@ -136,6 +136,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Activitys.MainActivity" />
         </activity>
+        <activity android:name=".Activitys.CartActivity" />
+        <activity
+            android:name=".Activitys.FoodDetailsActivity"
+            android:label="FoodDetails">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Activitys.MainActivity" />
+        </activity>
     </application>
 
 </manifest>
