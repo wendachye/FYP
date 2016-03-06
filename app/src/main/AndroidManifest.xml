@@ -150,7 +150,17 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Activitys.MainActivity" />
         </activity>
-        <activity android:name=".Activitys.PaymentActivity"></activity>
+        <activity
+            android:name=".Activitys.PaymentActivity"
+            android:label="Payment">
+        </activity>
+        <activity
+            android:name=".Activitys.FoodTransactionActivity"
+            android:label="FoodTransaction">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Activitys.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

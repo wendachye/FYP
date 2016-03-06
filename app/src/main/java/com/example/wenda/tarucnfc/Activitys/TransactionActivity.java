@@ -9,6 +9,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
 
 import com.example.wenda.tarucnfc.Adapter.AdapterTransaction;
 import com.example.wenda.tarucnfc.Databases.Contracts.TransactionContract.TransactionRecord;
@@ -28,6 +30,7 @@ public class TransactionActivity extends BaseActivity {
 
     private AdapterTransaction adapterTransaction;
     private RecyclerView mRecyclerView;
+    private LinearLayout mLinearLayoutNoRecord;
     private ArrayList<Transaction> mListTransaction = new ArrayList<>();
     private static final String GET_TRANSACTION_URL = "http://fypproject.host56.com/Wallet/get_transaction_history.php";
     private JSONArray mJsonArray;
@@ -39,7 +42,7 @@ public class TransactionActivity extends BaseActivity {
         setContentView(R.layout.activity_transaction);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mLinearLayoutNoRecord = (LinearLayout) findViewById(R.id.layout_no_record);
 
         // set title to center
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
@@ -152,7 +155,15 @@ public class TransactionActivity extends BaseActivity {
                 Log.d("track", "error");
             }
         }
-        adapterTransaction = new AdapterTransaction(this, mListTransaction, R.layout.row_transaction_history);
-        mRecyclerView.setAdapter(adapterTransaction);
+        if (mListTransaction.size() > 0) {
+            mRecyclerView.setVisibility(View.VISIBLE);
+            mLinearLayoutNoRecord.setVisibility(View.GONE);
+            mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+            adapterTransaction = new AdapterTransaction(this, mListTransaction, R.layout.row_transaction_history);
+            mRecyclerView.setAdapter(adapterTransaction);
+        } else {
+            mRecyclerView.setVisibility(View.GONE);
+            mLinearLayoutNoRecord.setVisibility(View.VISIBLE);
+        }
     }
 }

@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.wenda.tarucnfc.Adapter.AdapterOrderCart;
 import com.example.wenda.tarucnfc.Domains.FoodOrder;
 import com.example.wenda.tarucnfc.R;
@@ -40,6 +41,7 @@ public class CartActivity extends BaseActivity implements View.OnClickListener{
     private Button mButtonCheckout, mButtonCancel;
     private LinearLayout mLinearLayoutNoRecord;
     private FoodOrder foodOrder = new FoodOrder();
+    private String mTotal, mGST;
     private JSONArray mJsonArray;
     private ArrayList<FoodOrder> mListFoodOrder = new ArrayList<>();
     private AdapterOrderCart adapterOrderCart;
@@ -116,8 +118,37 @@ public class CartActivity extends BaseActivity implements View.OnClickListener{
                 break;
 
             case R.id.button_checkout:
-                Intent intent = new Intent(this, PaymentActivity.class);
-                startActivity(intent);
+                new MaterialDialog.Builder(this)
+                        .title(R.string.title3)
+                        .items(R.array.items2)
+                        .itemsCallback(new MaterialDialog.ListCallback() {
+                            @Override
+                            public void onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
+                                switch (which){
+                                    case 0:
+                                        finish();
+                                        Intent intent3 = new Intent(CartActivity.this, PinEntryActivity.class);
+                                        intent3.putExtra("totalPrice", mTotal);
+                                        intent3.putExtra("gstPrice", mGST);
+                                        intent3.putExtra("selected", "direct_payment");
+                                        startActivity(intent3);
+                                        break;
+
+                                    case 1:
+                                        finish();
+                                        Intent intent4 = new Intent(CartActivity.this, PinEntryActivity.class);
+                                        intent4.putExtra("totalPrice", mTotal);
+                                        intent4.putExtra("gstPrice", mGST);
+                                        intent4.putExtra("selected", "nfc_payment");
+                                        startActivity(intent4);
+                                        break;
+
+                                    default:
+                                        break;
+                                }
+                            }
+                        })
+                        .show();
                 break;
 
             default:
@@ -236,6 +267,8 @@ public class CartActivity extends BaseActivity implements View.OnClickListener{
         grandTotal = GSTPrice + totalPrice;
 
         if (mJsonArray.length() > 0) {
+            mButtonCheckout.setVisibility(View.VISIBLE);
+            mButtonCancel.setVisibility(View.VISIBLE);
             mRecyclerView.setVisibility(View.VISIBLE);
             mLinearLayoutNoRecord.setVisibility(View.GONE);
             mTextViewFoodTotalPrice.setText("RM " + String.format("%.2f", totalPrice));
@@ -244,9 +277,13 @@ public class CartActivity extends BaseActivity implements View.OnClickListener{
             mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
             adapterOrderCart = new AdapterOrderCart(this, mListFoodOrder, R.layout.row_cart);
             mRecyclerView.setAdapter(adapterOrderCart);
+            mTotal = String.format("%.2f", grandTotal);
+            mGST = String.format("%.2f", GSTPrice);
         } else {
             mRecyclerView.setVisibility(View.GONE);
             mLinearLayoutNoRecord.setVisibility(View.VISIBLE);
+            mButtonCheckout.setVisibility(View.GONE);
+            mButtonCancel.setVisibility(View.GONE);
         }
     }
 }

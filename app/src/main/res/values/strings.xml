@@ -129,6 +129,8 @@
     <string name="grandTotal">Grand Total:</string>
     <string name="checkout">Checkout</string>
     <string name="clear">Clear</string>
+    <string name="title3">Payment option:</string>
+    <string name="totalAmount">Total Amount:</string>
 
     <string-array name="gender_arrays">
         <item>Male</item>
@@ -211,7 +213,12 @@
 
     <string-array name="items">
         <item>Direct Transfer</item>
-        <item>Via NFC Transfer</item>
+        <item>Transfer via NFC</item>
+    </string-array>
+
+    <string-array name="items2">
+        <item>Direct Payment</item>
+        <item>Payment via NFC</item>
     </string-array>
 
     <string-array name="faculty_arrays">

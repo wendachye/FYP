@@ -32,7 +32,7 @@
         <item
             android:id="@+id/nav_menu_report"
             android:title="Overall Transaction"
-            android:icon="@drawable/login"/>
+            android:icon="@drawable/chart_bar"/>
 
         <item
             android:id="@+id/nav_menu_sign_out"

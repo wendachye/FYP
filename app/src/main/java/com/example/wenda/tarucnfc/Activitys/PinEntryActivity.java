@@ -53,6 +53,8 @@ public class PinEntryActivity extends BaseActivity {
     private Button buttonDelete;
     private String mAccountID;
     private String selectType;
+    private String totalPrice;
+    private String gstPrice;
     private Account account = new Account();
 
     @Override
@@ -127,6 +129,7 @@ public class PinEntryActivity extends BaseActivity {
                             Log.v("PinView", "Correct PIN");
 
                             selectType = getIntent().getStringExtra(KEY_PAYMENT);
+
                             if (selectType.equals("topUp")) {
                                 Intent intent = new Intent(appContext, TopUpActivity.class);
                                 startActivity(intent);
@@ -135,11 +138,25 @@ public class PinEntryActivity extends BaseActivity {
                                 Intent intent = new Intent(appContext, TransferBalanceActivity.class);
                                 startActivity(intent);
                                 finish();
-                            } else {
+                            } else if (selectType.equals("nfc_transfer")) {
                                 Intent intent = new Intent(appContext, TransferBalanceActivity.class);
                                 startActivity(intent);
                                 finish();
+                            }else if (selectType.equals("direct_payment")){
+                                totalPrice = getIntent().getStringExtra("totalPrice");
+                                gstPrice = getIntent().getStringExtra("gstPrice");
+                                Intent intent = new Intent(appContext, PaymentActivity.class);
+                                intent.putExtra("totalPrice", totalPrice);
+                                intent.putExtra("gstPrice", gstPrice);
+                                intent.putExtra("selected", "direct_payment");
+                                startActivity(intent);
+                                finish();
+                            }else if (selectType.equals("nfc_payment")){
+                                totalPrice = getIntent().getStringExtra("totalPrice");
+                                gstPrice = getIntent().getStringExtra("gstPrice");
                             }
+
+
 
                         } else {
                             statusView.setTextColor(Color.RED);

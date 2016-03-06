@@ -32,7 +32,7 @@ import com.example.wenda.tarucnfc.Fragments.MaintainBusScheduleFragment;
 import com.example.wenda.tarucnfc.Fragments.MaintainClassScheduleFragment;
 import com.example.wenda.tarucnfc.Fragments.MaintainFoodStallFragment;
 import com.example.wenda.tarucnfc.Fragments.MaintainReportFragment;
-import com.example.wenda.tarucnfc.Fragments.ReportFragment;
+import com.example.wenda.tarucnfc.Fragments.BackendReportFragment;
 import com.example.wenda.tarucnfc.Fragments.WalletFragment;
 import com.example.wenda.tarucnfc.R;
 import com.example.wenda.tarucnfc.RequestHandler;
@@ -263,7 +263,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
                     case R.id.nav_menu_report:
                         getSupportActionBar().setTitle(R.string.report);
-                        ReportFragment fragmentReport = new ReportFragment();
+                        BackendReportFragment fragmentReport = new BackendReportFragment();
                         fragmentTransaction.replace(R.id.frame, fragmentReport);
                         fragmentTransaction.commit();
                         return true;

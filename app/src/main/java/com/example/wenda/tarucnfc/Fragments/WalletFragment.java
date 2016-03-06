@@ -55,6 +55,7 @@ public class WalletFragment extends Fragment implements View.OnClickListener {
 
         // setFinviewbyid
         setFinviewbyid(view);
+        
         if (new BaseActivity().isNetworkAvailable(getActivity())) {
             new GetJson(String.valueOf(mAccountID)).execute();
         } else {

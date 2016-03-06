@@ -180,10 +180,13 @@ public class FoodMenuActivity extends BaseActivity implements AdapterFoodMenu.Ad
         }
 
         if(mJsonArray.length() > 0) {
+            mRecyclerView.setVisibility(View.VISIBLE);
+            mLinearLayoutNoRecord.setVisibility(View.GONE);
             mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
             adapterFoodMenu = new AdapterFoodMenu(this, mListFoodMenu, R.layout.row_food_menu, this);
             mRecyclerView.setAdapter(adapterFoodMenu);
         } else {
+            mRecyclerView.setVisibility(View.GONE);
             mLinearLayoutNoRecord.setVisibility(View.VISIBLE);
         }
     }

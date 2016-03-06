@@ -187,10 +187,13 @@ public class FoodOrderFragment extends Fragment implements AdapterFoodOrder.Adap
         }
 
         if (mListFoodStall.size()  > 0){
+            mRecyclerView.setVisibility(View.VISIBLE);
+            mLinearLayoutNoRecord.setVisibility(View.GONE);
             mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
             adapterFoodOrder = new AdapterFoodOrder(getActivity(), mListFoodStall, R.layout.row_food_stall, this);
             mRecyclerView.setAdapter(adapterFoodOrder);
         } else {
+            mRecyclerView.setVisibility(View.GONE);
             mLinearLayoutNoRecord.setVisibility(View.VISIBLE);
         }
     }
