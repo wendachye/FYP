@@ -16,8 +16,10 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.wenda.tarucnfc.Activitys.BaseActivity;
 import com.example.wenda.tarucnfc.Activitys.CartActivity;
+import com.example.wenda.tarucnfc.Activitys.FoodTransactionActivity;
 import com.example.wenda.tarucnfc.Adapter.AdapterFoodOrder;
 import com.example.wenda.tarucnfc.Databases.Contracts.FoodStallContract;
 import com.example.wenda.tarucnfc.Domains.FoodStall;
@@ -95,8 +97,28 @@ public class FoodOrderFragment extends Fragment implements AdapterFoodOrder.Adap
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.fab_cart:
-                Intent intent = new Intent(getActivity(), CartActivity.class);
-                startActivity(intent);
+                new MaterialDialog.Builder(getActivity())
+                        .items(R.array.items3)
+                        .itemsCallback(new MaterialDialog.ListCallback() {
+                            @Override
+                            public void onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
+                                switch (which){
+                                    case 0:
+                                        Intent intent = new Intent(getActivity(), CartActivity.class);
+                                        startActivity(intent);
+                                        break;
+
+                                    case 1:
+                                        Intent intent2 = new Intent(getActivity(), FoodTransactionActivity.class);
+                                        startActivity(intent2);
+                                        break;
+
+                                    default:
+                                        break;
+                                }
+                            }
+                        })
+                        .show();
                 break;
 
             default:

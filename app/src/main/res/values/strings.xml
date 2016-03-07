@@ -131,6 +131,7 @@
     <string name="clear">Clear</string>
     <string name="title3">Payment option:</string>
     <string name="totalAmount">Total Amount:</string>
+    <string name="barTitle">Total Spending</string>
 
     <string-array name="gender_arrays">
         <item>Male</item>
@@ -172,6 +173,16 @@
         <item>Monday to Thursday</item>
         <item>Friday</item>
         <item>Saturday</item>
+    </string-array>
+
+    <string-array name="date_arrays">
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+        <item>Sunday</item>
     </string-array>
 
     <string-array name="busDeparture_arrays">
@@ -219,6 +230,22 @@
     <string-array name="items2">
         <item>Direct Payment</item>
         <item>Payment via NFC</item>
+    </string-array>
+
+    <string-array name="items3">
+        <item>View Order Cart</item>
+        <item>View Transaction History</item>
+    </string-array>
+
+    <string-array name="items4">
+        <item>MONDAY</item>
+        <item>TUESDAY</item>
+        <item>WEDNESDAY</item>
+        <item>THURSDAY</item>
+        <item>FRIDAY</item>
+        <item>SATURDAY</item>
+        <item>SUNDAY</item>
+        <item>View All</item>
     </string-array>
 
     <string-array name="faculty_arrays">

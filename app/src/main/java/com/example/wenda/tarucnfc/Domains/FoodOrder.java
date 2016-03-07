@@ -12,6 +12,15 @@ public class FoodOrder {
     private String totalPrice;
     private String GSTPrice;
     private String GrandTotal;
+    private String paymentDateTime;
+
+    public String getPaymentDateTime() {
+        return paymentDateTime;
+    }
+
+    public void setPaymentDateTime(String paymentDateTime) {
+        this.paymentDateTime = paymentDateTime;
+    }
 
     public String getTotalPrice() {
         return totalPrice;

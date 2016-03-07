@@ -1,0 +1,110 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.example.wenda.tarucnfc.Fragments.EnduserReportFragment">
+
+    <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/swipeContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="40dp"
+        android:padding="5dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:textSize="25dp"
+            android:text="@string/barTitle"
+            android:id="@+id/tvTitle"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:padding="10dp"
+            android:layout_centerVertical="true"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:textSize="15dp"
+            android:text="No Record."
+            android:id="@+id/message"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginTop="80dp"
+            android:visibility="gone"/>
+
+        <org.eazegraph.lib.charts.BarChart
+            android:id="@+id/barchart"
+            android:layout_width="wrap_content"
+            android:layout_height="300dp"
+            android:layout_marginTop="15dp"
+            app:egFixedBarWidth="true"
+            app:egBarWidth="35dp"
+            app:egLegendHeight="0dp"
+            app:egShowValues="true"
+            app:egShowDecimal="true"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text=""
+                android:id="@+id/month1"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:padding="10dp"
+                android:visibility="gone"
+                android:layout_marginLeft="10dp"
+                android:layout_centerVertical="true"/>
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text=""
+                android:id="@+id/month2"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:padding="10dp"
+                android:visibility="gone"
+                android:layout_marginLeft="20dp"
+                android:layout_centerVertical="true"/>
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text=""
+                android:id="@+id/month3"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:padding="10dp"
+                android:visibility="gone"
+                android:layout_marginLeft="18dp"
+                android:layout_centerVertical="true"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    </ScrollView>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+</LinearLayout>

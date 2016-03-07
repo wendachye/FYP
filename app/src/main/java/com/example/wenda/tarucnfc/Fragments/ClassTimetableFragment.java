@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.example.wenda.tarucnfc.Activitys.BaseActivity;
 import com.example.wenda.tarucnfc.Adapter.AdapterClassSchedule;
@@ -34,6 +35,7 @@ public class ClassTimetableFragment extends Fragment {
     private String mProgramme;
     private String mGroupNo;
     private RecyclerView mRecyclerView;
+    private LinearLayout mLinearLayoutNoRecord;
     private AdapterClassSchedule adapterClassSchedule;
     private SwipeRefreshLayout mSwipeContainer;
 
@@ -60,7 +62,7 @@ public class ClassTimetableFragment extends Fragment {
         mGroupNo = new BaseActivity().getLoginDetail(getActivity()).getGroupNo();
 
 
-
+        mLinearLayoutNoRecord = (LinearLayout) view.findViewById(R.id.layout_no_record);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
@@ -92,8 +94,7 @@ public class ClassTimetableFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-
-        UIUtils.getProgressDialog(getActivity(), "OFF");
+        //UIUtils.getProgressDialog(getActivity(), "OFF");
     }
 
     // this one is get json
@@ -172,7 +173,16 @@ public class ClassTimetableFragment extends Fragment {
                 Log.d("track", "error");
             }
         }
-        adapterClassSchedule = new AdapterClassSchedule(getActivity(), mListClassSchedule, R.layout.row_class_schedule);
-        mRecyclerView.setAdapter(adapterClassSchedule);
+        Log.d("track", "dd" +mListClassSchedule.size());
+        if (mListClassSchedule.size() > 0) {
+            mRecyclerView.setVisibility(View.VISIBLE);
+            mLinearLayoutNoRecord.setVisibility(View.GONE);
+            mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+            adapterClassSchedule = new AdapterClassSchedule(getActivity(), mListClassSchedule, R.layout.row_class_schedule);
+            mRecyclerView.setAdapter(adapterClassSchedule);
+        } else {
+            mRecyclerView.setVisibility(View.GONE);
+            mLinearLayoutNoRecord.setVisibility(View.VISIBLE);
+        }
     }
 }

@@ -22,7 +22,7 @@ public class FoodTransactionActivity extends BaseActivity {
 
         // set title to center
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setCustomView(R.layout.title_transaction);
+        getSupportActionBar().setCustomView(R.layout.title_food_transaction);
 
         // set back button
         getSupportActionBar().setHomeButtonEnabled(true);
