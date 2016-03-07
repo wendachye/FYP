@@ -1,25 +1,25 @@
 package com.example.wenda.tarucnfc.Fragments;
 
 
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.wenda.tarucnfc.Activitys.BaseActivity;
 import com.example.wenda.tarucnfc.Adapter.AdapterBusRoute;
+import com.example.wenda.tarucnfc.AlarmReceiver;
 import com.example.wenda.tarucnfc.Databases.Contracts.BusScheduleContract.BusScheduleRecord;
 import com.example.wenda.tarucnfc.Domains.BusSchedule;
 import com.example.wenda.tarucnfc.R;
@@ -35,8 +35,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 
-import static com.example.wenda.tarucnfc.Activitys.BaseActivity.shortToast;
-
 public class BusRouteFragment extends Fragment implements View.OnClickListener {
 
     private String condition;
@@ -48,9 +46,13 @@ public class BusRouteFragment extends Fragment implements View.OnClickListener {
     private static final String GET_BUS_SCHEDULES_URL = "http://fypproject.host56.com/BusSchedule/get_bus_schedule_view.php";
     private JSONArray mJsonArray;
     private Calendar calendar;
+    private FloatingActionButton mFabAlarm;
     private AdapterBusRoute adapterBusRoute;
     private ArrayList<BusSchedule> mListBusSchedule = new ArrayList<>();
-    public static final SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+    private static final SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+    private SimpleDateFormat dateTimeFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+    private static String departure, destination, routeDay, routeTime;
 
     public BusRouteFragment() {
         // Required empty public constructor
@@ -74,6 +76,8 @@ public class BusRouteFragment extends Fragment implements View.OnClickListener {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mTextViewDay = (TextView) view.findViewById(R.id.bus_day);
         mTextViewDay.setOnClickListener(this);
+        mFabAlarm = (FloatingActionButton) view.findViewById(R.id.fab_alarm);
+        mFabAlarm.setOnClickListener(this);
 
         if (new BaseActivity().isNetworkAvailable(getActivity())) {
             switch (day){
@@ -235,10 +239,69 @@ public class BusRouteFragment extends Fragment implements View.OnClickListener {
                         .show();
                 break;
 
+            case R.id.fab_alarm:
+            case R.id.fab_cart:
+                new MaterialDialog.Builder(getActivity())
+                        .title(R.string.titleAlarm)
+                        .items(R.array.items5)
+                        .itemsCallback(new MaterialDialog.ListCallback() {
+                            @Override
+                            public void onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
+                                switch (which){
+                                    case 0:
+                                        try {
+                                            Calendar calendar = Calendar.getInstance();
+                                            calendar.setTime(dateTimeFormat.parse(dateFormat.format(calendar.getTime()) + " " + routeTime));
+                                            // Notify 5 minutes before the bus arrived
+                                            calendar.add(Calendar.MINUTE, -5);
+                                            Calendar calendarNow = Calendar.getInstance();
+
+                                            if (calendar.getTime().after(calendarNow.getTime())) {
+                                                int id = 1;
+                                                new AlarmReceiver().setAlarm(getContext(), calendar, id);
+                                                Toast.makeText(getActivity(), "Notification was set at " + dateTimeFormat.format(calendar.getTime())
+                                                        , Toast.LENGTH_SHORT).show();
+                                            } else {
+                                                Toast.makeText(getActivity(), "Notification not set because upcoming bus will arrive in 5 minutes"
+                                                        , Toast.LENGTH_SHORT).show();
+                                            }
+                                        } catch (ParseException e) {
+                                            e.printStackTrace();
+                                        }
+                                        break;
+
+                                    case 1:
+                                        break;
+
+                                    default:
+                                        break;
+                                }
+                            }
+                        })
+                        .show();
+                break;
+
             default:
                 break;
         }
     }
+
+    public static String getBusDeparture(){
+        return departure;
+    }
+
+    public static String getBusDestination(){
+        return destination;
+    }
+
+    public static String getBusRouteDay(){
+        return routeDay;
+    }
+
+    public static String getBusRouteTime(){
+        return routeTime;
+    }
+
 
     // this one is get json
     public class GetJson extends AsyncTask<String, Void, String> {
@@ -293,7 +356,6 @@ public class BusRouteFragment extends Fragment implements View.OnClickListener {
 
                 busSchedule.setDeparture(jsonObject.getString(BusScheduleRecord.COLUMN_DEPARTURE));
                 busSchedule.setDestination(jsonObject.getString(BusScheduleRecord.COLUMN_DESTINATION));
-                //busSchedule.setRouteTime(jsonObject.getString(BusScheduleRecord.COLUMN_ROUTE_TIME));
 
                 String[] arrayBusTime = jsonObject.getString(BusScheduleRecord.COLUMN_ROUTE_TIME).split("\\s+");
                 ArrayList<String> arrayUpcomingBus = new ArrayList<>();
@@ -327,31 +389,57 @@ public class BusRouteFragment extends Fragment implements View.OnClickListener {
                 if (busSchedule.getStatus().equals("Active") && busSchedule.getRouteDay().equals(day)) {
                     switch (day){
                         case "Monday":
+                            departure = busSchedule.getDeparture();
+                            destination = busSchedule.getDestination();
+                            routeDay = busSchedule.getRouteDay();
+                            routeTime = busSchedule.getRouteTime();
                             mListBusSchedule.add(busSchedule);
                             break;
                         case "Tuesday":
+                            departure = busSchedule.getDeparture();
+                            destination = busSchedule.getDestination();
+                            routeDay = busSchedule.getRouteDay();
+                            routeTime = busSchedule.getRouteTime();
                             mListBusSchedule.add(busSchedule);
                             break;
                         case "Wednesday":
+                            departure = busSchedule.getDeparture();
+                            destination = busSchedule.getDestination();
+                            routeDay = busSchedule.getRouteDay();
+                            routeTime = busSchedule.getRouteTime();
                             mListBusSchedule.add(busSchedule);
                             break;
                         case "Thursday":
+                            departure = busSchedule.getDeparture();
+                            destination = busSchedule.getDestination();
+                            routeDay = busSchedule.getRouteDay();
+                            routeTime = busSchedule.getRouteTime();
                             mListBusSchedule.add(busSchedule);
                             break;
                         case "Friday":
+                            departure = busSchedule.getDeparture();
+                            destination = busSchedule.getDestination();
+                            routeDay = busSchedule.getRouteDay();
+                            routeTime = busSchedule.getRouteTime();
                             mListBusSchedule.add(busSchedule);
                             break;
                         case "Saturday":
+                            departure = busSchedule.getDeparture();
+                            destination = busSchedule.getDestination();
+                            routeDay = busSchedule.getRouteDay();
+                            routeTime = busSchedule.getRouteTime();
                             mListBusSchedule.add(busSchedule);
                             break;
                         case "Sunday":
+                            departure = busSchedule.getDeparture();
+                            destination = busSchedule.getDestination();
+                            routeDay = busSchedule.getRouteDay();
+                            routeTime = busSchedule.getRouteTime();
                             mListBusSchedule.add(busSchedule);
                             break;
                     }
                 } else if (busSchedule.getStatus().equals("Active") && day.equals("View All")){
                     mListBusSchedule.add(busSchedule);
-                } else {
-
                 }
 
             } catch (JSONException e) {
@@ -360,13 +448,14 @@ public class BusRouteFragment extends Fragment implements View.OnClickListener {
             }
         }
         if (mListBusSchedule.size() > 0) {
+            mFabAlarm.setVisibility(View.VISIBLE);
             mRecyclerView.setVisibility(View.VISIBLE);
             mLinearLayoutNoRecord.setVisibility(View.GONE);
             mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
             adapterBusRoute = new AdapterBusRoute(getActivity(), mListBusSchedule, R.layout.row_bus_route);
             mRecyclerView.setAdapter(adapterBusRoute);
-            Log.d("track", "list" + mListBusSchedule.size());
         } else {
+            mFabAlarm.setVisibility(View.GONE);
             mRecyclerView.setVisibility(View.GONE);
             mLinearLayoutNoRecord.setVisibility(View.VISIBLE);
         }

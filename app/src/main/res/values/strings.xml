@@ -91,6 +91,7 @@
     <string name="lastedit">Last Edit By:</string>
     <string name="delete">Delete</string>
     <string name="title">Transfer option:</string>
+    <string name="titleAlarm">Set Alarm:</string>
     <string name="title2">Top Up</string>
     <string name="content">Please pass your device to the Top Up Management.</string>
     <string name="agree">Finish</string>
@@ -132,6 +133,7 @@
     <string name="title3">Payment option:</string>
     <string name="totalAmount">Total Amount:</string>
     <string name="barTitle">Total Spending</string>
+    <string name="paymentDate">Payment Date Time:</string>
 
     <string-array name="gender_arrays">
         <item>Male</item>
@@ -235,6 +237,10 @@
     <string-array name="items3">
         <item>View Order Cart</item>
         <item>View Transaction History</item>
+    </string-array>
+
+    <string-array name="items5">
+        <item>Upcoming Bus</item>
     </string-array>
 
     <string-array name="items4">

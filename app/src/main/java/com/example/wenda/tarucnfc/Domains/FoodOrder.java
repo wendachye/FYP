@@ -12,7 +12,16 @@ public class FoodOrder {
     private String totalPrice;
     private String GSTPrice;
     private String GrandTotal;
+    private String status;
     private String paymentDateTime;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public String getPaymentDateTime() {
         return paymentDateTime;

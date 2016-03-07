@@ -1,20 +1,21 @@
 package com.example.wenda.tarucnfc.Activitys;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.wenda.tarucnfc.Domains.FoodOrder;
+import com.example.wenda.tarucnfc.Domains.OfflineLogin;
 import com.example.wenda.tarucnfc.R;
 import com.example.wenda.tarucnfc.RequestHandler;
 import com.example.wenda.tarucnfc.UIUtils;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.Calendar;
 import java.util.HashMap;
@@ -24,6 +25,7 @@ public class PaymentActivity extends BaseActivity implements View.OnClickListene
     private String selectType, totalPrice, gstPrice, accountID;
     private TextView mTextViewTotalPrice;
     private Button mButtonConfirm, mButtonCancel;
+    private OfflineLogin offlineLogin = new OfflineLogin();
     private final static String CONFIRM_PAYMENT_URL = "http://fypproject.host56.com/FoodOrder/confirm_payment.php";
 
     @Override
@@ -92,14 +94,26 @@ public class PaymentActivity extends BaseActivity implements View.OnClickListene
         protected void onPreExecute() {
             super.onPreExecute();
             UIUtils.getProgressDialog(PaymentActivity.this, "ON");
+
         }
 
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             UIUtils.getProgressDialog(PaymentActivity.this, "OFF");
-            shortToast(PaymentActivity.this, "Payment done.");
-            finish();
+            extractJsonData(s);
+            switch (offlineLogin.getLoginResponse()){
+                // 1 = success
+                case 1:
+                    shortToast(PaymentActivity.this, "Payment done.");
+                    finish();
+                    break;
+
+                // 2 = account balance insufficient
+                case 2:
+                    shortToast(PaymentActivity.this, "Account Balance Insufficient. Please top up your wallet.");
+                    break;
+            }
         }
 
         @Override
@@ -113,6 +127,18 @@ public class PaymentActivity extends BaseActivity implements View.OnClickListene
             data.put("dateTime", dateTimeFormat.format(calendar.getTime()));
 
             return requestHandler.sendPostRequest(CONFIRM_PAYMENT_URL, data);
+        }
+    }
+
+    private void extractJsonData(String json) {
+        try {
+            JSONArray jsonArray = new JSONObject(json).getJSONArray(BaseActivity.JSON_ARRAY);
+            JSONObject jsonObject = jsonArray.getJSONObject(0);
+
+            offlineLogin.setLoginResponse(jsonObject.getInt(KEY_RESPONSE));
+
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
     }
 }

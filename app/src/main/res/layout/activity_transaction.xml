@@ -32,7 +32,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:textSize="15dp"
-                    android:text="No Record."
+                    android:text="No Transaction."
                     android:textStyle="bold"
                     android:gravity="center"/>
 
