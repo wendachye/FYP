@@ -11,7 +11,7 @@
 
         <item
             android:id="@+id/nav_menu_foodstall"
-            android:title="Maintain Food Stall"
+            android:title="Food Stall Details"
             android:icon="@drawable/home_variant"/>
         .
         <item

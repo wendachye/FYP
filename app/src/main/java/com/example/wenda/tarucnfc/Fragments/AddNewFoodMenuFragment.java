@@ -72,6 +72,7 @@ public class AddNewFoodMenuFragment extends Fragment implements View.OnClickList
         mEditTextFoodName = (EditText) view.findViewById(R.id.editText_foodName);
         mEditTextFoodDescription = (EditText) view.findViewById(R.id.editText_foodDescription);
         mEditTextFoodPrice = (EditText) view.findViewById(R.id.editText_foodPrice);
+        mSpinnerFoodCategory = (Spinner) view.findViewById(R.id.spinner_food_category);
         mButtonConfirm = (Button) view.findViewById(R.id.button_confirm);
         mButtonConfirm.setOnClickListener(this);
         mFoodPicture = (ImageView) view.findViewById(R.id.food_picture);

@@ -162,7 +162,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Activitys.MainActivity" />
         </activity>
-        <activity android:name=".Activitys.EditFoodItemActivity"></activity>
+        <activity
+            android:name=".Activitys.EditFoodItemActivity"
+            android:label="EditFoodDetails">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Activitys.MainActivity" />
+        </activity>
 
         <activity
             android:name=".Activitys.NotificationActivity"

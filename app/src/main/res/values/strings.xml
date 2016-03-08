@@ -138,6 +138,7 @@
     <string name="maintain_foodMenu">Maintain Food Menu</string>
     <string name="maintain_foodreport">Maintain Food Report</string>
     <string name="foodPic">Food Picture</string>
+    <string name="update">Update</string>
 
     <string-array name="gender_arrays">
         <item>Male</item>

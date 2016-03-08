@@ -28,6 +28,7 @@ import com.example.wenda.tarucnfc.Fragments.ClassScheduleFragment;
 import com.example.wenda.tarucnfc.Fragments.DashboardFragment;
 import com.example.wenda.tarucnfc.Fragments.EnduserReportFragment;
 import com.example.wenda.tarucnfc.Fragments.FoodOrderFragment;
+import com.example.wenda.tarucnfc.Fragments.FoodStallDetailsFragment;
 import com.example.wenda.tarucnfc.Fragments.MaintainAccountFragment;
 import com.example.wenda.tarucnfc.Fragments.MaintainBusScheduleFragment;
 import com.example.wenda.tarucnfc.Fragments.MaintainClassScheduleFragment;
@@ -219,8 +220,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
                     case R.id.nav_menu_foodstall:
                         getSupportActionBar().setTitle(R.string.maintain_foodstall);
-                        MaintainFoodStallFragment fragmentFoodStall = new MaintainFoodStallFragment();
-                        fragmentTransaction.replace(R.id.frame, fragmentFoodStall);
+                        FoodStallDetailsFragment fragmentFoodStallDetails = new FoodStallDetailsFragment();
+                        fragmentTransaction.replace(R.id.frame, fragmentFoodStallDetails);
                         fragmentTransaction.commit();
                         return true;
 
