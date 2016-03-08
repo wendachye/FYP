@@ -12,6 +12,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,9 +29,15 @@ import com.example.wenda.tarucnfc.Domains.FoodMenu;
 import com.example.wenda.tarucnfc.InvalidInputException;
 import com.example.wenda.tarucnfc.R;
 import com.example.wenda.tarucnfc.RequestHandler;
+import com.example.wenda.tarucnfc.UIUtils;
 import com.flipboard.bottomsheet.BottomSheetLayout;
 import com.flipboard.bottomsheet.commons.ImagePickerSheetView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -48,7 +55,9 @@ public class AddNewFoodMenuFragment extends Fragment implements View.OnClickList
     private Uri cameraImageUri = null;
     private Bitmap mBitmapFoodPicture;
     private FoodMenu foodMenu = new FoodMenu();
-    private final static String Add_NEW_FOOD_URL = "";
+    private String accountID;
+    private static final String KEY_RESPONSE = "Response";
+    private final static String Add_NEW_FOOD_URL = "http://fypproject.host56.com/FoodOrder/add_food_item.php";
 
     public AddNewFoodMenuFragment() {
         // Required empty public constructor
@@ -63,6 +72,8 @@ public class AddNewFoodMenuFragment extends Fragment implements View.OnClickList
 
         // setfindviewbyid
         setFindviewbyid(view);
+
+        accountID = new BaseActivity().getLoginDetail(getActivity()).getAccountID();
 
         return view;
     }
@@ -89,13 +100,19 @@ public class AddNewFoodMenuFragment extends Fragment implements View.OnClickList
             case R.id.button_confirm:
                 // verify data
                 verifyData();
-                // add data
-                addData();
                 break;
 
             default:
                 break;
         }
+    }
+
+    public String getStringImage(Bitmap bmp) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bmp.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] imageBytes = baos.toByteArray();
+        String encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+        return encodedImage;
     }
 
     private void addData() {
@@ -107,49 +124,9 @@ public class AddNewFoodMenuFragment extends Fragment implements View.OnClickList
 
         // check network
         if(new BaseActivity().isNetworkAvailable(getActivity()) == true) {
-            new AddFoodMenu(foodMenu).execute();
-            clearData();
-            BaseActivity.shortToast(getActivity(), "Food Item Created.");
+            new AddFoodMenu(foodMenu, accountID).execute();
         } else {
             BaseActivity.shortToast(getActivity(), "Network not available");
-        }
-    }
-
-    public class AddFoodMenu extends AsyncTask<Void, Void, String> {
-
-        ProgressDialog loading;
-        RequestHandler requestHandler = new RequestHandler();
-        FoodMenu foodMenu;
-
-        public AddFoodMenu(FoodMenu foodMenu) {
-            this.foodMenu = foodMenu;
-        }
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            //UIUtils.getProgressDialog(getActivity(), "ON");
-        }
-
-        @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
-            //UIUtils.getProgressDialog(getActivity(), "OFF");
-        }
-
-        @Override
-        protected String doInBackground(Void... params) {
-
-            HashMap<String, String> data = new HashMap<>();
-
-            data.put("foodPicture", new BaseActivity().getStringImage(this.foodMenu.getFoodPictureBitmap()));
-            data.put("foodPicturePath", "");
-            data.put("accountID", this.foodMenu.getFoodName());
-            data.put("name", this.foodMenu.getFoodDescription());
-            data.put("NRICNo", this.foodMenu.getFoodCategory());
-            data.put("contactNo", this.foodMenu.getFoodPrice());
-
-            return requestHandler.sendPostRequest(Add_NEW_FOOD_URL, data);
         }
     }
 
@@ -165,10 +142,83 @@ public class AddNewFoodMenuFragment extends Fragment implements View.OnClickList
         try {
             foodMenu.verifyFoodName(mEditTextFoodName.getText().toString());
             foodMenu.verifyFoodDescription(mEditTextFoodDescription.getText().toString());
+            foodMenu.verifyFoodPrice(mEditTextFoodPrice.getText().toString());
+            // add data
+            addData();
         } catch (InvalidInputException e) {
             new BaseActivity().shortToast(getActivity(), e.getInfo());
         }
     }
+
+    public class AddFoodMenu extends AsyncTask<Void, Void, String> {
+
+        ProgressDialog loading;
+        RequestHandler requestHandler = new RequestHandler();
+        FoodMenu foodMenu;
+        String accountID;
+
+        public AddFoodMenu(FoodMenu foodMenu, String accountID) {
+            this.foodMenu = foodMenu;
+            this.accountID = accountID;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            UIUtils.getProgressDialog(getActivity(), "ON");
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            UIUtils.getProgressDialog(getActivity(), "OFF");
+            extractJsonData(s);
+            switch (foodMenu.getResponse()){
+                case 1:
+                    clearData();
+                    BaseActivity.shortToast(getActivity(), "Food Item Created.");
+                    break;
+                case 0:
+                    BaseActivity.shortToast(getActivity(), "Food Name has been used already.");
+                    break;
+                case 2:
+                    BaseActivity.shortToast(getActivity(), "Failed to add food item.");
+            }
+        }
+
+        @Override
+        protected String doInBackground(Void... params) {
+
+            HashMap<String, String> data = new HashMap<>();
+
+            data.put("accountID", accountID);
+            data.put("foodPicture", getStringImage(this.foodMenu.getFoodPictureBitmap()));
+            data.put("foodPicturePath", "");
+            data.put("foodName", this.foodMenu.getFoodName());
+            data.put("foodDescription", this.foodMenu.getFoodDescription());
+            data.put("foodCategory", this.foodMenu.getFoodCategory());
+            data.put("foodPrice", this.foodMenu.getFoodPrice());
+
+
+            return requestHandler.sendPostRequest(Add_NEW_FOOD_URL, data);
+        }
+    }
+
+    private void extractJsonData(String json) {
+
+        try {
+            JSONArray jsonArray = new JSONObject(json).getJSONArray(BaseActivity.JSON_ARRAY);
+            JSONObject jsonObject = jsonArray.getJSONObject(0);
+
+            foodMenu.setResponse(jsonObject.getInt(KEY_RESPONSE));
+            Log.d("track", " " +foodMenu.getResponse());
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+            Log.d("track", "error");
+        }
+    }
+
 
     // pop up dialog allow user select picture from gallery or capture photo
     private void showSheetView() {

@@ -127,8 +127,6 @@ public class Account {
     public void verifyName(String name) throws InvalidInputException {
         if(name.equals(""))
             throw new InvalidInputException("Please enter Name.");
-        else if(!name.matches("[a-zA-Z]+"))
-            throw new InvalidInputException("Please enter Character Only in Name.");
         else
             this.name = name;
     }

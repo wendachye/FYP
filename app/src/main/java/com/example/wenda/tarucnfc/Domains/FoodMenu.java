@@ -37,8 +37,6 @@ public class FoodMenu {
     public void verifyFoodDescription(String foodDescription) throws InvalidInputException {
         if(foodDescription.equals(""))
             throw new InvalidInputException("Please enter Food Description.");
-        else if(!foodDescription.matches("[a-zA-Z]+"))
-            throw new InvalidInputException("Please enter Character Only in Food Description.");
         else
             this.foodDescription = foodDescription;
     }
@@ -78,8 +76,6 @@ public class FoodMenu {
     public void verifyFoodName(String foodName) throws InvalidInputException {
         if(foodName.equals(""))
             throw new InvalidInputException("Please enter Food Name.");
-        else if(!foodName.matches("[a-zA-Z]+"))
-            throw new InvalidInputException("Please enter Character Only in Food Name.");
         else
             this.foodName = foodName;
     }
@@ -90,6 +86,13 @@ public class FoodMenu {
 
     public void setFoodPrice(String foodPrice) {
         this.foodPrice = foodPrice;
+    }
+
+    public void verifyFoodPrice(String foodPrice) throws InvalidInputException {
+        if(foodPrice.equals(""))
+            throw new InvalidInputException("Please enter Food Price.");
+        else
+            this.foodPrice = foodPrice;
     }
 
     public String getFoodGSTPrice() {

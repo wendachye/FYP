@@ -120,8 +120,8 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:orientation="horizontal">
@@ -134,13 +134,15 @@
                             android:text="@string/foodName"
                             android:textSize="15sp" />
 
-                        <EditText
-                            android:id="@+id/editText_foodName"
+                        <TextView
+                            android:id="@+id/text_view_foodName"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginLeft="10dp"
-                            android:inputType="text" />
+                            android:textSize="18sp"
+                            android:textColor="@color/teal"
+                            android:textStyle="bold" />
 
                     </LinearLayout>
 

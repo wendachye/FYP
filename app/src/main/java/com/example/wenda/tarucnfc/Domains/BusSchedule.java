@@ -80,8 +80,6 @@ public class BusSchedule {
     public void verifyRouteTime(String routeTime) throws InvalidInputException {
         if(routeTime.equals(""))
             throw new InvalidInputException("Please enter Bus Time.");
-        else if(routeTime.matches("[a-zA-Z]+"))
-            throw new InvalidInputException("Please enter Numeric Only.");
         else
             this.routeTime = routeTime;
     }

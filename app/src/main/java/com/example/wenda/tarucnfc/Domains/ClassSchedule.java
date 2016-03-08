@@ -141,8 +141,6 @@ public class ClassSchedule {
     public void verifyTutorlecturer(String tutorlecturer) throws InvalidInputException {
         if(tutorlecturer.equals(""))
             throw new InvalidInputException("Please enter Tutor or Lecturer Name.");
-        else if(!tutorlecturer.matches("[a-zA-Z]+"))
-            throw new InvalidInputException("Please enter Character Only.");
         else
             this.tutorlecturer = tutorlecturer;
     }

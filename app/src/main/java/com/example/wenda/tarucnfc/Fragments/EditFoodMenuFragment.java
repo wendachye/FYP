@@ -36,6 +36,7 @@ public class EditFoodMenuFragment extends Fragment implements AdapterFoodItem.Ad
     private JSONArray mJsonArray;
     private LinearLayout mLinearLayoutNoRecord;
     private ArrayList<FoodMenu> mListFoodMenu = new ArrayList<>();
+
     final static String GET_FOOD_MENU_URL = "http://fypproject.host56.com/FoodOrder/get_food_menu3.php";
 
     public EditFoodMenuFragment() {
@@ -133,6 +134,7 @@ public class EditFoodMenuFragment extends Fragment implements AdapterFoodItem.Ad
                 FoodMenu foodMenu = new FoodMenu();
 
                 foodMenu.setFoodMenuID(jsonObject.getString(FoodMenuContract.FoodMenuRecord.COLUMN_FOOD_MENU_ID));
+                foodMenu.setFoodStallID(jsonObject.getString(FoodMenuContract.FoodMenuRecord.COLUMN_FOOD_STALL_ID));
                 foodMenu.setFoodName(jsonObject.getString(FoodMenuContract.FoodMenuRecord.COLUMN_FOOD_NAME));
                 foodMenu.setFoodCategory(jsonObject.getString(FoodMenuContract.FoodMenuRecord.COLUMN_FOOD_CATEGORY));
                 foodMenu.setFoodPrice(jsonObject.getString(FoodMenuContract.FoodMenuRecord.COLUMN_FOOD_PRICE));

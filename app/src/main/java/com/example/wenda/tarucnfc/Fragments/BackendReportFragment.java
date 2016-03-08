@@ -12,6 +12,7 @@ import com.example.wenda.tarucnfc.R;
 public class BackendReportFragment extends Fragment {
 
 
+
     public BackendReportFragment() {
         // Required empty public constructor
     }
@@ -23,7 +24,10 @@ public class BackendReportFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_report, container, false);
 
+
+
         return view;
     }
+
 
 }

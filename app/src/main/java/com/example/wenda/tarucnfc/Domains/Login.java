@@ -69,8 +69,6 @@ public class Login {
             throw new InvalidInputException("Please enter new password again.");
         else if (confirmPassword.length() < 8)
             throw new InvalidInputException("New password must contain at least 8 characters.");
-        //else if (isAlphaNumeric(confirmPassword) == false)
-            //throw new InvalidInputException("Confirm Password must including upper/lowercase alphabets and numbers.");
         else if (!confirmPassword.equals(password))
             throw new InvalidInputException("Password and Confirm Password is not match.");
         else
