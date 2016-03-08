@@ -210,24 +210,6 @@ public class AddNewAccountFragment extends Fragment implements View.OnClickListe
                         break;
 
                     case 3:
-                        mEditTextAccountID.setHint("Examination Department ID");
-                        mCradView1.setVisibility(View.VISIBLE);
-                        mCardView3.setVisibility(View.VISIBLE);
-                        mButtonConfirm.setVisibility(View.VISIBLE);
-                        mCardView2.setVisibility(View.GONE);
-                        mLinearLayoutCampus.setVisibility(View.GONE);
-                        break;
-
-                    case 4:
-                        mEditTextAccountID.setHint("Management Staff ID");
-                        mCradView1.setVisibility(View.VISIBLE);
-                        mCardView3.setVisibility(View.VISIBLE);
-                        mButtonConfirm.setVisibility(View.VISIBLE);
-                        mCardView2.setVisibility(View.GONE);
-                        mLinearLayoutCampus.setVisibility(View.GONE);
-                        break;
-
-                    case 5:
                         mEditTextAccountID.setHint("Stall Owner ID");
                         mCradView1.setVisibility(View.VISIBLE);
                         mCardView3.setVisibility(View.VISIBLE);
@@ -487,7 +469,6 @@ public class AddNewAccountFragment extends Fragment implements View.OnClickListe
             data.put("homeAddress", this.account.getHomeAddress());
             data.put("campusAddress", this.account.getCampusAddress());
             data.put("accountType", this.account.getAccountType());
-            Log.d("track", " " +this.account.getAccountType());
             data.put("programme", this.account.getProgramme());
             data.put("groupNo", this.account.getGroupNo());
             data.put("faculty", this.account.getFaculty());

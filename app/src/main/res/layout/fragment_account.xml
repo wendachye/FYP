@@ -70,7 +70,7 @@
                             android:layout_width="130dp"
                             android:layout_height="130dp"
                             android:layout_gravity="center"
-                            android:src="@drawable/cara_delevingne"
+                            android:src="@drawable/ic_account"
                             app:civ_border_color="@color/white" />
 
                     </LinearLayout>

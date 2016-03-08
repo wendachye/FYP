@@ -128,7 +128,7 @@ public class Account {
         if(name.equals(""))
             throw new InvalidInputException("Please enter Name.");
         else if(!name.matches("[a-zA-Z]+"))
-            throw new InvalidInputException("Please enter Character Only.");
+            throw new InvalidInputException("Please enter Character Only in Name.");
         else
             this.name = name;
     }

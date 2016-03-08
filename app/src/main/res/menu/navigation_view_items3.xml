@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group
+        android:id="@+id/group_first"
+        android:checkableBehavior="all">
+
+        <item
+            android:id="@+id/nav_menu_dashboard"
+            android:title="Dashboard"
+            android:icon="@drawable/newspaper"/>
+
+        <item
+            android:id="@+id/nav_menu_wallet"
+            android:title="Wallet"
+            android:icon="@drawable/credit_card_multiple"/>
+
+        <item
+            android:id="@+id/nav_menu_classSchedule"
+            android:title="Maintain Class Schedule"
+            android:icon="@drawable/desktop_mac"/>
+
+        <item
+            android:id="@+id/nav_menu_busSchedule"
+            android:title="Maintain Bus Schedule"
+            android:icon="@drawable/bus"/>
+
+        <item
+            android:id="@+id/nav_menu_sign_out"
+            android:title="Sign Out"
+            android:icon="@drawable/login"/>
+    </group>
+</menu>

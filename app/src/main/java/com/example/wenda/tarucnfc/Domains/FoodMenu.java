@@ -1,6 +1,10 @@
 package com.example.wenda.tarucnfc.Domains;
 
 
+import android.graphics.Bitmap;
+
+import com.example.wenda.tarucnfc.InvalidInputException;
+
 public class FoodMenu {
 
     private String foodMenuID;
@@ -11,7 +15,16 @@ public class FoodMenu {
     private String foodPrice;
     private String foodGSTPrice;
     private String foodMenuImagePath;
+    private Bitmap foodPictureBitmap;
     private int response;
+
+    public Bitmap getFoodPictureBitmap() {
+        return foodPictureBitmap;
+    }
+
+    public void setFoodPictureBitmap(Bitmap foodPictureBitmap) {
+        this.foodPictureBitmap = foodPictureBitmap;
+    }
 
     public String getFoodDescription() {
         return foodDescription;
@@ -19,6 +32,15 @@ public class FoodMenu {
 
     public void setFoodDescription(String foodDescription) {
         this.foodDescription = foodDescription;
+    }
+
+    public void verifyFoodDescription(String foodDescription) throws InvalidInputException {
+        if(foodDescription.equals(""))
+            throw new InvalidInputException("Please enter Food Description.");
+        else if(!foodDescription.matches("[a-zA-Z]+"))
+            throw new InvalidInputException("Please enter Character Only in Food Description.");
+        else
+            this.foodDescription = foodDescription;
     }
 
     public String getFoodMenuID() {
@@ -51,6 +73,15 @@ public class FoodMenu {
 
     public void setFoodName(String foodName) {
         this.foodName = foodName;
+    }
+
+    public void verifyFoodName(String foodName) throws InvalidInputException {
+        if(foodName.equals(""))
+            throw new InvalidInputException("Please enter Food Name.");
+        else if(!foodName.matches("[a-zA-Z]+"))
+            throw new InvalidInputException("Please enter Character Only in Food Name.");
+        else
+            this.foodName = foodName;
     }
 
     public String getFoodPrice() {

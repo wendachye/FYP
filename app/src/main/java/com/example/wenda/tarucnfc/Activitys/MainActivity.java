@@ -31,9 +31,9 @@ import com.example.wenda.tarucnfc.Fragments.FoodOrderFragment;
 import com.example.wenda.tarucnfc.Fragments.MaintainAccountFragment;
 import com.example.wenda.tarucnfc.Fragments.MaintainBusScheduleFragment;
 import com.example.wenda.tarucnfc.Fragments.MaintainClassScheduleFragment;
+import com.example.wenda.tarucnfc.Fragments.MaintainFoodMenuFragment;
 import com.example.wenda.tarucnfc.Fragments.MaintainFoodStallFragment;
 import com.example.wenda.tarucnfc.Fragments.MaintainReportFragment;
-import com.example.wenda.tarucnfc.Fragments.BackendReportFragment;
 import com.example.wenda.tarucnfc.Fragments.WalletFragment;
 import com.example.wenda.tarucnfc.R;
 import com.example.wenda.tarucnfc.RequestHandler;
@@ -76,9 +76,16 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         if (getLoginDetail(this).getAccountType().equals("End User")) {
             endUserNavigationView(toolbar);
             initProfileDetail();
-        } else {
-            backendNavigationView(toolbar);
-            initProfileDetail();
+        } else if (getLoginDetail(this).getAccountType().equals("Back End")) {
+            if (getLoginDetail(this).get_Authorization().equals("Admin")){
+                backendNavigationView(toolbar);
+                initProfileDetail();
+            }else if (getLoginDetail(this).get_Authorization().equals("Food Stall Owner")) {
+                backendNavigationView2(toolbar);
+                initProfileDetail();
+            } else if(getLoginDetail(this).get_Authorization().equals("Student Affair Department")){
+
+            }
         }
 
     }
@@ -109,14 +116,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 //Check to see which item was being clicked and perform appropriate action
                 switch (menuItem.getItemId()) {
 
-                    case R.id.nav_menu_dashboard1:
+                    case R.id.nav_menu_dashboard:
                         getSupportActionBar().setTitle(R.string.dashboard);
                         DashboardFragment fragmentHome = new DashboardFragment();
                         fragmentTransaction.replace(R.id.frame, fragmentHome);
                         fragmentTransaction.commit();
                         return true;
 
-                    case R.id.nav_menu_wallet1:
+                    case R.id.nav_menu_wallet:
                         getSupportActionBar().setTitle(R.string.wallet);
                         WalletFragment fragmentWallet = new WalletFragment();
                         fragmentTransaction.replace(R.id.frame, fragmentWallet);
@@ -130,17 +137,83 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                         fragmentTransaction.commit();
                         return true;
 
-                    case R.id.nav_menu_classSchedule1:
-                        getSupportActionBar().setTitle(R.string.maintain_classSchedule);
-                        MaintainClassScheduleFragment fragmentMaintainClassSchedule = new MaintainClassScheduleFragment();
-                        fragmentTransaction.replace(R.id.frame, fragmentMaintainClassSchedule);
+                    case R.id.nav_menu_foodstall:
+                        getSupportActionBar().setTitle(R.string.maintain_foodstall);
+                        MaintainFoodStallFragment fragmentFoodStall = new MaintainFoodStallFragment();
+                        fragmentTransaction.replace(R.id.frame, fragmentFoodStall);
                         fragmentTransaction.commit();
                         return true;
 
-                    case R.id.nav_menu_busSchedule1:
-                        getSupportActionBar().setTitle(R.string.maintain_busSchedule);
-                        MaintainBusScheduleFragment fragmentMaintainBusSchedule = new MaintainBusScheduleFragment();
-                        fragmentTransaction.replace(R.id.frame, fragmentMaintainBusSchedule);
+                    case R.id.nav_menu_sign_out:
+                        removeLoginDetail();
+                        Toast.makeText(getApplicationContext(), "Signed out", Toast.LENGTH_SHORT).show();
+                        finish();
+                        return true;
+
+                    default:
+                        Toast.makeText(getApplicationContext(), "Somethings Wrong", Toast.LENGTH_SHORT).show();
+                        return true;
+                }
+
+            }
+
+        });
+
+        // Initializing Drawer Layout and ActionBarToggle
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer);
+        ActionBarDrawerToggle mActionBarDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, R.string.open_drawer, R.string.close_drawer) {
+
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                // Code here will be triggered once the drawer closes as we dont want anything to happen so we leave this blank
+                super.onDrawerClosed(drawerView);
+            }
+
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                // Code here will be triggered once the drawer open as we dont want anything to happen so we leave this blank
+
+                super.onDrawerOpened(drawerView);
+            }
+        };
+
+        //Setting the actionbarToggle to drawer layout
+        mDrawerLayout.setDrawerListener(mActionBarDrawerToggle);
+
+        //calling sync state is necessay or else your hamburger icon wont show up
+        mActionBarDrawerToggle.syncState();
+    }
+
+    public void backendNavigationView2(Toolbar toolbar) {
+        mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
+
+        View headerView = mNavigationView.inflateHeaderView(R.layout.navigation_view_header);
+
+        mNavigationView.inflateMenu(R.menu.navigation_view_items2);
+
+        mTextViewUserID = (TextView) headerView.findViewById(R.id.navigation_view_userID);
+
+        mImageButtonEditProfile = (ImageButton) headerView.findViewById(R.id.navigation_view_account_setting);
+        mImageButtonEditProfile.setOnClickListener(this);
+
+        mImageViewProfilePicture = (ImageView) headerView.findViewById(R.id.navigation_view_profile_picture);
+        mImageViewProfilePicture.setOnClickListener(this);
+        mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
+                android.support.v4.app.FragmentTransaction fragmentTransaction =
+                        getSupportFragmentManager().beginTransaction();
+
+                //Closing drawer on item click
+                mDrawerLayout.closeDrawers();
+
+                //Check to see which item was being clicked and perform appropriate action
+                switch (menuItem.getItemId()) {
+
+                    case R.id.nav_menu_wallet:
+                        getSupportActionBar().setTitle(R.string.wallet);
+                        WalletFragment fragmentWallet = new WalletFragment();
+                        fragmentTransaction.replace(R.id.frame, fragmentWallet);
                         fragmentTransaction.commit();
                         return true;
 
@@ -151,14 +224,115 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                         fragmentTransaction.commit();
                         return true;
 
-                    case R.id.nav_menu_report1:
-                        getSupportActionBar().setTitle(R.string.report1);
-                        MaintainReportFragment fragmentMaintainReport = new MaintainReportFragment();
-                        fragmentTransaction.replace(R.id.frame, fragmentMaintainReport);
+                    case R.id.nav_menu_foodMenu:
+                        getSupportActionBar().setTitle(R.string.maintain_foodMenu);
+                        MaintainFoodMenuFragment fragmentFoodMenu = new MaintainFoodMenuFragment();
+                        fragmentTransaction.replace(R.id.frame, fragmentFoodMenu);
                         fragmentTransaction.commit();
                         return true;
 
-                    case R.id.nav_menu_sign_out1:
+                    case R.id.nav_menu_report:
+                        getSupportActionBar().setTitle(R.string.maintain_foodreport);
+                        MaintainReportFragment fragmentReport = new MaintainReportFragment();
+                        fragmentTransaction.replace(R.id.frame, fragmentReport);
+                        fragmentTransaction.commit();
+                        return true;
+
+                    case R.id.nav_menu_sign_out:
+                        removeLoginDetail();
+                        Toast.makeText(getApplicationContext(), "Signed out", Toast.LENGTH_SHORT).show();
+                        finish();
+                        return true;
+
+                    default:
+                        Toast.makeText(getApplicationContext(), "Somethings Wrong", Toast.LENGTH_SHORT).show();
+                        return true;
+                }
+
+            }
+
+        });
+
+        // Initializing Drawer Layout and ActionBarToggle
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer);
+        ActionBarDrawerToggle mActionBarDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, R.string.open_drawer, R.string.close_drawer) {
+
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                // Code here will be triggered once the drawer closes as we dont want anything to happen so we leave this blank
+                super.onDrawerClosed(drawerView);
+            }
+
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                // Code here will be triggered once the drawer open as we dont want anything to happen so we leave this blank
+
+                super.onDrawerOpened(drawerView);
+            }
+        };
+
+        //Setting the actionbarToggle to drawer layout
+        mDrawerLayout.setDrawerListener(mActionBarDrawerToggle);
+
+        //calling sync state is necessay or else your hamburger icon wont show up
+        mActionBarDrawerToggle.syncState();
+    }
+
+    public void backendNavigationView3(Toolbar toolbar) {
+        mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
+
+        View headerView = mNavigationView.inflateHeaderView(R.layout.navigation_view_header);
+
+        mNavigationView.inflateMenu(R.menu.navigation_view_items3);
+
+        mTextViewUserID = (TextView) headerView.findViewById(R.id.navigation_view_userID);
+
+        mImageButtonEditProfile = (ImageButton) headerView.findViewById(R.id.navigation_view_account_setting);
+        mImageButtonEditProfile.setOnClickListener(this);
+
+        mImageViewProfilePicture = (ImageView) headerView.findViewById(R.id.navigation_view_profile_picture);
+        mImageViewProfilePicture.setOnClickListener(this);
+        mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
+                android.support.v4.app.FragmentTransaction fragmentTransaction =
+                        getSupportFragmentManager().beginTransaction();
+
+                //Closing drawer on item click
+                mDrawerLayout.closeDrawers();
+
+                //Check to see which item was being clicked and perform appropriate action
+                switch (menuItem.getItemId()) {
+
+                    case R.id.nav_menu_dashboard:
+                        getSupportActionBar().setTitle(R.string.dashboard);
+                        DashboardFragment fragmentHome = new DashboardFragment();
+                        fragmentTransaction.replace(R.id.frame, fragmentHome);
+                        fragmentTransaction.commit();
+                        return true;
+
+                    case R.id.nav_menu_wallet:
+                        getSupportActionBar().setTitle(R.string.wallet);
+                        WalletFragment fragmentWallet = new WalletFragment();
+                        fragmentTransaction.replace(R.id.frame, fragmentWallet);
+                        fragmentTransaction.commit();
+                        return true;
+
+                    case R.id.nav_menu_classSchedule:
+                        getSupportActionBar().setTitle(R.string.maintain_classSchedule);
+                        MaintainClassScheduleFragment fragmentMaintainClassSchedule = new MaintainClassScheduleFragment();
+                        fragmentTransaction.replace(R.id.frame, fragmentMaintainClassSchedule);
+                        fragmentTransaction.commit();
+                        return true;
+
+                    case R.id.nav_menu_busSchedule:
+                        getSupportActionBar().setTitle(R.string.maintain_busSchedule);
+                        MaintainBusScheduleFragment fragmentMaintainBusSchedule = new MaintainBusScheduleFragment();
+                        fragmentTransaction.replace(R.id.frame, fragmentMaintainBusSchedule);
+                        fragmentTransaction.commit();
+                        return true;
+
+                    case R.id.nav_menu_sign_out:
                         removeLoginDetail();
                         Toast.makeText(getApplicationContext(), "Signed out", Toast.LENGTH_SHORT).show();
                         finish();

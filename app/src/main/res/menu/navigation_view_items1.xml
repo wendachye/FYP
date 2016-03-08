@@ -5,29 +5,20 @@
         android:checkableBehavior="all">
 
         <item
-            android:id="@+id/nav_menu_dashboard1"
-            android:title="Dashboard"
-            android:icon="@drawable/newspaper"/>
-
-        <item
-            android:id="@+id/nav_menu_wallet1"
+            android:id="@+id/nav_menu_wallet"
             android:title="Wallet"
             android:icon="@drawable/credit_card_multiple"/>
+
+        <item
+            android:id="@+id/nav_menu_dashboard"
+            android:title="Maintain Dashboard"
+            android:icon="@drawable/newspaper"/>
 
        <item
             android:id="@+id/nav_menu_account"
             android:title="Maintain Account"
             android:icon="@drawable/account_check"/>
 
-        <item
-            android:id="@+id/nav_menu_classSchedule1"
-            android:title="Maintain Class Schedule"
-            android:icon="@drawable/desktop_mac"/>
-
-        <item
-            android:id="@+id/nav_menu_busSchedule1"
-            android:title="Maintain Bus Schedule"
-            android:icon="@drawable/bus"/>
 
         <item
             android:id="@+id/nav_menu_foodstall"
@@ -35,12 +26,7 @@
             android:icon="@drawable/food"/>
 
         <item
-            android:id="@+id/nav_menu_report1"
-            android:title="Overall Report"
-            android:icon="@drawable/chart_bar"/>
-
-        <item
-            android:id="@+id/nav_menu_sign_out1"
+            android:id="@+id/nav_menu_sign_out"
             android:title="Sign Out"
             android:icon="@drawable/login"/>
     </group>

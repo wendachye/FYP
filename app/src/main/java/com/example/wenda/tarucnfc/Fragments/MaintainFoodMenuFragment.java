@@ -44,8 +44,8 @@ public class MaintainFoodMenuFragment extends Fragment {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(this.getFragmentManager());
-        adapter.addFragment(new AddNewFoodMenuFragment(), "Add Food Menu");
-        adapter.addFragment(new EditFoodMenuFragment(), "Edit Food Menu");
+        adapter.addFragment(new AddNewFoodMenuFragment(), "Add Food Item");
+        adapter.addFragment(new EditFoodMenuFragment(), "Edit Food Item");
         viewPager.setAdapter(adapter);
     }
 

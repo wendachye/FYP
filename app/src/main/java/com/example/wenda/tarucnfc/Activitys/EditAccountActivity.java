@@ -220,6 +220,8 @@ public class EditAccountActivity extends BaseActivity implements View.OnClickLis
         }
     }
 
+
+
     // pop up dialog allow user select picture from gallery or capture photo
     private void showSheetView() {
         ImagePickerSheetView sheetView = new ImagePickerSheetView.Builder(this)
@@ -390,7 +392,7 @@ public class EditAccountActivity extends BaseActivity implements View.OnClickLis
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             UIUtils.getProgressDialog(EditAccountActivity.this, "OFF");
-            Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();
+            //Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();
             finish();
         }
 

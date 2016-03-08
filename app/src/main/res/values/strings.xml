@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TARUCNFC</string>
+    <string name="app_name">TARUC APP</string>
     <string name="action_settings">Settings</string>
     <string name="open_drawer">Open Drawer</string>
     <string name="close_drawer">Close Drawer</string>
@@ -35,7 +35,7 @@
     <string name="topup">Top Up</string>
     <string name="transfer">Transfer</string>
     <string name="payment">Payment</string>
-    <string name="profile">Profile</string>
+    <string name="profile">Profile Picture</string>
     <string name="studentinfo">Student Information</string>
     <string name="privateinfo">Private Information</string>
     <string name="text_retrieve_password">Enter your Login Username and NRIC No to retrieve your password.</string>
@@ -133,7 +133,11 @@
     <string name="title3">Payment option:</string>
     <string name="totalAmount">Total Amount:</string>
     <string name="barTitle">Total Spending</string>
+    <string name="barTitle2">Top 5 Best Selling</string>
     <string name="paymentDate">Payment Date Time:</string>
+    <string name="maintain_foodMenu">Maintain Food Menu</string>
+    <string name="maintain_foodreport">Maintain Food Report</string>
+    <string name="foodPic">Food Picture</string>
 
     <string-array name="gender_arrays">
         <item>Male</item>
@@ -166,9 +170,14 @@
         <item>Select Authorization</item>
         <item>Admin</item>
         <item>Student Affair Department</item>
-        <item>Examination Department</item>
-        <item>Management Staff</item>
         <item>Food Stall Owner</item>
+    </string-array>
+
+    <string-array name="food_category_arrays">
+        <item>Food</item>
+        <item>Beverage</item>
+        <item>Dessert</item>
+        <item>Snack</item>
     </string-array>
 
     <string-array name="busDate_arrays">
