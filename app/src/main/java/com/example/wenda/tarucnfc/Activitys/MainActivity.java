@@ -85,7 +85,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 backendNavigationView2(toolbar);
                 initProfileDetail();
             } else if(getLoginDetail(this).get_Authorization().equals("Student Affair Department")){
-
+                backendNavigationView3(toolbar);
+                initProfileDetail();
             }
         }
 

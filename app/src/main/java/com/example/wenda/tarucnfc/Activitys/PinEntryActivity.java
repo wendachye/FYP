@@ -139,7 +139,7 @@ public class PinEntryActivity extends BaseActivity {
                                 startActivity(intent);
                                 finish();
                             } else if (selectType.equals("nfc_transfer")) {
-                                Intent intent = new Intent(appContext, TransferBalanceActivity.class);
+                                Intent intent = new Intent(appContext, NFCTransferActivity.class);
                                 startActivity(intent);
                                 finish();
                             }else if (selectType.equals("direct_payment")){

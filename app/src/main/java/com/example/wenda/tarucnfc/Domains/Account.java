@@ -244,6 +244,13 @@ public class Account {
         this.accountBalance = accountBalance;
     }
 
+    public void verifyAccountBalance(String accountBalance) throws InvalidInputException {
+        if (accountBalance.equals(""))
+            throw new InvalidInputException("PIN Code can't be blank.");
+        else
+            this.accountBalance = accountBalance;
+    }
+
     public String getPINcode() {
         return PINcode;
     }

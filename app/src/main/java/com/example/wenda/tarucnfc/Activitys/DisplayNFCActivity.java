@@ -1,12 +1,8 @@
 package com.example.wenda.tarucnfc.Activitys;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
-import android.nfc.NdefMessage;
-import android.nfc.NfcAdapter;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.v7.app.ActionBar;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +12,7 @@ import com.example.wenda.tarucnfc.R;
 import com.example.wenda.tarucnfc.RequestHandler;
 import com.example.wenda.tarucnfc.UIUtils;
 
+import java.util.Calendar;
 import java.util.HashMap;
 
 public class DisplayNFCActivity extends BaseActivity implements View.OnClickListener {
@@ -32,6 +29,9 @@ public class DisplayNFCActivity extends BaseActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_nfc);
 
+        // set current date time
+        calendar = Calendar.getInstance();
+
         // set title to center
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.title_top_up);
@@ -45,7 +45,7 @@ public class DisplayNFCActivity extends BaseActivity implements View.OnClickList
     }
 
 
-    @Override
+    /*@Override
     protected void onResume(){
         super.onResume();
         Intent intent = getIntent();
@@ -58,14 +58,19 @@ public class DisplayNFCActivity extends BaseActivity implements View.OnClickList
             mTextViewAccountID.setText(messageRecevied.substring(0,10));
             mTextViewAmount.setText(messageRecevied.substring(10,15));
         }
-    }
+    }*/
 
     @Override
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.button_confirm:
-                amount = mTextViewAmount.getText().toString().substring(2,5);
-                new TopUpBalance(mbackendID, mTextViewAccountID.getText().toString(), amount).execute();
+                if (isNetworkAvailable(this)) {
+                    amount = mTextViewAmount.getText().toString().substring(2, 5);
+                    new TopUpBalance(mbackendID, mTextViewAccountID.getText().toString(), amount).execute();
+
+                }else {
+                    shortToast(this, "Network not available.");
+                }
                 break;
 
             default:
@@ -98,6 +103,7 @@ public class DisplayNFCActivity extends BaseActivity implements View.OnClickList
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             UIUtils.getProgressDialog(DisplayNFCActivity.this, "OFF");
+            finish();
         }
 
         @Override

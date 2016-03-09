@@ -154,7 +154,7 @@
         </activity>
         <activity
             android:name=".Activitys.PaymentActivity"
-            android:label="Payment"></activity>
+            android:label="Payment" />
         <activity
             android:name=".Activitys.FoodTransactionActivity"
             android:label="FoodTransaction">
@@ -169,11 +169,30 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Activitys.MainActivity" />
         </activity>
-
         <activity
             android:name=".Activitys.NotificationActivity"
-            android:taskAffinity=""
-            android:excludeFromRecents="true">
+            android:excludeFromRecents="true"
+            android:taskAffinity="" />
+        <activity
+            android:name=".Activitys.NFCTransferActivity"
+            android:label="NFCTransfer">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Activitys.MainActivity" />
+        </activity>
+        <activity
+            android:name=".Activitys.DisplayNFC2Activity"
+            android:label="Transaction">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Activitys.MainActivity" />
+            <intent-filter>
+                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:mimeType="text/plain" />
+            </intent-filter>
         </activity>
     </application>
 

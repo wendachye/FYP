@@ -176,6 +176,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginLeft="@dimen/activity_vertical_margin"
+                            android:maxLength="10"
                             android:hint=""
                             android:inputType="text" />
 
@@ -227,6 +228,7 @@
                             android:layout_gravity="center"
                             android:layout_marginLeft="@dimen/activity_vertical_margin"
                             android:hint="@string/hint_nric"
+                            android:maxLength="12"
                             android:inputType="number" />
 
                     </LinearLayout>
@@ -250,6 +252,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
+                            android:maxLength="11"
                             android:layout_marginLeft="@dimen/activity_vertical_margin"
                             android:hint="@string/hint_contact"
                             android:inputType="text" />

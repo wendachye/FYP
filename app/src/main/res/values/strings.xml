@@ -93,7 +93,8 @@
     <string name="title">Transfer option:</string>
     <string name="titleAlarm">Set Alarm:</string>
     <string name="title2">Top Up</string>
-    <string name="content">Please pass your device to the Top Up Management.</string>
+    <string name="title7">Transfer</string>
+    <string name="content">Please touch your device to the Recipient Device.</string>
     <string name="agree">Finish</string>
     <string name="recipientID">Recipient\'s Account:</string>
     <string name="transactionType">Transaction Type:</string>
@@ -152,13 +153,20 @@
     </string-array>
 
     <string-array name="topup_amount_arrays">
-        <item>Select Top Up Amount</item>
         <item>RM 5</item>
         <item>RM 10</item>
         <item>RM 20</item>
         <item>RM 50</item>
         <item>RM 100</item>
         <item>Other Amount</item>
+    </string-array>
+
+    <string-array name="transfer_amount_arrays">
+        <item>RM 5</item>
+        <item>RM 10</item>
+        <item>RM 20</item>
+        <item>RM 50</item>
+        <item>RM 100</item>
     </string-array>
 
     <string-array name="enduser_authorization_arrays">

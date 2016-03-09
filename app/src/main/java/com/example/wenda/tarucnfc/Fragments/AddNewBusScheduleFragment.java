@@ -5,10 +5,12 @@ import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 
@@ -18,6 +20,7 @@ import com.example.wenda.tarucnfc.InvalidInputException;
 import com.example.wenda.tarucnfc.R;
 import com.example.wenda.tarucnfc.RequestHandler;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 
@@ -27,7 +30,9 @@ public class AddNewBusScheduleFragment extends Fragment implements View.OnClickL
     private Spinner mSpinnerDestination;
     private Spinner mSpinnerDate;
     private EditText mEditTextTime;
-    private Button mButtonConfirm;
+    private Button mButtonConfirm, mButtonClear;
+    private CheckBox mMonday, mTuesday, mWednesday, mThursday, mFriday, mSaturday, mSunday;
+    private ArrayList <String> Day = new ArrayList<>();
 
     private BusSchedule busSchedule = new BusSchedule();
     private final static String Add_NEW_BUS_ROUTE_URL = "http://fypproject.host56.com/BusSchedule/add_bus_route.php";
@@ -52,10 +57,26 @@ public class AddNewBusScheduleFragment extends Fragment implements View.OnClickL
     public void setFindviewbyid(View view){
         mSpinnerDeparture = (Spinner) view.findViewById(R.id.spinner_bus_departure);
         mSpinnerDestination = (Spinner) view.findViewById(R.id.spinner_bus_destination);
-        mSpinnerDate = (Spinner) view.findViewById(R.id.spinner_bus_date);
+        //mSpinnerDate = (Spinner) view.findViewById(R.id.spinner_bus_date);
+        mMonday = (CheckBox) view.findViewById(R.id.chkMonday);
+        mMonday.setOnClickListener(this);
+        mTuesday = (CheckBox) view.findViewById(R.id.chkTuesday);
+        mTuesday.setOnClickListener(this);
+        mWednesday = (CheckBox) view.findViewById(R.id.chkWednesday);
+        mWednesday.setOnClickListener(this);
+        mThursday = (CheckBox) view.findViewById(R.id.chkThursday);
+        mThursday.setOnClickListener(this);
+        mFriday = (CheckBox) view.findViewById(R.id.chkFriday);
+        mFriday.setOnClickListener(this);
+        mSaturday = (CheckBox) view.findViewById(R.id.chkSaturday);
+        mSaturday.setOnClickListener(this);
+        mSunday = (CheckBox) view.findViewById(R.id.chkSunday);
+        mSunday.setOnClickListener(this);
         mEditTextTime = (EditText) view.findViewById(R.id.editText_bus_time);
         mButtonConfirm = (Button) view.findViewById(R.id.button_confirm);
         mButtonConfirm.setOnClickListener(this);
+        mButtonClear = (Button) view.findViewById(R.id.button_clear);
+        mButtonClear.setOnClickListener(this);
     }
 
     @Override
@@ -64,6 +85,65 @@ public class AddNewBusScheduleFragment extends Fragment implements View.OnClickL
             case R.id.button_confirm:
                 // verify input data
                 verifyData();
+                break;
+            case R.id.button_clear:
+                Day.clear();
+                if (mMonday.isChecked()) {
+                    mMonday.toggle();
+                }
+                if (mTuesday.isChecked()) {
+                    mTuesday.toggle();
+                }
+                if(mWednesday.isChecked()) {
+                    mWednesday.toggle();
+                }
+                if(mThursday.isChecked()) {
+                    mThursday.toggle();
+                }
+                if(mFriday.isChecked()) {
+                    mFriday.toggle();
+                }
+                if(mSaturday.isChecked()) {
+                    mSaturday.toggle();
+                }
+                if(mSunday.isChecked()) {
+                    mSunday.toggle();
+                }
+                break;
+            case R.id.chkMonday:
+                if (mMonday.isChecked()) {
+                    Day.add("Monday");
+                }
+                break;
+            case R.id.chkTuesday:
+                if (mTuesday.isChecked()) {
+                    Day.add("Tuesday");
+                }
+                break;
+            case R.id.chkWednesday:
+                if (mWednesday.isChecked()) {
+                    Day.add("Wednesday");
+                }
+                break;
+            case R.id.chkThursday:
+                if (mThursday.isChecked()) {
+                    Day.add("Thursday");
+                }
+                break;
+            case R.id.chkFriday:
+                if (mFriday.isChecked()) {
+                    Day.add("Friday");
+                }
+                break;
+            case R.id.chkSaturday:
+                if (mSaturday.isChecked()) {
+                    Day.add("Saturday");
+                }
+                break;
+            case R.id.chkSunday:
+                if (mSunday.isChecked()) {
+                    Day.add("Sunday");
+                }
                 break;
 
             default:
@@ -77,6 +157,7 @@ public class AddNewBusScheduleFragment extends Fragment implements View.OnClickL
 
             // insert data
             addData();
+
         } catch (InvalidInputException e) {
             new BaseActivity().shortToast(getActivity(), e.getInfo());
         }
@@ -86,20 +167,50 @@ public class AddNewBusScheduleFragment extends Fragment implements View.OnClickL
         // set all the related values into account domain
         busSchedule.setDeparture(mSpinnerDeparture.getSelectedItem().toString());
         busSchedule.setDestination(mSpinnerDestination.getSelectedItem().toString());
-        busSchedule.setRouteDay(mSpinnerDate.getSelectedItem().toString());
         busSchedule.setRouteTime(mEditTextTime.getText().toString());
         busSchedule.setBackEndID(String.valueOf(new BaseActivity().getLoginDetail(getActivity()).getLoginId()));
 
         // check network
         if(new BaseActivity().isNetworkAvailable(getActivity()) == true) {
-            new AddBusRoute(busSchedule).execute();
-            mSpinnerDeparture.setSelection(0);
-            mSpinnerDestination.setSelection(0);
-            mSpinnerDate.setSelection(0);
-            mEditTextTime.setText("");
+            for (int i = 0; i < Day.size(); i++) {
+                //busSchedule.setRouteDay(Day.get(i));
+                Log.d("track", " " + Day.get(i));
+                new AddBusRoute(busSchedule, Day.get(i)).execute();
+            }
+            clearField();
             BaseActivity.shortToast(getActivity(), "New Bus Route Created.");
         } else {
             BaseActivity.shortToast(getActivity(), "Network not available");
+        }
+    }
+
+    private void clearField() {
+        //Day.removeAll(Collection<>)
+        Day.clear();
+        mSpinnerDeparture.setSelection(0);
+        mSpinnerDestination.setSelection(0);
+        //mSpinnerDate.setSelection(0);
+        mEditTextTime.setText("");
+        if (mMonday.isChecked()) {
+            mMonday.toggle();
+        }
+        if (mTuesday.isChecked()) {
+            mTuesday.toggle();
+        }
+        if(mWednesday.isChecked()) {
+            mWednesday.toggle();
+        }
+        if(mThursday.isChecked()) {
+            mThursday.toggle();
+        }
+        if(mFriday.isChecked()) {
+            mFriday.toggle();
+        }
+        if(mSaturday.isChecked()) {
+            mSaturday.toggle();
+        }
+        if(mSunday.isChecked()) {
+            mSunday.toggle();
         }
     }
 
@@ -108,9 +219,11 @@ public class AddNewBusScheduleFragment extends Fragment implements View.OnClickL
         ProgressDialog loading;
         RequestHandler requestHandler = new RequestHandler();
         BusSchedule busSchedule;
+        String routeDay;
 
-        public AddBusRoute(BusSchedule busSchedule) {
+        public AddBusRoute(BusSchedule busSchedule, String routeDay) {
             this.busSchedule = busSchedule;
+            this.routeDay = routeDay;
         }
 
         @Override
@@ -135,7 +248,7 @@ public class AddNewBusScheduleFragment extends Fragment implements View.OnClickL
             data.put("departure", this.busSchedule.getDeparture());
             data.put("destination", this.busSchedule.getDestination());
             data.put("routeTime", this.busSchedule.getRouteTime());
-            data.put("routeDay", this.busSchedule.getRouteDay());
+            data.put("routeDay", routeDay);
 
             return requestHandler.sendPostRequest(Add_NEW_BUS_ROUTE_URL, data);
         }
