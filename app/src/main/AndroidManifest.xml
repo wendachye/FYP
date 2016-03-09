@@ -186,6 +186,7 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Activitys.MainActivity" />
+
             <intent-filter>
                 <action android:name="android.nfc.action.NDEF_DISCOVERED" />
 
@@ -194,6 +195,8 @@
                 <data android:mimeType="text/plain" />
             </intent-filter>
         </activity>
+        <activity android:name=".Activitys.Payment2Activity" />
+        <activity android:name=".Activitys.DisplayNFC3Activity"></activity>
     </application>
 
 </manifest>

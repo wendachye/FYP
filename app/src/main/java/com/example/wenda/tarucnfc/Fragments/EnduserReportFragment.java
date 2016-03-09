@@ -5,7 +5,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,7 +26,6 @@ import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.HashMap;
 
 
@@ -261,6 +259,7 @@ public class EnduserReportFragment extends Fragment {
     }
 
     private void startBarChart() {
+        barChart.clearChart();
         barChart.addBar(new BarModel((float)totalPrice, 0xFF009688));
         barChart.addBar(new BarModel((float)totalPrice2, 0xFF009688));
         barChart.addBar(new BarModel((float)totalPrice3, 0xFF009688));

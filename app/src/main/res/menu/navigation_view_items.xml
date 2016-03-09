@@ -5,11 +5,6 @@
         android:checkableBehavior="all">
 
         <item
-            android:id="@+id/nav_menu_dashboard"
-            android:title="Dashboard"
-            android:icon="@drawable/newspaper"/>
-
-        <item
             android:id="@+id/nav_menu_classSchedule"
             android:title="Class Schedule"
             android:icon="@drawable/desktop_mac"/>

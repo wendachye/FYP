@@ -71,6 +71,7 @@
     <string name="maintain_classSchedule">Maintain Class Schedule</string>
     <string name="maintain_busSchedule">Maintain Bus Schedule</string>
     <string name="maintain_foodstall">Maintain Food Stall</string>
+    <string name="maintain_foodstall1">Food Stall Details</string>
     <string name="hint_account_type">Account Type</string>
     <string name="hint_account_authorization">Account Authorization</string>
     <string name="hint_backendID">Backend ID</string>

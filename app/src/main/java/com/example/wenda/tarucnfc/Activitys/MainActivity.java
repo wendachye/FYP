@@ -25,7 +25,6 @@ import com.example.wenda.tarucnfc.Domains.OfflineLogin;
 import com.example.wenda.tarucnfc.Fragments.AccountFragment;
 import com.example.wenda.tarucnfc.Fragments.BusScheduleFragment;
 import com.example.wenda.tarucnfc.Fragments.ClassScheduleFragment;
-import com.example.wenda.tarucnfc.Fragments.DashboardFragment;
 import com.example.wenda.tarucnfc.Fragments.EnduserReportFragment;
 import com.example.wenda.tarucnfc.Fragments.FoodOrderFragment;
 import com.example.wenda.tarucnfc.Fragments.FoodStallDetailsFragment;
@@ -67,8 +66,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         main = this;
 
         // set main page
-        DashboardFragment fragmentDashboard = new DashboardFragment();
-        getSupportFragmentManager().beginTransaction().replace(R.id.frame, fragmentDashboard).commit();
+        AccountFragment fragmentAccount = new AccountFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.frame, fragmentAccount).commit();
 
         // setup UIL
         ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this).build();
@@ -117,13 +116,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
                 //Check to see which item was being clicked and perform appropriate action
                 switch (menuItem.getItemId()) {
-
-                    case R.id.nav_menu_dashboard:
-                        getSupportActionBar().setTitle(R.string.dashboard);
-                        DashboardFragment fragmentHome = new DashboardFragment();
-                        fragmentTransaction.replace(R.id.frame, fragmentHome);
-                        fragmentTransaction.commit();
-                        return true;
 
                     case R.id.nav_menu_wallet:
                         getSupportActionBar().setTitle(R.string.wallet);
@@ -220,7 +212,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                         return true;
 
                     case R.id.nav_menu_foodstall:
-                        getSupportActionBar().setTitle(R.string.maintain_foodstall);
+                        getSupportActionBar().setTitle(R.string.maintain_foodstall1);
                         FoodStallDetailsFragment fragmentFoodStallDetails = new FoodStallDetailsFragment();
                         fragmentTransaction.replace(R.id.frame, fragmentFoodStallDetails);
                         fragmentTransaction.commit();
@@ -305,13 +297,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
                 //Check to see which item was being clicked and perform appropriate action
                 switch (menuItem.getItemId()) {
-
-                    case R.id.nav_menu_dashboard:
-                        getSupportActionBar().setTitle(R.string.dashboard);
-                        DashboardFragment fragmentHome = new DashboardFragment();
-                        fragmentTransaction.replace(R.id.frame, fragmentHome);
-                        fragmentTransaction.commit();
-                        return true;
 
                     case R.id.nav_menu_wallet:
                         getSupportActionBar().setTitle(R.string.wallet);
@@ -402,13 +387,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
                 //Check to see which item was being clicked and perform appropriate action
                 switch (menuItem.getItemId()) {
-
-                    case R.id.nav_menu_dashboard:
-                        getSupportActionBar().setTitle(R.string.dashboard);
-                        DashboardFragment fragmentHome = new DashboardFragment();
-                        fragmentTransaction.replace(R.id.frame, fragmentHome);
-                        fragmentTransaction.commit();
-                        return true;
 
                     case R.id.nav_menu_classSchedule:
                         getSupportActionBar().setTitle(R.string.classSchedule);

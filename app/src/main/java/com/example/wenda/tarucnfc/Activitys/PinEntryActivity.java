@@ -154,6 +154,12 @@ public class PinEntryActivity extends BaseActivity {
                             }else if (selectType.equals("nfc_payment")){
                                 totalPrice = getIntent().getStringExtra("totalPrice");
                                 gstPrice = getIntent().getStringExtra("gstPrice");
+                                Intent intent2 = new Intent(appContext, Payment2Activity.class);
+                                intent2.putExtra("totalPrice", totalPrice);
+                                intent2.putExtra("gstPrice", gstPrice);
+                                intent2.putExtra("selected", "direct_payment");
+                                startActivity(intent2);
+                                finish();
                             }
 
 
