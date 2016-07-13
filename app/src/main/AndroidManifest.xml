@@ -196,7 +196,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activitys.Payment2Activity" />
-        <activity android:name=".Activitys.DisplayNFC3Activity"></activity>
+        <activity android:name=".Activitys.DisplayNFC3Activity" />
+        <activity android:name=".Activitys.RegisterNewAccount" />
+        <activity android:name=".Activitys.VerifyAccount" />
+        <activity android:name=".Activitys.ViewRegistrationAccount"></activity>
     </application>
 
 </manifest>

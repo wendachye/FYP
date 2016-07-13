@@ -141,6 +141,10 @@
     <string name="maintain_foodreport">Maintain Food Report</string>
     <string name="foodPic">Food Picture</string>
     <string name="update">Update</string>
+    <string name="register">Register New Account</string>
+    <string name="text_register">Please fill in the account details.</string>
+    <string name="hint_name">Name</string>
+    <string name="hint_code">Activation Code</string>
 
     <string-array name="gender_arrays">
         <item>Male</item>

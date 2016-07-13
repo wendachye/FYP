@@ -56,6 +56,11 @@ public class LoginActivity extends BaseActivity {
         startActivity(intent);
     }
 
+    public void registerNewAccount(View view) {
+        Intent intent = new Intent(this, RegisterNewAccount.class);
+        startActivity(intent);
+    }
+
     public void loginButton(View view) {
         try {
             login.verifyLoginID(editTextUsername.getText().toString());
