@@ -74,11 +74,10 @@ public class RegisterNewAccount extends BaseActivity {
         }
         else if (id == R.id.saveButton) {
             // verify data
-            verifyInput();
+
             if (isNetworkAvailable(this)) {
                 generatePIN();
-                UIUtils.getProgressDialog(RegisterNewAccount.this, "ON");
-                sendVerifyEmail();
+                verifyInput();
             } else {
                 shortToast(this, "Network not available.");
             }
@@ -109,6 +108,7 @@ public class RegisterNewAccount extends BaseActivity {
             account.verifyName(mName);
             account.verifyEmail(mEmail);
             account.verifyContactNo(mContact);
+            sendVerifyEmail();
         } catch (InvalidInputException e) {
             shortToast(this, e.getInfo());
         }
@@ -116,6 +116,7 @@ public class RegisterNewAccount extends BaseActivity {
     }
 
     public void sendVerifyEmail () {
+        UIUtils.getProgressDialog(RegisterNewAccount.this, "ON");
         final Mail mail = new Mail("chyewd-wa12@student.tarc.edu.my", emailPassword);
         new AsyncTask<Void, Void, Void>() {
             @Override public Void doInBackground(Void... arg) {
